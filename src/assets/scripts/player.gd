@@ -4,6 +4,12 @@ const SPEED = 100.0
 
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("basic_attack"):
+		print("basic attack")
+	if Input.is_action_just_pressed("heavy_attack"):
+		print("heavy attack")
+
 func _physics_process(delta: float) -> void:
 	var xDirection = get_x_input()
 	var yDirection = get_y_input()
