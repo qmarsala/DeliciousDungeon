@@ -12,6 +12,8 @@ const HEAVY_COOLDOWN = .7
 @onready var interact_cast: RayCast2D = $InteractionRayCast
 
 func _process(delta: float) -> void:
+	var mouse_pos = get_global_mouse_position()
+	interact_cast.look_at(mouse_pos)
 	handle_attack_action(delta)
 
 func _physics_process(delta: float) -> void:
@@ -58,7 +60,9 @@ func handle_attack_action(delta):
 	var attack_released = basic_attack_released or heavy_attack_released
 	if attack_released:
 		attack_is_cooling_down = true
-		var target = interact_cast.get_collider()
+		interact_cast.force_raycast_update()
+		var target = interact_cast.get_collider() 
+		print(target)
 		if target:
 			attack_target(basic_attack_released, heavy_attack_released, target)
 
