@@ -168,7 +168,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
 radius = 4.0
-height = 15.0
+height = 12.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -12)
@@ -180,5 +180,9 @@ animation = &"die"
 autoplay = "idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.5)
+position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_kh2an")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
