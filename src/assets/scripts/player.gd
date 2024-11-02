@@ -4,8 +4,11 @@ const SPEED = 100.0
 const INTERACTION_RANGE = 20.0
 const CHARGED_ATTACK_TIME = .5
 const BASIC_COOLDOWN = .3
+const BASIC_DAMAGE = 1
 const CHARGED_COOLDOWN = 0
+const CHARGED_DAMAGE = 1.75
 const HEAVY_COOLDOWN = .7
+const HEAVY_DAMAGE = 2.5
 
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var cooldown_timer: Timer = $CooldownTimer
@@ -47,6 +50,9 @@ func play_animation(xDirection, yDirection):
 		character_sprite.flip_h = xDirection < 0
 		character_sprite.play("run")
 
+
+var cooldowns = {"basic_attack": BASIC_COOLDOWN, "charged_attack": CHARGED_COOLDOWN, "heavy_attack": HEAVY_COOLDOWN}
+var damages = {"basic_attack": BASIC_DAMAGE, "charged_attack": CHARGED_DAMAGE, "heavy_attack": HEAVY_DAMAGE}
 var basic_pressed_time = 0
 var attack_is_cooling_down = false
 func handle_attack_action(delta):
@@ -60,33 +66,21 @@ func handle_attack_action(delta):
 	var attack_released = basic_attack_released or heavy_attack_released
 	if attack_released:
 		attack_is_cooling_down = true
-		interact_cast.force_raycast_update()
-		var target = interact_cast.get_collider() 
-		print(target)
-		if target:
-			attack_target(basic_attack_released, heavy_attack_released, target)
+		var attack_type = get_attack_type(basic_attack_released, heavy_attack_released)
+		cooldown_timer.start(cooldowns[attack_type])
+		if interact_cast.is_colliding():
+			var target = interact_cast.get_collider() 
+			target.receive_damage(damages[attack_type])
 
-func attack_target(basic_attack, heavy_attack, target):
-	var attack_damage = 1
-	var cooldown = 0
-	if basic_attack:
-		var total_time_charged = basic_pressed_time
-		basic_pressed_time = 0
-		if total_time_charged > CHARGED_ATTACK_TIME: 
-			cooldown = CHARGED_COOLDOWN
-			attack_damage = 2
-			print("charged_attack", target)
-		else:
-			cooldown = BASIC_COOLDOWN
-			attack_damage = 1
-			print("basic_attack", target)
-	if heavy_attack:
-		cooldown = HEAVY_COOLDOWN
-		attack_damage = 3
-		print("heavy_attack", target)
-	target.receive_damage(attack_damage)
-	cooldown_timer.start(cooldown)
-	
+func get_attack_type(basic_attack, heavy_attack) -> String:
+	var total_time_charged = basic_pressed_time
+	basic_pressed_time = 0
+	if basic_attack and total_time_charged > CHARGED_ATTACK_TIME: 
+		return "charged_attack"
+	elif heavy_attack:
+		return "heavy_attack"
+	else:
+		return "basic_attack"
 
 func _on_cooldown_timer_timeout() -> void:
 	attack_is_cooling_down = false
