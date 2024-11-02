@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
+const INTERACTION_RANGE = 20.0
 const CHARGED_ATTACK_TIME = .5
 const BASIC_COOLDOWN = .3
 const CHARGED_COOLDOWN = 0
@@ -8,7 +9,7 @@ const HEAVY_COOLDOWN = .7
 
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var cooldown_timer: Timer = $CooldownTimer
-
+@onready var interact_cast: RayCast2D = $InteractionRayCast
 
 func _process(delta: float) -> void:
 	handle_attack_action(delta)
@@ -57,20 +58,31 @@ func handle_attack_action(delta):
 	var attack_released = basic_attack_released or heavy_attack_released
 	if attack_released:
 		attack_is_cooling_down = true
-		attack_target(basic_attack_released, heavy_attack_released, "todo")
+		var target = interact_cast.get_collider()
+		if target:
+			attack_target(basic_attack_released, heavy_attack_released, target)
 
-func attack_target(basic_attack_released, heavy_attack_released, target):
-	if basic_attack_released:
-		if basic_pressed_time > CHARGED_ATTACK_TIME: 
-			cooldown_timer.start(CHARGED_COOLDOWN)
-			print("charged_attack")
-		else:
-			cooldown_timer.start(BASIC_COOLDOWN)
-			print("basic_attack")
+func attack_target(basic_attack, heavy_attack, target):
+	var attack_damage = 1
+	var cooldown = 0
+	if basic_attack:
+		var total_time_charged = basic_pressed_time
 		basic_pressed_time = 0
-	if heavy_attack_released:
-		cooldown_timer.start(HEAVY_COOLDOWN)
-		print("heavy_attack")
+		if total_time_charged > CHARGED_ATTACK_TIME: 
+			cooldown = CHARGED_COOLDOWN
+			attack_damage = 2
+			print("charged_attack", target)
+		else:
+			cooldown = BASIC_COOLDOWN
+			attack_damage = 1
+			print("basic_attack", target)
+	if heavy_attack:
+		cooldown = HEAVY_COOLDOWN
+		attack_damage = 3
+		print("heavy_attack", target)
+	target.receive_damage(attack_damage)
+	cooldown_timer.start(cooldown)
+	
 
 func _on_cooldown_timer_timeout() -> void:
 	attack_is_cooling_down = false

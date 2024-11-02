@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=7 format=4 uid="uid://v8yl2qd4myvg"]
 
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="1_bt7mb"]
 [ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://assets/sprites/dungeon/dungeon_.png" id="2_5bv3p"]
+[ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="3_mjxpe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yhi4f"]
 texture = ExtResource("2_5bv3p")
@@ -273,7 +274,10 @@ texture = ExtResource("2_5bv3p")
 
 [sub_resource type="TileSet" id="TileSet_qwwhl"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_yhi4f")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
 
 [node name="Game" type="Node2D"]
 
@@ -287,7 +291,18 @@ tile_set = SubResource("TileSet_qwwhl")
 
 [node name="Player" parent="." instance=ExtResource("1_bt7mb")]
 position = Vector2(1, -12)
+collision_mask = 5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 12)
 zoom = Vector2(4, 4)
+
+[node name="EnemyDummy" type="StaticBody2D" parent="."]
+position = Vector2(39, -5)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_mjxpe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDummy"]
+shape = SubResource("RectangleShape2D_iev8x")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
