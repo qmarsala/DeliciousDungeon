@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=4 uid="uid://d4g6nonksssfo"]
 
-[ext_resource type="Script" path="res://assets/scripts/door.gd" id="1_40pny"]
 [ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://assets/sprites/dungeon/dungeon_.png" id="1_o2gdo"]
 [ext_resource type="Texture2D" uid="uid://b27ypia1sa3a8" path="res://assets/sprites/dungeon/dungeonDecoration_1.png" id="2_vun8h"]
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="3_ifnd1"]
+[ext_resource type="PackedScene" uid="uid://dfrkg68i632d1" path="res://scenes/double_door_south.tscn" id="4_6w6hj"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/fire.tscn" id="4_rhdmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2uxa"]
@@ -712,12 +712,8 @@ z_index = 2
 tile_map_data = PackedByteArray("AAD6//r/AAABAAEAAAD6//v/AAABAAIAAAD6//z/AAAEAAMAAAD7//r/AAACAAQAAAD7//v/AAACAAUAAAD///r/AAACAAQAAAD///v/AAACAAUAAAD7/wEAAAADAAcAAAD//wEAAAADAAcAAAD7/wAAAAACAAQAAAD//wAAAAACAAQAAAD6/wAAAAABAAYAAAD6/wEAAAABAAcAAAD6//3/AAAEAAMAAAD6//7/AAAEAAMAAAD6////AAAEAAMAAAD8//r/AAACAAQAAAD8//v/AAACAAUAAAD9//r/AAACAAQAAAD9//v/AAACAAUAAAD+//r/AAACAAQAAAD+//v/AAACAAUAAAAAAPr/AAACAAQAAAAAAPv/AAACAAUAAAAAAP3/AAABAAEAAAAAAP7/AAABAAIAAAAAAP//AAAEAAMAAAAAAAAAAAAEAAYAAAAAAAEAAAAEAAcAAAD8/wAAAAAEAAEAAAD8/wEAAAAEAAIAAAD+/wAAAAABAAEAAAD+/wEAAAABAAIAAAA=")
 tile_set = SubResource("TileSet_s0hne")
 
-[node name="Door" type="TileMapLayer" parent="."]
-z_index = 6
-tile_map_data = PackedByteArray("AAD8/wAAAgAKAAIAAAD8/wEAAgAKAAMAAAD+/wAAAgAMAAIAAAD+/wEAAgAMAAMAAAD8////AgAKAAEAAAD9////AgALAAEAAAD9/wAAAgALAAIAAAD9/wEAAgALAAMAAAD+////AgAMAAEAAAA=")
-tile_set = SubResource("TileSet_s0hne")
-script = ExtResource("1_40pny")
-door_pos = Vector2(-4, 0)
+[node name="Door" parent="." instance=ExtResource("4_6w6hj")]
+position = Vector2(0, 0)
 
 [node name="Fire" parent="." instance=ExtResource("4_rhdmt")]
 position = Vector2(-69, -10)
