@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://cgadsjmjkeh80"]
+[gd_scene load_steps=10 format=4 uid="uid://cgadsjmjkeh80"]
 
 [ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://assets/sprites/dungeon/dungeon_.png" id="1_tett6"]
 [ext_resource type="Texture2D" uid="uid://b27ypia1sa3a8" path="res://assets/sprites/dungeon/dungeonDecoration_1.png" id="2_u51th"]
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="3_hxinj"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/fire.tscn" id="4_0kcn6"]
+[ext_resource type="Script" path="res://assets/scripts/door.gd" id="4_6u02m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2uxa"]
 texture = ExtResource("1_tett6")
@@ -311,11 +312,13 @@ texture = ExtResource("2_u51th")
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
-8:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 2.66667, 5.33333, 2.66667, 5.33333, 8, -8, 8)
 9:2/0 = 0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 2.66667, -5.33333, 2.66667, -5.33333, 8, 8, 8)
 10:2/0 = 0
-11:2/0 = 0
+10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 2.66667, -8, 2.66667, -8, 8, 8, 8)
 12:2/0 = 0
+12:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 2.66667, -8, 2.66667, -8, 8, 8, 8)
 13:2/0 = 0
 14:2/0 = 0
 15:2/0 = 0
@@ -339,11 +342,16 @@ texture = ExtResource("2_u51th")
 4:3/0 = 0
 6:3/0 = 0
 7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 5.33333, -8, 5.33333, 0, -8, 0)
 8:3/0 = 0
 9:3/0 = 0
+9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -5.33333, -8, -5.33333, 0, 8, 0)
 10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 11:3/0 = 0
+11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 12:3/0 = 0
+12:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 13:3/0 = 0
 14:3/0 = 0
 15:3/0 = 0
@@ -568,6 +576,9 @@ texture = ExtResource("2_u51th")
 28:12/0 = 0
 29:12/0 = 0
 30:12/0 = 0
+8:2/0 = 0
+11:2/0 = 0
+11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 2.66667, -8, 2.66667, -8, 8, 8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x34og"]
 texture = ExtResource("3_hxinj")
@@ -699,5 +710,6 @@ tile_set = SubResource("TileSet_s0hne")
 z_index = 2
 tile_map_data = PackedByteArray("AAD6//r/AAABAAEAAAD6//v/AAABAAIAAAD6//z/AAAEAAMAAAD7//r/AAACAAQAAAD7//v/AAACAAUAAAD6//7/AAAEAAcAAAD6//3/AAAEAAYAAAD8//n/AgAKAAEAAAD8//r/AgAKAAIAAAD8//v/AgAKAAMAAAD9//n/AgALAAEAAAD9//r/AgALAAIAAAD9//v/AgALAAMAAAD+//n/AgAMAAEAAAD+//r/AgAMAAIAAAD+//v/AgAMAAMAAAD///r/AAACAAQAAAD///v/AAACAAUAAAD7/wEAAAADAAcAAAD8/wEAAAADAAcAAAD9/wEAAAADAAcAAAD+/wEAAAADAAcAAAD//wEAAAADAAcAAAAAAAAAAAAEAAYAAAAAAAEAAAAEAAcAAAAAAPr/AAAEAAEAAAAAAPv/AAAEAAIAAAAAAPz/AAAEAAMAAAAAAP3/AAAEAAMAAAAAAP7/AAAEAAMAAAAAAP//AAAEAAMAAAD6/wEAAAADAAcAAAD6/wAAAAACAAQAAAD7/wAAAAACAAQAAAD8/wAAAAACAAQAAAD9/wAAAAACAAQAAAD+/wAAAAACAAQAAAD//wAAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_s0hne")
+script = ExtResource("4_6u02m")
 
 [node name="Fire" parent="." instance=ExtResource("4_0kcn6")]

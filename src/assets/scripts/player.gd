@@ -12,12 +12,15 @@ const HEAVY_DAMAGE = 2.5
 
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var cooldown_timer: Timer = $CooldownTimer
-@onready var interact_cast: RayCast2D = $InteractionRayCast
+@onready var interact_ray_cast: RayCast2D = $InteractionRayCast
+@onready var attack_ray_cast: RayCast2D = $AttackRayCast
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
-	interact_cast.look_at(mouse_pos)
+	attack_ray_cast.look_at(mouse_pos)
+	interact_ray_cast.look_at(mouse_pos)
 	handle_attack_action(delta)
+	handle_interact_action()
 
 func _physics_process(delta: float) -> void:
 	var xDirection = get_x_input()
@@ -68,8 +71,8 @@ func handle_attack_action(delta):
 		attack_is_cooling_down = true
 		var attack_type = get_attack_type(basic_attack_released, heavy_attack_released)
 		cooldown_timer.start(cooldowns[attack_type])
-		if interact_cast.is_colliding():
-			var target = interact_cast.get_collider() 
+		if attack_ray_cast.is_colliding():
+			var target = attack_ray_cast.get_collider() 
 			target.receive_damage(damages[attack_type])
 
 func get_attack_type(basic_attack, heavy_attack) -> String:
@@ -84,3 +87,13 @@ func get_attack_type(basic_attack, heavy_attack) -> String:
 
 func _on_cooldown_timer_timeout() -> void:
 	attack_is_cooling_down = false
+	
+func handle_interact_action() -> void:
+	#todo: this will be more than just opening a door
+	if Input.is_action_just_pressed("interact"):
+		print("interact!")
+		var target = interact_ray_cast.get_collider()
+		print(target)
+		if target and target is Door:
+			print("open")
+			target.open_door()

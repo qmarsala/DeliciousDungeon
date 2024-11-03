@@ -34,6 +34,7 @@ position = Vector2(-352, 48)
 
 [node name="Goblin" parent="Goblins" instance=ExtResource("3_3qdgp")]
 position = Vector2(-252, -34)
+collision_mask = 11
 
 [node name="Goblin2" parent="Goblins" instance=ExtResource("3_3qdgp")]
 position = Vector2(-197, 28)
