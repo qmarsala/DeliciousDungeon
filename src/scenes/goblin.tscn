@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=18 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
@@ -108,8 +108,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
 size = Vector2(8, 14)
 
-[node name="Goblin" type="StaticBody2D"]
-position = Vector2(39, -5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xw2f"]
+radius = 75.0
+
+[node name="Goblin" type="CharacterBody2D"]
+z_index = 4
+position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_8oweg")
@@ -126,4 +130,14 @@ debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="VisonArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisonArea"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_0xw2f")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="VisonArea" to="." method="_on_vison_area_body_entered"]
+[connection signal="body_exited" from="VisonArea" to="." method="_on_vison_area_body_exited"]
