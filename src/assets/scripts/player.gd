@@ -128,12 +128,6 @@ func get_attack_type(basic_attack, heavy_attack) -> String:
 		return "heavy_attack"
 	else:
 		return "basic_attack"
-		
-
-func receive_damage(damage):
-	health = health - damage
-	character_sprite.stop()
-	character_sprite.play("receive_damage")
 
 func handle_interact_action() -> void:
 	#todo: this will be more than just opening a door
@@ -141,6 +135,11 @@ func handle_interact_action() -> void:
 		var target = interact_ray_cast.get_collider()
 		if target and target is Door:
 			target.open_door()
+
+func receive_damage(damage):
+	health = health - damage
+	character_sprite.stop()
+	character_sprite.play("receive_damage")
 
 func rest():
 	# for now this is really simple, be by a fire
