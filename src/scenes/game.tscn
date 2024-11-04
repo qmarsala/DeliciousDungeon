@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=9 format=3 uid="uid://v8yl2qd4myvg"]
 
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="1_bt7mb"]
 [ext_resource type="PackedScene" uid="uid://dqfrio0i81038" path="res://scenes/basic_room_decoration.tscn" id="2_gp6ym"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/goblin.tscn" id="3_3qdgp"]
 [ext_resource type="PackedScene" uid="uid://cgadsjmjkeh80" path="res://scenes/basic_door_up_right.tscn" id="6_gtjqo"]
 [ext_resource type="PackedScene" uid="uid://d4g6nonksssfo" path="res://scenes/basic_door_down_left.tscn" id="7_uuhca"]
+[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/player_ui.tscn" id="8_sx1ad"]
 
 [node name="Game" type="Node2D"]
 
@@ -55,6 +56,13 @@ position = Vector2(270, 25)
 z_index = 5
 position = Vector2(1, -12)
 collision_mask = 5
+
+[node name="PlayerUI" parent="Player" instance=ExtResource("8_sx1ad")]
+offset_left = -142.0
+offset_top = -65.0
+offset_right = -142.0
+offset_bottom = -65.0
+scale = Vector2(0.405729, 0.367219)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 12)

@@ -9,13 +9,44 @@ const CHARGED_COOLDOWN = 0
 const CHARGED_DAMAGE = 1.75
 const HEAVY_COOLDOWN = .7
 const HEAVY_DAMAGE = 2.5
+const STARTING_HEALTH = 10
+const STARTING_NUTRITION = 10
 
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var interact_ray_cast: RayCast2D = $InteractionRayCast
 @onready var attack_ray_cast: RayCast2D = $AttackRayCast
+@onready var death_timer: Timer = $DeathTimer
+@onready var player_ui: PlayerUI = $PlayerUI
+
+var health : float :
+	get:
+		return health
+	set(v):
+		health = v
+		if player_ui:
+			player_ui.update_health_bar(health)
+var nutrition : float :
+	get:
+		return nutrition
+	set(v):
+		nutrition = v
+		if player_ui:
+			player_ui.update_hunger_bar(nutrition)
+var is_dead = false
+
+func _ready() -> void:
+	health = STARTING_HEALTH
+	nutrition = STARTING_NUTRITION
 
 func _process(delta: float) -> void:
+	if is_dead: return
+	if health <= 0:
+		character_sprite.stop()
+		character_sprite.play("die")
+		death_timer.start(.75)
+		is_dead = true
+		return
 	var mouse_pos = get_global_mouse_position()
 	attack_ray_cast.look_at(mouse_pos)
 	interact_ray_cast.look_at(mouse_pos)
@@ -23,6 +54,7 @@ func _process(delta: float) -> void:
 	handle_interact_action()
 
 func _physics_process(delta: float) -> void:
+	if is_dead: return
 	var xDirection = get_x_input()
 	var yDirection = get_y_input()
 	velocity = calc_player_velocity(xDirection, yDirection)
@@ -46,13 +78,13 @@ func get_y_input():
 func calc_player_velocity(xDirection, yDirection):
 	return Vector2(xDirection, yDirection).normalized() * SPEED
 
-func play_animation(xDirection, yDirection): 
+func play_animation(xDirection, yDirection):
+	if character_sprite.is_playing() and character_sprite.animation == "receive_damage": return
 	if xDirection == 0 and yDirection == 0:
 		character_sprite.play("idle")
 	else:
 		character_sprite.flip_h = xDirection < 0
 		character_sprite.play("run")
-
 
 var cooldowns = {"basic_attack": BASIC_COOLDOWN, "charged_attack": CHARGED_COOLDOWN, "heavy_attack": HEAVY_COOLDOWN}
 var damages = {"basic_attack": BASIC_DAMAGE, "charged_attack": CHARGED_DAMAGE, "heavy_attack": HEAVY_DAMAGE}
@@ -84,16 +116,35 @@ func get_attack_type(basic_attack, heavy_attack) -> String:
 		return "heavy_attack"
 	else:
 		return "basic_attack"
+		
 
-func _on_cooldown_timer_timeout() -> void:
-	attack_is_cooling_down = false
-	
+func receive_damage(damage):
+	health = health - damage
+	character_sprite.stop()
+	character_sprite.play("receive_damage")
+
 func handle_interact_action() -> void:
 	#todo: this will be more than just opening a door
 	if Input.is_action_just_pressed("interact"):
-		print("interact!")
 		var target = interact_ray_cast.get_collider()
-		print(target)
 		if target and target is Door:
-			print("open")
 			target.open_door()
+
+func rest():
+	# for now this is really simple, be by a fire
+	# later this will require food and cooking to be fully effective
+	nutrition = STARTING_NUTRITION
+	health = min(health + 2, STARTING_HEALTH)
+	print("resting: ", nutrition, ", ", health)
+
+func _on_cooldown_timer_timeout() -> void:
+	attack_is_cooling_down = false
+
+func _on_death_timer_timeout() -> void:
+	get_tree().reload_current_scene()
+
+func _on_hunger_timer_timeout() -> void:
+	if nutrition <= 0:
+		receive_damage(1)
+	else:
+		nutrition = nutrition - 1

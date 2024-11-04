@@ -51,22 +51,6 @@ region = Rect2(144, 0, 24, 24)
 atlas = ExtResource("1_0cxf1")
 region = Rect2(168, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ahjtk"]
-atlas = ExtResource("1_0cxf1")
-region = Rect2(0, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_75sa1"]
-atlas = ExtResource("1_0cxf1")
-region = Rect2(24, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ftsri"]
-atlas = ExtResource("1_0cxf1")
-region = Rect2(72, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_58pmj"]
-atlas = ExtResource("1_0cxf1")
-region = Rect2(72, 48, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_urave"]
 atlas = ExtResource("1_0cxf1")
 region = Rect2(0, 96, 24, 24)
@@ -82,6 +66,22 @@ region = Rect2(48, 96, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ak74"]
 atlas = ExtResource("1_0cxf1")
 region = Rect2(72, 96, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahjtk"]
+atlas = ExtResource("1_0cxf1")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75sa1"]
+atlas = ExtResource("1_0cxf1")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftsri"]
+atlas = ExtResource("1_0cxf1")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58pmj"]
+atlas = ExtResource("1_0cxf1")
+region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_65n8r"]
 animations = [{
@@ -133,6 +133,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_urave")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3bt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fia3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ak74")
+}],
+"loop": false,
+"name": &"receive_damage",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ahjtk")
 }, {
 "duration": 1.0,
@@ -147,23 +164,6 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_urave")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o3bt6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fia3w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6ak74")
-}],
-"loop": false,
-"name": &"take_damage",
-"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
@@ -177,8 +177,10 @@ script = ExtResource("1_511jo")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_65n8r")
-animation = &"die"
+animation = &"receive_damage"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -195,4 +197,12 @@ target_position = Vector2(20, 0)
 
 [node name="CooldownTimer" type="Timer" parent="."]
 
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="HungerTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
