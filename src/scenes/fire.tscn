@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfesvjhulwkvx"]
+[gd_scene load_steps=14 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
+[ext_resource type="Script" path="res://assets/scripts/fire.gd" id="2_dth6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
 atlas = ExtResource("1_j4fss")
@@ -85,11 +86,15 @@ _data = {
 "campfire_light_flicker": SubResource("Animation_lb1jd")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bi4h"]
+radius = 19.0263
+
 [node name="Fire" type="AnimatedSprite2D"]
 position = Vector2(-68, -50)
 sprite_frames = SubResource("SpriteFrames_51dwp")
 autoplay = "default"
 frame_progress = 0.810732
+script = ExtResource("2_dth6p")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.909804, 0.666667, 0.0823529, 1)
@@ -101,3 +106,11 @@ libraries = {
 "": SubResource("AnimationLibrary_vxxca")
 }
 autoplay = "campfire_light_flicker"
+
+[node name="RestArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestArea"]
+shape = SubResource("CircleShape2D_2bi4h")
+
+[connection signal="body_entered" from="RestArea" to="." method="_on_rest_area_body_entered"]
