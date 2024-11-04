@@ -39,3 +39,12 @@ offset_bottom = 72.0
 scale = Vector2(1.08044, 1)
 max_value = 10.0
 value = 5.0
+
+[node name="ChargedAttackBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 37.0
+offset_right = 403.0
+offset_bottom = 64.0
+scale = Vector2(1, 0.359999)
+max_value = 0.4

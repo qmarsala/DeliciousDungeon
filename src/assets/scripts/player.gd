@@ -12,6 +12,7 @@ const HEAVY_DAMAGE = 2.5
 const STARTING_HEALTH = 10
 const STARTING_NUTRITION = 10
 
+@onready var aoe_area: Area2D = $AttackRayCast/AoeArea
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var interact_ray_cast: RayCast2D = $InteractionRayCast
@@ -88,7 +89,14 @@ func play_animation(xDirection, yDirection):
 
 var cooldowns = {"basic_attack": BASIC_COOLDOWN, "charged_attack": CHARGED_COOLDOWN, "heavy_attack": HEAVY_COOLDOWN}
 var damages = {"basic_attack": BASIC_DAMAGE, "charged_attack": CHARGED_DAMAGE, "heavy_attack": HEAVY_DAMAGE}
-var basic_pressed_time = 0
+var basic_pressed_time : float = 0.0 : 
+	get:
+		return basic_pressed_time
+	set(v):
+		basic_pressed_time = v
+		if player_ui and (basic_pressed_time >= (CHARGED_ATTACK_TIME * .25) or basic_pressed_time == 0):
+			player_ui.update_charge_bar(basic_pressed_time)
+
 var attack_is_cooling_down = false
 func handle_attack_action(delta):
 	if attack_is_cooling_down:
@@ -103,7 +111,11 @@ func handle_attack_action(delta):
 		attack_is_cooling_down = true
 		var attack_type = get_attack_type(basic_attack_released, heavy_attack_released)
 		cooldown_timer.start(cooldowns[attack_type])
-		if attack_ray_cast.is_colliding():
+		if attack_type == "charged_attack" and aoe_area.has_overlapping_bodies():
+			var targets = aoe_area.get_overlapping_bodies() 
+			for t in targets:
+				t.receive_damage(damages[attack_type])
+		elif attack_ray_cast.is_colliding():
 			var target = attack_ray_cast.get_collider() 
 			target.receive_damage(damages[attack_type])
 
