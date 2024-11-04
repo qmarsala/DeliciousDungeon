@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1bfcy70vhh2k"]
+
+[ext_resource type="Script" path="res://assets/scripts/player_ui.gd" id="1_bgem0"]
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bgem0")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3.12055, 2.06614)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0.827964, 0.119937, 0.216825, 1)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 109.0
+offset_bottom = 37.0
+scale = Vector2(1.08, 1.08)
+max_value = 10.0
+value = 5.0
+
+[node name="HungerBar" type="ProgressBar" parent="."]
+modulate = Color(0.224528, 0.402987, 0.931931, 1)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 45.0
+offset_right = 109.0
+offset_bottom = 72.0
+scale = Vector2(1.08044, 1)
+max_value = 10.0
+value = 5.0
