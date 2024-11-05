@@ -114,7 +114,7 @@ func handle_attack_action(delta):
 		var attack_type = get_attack_type(basic_attack_released, heavy_attack_released)
 		cooldown_timer.start(cooldowns[attack_type])
 		if poc_arrows(attack_type): return
-		if attack_type == "charged_attack" and aoe_area.has_overlapping_bodies():
+		if attack_type == "heavy_attack" and aoe_area.has_overlapping_bodies():
 			var targets = aoe_area.get_overlapping_bodies() 
 			for t in targets:
 				t.receive_damage(damages[attack_type])
@@ -123,7 +123,7 @@ func handle_attack_action(delta):
 			target.receive_damage(damages[attack_type])
 
 func poc_arrows(attack_type) -> bool:
-	var fire_arrow = attack_type == "heavy_attack"
+	var fire_arrow = attack_type == "charged_attack"
 	if fire_arrow:
 		var a = arrow.instantiate() as Arrow
 		a.shoot_arrow(position, get_global_mouse_position())

@@ -8,6 +8,7 @@ size = Vector2(4, 14)
 
 [node name="Arrow" type="Node2D"]
 z_index = 6
+rotation = 1.5708
 script = ExtResource("1_k70sm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
