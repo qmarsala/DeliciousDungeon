@@ -1,8 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=29 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_511jo"]
 [ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/arrow.tscn" id="2_g7j6g"]
+[ext_resource type="Script" path="res://assets/scripts/melee_attack.gd" id="3_1icsx"]
+[ext_resource type="Script" path="res://assets/scripts/ranged_attack.gd" id="4_babir"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqaka"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0hgw"]
 atlas = ExtResource("1_0cxf1")
@@ -171,14 +175,34 @@ animations = [{
 radius = 4.0
 height = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dqaka"]
-
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -12)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_511jo")
+
+[node name="RangedAttack" type="Node" parent="."]
+script = ExtResource("4_babir")
 arrow = ExtResource("2_g7j6g")
+
+[node name="MeleeAttack" type="Node" parent="."]
+script = ExtResource("3_1icsx")
+
+[node name="AttackRayCast" type="RayCast2D" parent="MeleeAttack"]
+position = Vector2(0, -7)
+target_position = Vector2(20, 0)
+collision_mask = 4
+
+[node name="AoeArea" type="Area2D" parent="MeleeAttack/AttackRayCast"]
+position = Vector2(0, -5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack/AttackRayCast/AoeArea"]
+position = Vector2(9, 5)
+shape = SubResource("CircleShape2D_dqaka")
+
+[node name="CooldownTimer" type="Timer" parent="MeleeAttack"]
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_65n8r")
@@ -191,25 +215,9 @@ frame_progress = 1.0
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_kh2an")
 
-[node name="AttackRayCast" type="RayCast2D" parent="."]
-position = Vector2(0, 5)
-target_position = Vector2(20, 0)
-collision_mask = 4
-
-[node name="AoeArea" type="Area2D" parent="AttackRayCast"]
-position = Vector2(0, -5)
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRayCast/AoeArea"]
-position = Vector2(9, 5)
-shape = SubResource("CircleShape2D_dqaka")
-
 [node name="InteractionRayCast" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
 target_position = Vector2(20, 0)
-
-[node name="CooldownTimer" type="Timer" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="."]
 
@@ -217,6 +225,9 @@ target_position = Vector2(20, 0)
 wait_time = 6.0
 autostart = true
 
-[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="ranged_attack" from="RangedAttack" to="." method="_on_ranged_attack"]
+[connection signal="ranged_attack_charge" from="RangedAttack" to="." method="_on_ranged_attack_charge"]
+[connection signal="melee_attack" from="MeleeAttack" to="." method="_on_melee_attack"]
+[connection signal="timeout" from="MeleeAttack/CooldownTimer" to="MeleeAttack" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
