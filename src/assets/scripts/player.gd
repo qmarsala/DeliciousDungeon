@@ -12,6 +12,8 @@ const HEAVY_DAMAGE = 2.5
 const STARTING_HEALTH = 10
 const STARTING_NUTRITION = 10
 
+@export var arrow: PackedScene
+
 @onready var aoe_area: Area2D = $AttackRayCast/AoeArea
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var cooldown_timer: Timer = $CooldownTimer
@@ -111,6 +113,7 @@ func handle_attack_action(delta):
 		attack_is_cooling_down = true
 		var attack_type = get_attack_type(basic_attack_released, heavy_attack_released)
 		cooldown_timer.start(cooldowns[attack_type])
+		if poc_arrows(attack_type): return
 		if attack_type == "charged_attack" and aoe_area.has_overlapping_bodies():
 			var targets = aoe_area.get_overlapping_bodies() 
 			for t in targets:
@@ -118,6 +121,14 @@ func handle_attack_action(delta):
 		elif attack_ray_cast.is_colliding():
 			var target = attack_ray_cast.get_collider() 
 			target.receive_damage(damages[attack_type])
+
+func poc_arrows(attack_type) -> bool:
+	var fire_arrow = attack_type == "heavy_attack"
+	if fire_arrow:
+		var a = arrow.instantiate() as Arrow
+		a.shoot_arrow(position, get_global_mouse_position())
+		get_tree().root.add_child(a)
+	return fire_arrow
 
 func get_attack_type(basic_attack, heavy_attack) -> String:
 	var total_time_charged = basic_pressed_time
