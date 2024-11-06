@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwmoi0dahea8s"]
 
 [ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://assets/sprites/robinhood/weapons_.png" id="1_cgbgu"]
-[ext_resource type="Script" path="res://assets/scripts/arrow.gd" id="1_k70sm"]
+[ext_resource type="Script" path="res://assets/scripts/projectile.gd" id="1_k70sm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_088qw"]
 size = Vector2(4, 14)

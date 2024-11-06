@@ -1,16 +1,18 @@
 extends Node2D
-class_name Arrow
+class_name Projectile
 
-const SPEED = 300.0
+@export var speed = 300.0
+@export var damage = 2
+
 var direction = Vector2(0,0)
 var target = Vector2(0,0)
 
 func _physics_process(delta: float) -> void:
-	position += direction * SPEED * delta
+	position += direction * speed * delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		body.receive_damage(2)
+		body.receive_damage(damage)
 	queue_free()
 	
 func init(starting_position, target_position):

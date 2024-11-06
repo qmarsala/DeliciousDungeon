@@ -4,34 +4,41 @@ class_name RangedAttack
 signal ranged_attack()
 signal ranged_attack_charge(value: float)
 
-@export var arrow: PackedScene
+@export var projectile: PackedScene
+@export var charge_time = .5
+@export var cooldown = 0.0
+@export var attack_action = "basic_attack"
 
-const CHARGED_ATTACK_TIME = .5
-const CHARGED_COOLDOWN = 0
+@onready var cooldown_timer: Timer = $CooldownTimer
 
 var can_charge = true
+var is_on_cooldown = false
 
 var basic_pressed_time : float = 0.0 : 
 	get:
 		return basic_pressed_time
 	set(v):
+		if basic_pressed_time != v and basic_pressed_time >= charge_time * .25:
+			ranged_attack_charge.emit((v / charge_time) * 100)
 		basic_pressed_time = v
-		ranged_attack_charge.emit(basic_pressed_time)
 
 func _process(delta: float) -> void:
-	if not Input.is_action_pressed("basic_attack"):
+	if not Input.is_action_pressed(attack_action):
 		basic_pressed_time = 0
 		can_charge = true
-	if Input.is_action_pressed("basic_attack") and can_charge:
+	if Input.is_action_pressed(attack_action) and can_charge and not is_on_cooldown:
 		basic_pressed_time += delta
-	if basic_pressed_time >= CHARGED_ATTACK_TIME:
+	if basic_pressed_time >= charge_time:
 		can_charge = false
+		is_on_cooldown = true
+		cooldown_timer.start(cooldown)
 		ranged_attack.emit()
 		basic_pressed_time = 0
 
-#todo: maybe the arrow should come from the character
-func shoot_arrow(starting_position, target):
-	var arrow_instance = arrow.instantiate() as Arrow
-	arrow_instance.init(starting_position, target)
-	add_child(arrow_instance)
-	
+func shoot_projectile(starting_position, target):
+	var projectile_instance = projectile.instantiate() as Projectile
+	projectile_instance.init(starting_position, target)
+	add_child(projectile_instance)
+
+func _on_cooldown_timer_timeout() -> void:
+	is_on_cooldown = false
