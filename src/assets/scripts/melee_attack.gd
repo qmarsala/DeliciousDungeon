@@ -23,11 +23,11 @@ var attack_is_cooling_down = false
 func _process(delta: float) -> void:
 	if attack_is_cooling_down:
 		return
-	var basic_attack_released = Input.is_action_just_released("basic_attack")
-	var heavy_attack_released = Input.is_action_just_released("heavy_attack")
-	var attack_released = basic_attack_released or heavy_attack_released
-	if attack_released:
-		melee_attack.emit(get_attack_type(basic_attack_released, heavy_attack_released))
+	var basic_attack = Input.is_action_just_pressed("basic_attack")
+	var heavy_attack = Input.is_action_just_pressed("heavy_attack")
+	var attack = basic_attack or heavy_attack
+	if attack:
+		melee_attack.emit(get_attack_type(basic_attack, heavy_attack))
 
 func get_attack_type(basic_attack, heavy_attack) -> String:
 	if heavy_attack:
@@ -43,7 +43,7 @@ func swing(attack_type):
 		for t in targets:
 			t.receive_damage(damages[attack_type])
 	elif attack_ray_cast.is_colliding():
-		var target = attack_ray_cast.get_collider() 
+		var target = attack_ray_cast.get_collider()
 		target.receive_damage(damages[attack_type])
 
 func _on_cooldown_timer_timeout() -> void:
