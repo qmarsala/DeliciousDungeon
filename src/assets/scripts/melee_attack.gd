@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name MeleeAttack
 
 signal melee_attack(attack_type: String)
@@ -12,15 +12,12 @@ const HEAVY_DAMAGE = 2.5
 @onready var attack_ray_cast: RayCast2D = $AttackRayCast
 @onready var cooldown_timer: Timer = $CooldownTimer
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		attack_ray_cast.look_at(event.global_position)
-
 var cooldowns = {"basic_attack": BASIC_COOLDOWN, "heavy_attack": HEAVY_COOLDOWN}
 var damages = {"basic_attack": BASIC_DAMAGE, "heavy_attack": HEAVY_DAMAGE}
 var attack_is_cooling_down = false
 
 func _process(delta: float) -> void:
+	attack_ray_cast.look_at(get_global_mouse_position())
 	if attack_is_cooling_down:
 		return
 	var basic_attack = Input.is_action_just_pressed("basic_attack")
