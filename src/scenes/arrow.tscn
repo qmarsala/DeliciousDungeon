@@ -8,13 +8,7 @@ size = Vector2(4, 14)
 
 [node name="Arrow" type="Node2D"]
 z_index = 6
-rotation = 1.5708
 script = ExtResource("1_k70sm")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_cgbgu")
-region_enabled = true
-region_rect = Rect2(52.1356, 5, 3.91202, 14)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -22,6 +16,11 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_088qw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cgbgu")
+region_enabled = true
+region_rect = Rect2(52.1356, 5, 3.91202, 14)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.75

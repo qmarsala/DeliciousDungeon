@@ -33,5 +33,5 @@ func _process(delta: float) -> void:
 func shoot_arrow(starting_position, target):
 	var arrow_instance = arrow.instantiate() as Arrow
 	arrow_instance.init(starting_position, target)
-	get_node(".").add_child(arrow_instance)
+	add_child(arrow_instance)
 	
