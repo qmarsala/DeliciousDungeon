@@ -7,6 +7,7 @@ const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
 @onready var animations: AnimatedSprite2D = $Animations
+@onready var death_timer: Timer = $DeathTimer
 @onready var timer: Timer = $Timer
 @onready var melee_range: RayCast2D = $MeleeRange
 @onready var cooldown_timer: Timer = $CooldownTimer
@@ -16,24 +17,30 @@ var is_dead = false
 var player_is_visible = false
 var player
 
+var explore_direction = Vector2(randf_range(-1,1), randf_range(-1,1))
+var is_exploring = false
+
 func _process(delta: float) -> void:
 	if is_dead: return
 	if health <= 0:
 		animations.play("die")
-		timer.start(.75)
+		death_timer.start(.75)
 		is_dead = true
 		return
 	if not animations.is_playing():
 		animations.play("idle")
-	attack()
+	if player_is_visible:
+		attack()
 
 func _physics_process(delta: float) -> void:
-	if is_dead or not player_is_visible: return 
-	var distance = global_position.distance_to(player.global_position)
-	if distance <= MIN_DISTANCE: return
-	
-	var direction = global_position.direction_to(player.global_position)
-	velocity = direction.normalized() * SPEED
+	if is_dead: return
+	if player_is_visible:
+		var distance = global_position.distance_to(player.global_position)
+		if distance <= MIN_DISTANCE: return
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction.normalized() * SPEED
+	else:
+		velocity = explore_direction.normalized() * (SPEED / 2)
 	move_and_slide()
 
 var attack_is_cooling_down = false
@@ -55,7 +62,9 @@ func receive_damage(damage):
 	print("taking ", damage, " health:", health)
 
 func _on_timer_timeout() -> void:
-	queue_free()
+	var t = Vector2(randf_range(-1,1), randf_range(-1,1))
+	print("picking new target", t)
+	explore_direction = t
 
 func _on_vison_area_body_entered(body: Node2D) -> void:
 	player_is_visible = true
@@ -68,3 +77,6 @@ func _on_vison_area_body_exited(body: Node2D) -> void:
 
 func _on_cooldown_timer_timeout() -> void:
 	attack_is_cooling_down = false
+
+func _on_death_timer_timeout() -> void:
+	queue_free()
