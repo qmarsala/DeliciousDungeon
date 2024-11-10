@@ -6,6 +6,14 @@ const SPEED = 100.0
 const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
+#wip
+@onready var dead_state: EnemyState = $DeadState
+@onready var exploring_state: EnemyState = $ExploringState
+@onready var idle_state: EnemyState = $IdleState
+@onready var fighting_state: EnemyState = $FightingState
+@onready var goblin_state: EnemyState = $IdleState
+#/wip
+
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var death_timer: Timer = $DeathTimer
 @onready var timer: Timer = $Timer
@@ -15,48 +23,26 @@ const ATTACK_COOLDOWN = 1
 var health = STARTING_HP
 var is_dead = false
 var player_is_visible = false
+var attack_is_cooling_down = false
+var explore_direction = Vector2(randf_range(-1,1), randf_range(-1,1))
 var player
 
-var explore_direction = Vector2(randf_range(-1,1), randf_range(-1,1))
-var is_exploring = false
-
 func _process(delta: float) -> void:
-	if is_dead: return
 	if health <= 0:
-		animations.play("die")
-		death_timer.start(.75)
-		is_dead = true
-		return
-	if not animations.is_playing():
-		animations.play("idle")
-	if player_is_visible:
-		attack()
+		goblin_state = dead_state
+	elif player_is_visible:
+		goblin_state = fighting_state
+	else:
+		# todo randomly explore vs idle?
+		goblin_state = exploring_state
+	goblin_state.handle_process(self, delta)
 
 func _physics_process(delta: float) -> void:
-	if is_dead: return
-	if player_is_visible:
-		var distance = global_position.distance_to(player.global_position)
-		if distance <= MIN_DISTANCE: return
-		var direction = global_position.direction_to(player.global_position)
-		velocity = direction.normalized() * SPEED
-	else:
-		velocity = explore_direction.normalized() * (SPEED / 2)
+	goblin_state.handle_physics_process(self, delta)
 	move_and_slide()
 
-var attack_is_cooling_down = false
-func attack():
-	if attack_is_cooling_down or not player_is_visible:
-		return
-	cooldown_timer.start(ATTACK_COOLDOWN)
-	attack_is_cooling_down = true
-	melee_range.look_at(player.global_position)
-	var target = melee_range.get_collider()
-	if target:
-		target.receive_damage(1.5)
-
 func receive_damage(damage):
-	if is_dead: return 
-
+	if is_dead: return
 	animations.play("receive_damage")
 	health -= damage
 	print("taking ", damage, " health:", health)
