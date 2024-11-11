@@ -22,6 +22,7 @@ var health = STARTING_HP
 var is_dead = false
 var player_is_visible = false
 var attack_is_cooling_down = false
+var is_exploring = false
 var explore_direction = Vector2(randf_range(-1,1), randf_range(-1,1))
 var target
 
@@ -30,9 +31,10 @@ func _process(delta: float) -> void:
 		goblin_state = dead_state
 	elif player_is_visible:
 		goblin_state = fighting_state
-	else:
-		# todo randomly explore vs idle?
+	elif is_exploring:
 		goblin_state = exploring_state
+	else:
+		goblin_state = idle_state
 	goblin_state.handle_process(self, delta)
 	
 
@@ -48,6 +50,7 @@ func receive_damage(damage):
 	print("taking ", damage, " health:", health)
 
 func _on_timer_timeout() -> void:
+	is_exploring = randf() <= .5
 	var t = Vector2(randf_range(-1,1), randf_range(-1,1))
 	explore_direction = t
 
