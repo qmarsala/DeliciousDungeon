@@ -6,26 +6,24 @@ const SPEED = 100.0
 const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
-#wip
-@onready var dead_state: EnemyState = $DeadState
-@onready var exploring_state: EnemyState = $ExploringState
-@onready var idle_state: EnemyState = $IdleState
-@onready var fighting_state: EnemyState = $FightingState
-@onready var goblin_state: EnemyState = $IdleState
-#/wip
-
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var death_timer: Timer = $DeathTimer
 @onready var timer: Timer = $Timer
 @onready var melee_range: RayCast2D = $MeleeRange
 @onready var cooldown_timer: Timer = $CooldownTimer
 
+@onready var idle_state: EnemyState = $IdleState
+@onready var exploring_state: EnemyState = $ExploringState
+@onready var fighting_state: EnemyState = $FightingState
+@onready var dead_state: EnemyState = $DeadState
+@onready var goblin_state: EnemyState = $IdleState
+
 var health = STARTING_HP
 var is_dead = false
 var player_is_visible = false
 var attack_is_cooling_down = false
 var explore_direction = Vector2(randf_range(-1,1), randf_range(-1,1))
-var player
+var target
 
 func _process(delta: float) -> void:
 	if health <= 0:
@@ -36,6 +34,7 @@ func _process(delta: float) -> void:
 		# todo randomly explore vs idle?
 		goblin_state = exploring_state
 	goblin_state.handle_process(self, delta)
+	
 
 func _physics_process(delta: float) -> void:
 	goblin_state.handle_physics_process(self, delta)
@@ -54,7 +53,7 @@ func _on_timer_timeout() -> void:
 
 func _on_vison_area_body_entered(body: Node2D) -> void:
 	player_is_visible = true
-	player = body
+	target = body
 	print("see player")
 
 func _on_vison_area_body_exited(body: Node2D) -> void:

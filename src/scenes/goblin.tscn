@@ -112,8 +112,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
 size = Vector2(8, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0xw2f"]
-radius = 70.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_aapxa"]
+radius = 35.0
 
 [node name="Goblin" type="CharacterBody2D"]
 z_index = 4
@@ -121,37 +121,6 @@ position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_8oweg")
-
-[node name="Animations" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_s8l4v")
-animation = &"die"
-autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_iev8x")
-debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
-
-[node name="DeathTimer" type="Timer" parent="."]
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.75
-autostart = true
-
-[node name="VisonArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisonArea"]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_0xw2f")
-
-[node name="MeleeRange" type="RayCast2D" parent="."]
-position = Vector2(0, 5)
-target_position = Vector2(20, 0)
-collision_mask = 2
-
-[node name="CooldownTimer" type="Timer" parent="."]
 
 [node name="DeadState" type="Node" parent="."]
 script = ExtResource("3_snqy6")
@@ -165,8 +134,39 @@ script = ExtResource("4_g8sdr")
 [node name="FightingState" type="Node" parent="."]
 script = ExtResource("5_kdell")
 
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s8l4v")
+animation = &"die"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_iev8x")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="VisonArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisonArea"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_aapxa")
+
+[node name="MeleeRange" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(20, 0)
+collision_mask = 2
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="VisonArea" to="." method="_on_vison_area_body_entered"]
 [connection signal="body_exited" from="VisonArea" to="." method="_on_vison_area_body_exited"]
-[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
