@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=26 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
@@ -55,6 +55,22 @@ region = Rect2(48, 96, 24, 24)
 atlas = ExtResource("2_el4qn")
 region = Rect2(72, 96, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dnwc"]
+atlas = ExtResource("2_el4qn")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vylwq"]
+atlas = ExtResource("2_el4qn")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j8wk"]
+atlas = ExtResource("2_el4qn")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvm8q"]
+atlas = ExtResource("2_el4qn")
+region = Rect2(72, 48, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_s8l4v"]
 animations = [{
 "frames": [{
@@ -107,6 +123,23 @@ animations = [{
 "loop": false,
 "name": &"receive_damage",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dnwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vylwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j8wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvm8q")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
@@ -144,8 +177,9 @@ autostart = true
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s8l4v")
-animation = &"die"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.654617
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

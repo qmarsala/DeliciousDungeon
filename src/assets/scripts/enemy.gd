@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	goblin_state.handle_physics_process(self, delta)
+	animations.flip_h = velocity.x < 0
 	move_and_slide()
 
 func receive_damage(damage):
@@ -48,7 +49,6 @@ func receive_damage(damage):
 
 func _on_timer_timeout() -> void:
 	var t = Vector2(randf_range(-1,1), randf_range(-1,1))
-	print("picking new target", t)
 	explore_direction = t
 
 func _on_vison_area_body_entered(body: Node2D) -> void:
