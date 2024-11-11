@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=31 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_511jo"]
 [ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/arrow.tscn" id="2_g7j6g"]
+[ext_resource type="Script" path="res://assets/scripts/magic_attack.gd" id="2_tx3l7"]
 [ext_resource type="Script" path="res://assets/scripts/melee_attack.gd" id="3_1icsx"]
 [ext_resource type="PackedScene" uid="uid://cj44w170s0wa3" path="res://scenes/spell.tscn" id="3_q7w5k"]
 [ext_resource type="Script" path="res://assets/scripts/ranged_attack.gd" id="4_babir"]
@@ -73,19 +74,19 @@ region = Rect2(48, 96, 24, 24)
 atlas = ExtResource("1_0cxf1")
 region = Rect2(72, 96, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ahjtk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_adf61"]
 atlas = ExtResource("1_0cxf1")
-region = Rect2(0, 24, 24, 24)
+region = Rect2(0, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_75sa1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nia5"]
 atlas = ExtResource("1_0cxf1")
-region = Rect2(24, 24, 24, 24)
+region = Rect2(24, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ftsri"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n8n1"]
 atlas = ExtResource("1_0cxf1")
-region = Rect2(72, 24, 24, 24)
+region = Rect2(48, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_58pmj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7doo"]
 atlas = ExtResource("1_0cxf1")
 region = Rect2(72, 48, 24, 24)
 
@@ -156,16 +157,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ahjtk")
+"texture": SubResource("AtlasTexture_adf61")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_75sa1")
+"texture": SubResource("AtlasTexture_0nia5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ftsri")
+"texture": SubResource("AtlasTexture_1n8n1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_58pmj")
+"texture": SubResource("AtlasTexture_c7doo")
 }],
 "loop": true,
 "name": &"run",
@@ -183,11 +184,9 @@ collision_mask = 5
 script = ExtResource("1_511jo")
 
 [node name="MagicAttack" type="Node" parent="."]
-script = ExtResource("4_babir")
-projectile = ExtResource("3_q7w5k")
-charge_time = 0.3
-cooldown = 0.5
-attack_action = "heavy_attack"
+script = ExtResource("2_tx3l7")
+spell = ExtResource("3_q7w5k")
+cooldown = 1.0
 
 [node name="CooldownTimer" type="Timer" parent="MagicAttack"]
 
@@ -218,10 +217,8 @@ shape = SubResource("CircleShape2D_dqaka")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_65n8r")
-animation = &"receive_damage"
+animation = &"run"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

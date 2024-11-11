@@ -12,7 +12,7 @@ const STARTING_NUTRITION = 10
 @onready var player_ui: PlayerUI = $PlayerUI
 @onready var ranged_attack: RangedAttack = $RangedAttack
 @onready var melee_attack: MeleeAttack = $MeleeAttack
-@onready var magic_attack: RangedAttack = $MagicAttack
+@onready var magic_attack: MagicAttack = $MagicAttack
 
 var health : float :
 	get:
@@ -119,7 +119,7 @@ func _on_ranged_attack() -> void:
 
 func _on_magic_attack() -> void:
 	if is_dead: return
-	magic_attack.shoot_projectile(position, get_global_mouse_position())
+	magic_attack.cast_at_location(get_global_mouse_position())
 
 func _on_melee_attack(attack_type: String) -> void:
 	if is_dead: return
