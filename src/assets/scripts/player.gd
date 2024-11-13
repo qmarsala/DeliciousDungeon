@@ -13,8 +13,6 @@ const STARTING_NUTRITION = 10
 @onready var ranged_attack: RangedAttack = $RangedAttack
 @onready var melee_attack: MeleeAttack = $MeleeAttack
 @onready var magic_attack: MagicAttack = $MagicAttack
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
-
 
 var health : float :
 	get:
@@ -34,15 +32,15 @@ var nutrition : float :
 			
 var is_dead = false
 
+var move_target = Vector2.ZERO
+
 func _ready() -> void:
 	health = STARTING_HEALTH
 	nutrition = STARTING_NUTRITION
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
-		print(navigation_agent.is_target_reachable())
-		print(navigation_agent.is_navigation_finished())
 	if is_dead: return
+	
 	if health <= 0:
 		character_sprite.stop()
 		character_sprite.play("die")
@@ -51,19 +49,17 @@ func _process(delta: float) -> void:
 		return
 	var mouse_pos = get_global_mouse_position()
 	interact_ray_cast.look_at(mouse_pos)
+	if Input.is_action_pressed("move"):
+		move_target = mouse_pos
 	handle_interact_action()
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return
-	if Input.is_action_pressed("move"):
-		var mouse_pos = get_global_mouse_position()
-		navigation_agent.target_position = mouse_pos
-	if navigation_agent.is_navigation_finished():
-		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
-		character_sprite.play("idle")
+	if global_position.distance_to(move_target) < 10 || interact_ray_cast.get_collider():
+		move_target = global_position
+		velocity = Vector2.ZERO
 	else:
-		velocity = global_position.direction_to(navigation_agent.get_next_path_position()).normalized() * SPEED
-		character_sprite.play("run")
+		velocity = global_position.direction_to(move_target).normalized() * SPEED
 	#var xDirection = get_x_input()
 	#var yDirection = get_y_input()
 	#velocity = calc_player_velocity(xDirection, yDirection)
