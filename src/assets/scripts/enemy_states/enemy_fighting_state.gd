@@ -12,8 +12,9 @@ func handle_process(context: Enemy, delta: float):
 		target.receive_damage(1.5)
 
 func handle_physics_process(context: Enemy, delta: float):
-	var distance = context.global_position.distance_to(context.target.global_position)
-	if distance <= context.MIN_DISTANCE: return
+	if context.player_is_in_range:
+		context.velocity = Vector2.ZERO
+		return
 	var direction = context.global_position.direction_to(context.target.global_position)
 	context.velocity = direction.normalized() * context.SPEED
 	

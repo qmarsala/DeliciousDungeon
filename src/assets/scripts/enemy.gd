@@ -17,10 +17,13 @@ const ATTACK_COOLDOWN = 1
 @onready var fighting_state: EnemyState = $FightingState
 @onready var dead_state: EnemyState = $DeadState
 @onready var goblin_state: EnemyState = $IdleState
+@onready var explore_ray_cast: RayCast2D = $ExploreRayCast
+
 
 var health = STARTING_HP
 var is_dead = false
 var player_is_visible = false
+var player_is_in_range = false
 var attack_is_cooling_down = false
 var is_exploring = false
 var explore_direction = Vector2(randf_range(-1,1), randf_range(-1,1))
@@ -36,7 +39,12 @@ func _process(delta: float) -> void:
 	else:
 		goblin_state = idle_state
 	goblin_state.handle_process(self, delta)
-	
+
+func play_animation():
+	if velocity == Vector2.ZERO:
+		animations.play("idle")
+	else:
+		animations.play("run")
 
 func _physics_process(delta: float) -> void:
 	goblin_state.handle_physics_process(self, delta)
@@ -45,6 +53,7 @@ func _physics_process(delta: float) -> void:
 
 func receive_damage(damage):
 	if is_dead: return
+	animations.stop()
 	animations.play("receive_damage")
 	health -= damage
 	print("taking ", damage, " health:", health)
@@ -68,3 +77,9 @@ func _on_cooldown_timer_timeout() -> void:
 
 func _on_death_timer_timeout() -> void:
 	queue_free()
+
+func _on_personal_space_body_entered(body: Node2D) -> void:
+	player_is_in_range = true
+
+func _on_personal_space_body_exited(body: Node2D) -> void:
+	player_is_in_range = false
