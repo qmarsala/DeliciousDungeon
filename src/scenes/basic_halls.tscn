@@ -1,12 +1,13 @@
-[gd_scene load_steps=2 format=4 uid="uid://tj2hwkxm7o6b"]
+[gd_scene load_steps=3 format=4 uid="uid://tj2hwkxm7o6b"]
 
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="1_dtipf"]
+[ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tile_set_bg.tres" id="2_fee2x"]
 
 [node name="BasicHalls" type="Node2D"]
 
 [node name="Background" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD5////AAACAA8AAAD4////AAACAA8AAAD3////AAACAA8AAAD3/wAAAAACAA8AAAD4/wAAAAACAA8AAAD5/wAAAAACAA8AAAAGAP//AAACAA8AAAAHAP//AAACAA8AAAAIAP//AAACAA8AAAAIAAAAAAACAA8AAAAHAAAAAAACAA8AAAAGAAAAAAACAA8AAAAGAP7/AAACAA4AAAAHAP7/AAACAA4AAAAIAP7/AAACAA4AAAAIAAEAAAACAA4AACAHAAEAAAACAA4AACAGAAEAAAACAA4AACD5/wEAAAACAA4AACD4/wEAAAACAA4AACD3/wEAAAACAA4AACD3//7/AAACAA4AAAD4//7/AAACAA4AAAD5//7/AAACAA4AAAA=")
-tile_set = ExtResource("1_dtipf")
+tile_set = ExtResource("2_fee2x")
 
 [node name="Midground" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAGAP3/AAACAAEAAAAGAP7/AAACAAIAAAAHAP3/AAACAAEAAAAHAP7/AAACAAIAAAAIAP3/AAACAAEAAAAIAP7/AAACAAIAAAD5//3/AAACAAEAAAD5//7/AAACAAIAAAD4//3/AAACAAEAAAD4//7/AAACAAIAAAD3//3/AAACAAEAAAD3//7/AAACAAIAAAA=")

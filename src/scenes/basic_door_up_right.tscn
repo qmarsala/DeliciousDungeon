@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://cgadsjmjkeh80"]
+[gd_scene load_steps=5 format=4 uid="uid://cgadsjmjkeh80"]
 
+[ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tile_set_bg.tres" id="2_qy3m7"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/fire.tscn" id="4_0kcn6"]
 [ext_resource type="PackedScene" uid="uid://bxejjurm0g6pu" path="res://scenes/double_door_north.tscn" id="4_3d5yv"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="4_sy7qr"]
@@ -8,7 +9,7 @@
 
 [node name="Background" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD7//z/AAACAA8AAAD7//3/AAACAA8AAAD7//7/AAACAA8AAAD7////AAACAA8AAAD7/wAAAAACAA8AAAD7//v/AAACAA4AAAD6//z/AAABAA8AAAD6//3/AAABAA8AAAD6//7/AAAGABIAAAD6//v/AAABABEAACD6////AAACAA8AAAD6/wAAAAACAA8AAAD6/wEAAAACABEAAAD7/wEAAAACABEAAAD8/wEAAAACABEAAAD9/wEAAAACABEAAAD+/wEAAAACABEAAAD//wEAAAACABEAAAAAAAEAAAAEABEAAAAAAAAAAAAEAA8AAAAAAP//AAAEAA8AAAAAAP7/AAAEAA8AAAAAAP3/AAAEAA8AAAAAAPz/AAAEAA8AAAAAAPv/AAAEAA4AAAD///v/AAACAA4AAAD+//v/AAAFABEAACD9//v/AAACAA8AAAD8//v/AAAGABEAACD8//z/AAACAA8AAAD9//z/AAACAA8AAAD+//z/AAACAA8AAAD///z/AAACAA8AAAD///3/AAACAA8AAAD///7/AAACAA8AAAD/////AAACAA8AAAD//wAAAAACAA8AAAD+/wAAAAACAA8AAAD9/wAAAAACAA8AAAD8/wAAAAACAA8AAAD8//3/AAACAA8AAAD9//3/AAACAA8AAAD+//3/AAACAA8AAAD+//7/AAACAA8AAAD+////AAACAA8AAAD9////AAACAA8AAAD8////AAACAA8AAAD8//7/AAACAA8AAAD9//7/AAACAA8AAAA=")
-tile_set = ExtResource("4_sy7qr")
+tile_set = ExtResource("2_qy3m7")
 
 [node name="Midground" type="TileMapLayer" parent="."]
 z_index = 2
