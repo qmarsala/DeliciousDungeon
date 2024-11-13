@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=10 format=3 uid="uid://v8yl2qd4myvg"]
 
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="1_bt7mb"]
 [ext_resource type="PackedScene" uid="uid://dqfrio0i81038" path="res://scenes/basic_room_decoration.tscn" id="2_gp6ym"]
@@ -9,9 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://d4g6nonksssfo" path="res://scenes/basic_door_down_left.tscn" id="7_uuhca"]
 [ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/player_ui.tscn" id="8_sx1ad"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rtn4k"]
+vertices = PackedVector2Array(348.211, -30, 347.211, -78, 384, -78, 155.203, -28, 154.203, -78, 322, -78, 322, -30, 400.641, -78, 438.078, -78, 438.922, 22, 326, 22, 326, 70, 154, 70, 154, 22, 86, 22, 86, 70, -86, 70, -86, 22, -154, 22, -154, 70, -321, 70, -321, 18, -351, 18, -351, 71, -384, 71, -384, 81, -400, 81, -400, 70, -438, 70, -438, -29, -326, -29, -154, -30, -154, -78, -326, -78, -86, -30, 86, -28, -86, -78, 86, -78, 399.641, -93, 384, -93)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(7, 8, 9, 10, 0), PackedInt32Array(10, 11, 12, 13, 3, 6), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 23, 24), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(24, 27, 30, 22), PackedInt32Array(31, 21, 22, 30, 32), PackedInt32Array(30, 33, 32), PackedInt32Array(17, 18, 21, 31, 34), PackedInt32Array(14, 17, 34, 35), PackedInt32Array(34, 36, 37, 35), PackedInt32Array(13, 14, 35, 3), PackedInt32Array(10, 6, 0), PackedInt32Array(7, 0, 2, 38), PackedInt32Array(38, 2, 39)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-448, -39, -336, -39, -336, -88, -144, -88, -144, -40, -96, -40, -96, -88, 96, -88, 96, -38, 145, -38, 144, -88, 332, -88, 332, -40, 338, -40, 337, -88, 374, -88, 374, -103, 409, -103, 410, -88, 448, -88, 449, 32, 336, 32, 336, 80, 144, 80, 144, 32, 96, 32, 96, 80, -96, 80, -96, 32, -144, 32, -144, 80, -331, 80, -331, 28, -341, 28, -341, 81, -374, 81, -374, 91, -410, 91, -410, 80, -448, 80)])
+
 [node name="Game" type="Node2D"]
 
 [node name="Rooms" type="Node" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Rooms"]
+navigation_polygon = SubResource("NavigationPolygon_rtn4k")
 
 [node name="BasicRoom" parent="Rooms" instance=ExtResource("2_o6arg")]
 
@@ -65,3 +73,6 @@ scale = Vector2(0.405729, 0.367219)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 12)
 zoom = Vector2(4, 4)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+path_desired_distance = 10.0

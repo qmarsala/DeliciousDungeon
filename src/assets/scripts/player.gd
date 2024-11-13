@@ -13,6 +13,8 @@ const STARTING_NUTRITION = 10
 @onready var ranged_attack: RangedAttack = $RangedAttack
 @onready var melee_attack: MeleeAttack = $MeleeAttack
 @onready var magic_attack: MagicAttack = $MagicAttack
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+
 
 var health : float :
 	get:
@@ -37,6 +39,9 @@ func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("interact"):
+		print(navigation_agent.is_target_reachable())
+		print(navigation_agent.is_navigation_finished())
 	if is_dead: return
 	if health <= 0:
 		character_sprite.stop()
@@ -50,10 +55,19 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return
-	var xDirection = get_x_input()
-	var yDirection = get_y_input()
-	velocity = calc_player_velocity(xDirection, yDirection)
-	play_animation(xDirection, yDirection)
+	if Input.is_action_pressed("move"):
+		var mouse_pos = get_global_mouse_position()
+		navigation_agent.target_position = mouse_pos
+	if navigation_agent.is_navigation_finished():
+		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
+		character_sprite.play("idle")
+	else:
+		velocity = global_position.direction_to(navigation_agent.get_next_path_position()).normalized() * SPEED
+		character_sprite.play("run")
+	#var xDirection = get_x_input()
+	#var yDirection = get_y_input()
+	#velocity = calc_player_velocity(xDirection, yDirection)
+	#play_animation(xDirection, yDirection)
 	move_and_slide()
 
 func get_x_input():
