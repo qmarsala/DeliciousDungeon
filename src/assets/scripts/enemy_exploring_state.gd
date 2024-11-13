@@ -11,4 +11,4 @@ func handle_physics_process(context: Enemy, delta: float):
 	context.explore_ray_cast.target_position = context.velocity.normalized() * context.MIN_DISTANCE
 	if context.explore_ray_cast.get_collider():
 		context.velocity = Vector2.ZERO
-		context.explore_direction = -direction
+		context.explore_direction = context.global_position
