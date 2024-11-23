@@ -1,9 +1,7 @@
 extends EnemyState
 class_name EnemyExploringState
 
-@export var enemy: CharacterBody2D
 @export var move_speed := 75
-
 var move_direction : Vector2
 var explore_time : float
 
@@ -15,6 +13,7 @@ func enter():
 	randomize_explore()
 
 func handle_process(delta: float):
+	if enemy_is_dead(): return
 	if explore_time > 0:
 		explore_time -= delta
 	else:

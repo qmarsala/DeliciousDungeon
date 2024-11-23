@@ -1,5 +1,5 @@
 extends Node
-class_name StateMachine
+class_name EnemyStateMachine
 
 @export var initial_state: EnemyState
 var current_state: EnemyState
@@ -25,7 +25,9 @@ func _physics_process(delta: float) -> void:
 func on_child_transition(state, new_state_name):
 	if state != current_state:
 		return
-		
+	transition_to(new_state_name)
+
+func transition_to(new_state_name):
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state: 
 		return

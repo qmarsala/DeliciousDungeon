@@ -6,7 +6,7 @@ const STARTING_HEALTH = 10
 const STARTING_NUTRITION = 10
 
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
-@onready var cooldown_timer: Timer = $CooldownTimer
+#@onready var cooldown_timer: Timer = $CooldownTimer
 @onready var interact_ray_cast: RayCast2D = $InteractionRayCast
 @onready var death_timer: Timer = $DeathTimer
 @onready var player_ui: PlayerUI = $PlayerUI

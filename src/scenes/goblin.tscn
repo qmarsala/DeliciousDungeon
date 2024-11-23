@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
-[ext_resource type="Script" path="res://assets/scripts/state_machine.gd" id="2_ln33q"]
+[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_state_machine.gd" id="2_ln33q"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_exploring_state.gd" id="3_o0flm"]
+[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_dead_state.gd" id="3_snqy6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
+size = Vector2(8, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b577t"]
 atlas = ExtResource("2_el4qn")
@@ -140,12 +144,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
-size = Vector2(8, 14)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4tvgt"]
-radius = 14.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_aapxa"]
 radius = 50.0
 
@@ -162,41 +160,24 @@ initial_state = NodePath("EnemyExploringState")
 
 [node name="EnemyExploringState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_o0flm")
+move_speed = 25
 enemy = NodePath("../..")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.75
-autostart = true
+[node name="EnemyDeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_snqy6")
+enemy = NodePath("../..")
 
-[node name="DeathTimer" type="Timer" parent="."]
-
-[node name="CooldownTimer" type="Timer" parent="."]
-
-[node name="Animations" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_s8l4v")
-animation = &"run"
-autoplay = "idle"
+[node name="DeathTimer" type="Timer" parent="StateMachine/EnemyDeadState"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_iev8x")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
-[node name="PersonalSpace" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PersonalSpace"]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_4tvgt")
-
-[node name="VisonArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisonArea"]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_aapxa")
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s8l4v")
+animation = &"run"
+autoplay = "idle"
 
 [node name="MeleeRange" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
@@ -207,10 +188,14 @@ collision_mask = 2
 position = Vector2(0, 5)
 target_position = Vector2(14, 0)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
-[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
-[connection signal="body_entered" from="PersonalSpace" to="." method="_on_personal_space_body_entered"]
-[connection signal="body_exited" from="PersonalSpace" to="." method="_on_personal_space_body_exited"]
+[node name="VisonArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisonArea"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_aapxa")
+
+[connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="body_entered" from="VisonArea" to="." method="_on_vison_area_body_entered"]
 [connection signal="body_exited" from="VisonArea" to="." method="_on_vison_area_body_exited"]

@@ -1,12 +1,12 @@
 extends EnemyState
 class_name EnemyDeadState
 
-func handle_process(context: Enemy, delta: float):
-	if context.is_dead:
-		return
-	context.is_dead = true
-	context.animations.play("die")
-	context.death_timer.start(.75)
-	
-func handle_physics_process(context: Enemy, delta: float):
-	context.velocity = Vector2.ZERO
+@onready var death_timer: Timer = $DeathTimer
+
+func enter():
+	death_timer.start(.7)
+	enemy.animations.play("die")
+
+func handle_physics_process(delta: float):
+	#is this really how we want to do this?
+	enemy.velocity = Vector2(move_toward(enemy.velocity.x, Vector2.ZERO.x, delta), move_toward(enemy.velocity.y, Vector2.ZERO.y, delta))
