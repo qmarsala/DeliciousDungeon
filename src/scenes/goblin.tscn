@@ -1,11 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=25 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
-[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_dead_state.gd" id="3_snqy6"]
-[ext_resource type="Script" path="res://assets/scripts/enemy_exploring_state.gd" id="4_1hj2k"]
-[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_idle_state.gd" id="4_g8sdr"]
-[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_fighting_state.gd" id="5_kdell"]
+[ext_resource type="Script" path="res://assets/scripts/state_machine.gd" id="2_ln33q"]
+[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_exploring_state.gd" id="3_o0flm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b577t"]
 atlas = ExtResource("2_el4qn")
@@ -158,17 +156,13 @@ collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_8oweg")
 
-[node name="DeadState" type="Node" parent="."]
-script = ExtResource("3_snqy6")
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_ln33q")
+initial_state = NodePath("EnemyExploringState")
 
-[node name="ExploringState" type="Node" parent="."]
-script = ExtResource("4_1hj2k")
-
-[node name="IdleState" type="Node" parent="."]
-script = ExtResource("4_g8sdr")
-
-[node name="FightingState" type="Node" parent="."]
-script = ExtResource("5_kdell")
+[node name="EnemyExploringState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_o0flm")
+enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.75

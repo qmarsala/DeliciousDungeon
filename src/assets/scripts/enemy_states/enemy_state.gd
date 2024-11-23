@@ -1,9 +1,16 @@
 extends Node
 class_name EnemyState
 
+signal Transitioned
+ 
+func enter():
+	pass
 
-func handle_process(context: Enemy, delta: float):
+func exit():
+	pass
+
+func handle_process(delta: float):
 	pass
 	
-func handle_physics_process(context: Enemy, delta: float):
+func handle_physics_process(delta: float):
 	pass
