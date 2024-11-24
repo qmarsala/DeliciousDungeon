@@ -1,16 +1,28 @@
 extends EnemyState
 class_name EnemyFightingState
 
+var attack_is_cooling_down = false
+var player: CharacterBody2D
+var time_since_last_attack = 0
+var cooldown = .8
+
+func enter():
+	player = get_tree().get_first_node_in_group("Player")
+
 func handle_process(delta: float):
-	pass
-	# if enemy.attack_is_cooling_down or not enemy.player_is_visible:
-	# 	return
-	# context.cooldown_timer.start(context.ATTACK_COOLDOWN)
-	# context.attack_is_cooling_down = true
-	# context.melee_range.look_at(context.target.global_position)
-	# var target = context.melee_range.get_collider()
-	# if target:
-	# 	target.receive_damage(1.5)
+	if enemy_is_dead(): return
+	if attack_is_cooling_down:
+		time_since_last_attack += delta
+		if time_since_last_attack > cooldown:
+			attack_is_cooling_down = false
+			time_since_last_attack = 0
+	if not player or attack_is_cooling_down: return
+	
+	enemy.melee_range.look_at(player.global_position)
+	var target = enemy.melee_range.get_collider()
+	if target:
+		attack_is_cooling_down = true
+		target.receive_damage(1.5)
 
 func handle_physics_process(delta: float):
 	pass

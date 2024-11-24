@@ -7,6 +7,7 @@ const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
 @onready var animations: AnimatedSprite2D = $Animations
+@onready var melee_range: RayCast2D = $MeleeRange
 
 var health = STARTING_HP
 var is_dead = false

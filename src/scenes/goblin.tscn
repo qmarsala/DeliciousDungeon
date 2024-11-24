@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=26 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_state_machine.gd" id="2_ln33q"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_exploring_state.gd" id="3_o0flm"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_dead_state.gd" id="3_snqy6"]
+[ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_fighting_state.gd" id="5_jsl8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
 size = Vector2(8, 14)
@@ -168,6 +169,10 @@ script = ExtResource("3_snqy6")
 enemy = NodePath("../..")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/EnemyDeadState"]
+
+[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_jsl8j")
+enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
