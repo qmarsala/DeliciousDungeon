@@ -16,7 +16,7 @@ modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(3.12055, 2.06614)
+scale = Vector2(3.12055, 2.78614)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(0.827964, 0.119937, 0.216825, 1)
@@ -42,8 +42,16 @@ value = 5.0
 
 [node name="ChargedAttackBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 303.0
-offset_top = 37.0
-offset_right = 403.0
-offset_bottom = 64.0
-scale = Vector2(1, 0.359999)
+offset_left = 1.0
+offset_top = 119.0
+offset_right = 101.0
+offset_bottom = 146.0
+scale = Vector2(1.24, 0.639999)
+
+[node name="FoodCountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 78.0
+offset_right = 66.0
+offset_bottom = 101.0
+text = "Food: 0"

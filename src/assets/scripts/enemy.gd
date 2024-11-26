@@ -2,10 +2,13 @@ extends CharacterBody2D
 class_name Enemy
 
 const STARTING_HP = 5
-const SPEED = 100.0
+const SPEED = 45
 const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
+@export var drop: PackedScene
+
+@onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var melee_range: RayCast2D = $MeleeRange
 
@@ -35,4 +38,9 @@ func receive_damage(damage):
 	print("taking ", damage, " health:", health)
 
 func _on_death_timer_timeout() -> void:
+	var r = random.randf()
+	if r <= .5 and drop:
+		var dropInstance = drop.instantiate()
+		dropInstance.position = global_position
+		add_sibling(dropInstance)
 	queue_free()
