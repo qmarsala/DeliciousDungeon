@@ -107,7 +107,8 @@ func rest():
 	health = min(health + 2, STARTING_HEALTH)
 	print("resting: ", nutrition, ", ", health)
 
-func pickup_food():
+func pickup(item: Item):
+	print("picked up: " + item.name)
 	food += 1
 
 func _on_death_timer_timeout() -> void:

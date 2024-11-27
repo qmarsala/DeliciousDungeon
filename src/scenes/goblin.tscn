@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=28 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_state_machine.gd" id="2_ln33q"]
-[ext_resource type="PackedScene" uid="uid://c2084hee1l50l" path="res://scenes/goblin_steak.tscn" id="2_nno7s"]
+[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_ptc2k"]
+[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://assets/data/items/pickup.tscn" id="3_dl4n4"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_exploring_state.gd" id="3_o0flm"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_dead_state.gd" id="3_snqy6"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_fighting_state.gd" id="5_jsl8j"]
@@ -155,7 +156,8 @@ position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_8oweg")
-drop = ExtResource("2_nno7s")
+drop = ExtResource("2_ptc2k")
+pickupScene = ExtResource("3_dl4n4")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ln33q")

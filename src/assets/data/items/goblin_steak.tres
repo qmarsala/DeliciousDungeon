@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://eahj1urja2wk"]
+
+[ext_resource type="Script" path="res://assets/scripts/item.gd" id="1_60b2b"]
+[ext_resource type="PackedScene" uid="uid://c2084hee1l50l" path="res://scenes/goblin_steak.tscn" id="1_w0pug"]
+
+[resource]
+script = ExtResource("1_60b2b")
+name = "Goblin Steak"
+scene = ExtResource("1_w0pug")

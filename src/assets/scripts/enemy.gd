@@ -6,7 +6,8 @@ const SPEED = 45
 const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
-@export var drop: PackedScene
+@export var drop: Item
+@export var pickupScene: PackedScene # how to combine these things?
 
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
@@ -40,7 +41,8 @@ func receive_damage(damage):
 func _on_death_timer_timeout() -> void:
 	var r = random.randf()
 	if r <= .5 and drop:
-		var dropInstance = drop.instantiate()
+		var dropInstance = pickupScene.instantiate()
+		dropInstance.item = drop
 		dropInstance.position = global_position
 		add_sibling(dropInstance)
 	queue_free()
