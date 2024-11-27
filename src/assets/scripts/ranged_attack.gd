@@ -38,7 +38,8 @@ func _process(delta: float) -> void:
 func shoot_projectile(starting_position, target):
 	var projectile_instance = projectile.instantiate() as Projectile
 	projectile_instance.init(starting_position, target)
-	add_child(projectile_instance)
+	# todo: where is the best place to spawn these things?
+	get_tree().root.add_child(projectile_instance)
 
 func _on_cooldown_timer_timeout() -> void:
 	is_on_cooldown = false

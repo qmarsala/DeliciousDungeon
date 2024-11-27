@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=4 uid="uid://cgadsjmjkeh80"]
 
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tile_set_bg.tres" id="2_qy3m7"]
-[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/fire.tscn" id="4_0kcn6"]
-[ext_resource type="PackedScene" uid="uid://bxejjurm0g6pu" path="res://scenes/double_door_north.tscn" id="4_3d5yv"]
+[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/levels/fire.tscn" id="4_0kcn6"]
+[ext_resource type="PackedScene" uid="uid://bxejjurm0g6pu" path="res://scenes/levels/double_door_north.tscn" id="4_3d5yv"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="4_sy7qr"]
 
 [node name="BasicDoorUp" type="Node2D"]

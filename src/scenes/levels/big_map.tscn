@@ -2,10 +2,10 @@
 
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tile_set_bg.tres" id="1_3kwpr"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="2_mr5jk"]
-[ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/trap.tscn" id="3_h3lma"]
+[ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/levels/trap.tscn" id="3_h3lma"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="4_4miyh"]
-[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/player_ui.tscn" id="5_earrm"]
-[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/fire.tscn" id="6_v6qpm"]
+[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="5_earrm"]
+[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/levels/fire.tscn" id="6_v6qpm"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/goblin.tscn" id="7_vl6j6"]
 
 [node name="Node2D" type="Node2D"]
