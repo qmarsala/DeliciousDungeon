@@ -27,4 +27,10 @@ func handle_process(delta: float):
 func handle_physics_process(delta: float):
 	if enemy and player:
 		var direction = player.global_position - enemy.global_position
-		enemy.velocity = direction.normalized() * enemy.SPEED * 1.15
+		var distance = direction.length()
+		if distance <= 15:
+			enemy.velocity = Vector2.ZERO
+		elif distance >= 80:
+			Transitioned.emit(self, "EnemyExploringState")
+		else:
+			enemy.velocity = direction.normalized() * enemy.SPEED * 1.15
