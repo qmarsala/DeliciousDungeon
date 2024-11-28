@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=7 format=3 uid="uid://v8yl2qd4myvg"]
 
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="1_bt7mb"]
-[ext_resource type="PackedScene" uid="uid://b61iqknq8r7m2" path="res://scenes/levels/basic_room.tscn" id="2_o6arg"]
+[ext_resource type="Script" path="res://assets/scripts/basic_room_generator_poc.gd" id="1_ky5tj"]
+[ext_resource type="Resource" uid="uid://bwkdr488ils3g" path="res://assets/data/basic_room.tres" id="2_put3b"]
+[ext_resource type="Script" path="res://assets/data/room.gd" id="2_qhn2t"]
+[ext_resource type="Resource" uid="uid://s6hw8ad4d6rk" path="res://assets/data/basic_door_room_up_right.tres" id="4_f05eb"]
 [ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="8_sx1ad"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Rooms" type="Node" parent="."]
-
-[node name="BasicRoom" parent="Rooms" instance=ExtResource("2_o6arg")]
-next_room = ExtResource("2_o6arg")
+[node name="Rooms" type="Node2D" parent="."]
+script = ExtResource("1_ky5tj")
+initial_room = ExtResource("2_put3b")
+door_rooms = Array[ExtResource("2_qhn2t")]([ExtResource("4_f05eb")])
+rooms = Array[ExtResource("2_qhn2t")]([ExtResource("2_put3b")])
 
 [node name="Goblins" type="Node" parent="."]
 

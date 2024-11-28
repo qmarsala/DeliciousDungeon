@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://s6hw8ad4d6rk"]
+
+[ext_resource type="PackedScene" uid="uid://cgadsjmjkeh80" path="res://scenes/levels/basic_door_up_right.tscn" id="1_jssir"]
+[ext_resource type="Script" path="res://assets/data/room.gd" id="1_lqvhb"]
+
+[resource]
+script = ExtResource("1_lqvhb")
+name = "Basic Door Up Right"
+scene = ExtResource("1_jssir")

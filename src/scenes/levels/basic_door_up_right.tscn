@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=4 uid="uid://cgadsjmjkeh80"]
+[gd_scene load_steps=7 format=4 uid="uid://cgadsjmjkeh80"]
 
+[ext_resource type="Script" path="res://assets/scripts/room.gd" id="1_7opes"]
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tile_set_bg.tres" id="2_qy3m7"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/levels/fire.tscn" id="4_0kcn6"]
 [ext_resource type="PackedScene" uid="uid://bxejjurm0g6pu" path="res://scenes/levels/double_door_north.tscn" id="4_3d5yv"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="4_sy7qr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hst3o"]
+size = Vector2(10, 50)
+
 [node name="BasicDoorUp" type="Node2D"]
+script = ExtResource("1_7opes")
+room_type = "Door"
 
 [node name="Background" type="TileMapLayer" parent="."]
 position = Vector2(96, 21)
@@ -30,5 +36,15 @@ position = Vector2(56, -43)
 [node name="Fire" parent="." instance=ExtResource("4_0kcn6")]
 position = Vector2(28, -29)
 
-[node name="Connection" type="Node2D" parent="."]
+[node name="EastConnector" type="Node2D" parent="."]
 position = Vector2(144, -128)
+
+[node name="EastTrigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
+position = Vector2(117, -105)
+shape = SubResource("RectangleShape2D_hst3o")
+
+[connection signal="body_entered" from="EastTrigger" to="." method="_on_area_2d_body_entered"]
