@@ -36,3 +36,6 @@ func transition_to(new_state_name):
 		current_state.exit()
 	new_state.enter()
 	current_state = new_state
+
+func _on_health_depleted() -> void:
+	transition_to("EnemyDeadState")

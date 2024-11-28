@@ -7,7 +7,6 @@ const ATTACK_COOLDOWN = 1
 
 @export var drop: Item
 @export var pickupScene: PackedScene # how to combine these things?
-@onready var death_timer: Timer = $DeathTimer
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var melee_range: RayCast2D = $MeleeRange
@@ -23,9 +22,6 @@ func receive_damage(damage):
 			dropInstance.item = drop
 			dropInstance.position = global_position
 			add_sibling(dropInstance)
-
-func _on_health_depleted() -> void:
-	death_timer.start(.75)
 
 func _on_death_timer_timeout():
 	queue_free()
