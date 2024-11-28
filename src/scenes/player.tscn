@@ -1,16 +1,15 @@
-[gd_scene load_steps=33 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=29 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_511jo"]
-[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/items/arrow.tscn" id="2_g7j6g"]
 [ext_resource type="Script" path="res://assets/scripts/magic_attack.gd" id="2_tx3l7"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
-[ext_resource type="Script" path="res://assets/scripts/melee_attack.gd" id="3_1icsx"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
 [ext_resource type="PackedScene" uid="uid://cj44w170s0wa3" path="res://scenes/items/spell.tscn" id="3_q7w5k"]
-[ext_resource type="PackedScene" uid="uid://bfvfg1dq0x5ol" path="res://scenes/components/ranged_attack.tscn" id="4_qaopv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dqaka"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
+radius = 4.0
+height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0hgw"]
 atlas = ExtResource("1_0cxf1")
@@ -175,15 +174,20 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
-radius = 4.0
-height = 10.0
-
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -12)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_511jo")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_kh2an")
+
+[node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_65n8r")
+animation = &"run"
+autoplay = "idle"
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
@@ -200,37 +204,6 @@ cooldown = 1.0
 
 [node name="CooldownTimer" type="Timer" parent="MagicAttack"]
 
-[node name="RangedAttack" parent="." instance=ExtResource("4_qaopv")]
-projectile = ExtResource("2_g7j6g")
-
-[node name="MeleeAttack" type="Node2D" parent="."]
-position = Vector2(0, 5)
-script = ExtResource("3_1icsx")
-
-[node name="AttackRayCast" type="RayCast2D" parent="MeleeAttack"]
-target_position = Vector2(20, 0)
-collision_mask = 4
-
-[node name="AoeArea" type="Area2D" parent="MeleeAttack/AttackRayCast"]
-position = Vector2(0, -5)
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack/AttackRayCast/AoeArea"]
-position = Vector2(9, 5)
-shape = SubResource("CircleShape2D_dqaka")
-
-[node name="CooldownTimer" type="Timer" parent="MeleeAttack"]
-
-[node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_65n8r")
-animation = &"run"
-autoplay = "idle"
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-shape = SubResource("CapsuleShape2D_kh2an")
-
 [node name="DeathTimer" type="Timer" parent="."]
 
 [node name="HungerTimer" type="Timer" parent="."]
@@ -243,8 +216,6 @@ autostart = true
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]
 [connection signal="ranged_attack_charge" from="MagicAttack" to="." method="_on_magic_attack_charge"]
 [connection signal="timeout" from="MagicAttack/CooldownTimer" to="MagicAttack" method="_on_cooldown_timer_timeout"]
-[connection signal="melee_attack" from="MeleeAttack" to="." method="_on_melee_attack"]
-[connection signal="timeout" from="MeleeAttack/CooldownTimer" to="MeleeAttack" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

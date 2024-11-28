@@ -45,6 +45,5 @@ func cast_at_location(target_location):
 	spell_instance.position = target_location
 	add_child(spell_instance)
 
-
 func _on_cooldown_timer_timeout() -> void:
 	is_on_cooldown = false

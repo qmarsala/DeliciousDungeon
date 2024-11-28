@@ -5,9 +5,6 @@ const SPEED = 75.0
 const INTERACTION_RANGE = 20.0
 const STARTING_NUTRITION = 10
 
-#todo: remove this from player - use a mediator to glue them
-@onready var player_ui: PlayerUI = $PlayerUI
-
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var death_timer: Timer = $DeathTimer
 
@@ -18,21 +15,8 @@ const STARTING_NUTRITION = 10
 @onready var rest_timer: Timer = $RestTimer
 
 var rest_is_cooldown = false
-var food : int : 
-	get:
-		return food
-	set(v):
-		food = v
-		if player_ui:
-			player_ui.update_food_count(food)
-
-var nutrition : float :
-	get:
-		return nutrition
-	set(v):
-		nutrition = v
-		if player_ui:
-			player_ui.update_hunger_bar(nutrition)
+var food
+var nutrition
 
 func is_dead(): return %HealthComponent.is_dead()
 
@@ -93,14 +77,6 @@ func _on_hunger_timer_timeout() -> void:
 	else:
 		nutrition = nutrition - 1
 
-func _on_ranged_attack_charge(value: float) -> void:
-	if is_dead(): return
-	player_ui.update_charge_bar(value)
-
-func _on_ranged_attack() -> void:
-	if is_dead(): return
-	ranged_attack.shoot_projectile(position, get_global_mouse_position())
-
 func _on_magic_attack() -> void:
 	if is_dead(): return
 	var mouse_pos = get_global_mouse_position()
@@ -110,14 +86,6 @@ func _on_magic_attack() -> void:
 	if direction.length() > 75:
 		target_location = global_position + (direction.normalized() * 75)
 	magic_attack.cast_at_location(target_location)
-
-func _on_melee_attack(attack_type: String) -> void:
-	if is_dead(): return
-	melee_attack.swing(attack_type)
-
-func _on_magic_attack_charge(value: float) -> void:
-	if is_dead(): return
-	player_ui.update_charge_bar(value)
 
 func _on_rest_timer_timeout() -> void:
 	rest_is_cooldown = false
