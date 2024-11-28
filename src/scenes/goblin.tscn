@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=30 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_8oweg"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://assets/data/items/pickup.tscn" id="3_dl4n4"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_exploring_state.gd" id="3_o0flm"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_dead_state.gd" id="3_snqy6"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="4_tqp57"]
+[ext_resource type="Script" path="res://assets/scripts/movement_component.gd" id="5_ekn10"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_fighting_state.gd" id="5_jsl8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
@@ -159,6 +161,17 @@ script = ExtResource("1_8oweg")
 drop = ExtResource("2_ptc2k")
 pickupScene = ExtResource("3_dl4n4")
 
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("4_tqp57")]
+unique_name_in_owner = true
+character_sprite = NodePath("../Animations")
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "character_sprite")]
+script = ExtResource("5_ekn10")
+character = NodePath("..")
+character_sprite = NodePath("../Animations")
+
+[node name="DeathTimer" type="Timer" parent="."]
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ln33q")
 initial_state = NodePath("EnemyExploringState")
@@ -205,6 +218,8 @@ collision_mask = 2
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_aapxa")
 
+[connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="body_entered" from="VisonArea" to="." method="_on_vison_area_body_entered"]
 [connection signal="body_exited" from="VisonArea" to="." method="_on_vison_area_body_exited"]

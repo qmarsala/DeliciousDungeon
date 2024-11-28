@@ -1,10 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=33 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_511jo"]
 [ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/items/arrow.tscn" id="2_g7j6g"]
 [ext_resource type="Script" path="res://assets/scripts/magic_attack.gd" id="2_tx3l7"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="Script" path="res://assets/scripts/melee_attack.gd" id="3_1icsx"]
+[ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
 [ext_resource type="PackedScene" uid="uid://cj44w170s0wa3" path="res://scenes/items/spell.tscn" id="3_q7w5k"]
 [ext_resource type="PackedScene" uid="uid://bfvfg1dq0x5ol" path="res://scenes/components/ranged_attack.tscn" id="4_qaopv"]
 
@@ -183,6 +185,14 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_511jo")
 
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
+unique_name_in_owner = true
+character_sprite = NodePath("../CharacterSprite")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("character", "character_sprite") instance=ExtResource("3_fvtna")]
+character = NodePath("..")
+character_sprite = NodePath("../CharacterSprite")
+
 [node name="MagicAttack" type="Node" parent="."]
 script = ExtResource("2_tx3l7")
 spell = ExtResource("3_q7w5k")
@@ -229,6 +239,7 @@ autostart = true
 
 [node name="RestTimer" type="Timer" parent="."]
 
+[connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]
 [connection signal="ranged_attack_charge" from="MagicAttack" to="." method="_on_magic_attack_charge"]
 [connection signal="timeout" from="MagicAttack/CooldownTimer" to="MagicAttack" method="_on_cooldown_timer_timeout"]

@@ -8,7 +8,7 @@ class_name Door
 
 # todo: wonder if this could be done with an animated sprite and the sprite sheet.
 # which we will want for other styles of doors. this only works for the double door sprite
-func open_door():
+func open():
 	var i = 0
 	var j = 0
 	while i < door_width:
