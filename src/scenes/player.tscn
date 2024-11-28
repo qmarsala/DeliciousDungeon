@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://assets/scripts/magic_attack.gd" id="2_tx3l7"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
-[ext_resource type="PackedScene" uid="uid://cj44w170s0wa3" path="res://scenes/items/spell.tscn" id="3_q7w5k"]
+[ext_resource type="Resource" uid="uid://chw5576wg47v4" path="res://assets/data/conflagrate.tres" id="6_8gct0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
 radius = 4.0
@@ -199,10 +199,11 @@ character_sprite = NodePath("../CharacterSprite")
 
 [node name="MagicAttack" type="Node" parent="."]
 script = ExtResource("2_tx3l7")
-spell = ExtResource("3_q7w5k")
-cooldown = 1.0
+spell_data = ExtResource("6_8gct0")
 
 [node name="CooldownTimer" type="Timer" parent="MagicAttack"]
+
+[node name="CastTimer" type="Timer" parent="MagicAttack"]
 
 [node name="DeathTimer" type="Timer" parent="."]
 
@@ -216,6 +217,7 @@ autostart = true
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]
 [connection signal="ranged_attack_charge" from="MagicAttack" to="." method="_on_magic_attack_charge"]
 [connection signal="timeout" from="MagicAttack/CooldownTimer" to="MagicAttack" method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="MagicAttack/CastTimer" to="MagicAttack" method="_on_cast_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

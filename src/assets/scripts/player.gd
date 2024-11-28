@@ -15,12 +15,12 @@ const STARTING_NUTRITION = 10
 @onready var rest_timer: Timer = $RestTimer
 
 var rest_is_cooldown = false
-var food
-var nutrition
+var food: int
+var nutrition: float
 
 func is_dead(): return %HealthComponent.is_dead()
 
-var move_target
+var move_target: Vector2
 
 func _ready() -> void:
 	nutrition = STARTING_NUTRITION
@@ -82,7 +82,6 @@ func _on_magic_attack() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var direction = mouse_pos - global_position
 	var target_location = mouse_pos
-	# why does this not work?!
 	if direction.length() > 75:
 		target_location = global_position + (direction.normalized() * 75)
 	magic_attack.cast_at_location(target_location)
