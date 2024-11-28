@@ -192,6 +192,7 @@ autoplay = "idle"
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
 character_sprite = NodePath("../CharacterSprite")
+starting_health = 10.0
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("character", "character_sprite") instance=ExtResource("3_fvtna")]
 character = NodePath("..")

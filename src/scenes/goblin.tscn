@@ -11,9 +11,6 @@
 [ext_resource type="Script" path="res://assets/scripts/movement_component.gd" id="5_ekn10"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_fighting_state.gd" id="5_jsl8j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
-size = Vector2(8, 14)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_b577t"]
 atlas = ExtResource("2_el4qn")
 region = Rect2(0, 120, 24, 24)
@@ -149,6 +146,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
+size = Vector2(8, 14)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_aapxa"]
 radius = 50.0
 
@@ -161,6 +161,16 @@ script = ExtResource("1_8oweg")
 drop = ExtResource("2_ptc2k")
 pickupScene = ExtResource("3_dl4n4")
 
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s8l4v")
+animation = &"run"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_iev8x")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("4_tqp57")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
@@ -169,8 +179,6 @@ character_sprite = NodePath("../Animations")
 script = ExtResource("5_ekn10")
 character = NodePath("..")
 character_sprite = NodePath("../Animations")
-
-[node name="DeathTimer" type="Timer" parent="."]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ln33q")
@@ -191,16 +199,6 @@ enemy = NodePath("../..")
 script = ExtResource("5_jsl8j")
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_iev8x")
-debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
-
-[node name="Animations" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_s8l4v")
-animation = &"run"
-autoplay = "idle"
-
 [node name="MeleeRange" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
 target_position = Vector2(20, 0)
@@ -218,8 +216,7 @@ collision_mask = 2
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_aapxa")
 
-[connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="HealthDepleted" from="HealthComponent" to="StateMachine" method="_on_health_depleted"]
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="body_entered" from="VisonArea" to="." method="_on_vison_area_body_entered"]
 [connection signal="body_exited" from="VisonArea" to="." method="_on_vison_area_body_exited"]

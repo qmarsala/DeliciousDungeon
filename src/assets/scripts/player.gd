@@ -9,15 +9,16 @@ const STARTING_NUTRITION = 10
 @onready var death_timer: Timer = $DeathTimer
 
 #todo: use 'pickup' to get a weapon that enables these attacks
-@onready var ranged_attack: RangedAttack = $RangedAttack
-@onready var melee_attack: MeleeAttack = $MeleeAttack
 @onready var magic_attack: MagicAttack = $MagicAttack
 @onready var rest_timer: Timer = $RestTimer
 
 var rest_is_cooldown = false
 var food: int
 var nutrition: float
-
+# todo: this feels like it ruins 'composition' adding health to the player
+# but we need to be able to get at the health f a player from outside the player
+var health: float: 
+	get: return %HealthComponent.health
 func is_dead(): return %HealthComponent.is_dead()
 
 var move_target: Vector2
