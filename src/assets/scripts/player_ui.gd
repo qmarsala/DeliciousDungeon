@@ -33,4 +33,8 @@ func update_food_count(food_count):
 
 func update_charge_bar(charge):
 	if charged_attack_bar:
-		charged_attack_bar.value = charge
+		if charge == 0: 
+			charged_attack_bar.hide()
+		else:
+			charged_attack_bar.show()
+			charged_attack_bar.value = charge

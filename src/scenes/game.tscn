@@ -107,10 +107,10 @@ scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("8_sx1ad")]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 5.0
-offset_bottom = 5.0
+offset_left = 269.0
+offset_top = 324.5
+offset_right = 269.0
+offset_bottom = 324.5
 scale = Vector2(0.405729, 0.367219)
 player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
