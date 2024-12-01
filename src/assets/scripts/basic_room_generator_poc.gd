@@ -2,34 +2,42 @@ class_name RoomGenerator
 extends Node2D
 
 @export var initial_room: RoomData
-@export var door_rooms: Array[RoomData]
-@export var rooms: Array[RoomData]
-
-var rooms_in_a_row: int = 0
+@export var last_room: RoomData
+@export var room_set: RoomDataSet 
+@export var rest_room_set: RoomDataSet 
+@export var total_room_count: int = 7
 
 var random: RandomNumberGenerator = RandomNumberGenerator.new()
+var finished: bool = false
+var room_count: int = 0
 
 func _ready() -> void:
-	make_room(global_position, initial_room)
+	make_room(initial_room, global_position)
 
-func _on_basic_room_east_trigger(new_room_position, trigger_room_type: String) -> void: 
-	if trigger_room_type.to_lower() != "door":
-		rooms_in_a_row += 1
-	if rooms_in_a_row >= 4:
-		make_room(new_room_position, door_rooms.pick_random())
-		rooms_in_a_row = 0
+func _on_east_trigger(trigger_connector_position: Vector2, connect_to: String) -> void: 
+	handle_trigger(trigger_connector_position, connect_to)
+	
+func _on_west_trigger(trigger_connector_position: Vector2,  connect_to: String) -> void: 
+	handle_trigger(trigger_connector_position, connect_to)
+
+func handle_trigger(connector_position: Vector2, connect_to: String):
+	if finished: return
+	if room_count >= total_room_count:
+		finished = true
+		make_room(last_room, connector_position, connect_to)
 		return
+	var rooms = room_set.rooms
+	if room_count % 3 == 0 and rest_room_set.rooms.size() > 0:
+		rooms = rest_room_set.rooms
+	var room = rooms.pick_random()
+	if room:
+		make_room(room, connector_position, connect_to)
 
-	if trigger_room_type.to_lower() == "door":
-		make_room(new_room_position, rooms.pick_random())
-	else:
-		if randf() <= .65:
-			make_room(new_room_position, rooms.pick_random())
-		else:
-			make_room(new_room_position, door_rooms.pick_random())
-
-func make_room(position, next_room):
-	var next_room_instance = next_room.scene.instantiate() as Room
-	next_room_instance.global_position = position
-	next_room_instance.EastTrigger.connect(_on_basic_room_east_trigger)
-	add_child.call_deferred(next_room_instance)
+func make_room(room: RoomData, position: Vector2, connect_to: String = ""):
+	room_count += 1
+	var room_scene = room.scene.instantiate() as Room
+	room_scene.connect_to = connect_to
+	room_scene.global_position = position
+	room_scene.EastTrigger.connect(_on_east_trigger)
+	room_scene.WestTrigger.connect(_on_west_trigger)
+	add_child.call_deferred(room_scene)
