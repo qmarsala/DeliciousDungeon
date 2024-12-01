@@ -10,6 +10,7 @@ const STARTING_NUTRITION = 10
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
+@onready var magic_attack_indicator: Sprite2D = $MagicAttackIndicator
 @onready var rest_timer: Timer = $RestTimer
 
 var rest_is_cooldown = false
@@ -31,6 +32,9 @@ func _process(delta: float) -> void:
 	if is_dead(): return
 	handle_interact_action()
 	handle_movement_input()
+	#todo: move this to ui layer?
+	var magic_attack_pos = get_magic_attack_location()
+	magic_attack_indicator.global_position = magic_attack_pos
 
 func handle_interact_action() -> void:
 	#todo: this will be more than just opening a door
@@ -78,14 +82,20 @@ func _on_hunger_timer_timeout() -> void:
 	else:
 		nutrition = nutrition - 1
 
+# todo: how could we encapsulate this in the magic attack component?
+# need to check is dead before casting
 func _on_magic_attack() -> void:
 	if is_dead(): return
+	var target_location = get_magic_attack_location()
+	magic_attack.cast_at_location(target_location)
+
+func get_magic_attack_location() -> Vector2:
 	var mouse_pos = get_global_mouse_position()
 	var direction = mouse_pos - global_position
 	var target_location = mouse_pos
 	if direction.length() > 75:
 		target_location = global_position + (direction.normalized() * 75)
-	magic_attack.cast_at_location(target_location)
+	return target_location
 
 func _on_rest_timer_timeout() -> void:
 	rest_is_cooldown = false
