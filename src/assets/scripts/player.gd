@@ -60,8 +60,8 @@ func rest():
 	food-=1
 	rest_is_cooldown = true
 	rest_timer.start(30)
-	nutrition = STARTING_NUTRITION
-	%HealthComponent.heal(2)
+	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
+	%HealthComponent.heal(%HealthComponent.starting_health * .35)
 
 #todo: health component could have a hit box?
 # but what about other ways of taking damage?

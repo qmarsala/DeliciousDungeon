@@ -186,7 +186,6 @@ initial_state = NodePath("EnemyExploringState")
 
 [node name="EnemyExploringState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_o0flm")
-move_speed = 25
 enemy = NodePath("../..")
 
 [node name="EnemyDeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]

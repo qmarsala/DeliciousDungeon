@@ -4,4 +4,5 @@ extends Node2D
 @export var enemy_scene: PackedScene
 
 func _ready():
-	add_child(enemy_scene.instantiate())
+	var enemy = enemy_scene.instantiate() as Enemy
+	add_child.call_deferred(enemy)

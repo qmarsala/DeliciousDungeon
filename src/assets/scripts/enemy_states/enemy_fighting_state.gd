@@ -10,7 +10,6 @@ func enter():
 	player = get_tree().get_first_node_in_group("Player")
 
 func handle_process(delta: float):
-	if enemy_is_dead(): return
 	if attack_is_cooling_down:
 		time_since_last_attack += delta
 		if time_since_last_attack > cooldown:
