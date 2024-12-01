@@ -7,11 +7,13 @@ class_name PlayerUI
 @onready var hunger_bar: ProgressBar = $HungerBar
 @onready var charged_attack_bar: ProgressBar = $ChargedAttackBar
 @onready var food_count_label: Label = $FoodCountLabel
+@onready var status_label: Label = $StatusLabel
 
 func _process(delta: float) -> void:
 	update_health_bar(player.health)
 	update_hunger_bar(player.nutrition)
 	update_food_count(player.food)
+	update_status_label(player.rest_is_cooldown)
 	# todo: need a better way to wire up the cast bar
 	# don't like going into the magic_attack.cast_timer
 	if not player.magic_attack.cast_timer.is_stopped():
@@ -30,6 +32,14 @@ func update_hunger_bar(nutrition):
 func update_food_count(food_count):
 	if food_count_label:
 		food_count_label.text = "Food: " + str(food_count)
+
+var status_map: Dictionary = {
+	true: "Rested",
+	false: "Tired"
+}
+func update_status_label(status):
+	if status_label:
+		status_label.text = "Status: " + status_map[status]
 
 func update_charge_bar(charge):
 	if charged_attack_bar:

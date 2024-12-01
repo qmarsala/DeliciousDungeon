@@ -48,3 +48,11 @@ offset_top = -99.0
 offset_right = -111.0
 offset_bottom = -76.0
 text = "Food: 0"
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = -99.0
+offset_right = 153.0
+offset_bottom = -76.0
+text = "Status: Rested"
