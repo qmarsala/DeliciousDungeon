@@ -21,7 +21,7 @@ func receive_damage(damage):
 			var dropInstance = pickupScene.instantiate()
 			dropInstance.item = drop
 			dropInstance.position = global_position
-			add_sibling(dropInstance)
+			get_tree().root.add_child(dropInstance)
 
 func _on_death_timer_timeout():
 	queue_free()

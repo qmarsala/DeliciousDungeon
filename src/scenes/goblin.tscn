@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="2_el4qn"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_state_machine.gd" id="2_ln33q"]
 [ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_ptc2k"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://assets/data/items/pickup.tscn" id="3_dl4n4"]
+[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_dl4n4"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_exploring_state.gd" id="3_o0flm"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_states/enemy_dead_state.gd" id="3_snqy6"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="4_tqp57"]
