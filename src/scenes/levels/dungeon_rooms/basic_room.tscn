@@ -33,27 +33,31 @@ position = Vector2(176, -22)
 
 [node name="EastTrigger" type="Area2D" parent="."]
 position = Vector2(169, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
 shape = SubResource("RectangleShape2D_etlj4")
 
 [node name="WestTrigger" type="Area2D" parent="."]
 position = Vector2(-169, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
 shape = SubResource("RectangleShape2D_etlj4")
 
 [node name="GoblinSpawner" type="Node2D" parent="."]
-position = Vector2(-91, -66)
+position = Vector2(-54, -44)
 script = ExtResource("4_d21cb")
 enemy_scene = ExtResource("3_f2kin")
 
 [node name="GoblinSpawner2" type="Node2D" parent="."]
-position = Vector2(82, -47)
+position = Vector2(67, -34)
 script = ExtResource("4_d21cb")
 enemy_scene = ExtResource("3_f2kin")
 
 [node name="GoblinSpawner3" type="Node2D" parent="."]
-position = Vector2(-33, 58)
+position = Vector2(-11, 54)
 script = ExtResource("4_d21cb")
 enemy_scene = ExtResource("3_f2kin")
