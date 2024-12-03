@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://cpt01suije63u"]
+
+[ext_resource type="Script" path="res://assets/data/room.gd" id="1_i0xch"]
+[ext_resource type="PackedScene" uid="uid://djcknakuu3lcb" path="res://scenes/levels/dungeon_rooms/basic_rest_room_b.tscn" id="1_t87ud"]
+
+[resource]
+script = ExtResource("1_i0xch")
+name = "Basic Rest Room B"
+scene = ExtResource("1_t87ud")

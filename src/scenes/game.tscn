@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=12 format=3 uid="uid://v8yl2qd4myvg"]
 
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="1_bt7mb"]
 [ext_resource type="Script" path="res://assets/scripts/basic_room_generator_poc.gd" id="1_ky5tj"]
@@ -7,12 +7,13 @@
 [ext_resource type="Resource" uid="uid://bbl0uvfrncnp5" path="res://assets/data/rooms/basic_end_room.tres" id="3_aiurx"]
 [ext_resource type="Script" path="res://assets/data/room.gd" id="5_ea653"]
 [ext_resource type="Resource" uid="uid://d45mbqcotxei" path="res://assets/data/rooms/RoomD.tres" id="6_2hv0u"]
+[ext_resource type="Resource" uid="uid://cpt01suije63u" path="res://assets/data/rooms/RestRoomB.tres" id="7_d0c8v"]
 [ext_resource type="Script" path="res://assets/data/room_set.gd" id="7_ob5bu"]
 [ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="8_sx1ad"]
 
 [sub_resource type="Resource" id="Resource_kat5d"]
 script = ExtResource("7_ob5bu")
-rooms = Array[ExtResource("5_ea653")]([ExtResource("6_2hv0u")])
+rooms = Array[ExtResource("5_ea653")]([ExtResource("6_2hv0u"), ExtResource("7_d0c8v")])
 
 [node name="Game" type="Node2D"]
 
@@ -22,7 +23,7 @@ initial_room = ExtResource("2_1sded")
 last_room = ExtResource("3_aiurx")
 room_set = ExtResource("3_a5lqx")
 rest_room_set = SubResource("Resource_kat5d")
-total_room_count = 13
+total_room_count = 15
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_bt7mb")]
 z_index = 5
