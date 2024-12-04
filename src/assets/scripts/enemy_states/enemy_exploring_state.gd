@@ -22,9 +22,12 @@ func handle_process(delta: float):
 		randomize_explore()
 
 func handle_physics_process(delta: float):
-	if enemy:
+	if enemy != null:
 		enemy.velocity = move_direction * move_speed
-	if enemy and player:
-		var direction = player.global_position - enemy.global_position
-		if direction.length() < 40:
-			Transitioned.emit(self, "EnemyFightingState")
+		if player != null:
+			var direction = player.global_position - enemy.global_position
+			if direction.length() < 40:
+				Transitioned.emit(self, "EnemyFightingState")
+		else:
+			#todo: why do we need this? the first 'state enter' isn't setting it correctly for some reason
+			player = get_tree().get_first_node_in_group("Player")
