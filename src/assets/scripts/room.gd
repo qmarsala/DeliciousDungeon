@@ -7,6 +7,7 @@ signal WestTrigger
 #todo: how to handle start/end rooms
 @export var is_starting_room: bool
 @export var is_ending_room: bool
+@export var end_trigger: Area2D
 
 var east_trigger: Area2D
 var west_trigger: Area2D

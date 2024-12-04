@@ -1,46 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=4 format=3 uid="uid://c38pvspamielw"]
 
-[ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="1_bt7mb"]
-[ext_resource type="Script" path="res://assets/scripts/basic_room_generator_poc.gd" id="1_ky5tj"]
-[ext_resource type="Resource" uid="uid://51tcb3ky62hd" path="res://assets/data/rooms/basic_starting_room.tres" id="2_1sded"]
-[ext_resource type="Resource" uid="uid://dhvhmrtm5kt57" path="res://assets/data/rooms/basic_rooms.tres" id="3_a5lqx"]
-[ext_resource type="Resource" uid="uid://bbl0uvfrncnp5" path="res://assets/data/rooms/basic_end_room.tres" id="3_aiurx"]
-[ext_resource type="Script" path="res://assets/data/room.gd" id="5_ea653"]
-[ext_resource type="Resource" uid="uid://d45mbqcotxei" path="res://assets/data/rooms/RoomD.tres" id="6_2hv0u"]
-[ext_resource type="Resource" uid="uid://cpt01suije63u" path="res://assets/data/rooms/RestRoomB.tres" id="7_d0c8v"]
-[ext_resource type="Script" path="res://assets/data/room_set.gd" id="7_ob5bu"]
-[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="8_sx1ad"]
-
-[sub_resource type="Resource" id="Resource_kat5d"]
-script = ExtResource("7_ob5bu")
-rooms = Array[ExtResource("5_ea653")]([ExtResource("6_2hv0u"), ExtResource("7_d0c8v")])
+[ext_resource type="Script" path="res://assets/scripts/game.gd" id="1_j0ii5"]
+[ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
+[ext_resource type="PackedScene" uid="uid://v8yl2qd4myvg" path="res://scenes/levels/dungeon.tscn" id="3_sqakx"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Rooms" type="Node2D" parent="."]
-script = ExtResource("1_ky5tj")
-initial_room = ExtResource("2_1sded")
-last_room = ExtResource("3_aiurx")
-room_set = ExtResource("3_a5lqx")
-rest_room_set = SubResource("Resource_kat5d")
-total_room_count = 15
-
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_bt7mb")]
-z_index = 5
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-1, 12)
-zoom = Vector2(4, 4)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
-
-[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("8_sx1ad")]
-offset_left = 269.0
-offset_top = 324.5
-offset_right = 269.0
-offset_bottom = 324.5
-scale = Vector2(0.405729, 0.367219)
-player = NodePath("../../Player")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_j0ii5")
+outdoors = ExtResource("2_re2jb")
+dungeon = ExtResource("3_sqakx")

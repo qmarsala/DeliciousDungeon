@@ -1,10 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
+signal PlayerDied
+
 const SPEED = 75.0
 const INTERACTION_RANGE = 20.0
 const STARTING_NUTRITION = 10
 
+@export var hunger_enabled: bool = true
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var death_timer: Timer = $DeathTimer
 
@@ -77,6 +80,7 @@ func pickup(item: Item):
 	food += 1
 
 func _on_hunger_timer_timeout() -> void:
+	if not hunger_enabled or is_dead(): return
 	if nutrition <= 0:
 		%HealthComponent.take_damage(1)
 	else:
@@ -104,4 +108,4 @@ func _on_health_depleted() -> void:
 	death_timer.start(.75)
 
 func _on_death_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	PlayerDied.emit()

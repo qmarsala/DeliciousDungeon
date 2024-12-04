@@ -1,0 +1,48 @@
+[gd_scene load_steps=13 format=3 uid="uid://v8yl2qd4myvg"]
+
+[ext_resource type="Script" path="res://assets/scripts/Level.gd" id="1_c5un1"]
+[ext_resource type="Script" path="res://assets/scripts/basic_room_generator_poc.gd" id="2_oro8l"]
+[ext_resource type="Resource" uid="uid://51tcb3ky62hd" path="res://assets/data/rooms/basic_starting_room.tres" id="3_7jkkf"]
+[ext_resource type="Resource" uid="uid://bbl0uvfrncnp5" path="res://assets/data/rooms/basic_end_room.tres" id="4_mfxjq"]
+[ext_resource type="Resource" uid="uid://dhvhmrtm5kt57" path="res://assets/data/rooms/basic_rooms.tres" id="5_xuv11"]
+[ext_resource type="Script" path="res://assets/data/room.gd" id="6_t6tku"]
+[ext_resource type="Resource" uid="uid://d45mbqcotxei" path="res://assets/data/rooms/RoomD.tres" id="7_aut4m"]
+[ext_resource type="Resource" uid="uid://cpt01suije63u" path="res://assets/data/rooms/RestRoomB.tres" id="8_4i6pv"]
+[ext_resource type="Script" path="res://assets/data/room_set.gd" id="9_rfe56"]
+[ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="10_fgu52"]
+[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="11_exkqe"]
+
+[sub_resource type="Resource" id="Resource_kat5d"]
+script = ExtResource("9_rfe56")
+rooms = Array[ExtResource("6_t6tku")]([ExtResource("7_aut4m"), ExtResource("8_4i6pv")])
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_c5un1")
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("10_fgu52")]
+z_index = 5
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1, 12)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="Rooms" type="Node2D" parent="."]
+script = ExtResource("2_oro8l")
+initial_room = ExtResource("3_7jkkf")
+last_room = ExtResource("4_mfxjq")
+room_set = ExtResource("5_xuv11")
+rest_room_set = SubResource("Resource_kat5d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("11_exkqe")]
+offset_left = 269.0
+offset_top = 324.5
+offset_right = 269.0
+offset_bottom = 324.5
+scale = Vector2(0.405729, 0.367219)
+player = NodePath("../../Player")
+metadata/_edit_use_anchors_ = true
