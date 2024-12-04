@@ -14,6 +14,7 @@ const STARTING_NUTRITION = 10
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
 @onready var magic_attack_indicator: Sprite2D = $MagicAttackIndicator
+@onready var move_destination_indicator: Sprite2D = $MoveIndicator
 @onready var rest_timer: Timer = $RestTimer
 
 var rest_is_cooldown = false
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 	#todo: move this to ui layer?
 	var magic_attack_pos = get_magic_attack_location()
 	magic_attack_indicator.global_position = magic_attack_pos
+	move_destination_indicator.global_position = move_target
 
 func handle_interact_action() -> void:
 	#todo: this will be more than just opening a door
@@ -56,9 +58,11 @@ func handle_movement_input():
 	var mouse_pos = get_global_mouse_position()
 	if Input.is_action_pressed("move"):
 		move_target = mouse_pos
+		move_destination_indicator.show()
 	if global_position.distance_to(move_target) < 10:
 		move_target = global_position
 		velocity = Vector2.ZERO
+		move_destination_indicator.hide()
 	else:
 		velocity = global_position.direction_to(move_target).normalized() * SPEED
 
