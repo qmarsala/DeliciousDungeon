@@ -9,6 +9,7 @@
 size = Vector2(8, 47.5)
 
 [node name="BasicRoomB" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_80axm")
 
 [node name="Background" type="TileMapLayer" parent="."]
