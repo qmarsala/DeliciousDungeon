@@ -27,10 +27,13 @@ var health: float:
 func is_dead(): return %HealthComponent.is_dead()
 
 var move_target: Vector2
+var move_disabled: bool
 
 func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
+	if Input.is_action_pressed("move"):
+		move_disabled = true
 
 func _process(delta: float) -> void:
 	if is_dead(): return
@@ -56,7 +59,9 @@ func handle_interact_action() -> void:
 
 func handle_movement_input():
 	var mouse_pos = get_global_mouse_position()
-	if Input.is_action_pressed("move"):
+	if move_disabled and Input.is_action_just_released("move"):
+		move_disabled = false
+	if Input.is_action_pressed("move") and not move_disabled:
 		move_target = mouse_pos
 		move_destination_indicator.show()
 	if global_position.distance_to(move_target) < 10:
