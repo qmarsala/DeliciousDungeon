@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c38pvspamielw"]
 
-[ext_resource type="Script" path="res://assets/scripts/game.gd" id="1_j0ii5"]
+[ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
 [ext_resource type="PackedScene" uid="uid://v8yl2qd4myvg" path="res://scenes/levels/dungeon.tscn" id="3_sqakx"]
 
-[node name="Game" type="Node2D"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_j0ii5")
 outdoors = ExtResource("2_re2jb")
 dungeon = ExtResource("3_sqakx")
