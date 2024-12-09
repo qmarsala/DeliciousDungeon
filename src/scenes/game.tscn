@@ -1,8 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://c38pvspamielw"]
+[gd_scene load_steps=8 format=3 uid="uid://c38pvspamielw"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
 [ext_resource type="PackedScene" uid="uid://v8yl2qd4myvg" path="res://scenes/levels/dungeon.tscn" id="3_sqakx"]
+[ext_resource type="PackedScene" uid="uid://dl4c3hhbw5max" path="res://scenes/main_menu.tscn" id="4_yc5bf"]
+
+[sub_resource type="Animation" id="Animation_al4iy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionLayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_73lpd"]
 resource_name = "change_scene"
@@ -33,21 +49,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_al4iy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionLayer/ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_khrm0"]
 _data = {
 "RESET": SubResource("Animation_al4iy"),
@@ -58,6 +59,7 @@ _data = {
 script = ExtResource("1_j0ii5")
 outdoors = ExtResource("2_re2jb")
 dungeon = ExtResource("3_sqakx")
+main_menu = ExtResource("4_yc5bf")
 
 [node name="World" type="Node2D" parent="."]
 

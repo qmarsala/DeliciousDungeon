@@ -31,6 +31,10 @@ position = Vector2(-160, 42)
 [node name="EastConnector" type="Node2D" parent="."]
 position = Vector2(80, -6)
 
+[node name="Fire" parent="." instance=ExtResource("3_81biq")]
+z_index = 1
+position = Vector2(-47, 0)
+
 [node name="EastTrigger" type="Area2D" parent="."]
 position = Vector2(74, 18)
 collision_layer = 0
@@ -46,6 +50,3 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
 shape = SubResource("RectangleShape2D_mtuou")
-
-[node name="Fire" parent="." instance=ExtResource("3_81biq")]
-position = Vector2(-47, 0)

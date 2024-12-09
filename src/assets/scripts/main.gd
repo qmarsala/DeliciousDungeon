@@ -4,15 +4,16 @@ extends Node2D
 #todo: 'global' script? for game/scene management?
 @export var outdoors: PackedScene
 @export var dungeon: PackedScene
+@export var main_menu: PackedScene
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 
-var is_outdoors = true
+var is_outdoors = false
 var current_scene
 var next_scene
 
 func _ready():
-	_change_scene(outdoors)
+	_change_scene(main_menu, true)
 
 func _toggle_levels():
 	if is_outdoors:
@@ -21,12 +22,15 @@ func _toggle_levels():
 	else:
 		next_scene = outdoors
 		is_outdoors = true
-	_change_scene(next_scene)
+	_change_scene.call_deferred(next_scene)
 
-func _change_scene(scene: PackedScene):
+func _change_scene(scene: PackedScene, force: bool = false):
 	next_scene = scene
-	world.process_mode = Node.PROCESS_MODE_DISABLED
-	animation_player.play("change_scene")
+	if force:
+		_perform_scene_change()
+	else:
+		world.process_mode = Node.PROCESS_MODE_DISABLED
+		animation_player.play("change_scene")
 
 func _perform_scene_change():
 	if current_scene:
@@ -38,6 +42,10 @@ func _perform_scene_change():
 	for c in current_scene.get_children():
 		if c.is_in_group("Player"):
 			var player = c as Player
-			player.PlayerDied.connect(_toggle_levels)
+			player.PlayerDied.connect(_game_over)
 	world.add_child.call_deferred(current_scene)
 	world.process_mode = Node.PROCESS_MODE_INHERIT
+
+func _game_over():
+	_change_scene(main_menu)
+	

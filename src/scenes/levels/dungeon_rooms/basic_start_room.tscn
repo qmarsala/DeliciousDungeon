@@ -17,7 +17,7 @@ tile_map_data = PackedByteArray("AAD7//v/AAABAA4AAAD7//z/AAABAA8AAAD7//3/AAABAA8
 tile_set = ExtResource("2_td5qt")
 
 [node name="Midground" type="TileMapLayer" parent="."]
-z_index = 2
+z_index = 1
 tile_map_data = PackedByteArray("AAD8//r/AAACAAQAAAD8//v/AAACAAUAAAD9//r/AAACAAQAAAD9//v/AAACAAUAAAD+//r/AAACAAQAAAD+//v/AAACAAUAAAD///r/AAACAAQAAAD///v/AAACAAUAAAAAAPr/AAACAAQAAAAAAPv/AAACAAUAAAABAPr/AAACAAQAAAABAPv/AAACAAUAAAACAPr/AAACAAQAAAACAPv/AAACAAUAAAADAPr/AAACAAQAAAADAPv/AAACAAUAAAAEAPr/AAAEAAEAAAAEAPv/AAAEAAIAAAAEAP3/AAABAAYAAAAEAP7/AAABAAcAAAAEAPz/AAAEAAMAAAD7//r/AAABAAEAAAD7//v/AAABAAIAAAD7//z/AAAEAAMAAAD7//3/AAAEAAMAAAD7//7/AAAEAAMAAAD7////AAAEAAMAAAA=")
 tile_set = ExtResource("2_td5qt")
 
@@ -30,6 +30,7 @@ tile_set = ExtResource("2_td5qt")
 position = Vector2(80, -22)
 
 [node name="Fire" parent="." instance=ExtResource("3_ve0fs")]
+z_index = 1
 position = Vector2(46, -45)
 
 [node name="WestTrigger" type="Area2D" parent="."]
