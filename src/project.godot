@@ -15,11 +15,6 @@ run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-GameService="*res://assets/scripts/autoloads/game.gd"
-SceneManagerService="*res://assets/scripts/autoloads/scene_manager.gd"
-
 [display]
 
 window/stretch/mode="viewport"

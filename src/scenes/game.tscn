@@ -8,3 +8,11 @@
 script = ExtResource("1_j0ii5")
 outdoors = ExtResource("2_re2jb")
 dungeon = ExtResource("3_sqakx")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

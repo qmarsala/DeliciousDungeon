@@ -4,6 +4,7 @@ extends Node2D
 #todo: 'global' script? for game/scene management?
 @export var outdoors: PackedScene
 @export var dungeon: PackedScene
+@onready var world: Node2D = $World
 
 var is_outdoors = true
 var current_scene
@@ -32,4 +33,4 @@ func _change_scene(next_scene: PackedScene):
 		if c.is_in_group("Player"):
 			var player = c as Player
 			player.PlayerDied.connect(_toggle_levels)
-	get_tree().root.add_child.call_deferred(current_scene)
+	world.add_child.call_deferred(current_scene)
