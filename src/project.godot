@@ -23,6 +23,10 @@ window/stretch/mode="viewport"
 
 Player=""
 
+[gui]
+
+theme/custom_font="res://assets/fonts/monogram/ttf/monogram.ttf"
+
 [input]
 
 move_north={

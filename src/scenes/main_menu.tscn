@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dl4c3hhbw5max"]
+[gd_scene load_steps=19 format=4 uid="uid://dl4c3hhbw5max"]
 
 [ext_resource type="Script" path="res://assets/scripts/Level.gd" id="1_cdyxq"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_vlgdl"]
@@ -927,6 +927,14 @@ sources/4 = SubResource("TileSetAtlasSource_m5dux")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6ckv"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ck6uo"]
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("end_trigger")]
 script = ExtResource("1_cdyxq")
 end_trigger = NodePath("NewSceneTrigger")
@@ -945,13 +953,6 @@ tile_set = SubResource("TileSet_qqia0")
 
 [node name="Player" parent="." instance=ExtResource("6_00yui")]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 26.0
-offset_top = -119.0
-offset_right = 113.0
-offset_bottom = -96.0
-text = "New Game"
-
 [node name="NewSceneTrigger" type="Area2D" parent="."]
 position = Vector2(64, -79)
 collision_layer = 0
@@ -959,3 +960,13 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NewSceneTrigger"]
 shape = SubResource("RectangleShape2D_h6ckv")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = -121.0
+offset_right = 120.0
+offset_bottom = -95.0
+text = "New Game"
+label_settings = SubResource("LabelSettings_ck6uo")
+horizontal_alignment = 1
+vertical_alignment = 1
