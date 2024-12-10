@@ -46,7 +46,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_dead(): return
 	handle_interact_action()
-	handle_movement_input()
+	handle_movement_input(delta)
 	handle_dash_input()
 	#todo: move this to ui layer?
 	var magic_attack_pos = get_magic_attack_location()
@@ -66,15 +66,24 @@ func handle_interact_action() -> void:
 		if target and target is Door:
 			target.open()
 
-func handle_movement_input():
+var time = 0
+var pressed_at = 0
+func handle_movement_input(delta):
+	time += delta
 	#todo: player state pattern?
-	if is_dashing: 
-		return
-	var mouse_pos = get_global_mouse_position()
+	if is_dashing || move_disabled: return
 	if move_disabled and Input.is_action_just_released("move"):
 		move_disabled = false
-	if Input.is_action_pressed("move") and not move_disabled:
+
+	var mouse_pos = get_global_mouse_position()
+	if Input.is_action_just_pressed("move"):
+		pressed_at = time
 		move_target = mouse_pos
+		move_destination_indicator.show()
+	elif Input.is_action_pressed("move") and time - pressed_at > .1:
+		move_target = mouse_pos
+		move_destination_indicator.hide()
+	elif Input.is_action_just_released("move"):
 		move_destination_indicator.show()
 	if global_position.distance_to(move_target) < 10:
 		move_target = global_position
