@@ -8,6 +8,9 @@ class_name PlayerUI
 @onready var charged_attack_bar: ProgressBar = $ChargedAttackBar
 @onready var food_count_label: Label = $FoodCountLabel
 @onready var status_label: Label = $StatusLabel
+@onready var dash_icon: Label = $DashIcon
+
+var dash_icon_hidden = false
 
 func _process(delta: float) -> void:
 	update_health_bar(player.health)
@@ -17,9 +20,15 @@ func _process(delta: float) -> void:
 	# todo: need a better way to wire up the cast bar
 	# don't like going into the magic_attack.cast_timer
 	if not player.magic_attack.cast_timer.is_stopped():
-		update_charge_bar(100 - player.magic_attack.cast_timer.time_left * player.magic_attack.spell_data.cast_time * 1000)
+		update_charge_bar(100 - (player.magic_attack.cast_timer.time_left/player.magic_attack.spell_data.cast_time) * 100)
 	else:
 		update_charge_bar(0)
+	if player.is_dash_cooldown:
+		dash_icon.hide()
+		dash_icon_hidden = true
+	elif dash_icon_hidden:
+		dash_icon.show()
+		dash_icon_hidden = false
 
 func update_health_bar(health):
 	if health_bar:

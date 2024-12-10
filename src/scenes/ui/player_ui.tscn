@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1bfcy70vhh2k"]
+[gd_scene load_steps=5 format=3 uid="uid://b1bfcy70vhh2k"]
 
 [ext_resource type="Script" path="res://assets/scripts/player_ui.gd" id="1_bgem0"]
 
@@ -6,6 +6,9 @@
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_51dl0"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6bk4"]
 font_size = 32
 
 [node name="PlayerUI" type="Control"]
@@ -43,6 +46,7 @@ value = 5.0
 show_percentage = false
 
 [node name="ChargedAttackBar" type="ProgressBar" parent="."]
+modulate = Color(0.909804, 0.666667, 0.0823529, 1)
 layout_mode = 0
 offset_left = -61.0
 offset_top = -130.0
@@ -52,18 +56,27 @@ show_percentage = false
 
 [node name="FoodCountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = -167.0
-offset_top = -99.0
-offset_right = -111.0
-offset_bottom = -76.0
+offset_left = 43.0
+offset_top = -101.0
+offset_right = 127.0
+offset_bottom = -75.0
 text = "Food: 0"
 label_settings = SubResource("LabelSettings_p08b3")
 
 [node name="StatusLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = -99.0
-offset_right = 153.0
-offset_bottom = -76.0
+offset_left = -178.0
+offset_top = -101.0
+offset_right = -10.0
+offset_bottom = -75.0
 text = "Status: Rested"
 label_settings = SubResource("LabelSettings_51dl0")
+
+[node name="DashIcon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 203.0
+offset_top = -101.0
+offset_right = 251.0
+offset_bottom = -75.0
+text = "Dash"
+label_settings = SubResource("LabelSettings_k6bk4")
