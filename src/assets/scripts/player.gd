@@ -4,12 +4,16 @@ extends CharacterBody2D
 signal PlayerDied
 
 const SPEED = 75.0
+const DASH_MULTIPLIER = 2
+const DASH_TIME = .5
+const DASH_COOLDOWN = 1
 const INTERACTION_RANGE = 20.0
 const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var death_timer: Timer = $DeathTimer
+@onready var dash_timer: Timer = $DashTimer
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
@@ -28,10 +32,14 @@ func is_dead(): return %HealthComponent.is_dead()
 
 var move_target: Vector2
 var move_disabled: bool
+var is_dashing: bool
+var is_dash_cooldown: bool
 
 func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
+	#todo: do more signal hook ups this way?
+	dash_timer.timeout.connect(_on_dash_timer_timeout)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
@@ -39,6 +47,7 @@ func _process(delta: float) -> void:
 	if is_dead(): return
 	handle_interact_action()
 	handle_movement_input()
+	handle_dash_input()
 	#todo: move this to ui layer?
 	var magic_attack_pos = get_magic_attack_location()
 	magic_attack_indicator.global_position = magic_attack_pos
@@ -58,6 +67,9 @@ func handle_interact_action() -> void:
 			target.open()
 
 func handle_movement_input():
+	#todo: player state pattern?
+	if is_dashing: 
+		return
 	var mouse_pos = get_global_mouse_position()
 	if move_disabled and Input.is_action_just_released("move"):
 		move_disabled = false
@@ -70,6 +82,15 @@ func handle_movement_input():
 		move_destination_indicator.hide()
 	else:
 		velocity = global_position.direction_to(move_target).normalized() * SPEED
+
+func handle_dash_input():
+	var mouse_pos = get_global_mouse_position()
+	if Input.is_action_just_pressed("dash") and not is_dash_cooldown:
+		is_dashing = true
+		is_dash_cooldown = true
+		move_target = mouse_pos
+		velocity = global_position.direction_to(move_target).normalized() * (SPEED * DASH_MULTIPLIER)
+		dash_timer.start(DASH_TIME)
 
 func rest():
 	if food < 1 or rest_is_cooldown: return
@@ -118,3 +139,15 @@ func _on_health_depleted() -> void:
 
 func _on_death_timer_timeout() -> void:
 	PlayerDied.emit()
+	
+func _on_dash_timer_timeout() -> void:
+	if not is_dashing and is_dash_cooldown:
+		is_dash_cooldown = false
+		dash_timer.stop()
+	else:
+		is_dashing = false
+		move_target = global_position
+		velocity = Vector2.ZERO
+		move_destination_indicator.hide()
+		dash_timer.stop()
+		dash_timer.start(DASH_COOLDOWN - DASH_TIME)

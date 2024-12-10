@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=38 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_511jo"]
+[ext_resource type="Texture2D" uid="uid://b7ktjn6ru0i4a" path="res://assets/sprites/playerSprites_ [version 1.0]/mPlayer_ [human].png" id="2_35top"]
 [ext_resource type="Script" path="res://assets/scripts/magic_attack.gd" id="2_tx3l7"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
@@ -12,6 +13,30 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
 radius = 4.0
 height = 10.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqaof"]
+atlas = ExtResource("2_35top")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70cjf"]
+atlas = ExtResource("2_35top")
+region = Rect2(96, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vt4l"]
+atlas = ExtResource("2_35top")
+region = Rect2(128, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5ebk"]
+atlas = ExtResource("2_35top")
+region = Rect2(160, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8yp7"]
+atlas = ExtResource("2_35top")
+region = Rect2(192, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_210he"]
+atlas = ExtResource("2_35top")
+region = Rect2(224, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0hgw"]
 atlas = ExtResource("1_0cxf1")
@@ -95,6 +120,29 @@ region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_65n8r"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqaof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70cjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vt4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5ebk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8yp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_210he")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m0hgw")
@@ -188,8 +236,10 @@ shape = SubResource("CapsuleShape2D_kh2an")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_65n8r")
-animation = &"run"
+animation = &"dash"
 autoplay = "idle"
+frame = 2
+frame_progress = 0.110389
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
@@ -215,6 +265,8 @@ wait_time = 6.0
 autostart = true
 
 [node name="RestTimer" type="Timer" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
 
 [node name="MagicAttackIndicator" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.196078)
