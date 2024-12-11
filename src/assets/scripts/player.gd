@@ -51,6 +51,8 @@ func _process(delta: float) -> void:
 	var magic_attack_pos = get_magic_attack_location()
 	magic_attack_indicator.global_position = magic_attack_pos
 	move_destination_indicator.global_position = move_target
+	if global_position.distance_to(move_target) <= 5:
+		move_destination_indicator.hide()
 
 func rest():
 	if food < 1 or rest_is_cooldown: return
@@ -83,7 +85,7 @@ func interact():
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return
 	if nutrition <= 0:
-		%HealthComponent.take_damage(1)
+		receive_damage(1)
 	else:
 		nutrition = nutrition - 1
 

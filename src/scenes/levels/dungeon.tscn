@@ -19,7 +19,7 @@ rooms = Array[ExtResource("6_t6tku")]([ExtResource("7_aut4m"), ExtResource("8_4i
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_c5un1")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("10_fgu52")]
+[node name="Player" parent="." instance=ExtResource("10_fgu52")]
 z_index = 5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

@@ -30,6 +30,7 @@ func handle_interact_action() -> void:
 
 #in this method we have the details implemented here, in contrast to above where we call 'interact'
 #just to play around with different approaches
+#todo: how can we get the move indicator code consolidated into one spot?
 var pressed_at = 0
 func handle_movement_input(delta):
 	if not player: return
@@ -44,12 +45,11 @@ func handle_movement_input(delta):
 		player.move_target = mouse_pos
 		player.move_destination_indicator.show()
 		Transitioned.emit(self, "MoveState")
-	elif Input.is_action_pressed("move") and time - pressed_at > .1:
+	elif Input.is_action_pressed("move") and time - pressed_at > .25:
 		player.move_target = mouse_pos
 		player.move_destination_indicator.hide()
 		Transitioned.emit(self, "MoveState")
-	elif Input.is_action_just_released("move"):
-#		feels like a bug waiting to happen here, if states switch during a move hold?
+	elif Input.is_action_just_released("move") and time - pressed_at > .25:
 		player.move_destination_indicator.show()
 
 func handle_dash_input():

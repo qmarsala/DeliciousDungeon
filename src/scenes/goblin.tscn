@@ -146,8 +146,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iev8x"]
-size = Vector2(8, 14)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qa6ns"]
+radius = 5.0
+height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aapxa"]
 radius = 50.0
@@ -156,7 +157,7 @@ radius = 50.0
 z_index = 4
 position = Vector2(0, -12)
 collision_layer = 4
-collision_mask = 13
+collision_mask = 7
 script = ExtResource("1_8oweg")
 drop = ExtResource("2_ptc2k")
 pickupScene = ExtResource("3_dl4n4")
@@ -167,8 +168,8 @@ animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_iev8x")
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_qa6ns")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("4_tqp57")]
@@ -202,10 +203,6 @@ enemy = NodePath("../..")
 position = Vector2(0, 5)
 target_position = Vector2(20, 0)
 collision_mask = 2
-
-[node name="ExploreRayCast" type="RayCast2D" parent="."]
-position = Vector2(0, 5)
-target_position = Vector2(14, 0)
 
 [node name="VisonArea" type="Area2D" parent="."]
 collision_layer = 0
