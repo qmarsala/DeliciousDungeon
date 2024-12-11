@@ -18,7 +18,7 @@ func take_damage(damage) -> void:
 	if is_dead(): return
 	
 	health -= damage
-	if character_sprite:
+	if character_sprite and !(character_sprite.is_playing() and character_sprite.animation == "dash"):
 		character_sprite.stop()
 		character_sprite.play("receive_damage")
 	if is_dead():

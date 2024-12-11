@@ -14,6 +14,8 @@ const STARTING_NUTRITION = 10
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var death_timer: Timer = $DeathTimer
 @onready var dash_timer: Timer = $DashTimer
+@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var state_machine: PlayerStateMachine = $StateMachine
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
@@ -40,66 +42,15 @@ func _ready() -> void:
 	move_target = global_position
 	#todo: do more signal hook ups this way?
 	dash_timer.timeout.connect(_on_dash_timer_timeout)
+	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
 func _process(delta: float) -> void:
-	if is_dead(): return
-	handle_interact_action()
-	handle_movement_input(delta)
-	handle_dash_input()
 	#todo: move this to ui layer?
 	var magic_attack_pos = get_magic_attack_location()
 	magic_attack_indicator.global_position = magic_attack_pos
 	move_destination_indicator.global_position = move_target
-
-func handle_interact_action() -> void:
-	#todo: this will be more than just opening a door
-	if Input.is_action_just_pressed("interact"):
-		var space_state = get_world_2d().direct_space_state
-		var direction = get_global_mouse_position() - global_position
-		var query = PhysicsRayQueryParameters2D.create(global_position, global_position + direction.normalized() * INTERACTION_RANGE)
-		query.exclude = [self]
-		var result = space_state.intersect_ray(query)
-		if not result: return
-		var target = result["collider"]
-		if target and target is Door:
-			target.open()
-
-var time = 0
-var pressed_at = 0
-func handle_movement_input(delta):
-	time += delta
-	#todo: player state pattern?
-	if is_dashing || move_disabled: return
-	if move_disabled and Input.is_action_just_released("move"):
-		move_disabled = false
-
-	var mouse_pos = get_global_mouse_position()
-	if Input.is_action_just_pressed("move"):
-		pressed_at = time
-		move_target = mouse_pos
-		move_destination_indicator.show()
-	elif Input.is_action_pressed("move") and time - pressed_at > .1:
-		move_target = mouse_pos
-		move_destination_indicator.hide()
-	elif Input.is_action_just_released("move"):
-		move_destination_indicator.show()
-	if global_position.distance_to(move_target) < 10:
-		move_target = global_position
-		velocity = Vector2.ZERO
-		move_destination_indicator.hide()
-	else:
-		velocity = global_position.direction_to(move_target).normalized() * SPEED
-
-func handle_dash_input():
-	var mouse_pos = get_global_mouse_position()
-	if Input.is_action_just_pressed("dash") and not is_dash_cooldown:
-		is_dashing = true
-		is_dash_cooldown = true
-		move_target = mouse_pos
-		velocity = global_position.direction_to(move_target).normalized() * (SPEED * DASH_MULTIPLIER)
-		dash_timer.start(DASH_TIME)
 
 func rest():
 	if food < 1 or rest_is_cooldown: return
@@ -117,6 +68,17 @@ func receive_damage(damage):
 func pickup(item: Item):
 	print("picked up: " + item.name)
 	food += 1
+	
+func interact():
+	var space_state = get_world_2d().direct_space_state
+	var direction = get_global_mouse_position() - global_position
+	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + direction.normalized() * INTERACTION_RANGE)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if not result: return
+	var target = result["collider"]
+	if target and target is Door:
+		target.open()
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return
@@ -140,23 +102,15 @@ func get_magic_attack_location() -> Vector2:
 		target_location = global_position + (direction.normalized() * 75)
 	return target_location
 
+func _on_health_depleted() -> void:
+	state_machine.transition_to("DeadState")
+	
 func _on_rest_timer_timeout() -> void:
 	rest_is_cooldown = false
 
-func _on_health_depleted() -> void:
-	death_timer.start(.75)
-
-func _on_death_timer_timeout() -> void:
-	PlayerDied.emit()
-	
 func _on_dash_timer_timeout() -> void:
-	if not is_dashing and is_dash_cooldown:
-		is_dash_cooldown = false
-		dash_timer.stop()
-	else:
-		is_dashing = false
-		move_target = global_position
-		velocity = Vector2.ZERO
-		move_destination_indicator.hide()
-		dash_timer.stop()
-		dash_timer.start(DASH_COOLDOWN - DASH_TIME)
+	state_machine.transition_to("IdleState")
+	
+func _on_dash_cooldown_timer_timeout() -> void:
+	is_dash_cooldown = false
+	dash_cooldown_timer.stop()
