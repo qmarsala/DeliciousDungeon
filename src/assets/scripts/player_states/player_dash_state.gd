@@ -9,6 +9,8 @@ func enter():
 	player.velocity = player.global_position.direction_to(player.move_target).normalized() * (player.SPEED * player.DASH_MULTIPLIER)
 	player.dash_timer.start(player.DASH_TIME)
 	player.character_sprite.play("dash")
+	if player.weapon_equipped:
+		player.weapon.hide()
 	
 
 func exit():
@@ -20,6 +22,8 @@ func exit():
 	player.dash_timer.stop()
 	player.dash_cooldown_timer.start(player.DASH_COOLDOWN)
 	player.character_sprite.stop()
+	if player.weapon_equipped:
+		player.weapon.show()
 
 
 func handle_movement_input(delta):

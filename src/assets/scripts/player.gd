@@ -16,6 +16,7 @@ const STARTING_NUTRITION = 10
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var hand: Node2D = $Hand
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
@@ -36,6 +37,10 @@ var move_target: Vector2
 var move_disabled: bool
 var is_dashing: bool
 var is_dash_cooldown: bool
+
+#temp:
+var weapon: Sprite2D
+var weapon_equipped: bool
 
 func _ready() -> void:
 	nutrition = STARTING_NUTRITION
@@ -69,7 +74,14 @@ func receive_damage(damage):
 
 func pickup(item: Item):
 	print("picked up: " + item.name)
-	food += 1
+	if item is Weapon:
+		var weaponScene = item.scene
+		var weaponInstance = weaponScene.instantiate() as Sprite2D
+		weapon = weaponInstance
+		weapon_equipped = true
+		hand.add_child.call_deferred(weaponInstance)
+	else:
+		food += 1
 	
 func interact():
 	var space_state = get_world_2d().direct_space_state

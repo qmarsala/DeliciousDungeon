@@ -5,5 +5,4 @@ extends Resource
 @export var cast_time = .25
 @export var cooldown = 1.0
 @export var attack_action = "heavy_attack"
-
-#todo: model spell damage, need DoT vs Regular SpellDatas
+@export var damage: Array[float] = [1]
