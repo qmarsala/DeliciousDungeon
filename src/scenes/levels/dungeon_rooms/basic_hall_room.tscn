@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://crn0u0qtbvnbv"]
+[gd_scene load_steps=7 format=4 uid="uid://crn0u0qtbvnbv"]
 
 [ext_resource type="Script" path="res://assets/scripts/room.gd" id="1_kohic"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="2_q8u6j"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_spawner.gd" id="3_0hee3"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/goblin.tscn" id="3_fbkmy"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/on_player_area_trigger.tscn" id="5_w5q64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arsex"]
 size = Vector2(8, 47.5)
@@ -32,22 +33,6 @@ position = Vector2(-144, -22)
 [node name="EastConnector" type="Node2D" parent="."]
 position = Vector2(144, -22)
 
-[node name="EastTrigger" type="Area2D" parent="."]
-position = Vector2(139, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
-shape = SubResource("RectangleShape2D_arsex")
-
-[node name="WestTrigger" type="Area2D" parent="."]
-position = Vector2(-138, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
-shape = SubResource("RectangleShape2D_arsex")
-
 [node name="GoblinSpawner2" type="Node2D" parent="."]
 position = Vector2(35, 0)
 script = ExtResource("3_0hee3")
@@ -57,3 +42,15 @@ enemy_scene = ExtResource("3_fbkmy")
 position = Vector2(-27, 0)
 script = ExtResource("3_0hee3")
 enemy_scene = ExtResource("3_fbkmy")
+
+[node name="EastTrigger" parent="." instance=ExtResource("5_w5q64")]
+position = Vector2(139, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
+shape = SubResource("RectangleShape2D_arsex")
+
+[node name="WestTrigger" parent="." instance=ExtResource("5_w5q64")]
+position = Vector2(-138, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
+shape = SubResource("RectangleShape2D_arsex")

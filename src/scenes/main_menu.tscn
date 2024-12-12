@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dl4c3hhbw5max"]
+[gd_scene load_steps=20 format=4 uid="uid://dl4c3hhbw5max"]
 
 [ext_resource type="Script" path="res://assets/scripts/Level.gd" id="1_cdyxq"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_vlgdl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="4_5otm5"]
 [ext_resource type="Texture2D" uid="uid://c1a6autclnes3" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forestPath_.png" id="5_e0q76"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_00yui"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/on_player_area_trigger.tscn" id="8_30y21"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klaes"]
 texture = ExtResource("1_vlgdl")
@@ -925,7 +926,7 @@ sources/2 = SubResource("TileSetAtlasSource_uj3oh")
 sources/3 = SubResource("TileSetAtlasSource_k13fh")
 sources/4 = SubResource("TileSetAtlasSource_m5dux")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6ckv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h14ll"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ck6uo"]
 font_size = 32
@@ -953,13 +954,11 @@ tile_set = SubResource("TileSet_qqia0")
 
 [node name="Player" parent="." instance=ExtResource("6_00yui")]
 
-[node name="NewSceneTrigger" type="Area2D" parent="."]
-position = Vector2(64, -79)
-collision_layer = 0
-collision_mask = 524290
+[node name="NewSceneTrigger" parent="." instance=ExtResource("8_30y21")]
+position = Vector2(65, -76)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NewSceneTrigger"]
-shape = SubResource("RectangleShape2D_h6ckv")
+shape = SubResource("RectangleShape2D_h14ll")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 24.0
