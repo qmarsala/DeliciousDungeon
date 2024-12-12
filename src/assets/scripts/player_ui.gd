@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 	update_status_label(player.rest_is_cooldown)
 	# todo: need a better way to wire up the cast bar
 	# don't like going into the magic_attack.cast_timer
-	if not player.magic_attack.cast_timer.is_stopped():
+	# probably want signals for this? so we don't need to check weapon equipped here?
+	if player.weapon_equipped and not player.magic_attack.cast_timer.is_stopped():
 		update_charge_bar(100 - (player.magic_attack.cast_timer.time_left/player.magic_attack.spell_data.cast_time) * 100)
 	else:
 		update_charge_bar(0)

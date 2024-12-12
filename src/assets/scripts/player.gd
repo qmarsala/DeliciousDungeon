@@ -53,11 +53,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	#todo: move this to ui layer?
-	var magic_attack_pos = get_magic_attack_location()
-	magic_attack_indicator.global_position = magic_attack_pos
 	move_destination_indicator.global_position = move_target
 	if global_position.distance_to(move_target) <= 5:
 		move_destination_indicator.hide()
+	if not weapon_equipped:
+		magic_attack_indicator.hide()
+	else:
+		magic_attack_indicator.show()
+		var magic_attack_pos = get_magic_attack_location()
+		magic_attack_indicator.global_position = magic_attack_pos
 
 func rest():
 	if food < 1 or rest_is_cooldown: return
@@ -104,7 +108,7 @@ func _on_hunger_timer_timeout() -> void:
 # todo: how could we encapsulate this in the magic attack component?
 # need to check is dead before casting
 func _on_magic_attack() -> void:
-	if is_dead(): return
+	if is_dead() or not weapon_equipped: return
 	var target_location = get_magic_attack_location()
 	magic_attack.cast_at_location(target_location)
 

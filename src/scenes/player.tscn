@@ -243,7 +243,7 @@ shape = SubResource("CapsuleShape2D_kh2an")
 sprite_frames = SubResource("SpriteFrames_65n8r")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.907413
+frame_progress = 0.0199755
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true

@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_60b2b")
 name = "Goblin Steak"
+description = "Is this where green ham comes from?"
 scene = ExtResource("1_w0pug")
