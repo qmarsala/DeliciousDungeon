@@ -953,7 +953,7 @@ drag_vertical_enabled = true
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(176, -253)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 524290
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_7nf4g")
