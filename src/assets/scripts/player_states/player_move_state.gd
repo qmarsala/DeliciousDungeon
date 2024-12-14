@@ -10,6 +10,8 @@ func handle_process(delta):
 		Transitioned.emit(self, "IdleState") #todo: something for state names like a constant? but it needs to match the node name?
 	else:
 		player.velocity = player.global_position.direction_to(player.move_target).normalized() * player.SPEED
+		if player.is_hill:
+			player.velocity = player.velocity / 2 
 
 func weapon_animation():
 	if player.weapon_equipped and player.weapon:

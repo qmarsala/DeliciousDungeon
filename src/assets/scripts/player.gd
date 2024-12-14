@@ -38,6 +38,9 @@ var move_disabled: bool
 var is_dashing: bool
 var is_dash_cooldown: bool
 
+#how else could we do this?
+var is_hill: bool
+
 #temp:
 var weapon: Sprite2D
 var weapon_equipped: bool
