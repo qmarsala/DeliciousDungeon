@@ -230,16 +230,17 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(0, -12)
+y_sort_enabled = true
 collision_layer = 524290
 collision_mask = 5
 script = ExtResource("1_511jo")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_kh2an")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_65n8r")
 animation = &"idle"
 autoplay = "idle"
@@ -296,6 +297,7 @@ autostart = true
 
 [node name="MagicAttackIndicator" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(0, -12)
 texture = ExtResource("7_kg3fl")
 region_enabled = true
 region_rect = Rect2(20, 19, 8, 9)
@@ -310,7 +312,7 @@ region_enabled = true
 region_rect = Rect2(76, 175, 8, 8)
 
 [node name="Hand" type="Node2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, -5)
 
 [connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]

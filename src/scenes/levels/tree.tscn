@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ydsutrfwhu5"]
+
+[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_18ktc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
+radius = 4.0
+height = 12.0
+
+[node name="Tree" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ospfv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = ExtResource("1_18ktc")
+region_enabled = true
+region_rect = Rect2(98, 24, 12, 22)
