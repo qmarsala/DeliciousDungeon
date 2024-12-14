@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_tv6dx")
 spell = ExtResource("2_rpfhk")
-charge_time = 0.5
+cast_time = 0.25
 cooldown = 1.0
 attack_action = "heavy_attack"
+damage = Array[float]([1.0, 2.0, 3.0])

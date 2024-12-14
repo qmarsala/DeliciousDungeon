@@ -937,6 +937,7 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-1, 1)
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("end_trigger")]
+y_sort_enabled = true
 script = ExtResource("1_cdyxq")
 end_trigger = NodePath("NewSceneTrigger")
 
@@ -953,6 +954,8 @@ tile_map_data = PackedByteArray("AAD+//j/AgAKAAQAAAD+//n/AgAKAAQAAAD///f/AgAKAAQ
 tile_set = SubResource("TileSet_qqia0")
 
 [node name="Player" parent="." instance=ExtResource("6_00yui")]
+z_index = 1
+hunger_enabled = false
 
 [node name="NewSceneTrigger" parent="." instance=ExtResource("8_30y21")]
 position = Vector2(65, -76)
@@ -961,6 +964,7 @@ position = Vector2(65, -76)
 shape = SubResource("RectangleShape2D_h14ll")
 
 [node name="Label" type="Label" parent="."]
+z_index = 10
 offset_left = 24.0
 offset_top = -121.0
 offset_right = 120.0

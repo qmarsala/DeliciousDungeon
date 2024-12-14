@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://chrbwvn5udqeh"]
+[gd_scene load_steps=8 format=4 uid="uid://chrbwvn5udqeh"]
 
 [ext_resource type="Script" path="res://assets/scripts/room.gd" id="1_jdimc"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="2_td5qt"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_ve0fs"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="4_oaukl"]
 [ext_resource type="Resource" uid="uid://3gf50wxc3jkw" path="res://assets/data/items/staff_of_fire.tres" id="5_nthjt"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/on_player_area_trigger.tscn" id="6_bmdef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdkqv"]
 size = Vector2(8, 47.5)
@@ -35,15 +36,13 @@ position = Vector2(80, -22)
 z_index = 1
 position = Vector2(46, -45)
 
-[node name="WestTrigger" type="Area2D" parent="."]
-position = Vector2(74, 2)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
-shape = SubResource("RectangleShape2D_pdkqv")
-
 [node name="Pickup" parent="." instance=ExtResource("4_oaukl")]
 z_index = 1
 position = Vector2(30, 26)
 item = ExtResource("5_nthjt")
+
+[node name="WestTrigger" parent="." instance=ExtResource("6_bmdef")]
+position = Vector2(74, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
+shape = SubResource("RectangleShape2D_pdkqv")
