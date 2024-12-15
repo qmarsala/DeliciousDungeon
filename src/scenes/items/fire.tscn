@@ -1,7 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfesvjhulwkvx"]
+[gd_scene load_steps=15 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
 [ext_resource type="Script" path="res://assets/scripts/fire.gd" id="2_dth6p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
+radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
 atlas = ExtResource("1_j4fss")
@@ -54,7 +57,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/path = NodePath("../PointLight2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +73,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/path = NodePath("../PointLight2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,28 +92,39 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bi4h"]
 radius = 19.0263
 
-[node name="Fire" type="AnimatedSprite2D"]
-position = Vector2(-68, -50)
+[node name="Node2D" type="StaticBody2D"]
+script = ExtResource("2_dth6p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_chxww")
+
+[node name="Unlit" type="Sprite2D" parent="."]
+texture = ExtResource("1_j4fss")
+region_enabled = true
+region_rect = Rect2(113, 179, 14, 11)
+region_filter_clip_enabled = true
+
+[node name="LitAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_51dwp")
 autoplay = "default"
 frame_progress = 0.810732
-script = ExtResource("2_dth6p")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
 color = Color(0.909804, 0.666667, 0.0823529, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_jg4h0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../LitAnimation")
 libraries = {
 "": SubResource("AnimationLibrary_vxxca")
 }
-autoplay = "campfire_light_flicker"
 
 [node name="RestArea" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestArea"]
 shape = SubResource("CircleShape2D_2bi4h")
-
-[connection signal="body_entered" from="RestArea" to="." method="_on_rest_area_body_entered"]

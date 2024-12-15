@@ -34,6 +34,7 @@ position = Vector2(80, -6)
 [node name="Fire" parent="." instance=ExtResource("3_81biq")]
 z_index = 1
 position = Vector2(-47, 0)
+lit = false
 
 [node name="EastTrigger" type="Area2D" parent="."]
 position = Vector2(74, 18)
