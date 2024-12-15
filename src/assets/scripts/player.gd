@@ -7,7 +7,7 @@ const SPEED = 75.0
 const DASH_MULTIPLIER = 2
 const DASH_TIME = .5
 const DASH_COOLDOWN = 1
-const INTERACTION_RANGE = 20.0
+const INTERACTION_RANGE = 15.0
 const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
@@ -27,11 +27,11 @@ const STARTING_NUTRITION = 10
 var rest_is_cooldown = false
 var food: int
 var nutrition: float
-# todo: this feels like it ruins 'composition' adding health to the player
-# but we need to be able to get at the health f a player from outside the player
 var health: float: 
 	get: return %HealthComponent.health
-func is_dead(): return %HealthComponent.is_dead()
+
+func is_dead(): 
+	return %HealthComponent.is_dead()
 
 var move_target: Vector2
 var move_disabled: bool
@@ -98,8 +98,11 @@ func interact():
 	var result = space_state.intersect_ray(query)
 	if not result: return
 	var target = result["collider"]
+	#todo: make 'interactable' group and call interact on the object
 	if target and target is Door:
 		target.open()
+	if target and target is ForestTree:
+		target.chop()
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return
