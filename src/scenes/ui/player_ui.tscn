@@ -56,11 +56,20 @@ show_percentage = false
 
 [node name="FoodCountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 43.0
+offset_left = 5.0
 offset_top = -101.0
-offset_right = 127.0
+offset_right = 89.0
 offset_bottom = -75.0
 text = "Food: 0"
+label_settings = SubResource("LabelSettings_p08b3")
+
+[node name="WoodCountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = -101.0
+offset_right = 183.0
+offset_bottom = -75.0
+text = "Wood: 0"
 label_settings = SubResource("LabelSettings_p08b3")
 
 [node name="StatusLabel" type="Label" parent="."]

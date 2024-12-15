@@ -11,7 +11,10 @@ extends Node2D
 #need to keep track of player data... is this where 'RefCounted' comes in?
 # how do we want to track this? for now maybe we can pass in a dictionary or something?
 
-var player_items = {}
+var player_items: Dictionary = {
+	"food": 0,
+	"wood": 0
+}
 
 var is_outdoors = false
 var current_scene

@@ -7,6 +7,7 @@ class_name PlayerUI
 @onready var hunger_bar: ProgressBar = $HungerBar
 @onready var charged_attack_bar: ProgressBar = $ChargedAttackBar
 @onready var food_count_label: Label = $FoodCountLabel
+@onready var wood_count_label: Label = $WoodCountLabel
 @onready var status_label: Label = $StatusLabel
 @onready var dash_icon: Label = $DashIcon
 
@@ -15,7 +16,8 @@ var dash_icon_hidden = false
 func _process(delta: float) -> void:
 	update_health_bar(player.health)
 	update_hunger_bar(player.nutrition)
-	update_food_count(player.food)
+	update_food_count(player.player_items["food"])
+	update_wood_count(player.player_items["wood"])
 	update_status_label(player.rest_is_cooldown)
 	# todo: need a better way to wire up the cast bar
 	# don't like going into the magic_attack.cast_timer
@@ -42,6 +44,10 @@ func update_hunger_bar(nutrition):
 func update_food_count(food_count):
 	if food_count_label:
 		food_count_label.text = "Food: " + str(food_count)
+		
+func update_wood_count(wood_count):
+	if wood_count_label:
+		wood_count_label.text = "Wood: " + str(wood_count)
 
 var status_map: Dictionary = {
 	true: "Rested",
