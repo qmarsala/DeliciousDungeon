@@ -24,8 +24,13 @@ const STARTING_NUTRITION = 10
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
 @onready var rest_timer: Timer = $RestTimer
 
+
 var rest_is_cooldown = false
+#todo: inventory
 var food: int
+var wood: int
+#this comes from 'game' don't like it, but poc'ing having player data outside of player
+var player_items: Dictionary
 var nutrition: float
 var health: float: 
 	get: return %HealthComponent.health
@@ -87,8 +92,18 @@ func pickup(item: Item):
 		weapon = weaponInstance
 		weapon_equipped = true
 		hand.add_child.call_deferred(weaponInstance)
+	elif item.name == "wood":
+		wood += 1
+		if player_items.has("wood"):
+			player_items["wood"] += 1
+		else:
+			player_items["wood"] = 1
 	else:
 		food += 1
+		if player_items.has("food"):
+			player_items["food"] += 1
+		else:
+			player_items["food"] = 1
 	
 func interact():
 	var space_state = get_world_2d().direct_space_state
@@ -103,6 +118,9 @@ func interact():
 		target.open()
 	if target and target is ForestTree:
 		target.chop()
+	if target and target is Fire and player_items.has("wood") and player_items["wood"] > 0:
+		target.lite()
+		player_items["wood"] -= 1
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return

@@ -8,6 +8,11 @@ extends Node2D
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 
+#need to keep track of player data... is this where 'RefCounted' comes in?
+# how do we want to track this? for now maybe we can pass in a dictionary or something?
+
+var player_items = {}
+
 var is_outdoors = false
 var current_scene
 var next_scene
@@ -43,6 +48,8 @@ func _perform_scene_change():
 		if c.is_in_group("Player"):
 			var player = c as Player
 			player.PlayerDied.connect(_game_over)
+			player.player_items = player_items
+			print(player.player_items)
 	world.add_child.call_deferred(current_scene)
 	world.process_mode = Node.PROCESS_MODE_INHERIT
 
