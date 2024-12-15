@@ -5,8 +5,12 @@ const SPEED = 45
 const MIN_DISTANCE = 15
 const ATTACK_COOLDOWN = 1
 
+# how to combine these things?
+# the scene can't be in the item because of circlular ref
+# need some other parent? or just live with it
 @export var drop: Item
-@export var pickupScene: PackedScene # how to combine these things?
+@export var pickupScene: PackedScene 
+
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var melee_range: RayCast2D = $MeleeRange
