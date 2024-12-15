@@ -322,13 +322,13 @@ tile_map_data = PackedByteArray("AADq//r/AAABAAIAAADq//v/AAABAAMAAADq//z/AAABAAQ
 tile_set = ExtResource("4_uq57v")
 
 [node name="HillArea" parent="Midground" instance=ExtResource("5_ofnco")]
-position = Vector2(16, -73)
+position = Vector2(128, -249)
 
 [node name="HillArea2" parent="Midground" instance=ExtResource("5_ofnco")]
-position = Vector2(113, -73)
+position = Vector2(225, -249)
 
 [node name="HillArea3" parent="Midground" instance=ExtResource("5_ofnco")]
-position = Vector2(112, -115)
+position = Vector2(224, -291)
 
 [node name="Player" parent="." instance=ExtResource("4_yadh7")]
 z_index = 1
