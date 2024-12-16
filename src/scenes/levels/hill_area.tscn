@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyf3o58msblhx"]
 
-[ext_resource type="Script" path="res://assets/scripts/hill_area.gd" id="1_xvol5"]
+[ext_resource type="Script" path="res://assets/scripts/levels/hill_area.gd" id="1_xvol5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nm777"]
 size = Vector2(20, 14)

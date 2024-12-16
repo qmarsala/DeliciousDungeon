@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://bxejjurm0g6pu"]
 
-[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="1_aeags"]
-[ext_resource type="Script" path="res://assets/scripts/door.gd" id="4_c83k7"]
+[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="1_aeags"]
+[ext_resource type="Script" path="res://assets/scripts/levels/door.gd" id="4_c83k7"]
 
 [node name="DoubleDoorNorth" type="Node2D"]
 

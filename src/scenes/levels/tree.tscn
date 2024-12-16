@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b2ydsutrfwhu5"]
 
 [ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_18ktc"]
-[ext_resource type="Script" path="res://assets/scripts/forest_tree.gd" id="1_cgee7"]
+[ext_resource type="Script" path="res://assets/scripts/levels/forest_tree.gd" id="1_cgee7"]
 [ext_resource type="PackedScene" uid="uid://1klbv4dx44kw" path="res://scenes/levels/felled_tree_top.tscn" id="2_a2c71"]
 [ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/data/items/wood.tres" id="3_l5na6"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_vqeq6"]

@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://eahj1urja2wk"]
 
-[ext_resource type="Script" path="res://assets/scripts/item.gd" id="1_60b2b"]
 [ext_resource type="PackedScene" uid="uid://c2084hee1l50l" path="res://scenes/items/goblin_steak.tscn" id="1_w0pug"]
+[ext_resource type="Script" path="res://assets/scripts/items/item.gd" id="2_44me6"]
 
 [resource]
-script = ExtResource("1_60b2b")
+script = ExtResource("2_44me6")
 name = "Goblin Steak"
 description = "Is this where green ham comes from?"
 scene = ExtResource("1_w0pug")

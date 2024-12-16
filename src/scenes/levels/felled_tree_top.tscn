@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://1klbv4dx44kw"]
 
 [ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_6t2k5"]
-[ext_resource type="Script" path="res://assets/scripts/cleanup.gd" id="2_nj2gq"]
+[ext_resource type="Script" path="res://assets/scripts/components/cleanup.gd" id="2_nj2gq"]
 
 [sub_resource type="Animation" id="Animation_ohggi"]
 length = 0.001

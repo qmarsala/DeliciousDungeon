@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dfkt24ubih6n6"]
 
-[ext_resource type="Script" path="res://assets/scripts/item.gd" id="1_44jut"]
+[ext_resource type="Script" path="res://assets/scripts/items/item.gd" id="1_44jut"]
 [ext_resource type="PackedScene" uid="uid://b7x24imnj53j2" path="res://scenes/items/wood.tscn" id="1_uga8v"]
 
 [resource]

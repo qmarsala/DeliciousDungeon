@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
-[ext_resource type="Script" path="res://assets/scripts/fire.gd" id="2_dth6p"]
+[ext_resource type="Script" path="res://assets/scripts/levels/fire.gd" id="2_dth6p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
 radius = 5.0

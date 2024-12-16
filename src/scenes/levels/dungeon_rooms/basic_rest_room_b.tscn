@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://djcknakuu3lcb"]
 
-[ext_resource type="Script" path="res://assets/scripts/room.gd" id="1_gl5jm"]
-[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="2_pchbp"]
+[ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_gl5jm"]
+[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_pchbp"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_81biq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtuou"]

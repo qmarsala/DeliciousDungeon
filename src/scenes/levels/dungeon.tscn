@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://v8yl2qd4myvg"]
 
-[ext_resource type="Script" path="res://assets/scripts/Level.gd" id="1_c5un1"]
-[ext_resource type="Script" path="res://assets/scripts/basic_room_generator_poc.gd" id="2_oro8l"]
+[ext_resource type="Script" path="res://assets/scripts/levels/level.gd" id="1_c5un1"]
+[ext_resource type="Script" path="res://assets/scripts/levels/basic_room_generator_poc.gd" id="2_oro8l"]
 [ext_resource type="Resource" uid="uid://51tcb3ky62hd" path="res://assets/data/rooms/basic_starting_room.tres" id="3_7jkkf"]
 [ext_resource type="Resource" uid="uid://bbl0uvfrncnp5" path="res://assets/data/rooms/basic_end_room.tres" id="4_mfxjq"]
 [ext_resource type="Resource" uid="uid://dhvhmrtm5kt57" path="res://assets/data/rooms/basic_rooms.tres" id="5_xuv11"]

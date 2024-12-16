@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=4 uid="uid://b61iqknq8r7m2"]
 
-[ext_resource type="Script" path="res://assets/scripts/room.gd" id="1_2laa5"]
-[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tile_set.tres" id="1_222id"]
+[ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_2laa5"]
+[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="1_222id"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/goblin.tscn" id="3_f2kin"]
-[ext_resource type="Script" path="res://assets/scripts/enemy_spawner.gd" id="4_d21cb"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_spawner.gd" id="4_d21cb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etlj4"]
 size = Vector2(8, 47.5)
