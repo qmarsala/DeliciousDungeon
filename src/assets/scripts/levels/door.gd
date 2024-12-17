@@ -6,6 +6,9 @@ class_name Door
 @export var door_width = 3
 @export var door_height = 2
 
+func _init() -> void:
+	add_to_group("Interactable", true)
+
 # todo: wonder if this could be done with an animated sprite and the sprite sheet.
 # which we will want for other styles of doors. this only works for the double door sprite
 func open():
@@ -17,3 +20,6 @@ func open():
 		while j < door_height:
 			set_cell(Vector2(door_pos.x + i, door_pos.y + j), 2, Vector2(open_door_pos.x + i, open_door_pos.y + j))
 			j = j + 1
+
+func interact(player: Player) -> void:
+	open()

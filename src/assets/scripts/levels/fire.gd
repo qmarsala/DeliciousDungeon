@@ -11,6 +11,9 @@ extends Node2D
 @export var lit: bool = true
 @export var lit_chance: float = .25
 
+func _init() -> void:
+	add_to_group("Interactable", true)
+
 func _ready() -> void:
 	rest_area.body_entered.connect(_on_rest_area_body_entered)
 	if lit:
@@ -20,6 +23,14 @@ func _ready() -> void:
 		point_light_2d.enabled = true
 		return
 	if !lit and randf() <= lit_chance:
+		lite()
+
+func interact(player: Player) -> void:
+	if player.player_items.has("wood") and player.player_items["wood"] > 0:
+		#todo: should we use a signal for this?
+		# feels bad mutating the player passed in like this
+		player.player_items["wood"] -= 1
+		player.rest()
 		lite()
 
 func lite() -> void:

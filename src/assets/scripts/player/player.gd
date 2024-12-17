@@ -102,16 +102,9 @@ func interact():
 	query.exclude = [self]
 	var result = space_state.intersect_ray(query)
 	if not result: return
-	var target = result["collider"]
-	#todo: make 'interactable' group and call interact on the object
-	if target and target is Door:
-		target.open()
-	if target and target is ForestTree:
-		target.chop()
-	if target and target is Fire and player_items.has("wood") and player_items["wood"] > 0:
-		target.lite()
-		player_items["wood"] -= 1
-		rest()
+	var target = result["collider"] as Node2D
+	if target and target.is_in_group("Interactable"):
+		target.interact(self)
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return
