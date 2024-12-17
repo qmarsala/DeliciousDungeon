@@ -70,8 +70,8 @@ func _process(delta: float) -> void:
 		magic_attack_indicator.global_position = magic_attack_pos
 
 func rest():
-	if player_items["food"] < 1 or rest_is_cooldown: return
-	player_items["food"]-=1
+	if player_items[Enums.Items.Food] < 1 or rest_is_cooldown: return
+	player_items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
 	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
@@ -90,10 +90,8 @@ func pickup(item: Item):
 		weapon = weaponInstance
 		weapon_equipped = true
 		hand.add_child.call_deferred(weaponInstance)
-	elif item.name == "wood":
-		player_items["wood"] += 1
 	else:
-		player_items["food"] += 1
+		player_items[item.item_id] += 1
 	
 func interact():
 	var space_state = get_world_2d().direct_space_state

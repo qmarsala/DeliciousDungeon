@@ -16,8 +16,8 @@ var dash_icon_hidden = false
 func _process(delta: float) -> void:
 	update_health_bar(player.health)
 	update_hunger_bar(player.nutrition)
-	update_food_count(player.player_items["food"])
-	update_wood_count(player.player_items["wood"])
+	update_food_count(player.player_items[Enums.Items.Food])
+	update_wood_count(player.player_items[Enums.Items.Wood])
 	update_status_label(player.rest_is_cooldown)
 	# todo: need a better way to wire up the cast bar
 	# don't like going into the magic_attack.cast_timer

@@ -26,10 +26,10 @@ func _ready() -> void:
 		lite()
 
 func interact(player: Player) -> void:
-	if player.player_items.has("wood") and player.player_items["wood"] > 0:
+	if player.player_items.has(Enums.Items.Wood) and player.player_items[Enums.Items.Wood] > 0:
 		#todo: should we use a signal for this?
 		# feels bad mutating the player passed in like this
-		player.player_items["wood"] -= 1
+		player.player_items[Enums.Items.Wood] -= 1
 		player.rest()
 		lite()
 
