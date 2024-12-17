@@ -7,7 +7,7 @@ class_name Door
 @export var door_height = 2
 
 func _init() -> void:
-	add_to_group("Interactable", true)
+	add_to_group(Interfaces.Interactable, true)
 
 # todo: wonder if this could be done with an animated sprite and the sprite sheet.
 # which we will want for other styles of doors. this only works for the double door sprite

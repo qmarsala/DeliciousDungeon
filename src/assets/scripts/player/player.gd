@@ -103,7 +103,7 @@ func interact():
 	var result = space_state.intersect_ray(query)
 	if not result: return
 	var target = result["collider"] as Node2D
-	if target and target.is_in_group("Interactable"):
+	if Interfaces.is_interface(target, Interfaces.Interactable):
 		target.interact(self)
 
 func _on_hunger_timer_timeout() -> void:

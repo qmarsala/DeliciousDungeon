@@ -12,7 +12,7 @@ extends Node2D
 @export var lit_chance: float = .25
 
 func _init() -> void:
-	add_to_group("Interactable", true)
+	add_to_group(Interfaces.Interactable, true)
 
 func _ready() -> void:
 	rest_area.body_entered.connect(_on_rest_area_body_entered)

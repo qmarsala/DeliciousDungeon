@@ -9,7 +9,7 @@ extends StaticBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 
 func _init() -> void:
-	add_to_group("Interactable", true)
+	add_to_group(Interfaces.Interactable, true)
 
 func interact(player: Player) -> void:
 	chop()
