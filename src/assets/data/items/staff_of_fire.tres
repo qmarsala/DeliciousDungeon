@@ -14,6 +14,7 @@ damage = 1.0
 [resource]
 script = ExtResource("1_nbd06")
 attack = SubResource("Resource_8o7lm")
+item_id = 2
 name = "Staff of Fire"
 description = "Enables a powerful fire spell"
 scene = ExtResource("2_m8des")

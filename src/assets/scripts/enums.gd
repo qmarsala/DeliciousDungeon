@@ -2,5 +2,6 @@ extends Node
 
 enum Items {
 	Wood,
-	Food
+	Food,
+	StaffOfFire
 }
