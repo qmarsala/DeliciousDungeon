@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://djcknakuu3lcb"]
+[gd_scene load_steps=6 format=4 uid="uid://djcknakuu3lcb"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_gl5jm"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_pchbp"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_81biq"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="4_77ani"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtuou"]
-size = Vector2(8, 47.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc4os"]
+size = Vector2(8, 48)
 
 [node name="BasicRoomD" type="Node2D"]
 y_sort_enabled = true
@@ -36,18 +37,14 @@ z_index = 1
 position = Vector2(-47, 0)
 lit = false
 
-[node name="EastTrigger" type="Area2D" parent="."]
-position = Vector2(74, 18)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
-shape = SubResource("RectangleShape2D_mtuou")
-
-[node name="WestTrigger" type="Area2D" parent="."]
-position = Vector2(-153, 65)
-collision_layer = 0
-collision_mask = 2
+[node name="WestTrigger" parent="." instance=ExtResource("4_77ani")]
+position = Vector2(-153, 66)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
-shape = SubResource("RectangleShape2D_mtuou")
+shape = SubResource("RectangleShape2D_vc4os")
+
+[node name="EastTrigger" parent="." instance=ExtResource("4_77ani")]
+position = Vector2(73, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
+shape = SubResource("RectangleShape2D_vc4os")

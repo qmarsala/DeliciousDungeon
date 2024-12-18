@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=4 uid="uid://b61iqknq8r7m2"]
+[gd_scene load_steps=8 format=4 uid="uid://b61iqknq8r7m2"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_2laa5"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="1_222id"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/goblin.tscn" id="3_f2kin"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_spawner.gd" id="4_d21cb"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="5_gb0je"]
+[ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/items/trap.tscn" id="6_5iaqn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etlj4"]
-size = Vector2(8, 47.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uoyv1"]
+size = Vector2(8, 48)
 
 [node name="BasicRoom" type="Node2D"]
 y_sort_enabled = true
@@ -32,22 +34,6 @@ position = Vector2(-176, -22)
 [node name="EastConnector" type="Node2D" parent="."]
 position = Vector2(176, -22)
 
-[node name="EastTrigger" type="Area2D" parent="."]
-position = Vector2(169, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
-shape = SubResource("RectangleShape2D_etlj4")
-
-[node name="WestTrigger" type="Area2D" parent="."]
-position = Vector2(-169, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
-shape = SubResource("RectangleShape2D_etlj4")
-
 [node name="GoblinSpawner" type="Node2D" parent="."]
 position = Vector2(-54, -44)
 script = ExtResource("4_d21cb")
@@ -62,3 +48,23 @@ enemy_scene = ExtResource("3_f2kin")
 position = Vector2(-11, 54)
 script = ExtResource("4_d21cb")
 enemy_scene = ExtResource("3_f2kin")
+
+[node name="WestTrigger" parent="." instance=ExtResource("5_gb0je")]
+position = Vector2(-169, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
+shape = SubResource("RectangleShape2D_uoyv1")
+
+[node name="EastTrigger" parent="." instance=ExtResource("5_gb0je")]
+position = Vector2(169, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
+shape = SubResource("RectangleShape2D_uoyv1")
+
+[node name="Trap" parent="." instance=ExtResource("6_5iaqn")]
+z_index = 2
+position = Vector2(-89, 50)
+
+[node name="Trap2" parent="." instance=ExtResource("6_5iaqn")]
+z_index = 2
+position = Vector2(88, -77)

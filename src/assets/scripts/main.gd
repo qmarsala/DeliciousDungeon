@@ -12,8 +12,8 @@ extends Node2D
 # how do we want to track this? for now maybe we can pass in a dictionary or something?
 
 var player_items: Dictionary = {
-	"food": 0,
-	"wood": 0
+	Enums.Items.Wood: 0,
+	Enums.Items.Food: 0
 }
 
 var is_outdoors = false
@@ -21,6 +21,7 @@ var current_scene
 var next_scene
 
 func _ready():
+	SignalBusService.SceneChange.connect(_toggle_levels)
 	_change_scene(main_menu, true)
 
 func _toggle_levels():
@@ -43,8 +44,7 @@ func _change_scene(scene: PackedScene, force: bool = false):
 func _perform_scene_change():
 	if current_scene:
 		current_scene.queue_free()
-	current_scene = next_scene.instantiate() as Level
-	current_scene.ChangeLevel.connect(_toggle_levels)
+	current_scene = next_scene.instantiate()
 	#todo: probably would want a reference to the player at the game level?
 	# and reposition the player in the new scene?
 	for c in current_scene.get_children():
@@ -53,9 +53,9 @@ func _perform_scene_change():
 			player.PlayerDied.connect(_game_over)
 			player.player_items = player_items
 			print(player.player_items)
+			break
 	world.add_child.call_deferred(current_scene)
 	world.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _game_over():
 	_change_scene(main_menu)
-	

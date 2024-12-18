@@ -10,7 +10,6 @@ extends Node2D
 var random: RandomNumberGenerator = RandomNumberGenerator.new()
 var finished: bool = false
 var room_count: int = 0
-@onready var dungeon: Level = $".."
 
 func _ready() -> void:
 	make_room(initial_room, global_position)
@@ -25,9 +24,7 @@ func handle_trigger(connector_position: Vector2, connect_to: String):
 	if finished: return
 	if room_count >= total_room_count:
 		finished = true
-		#todo: this is not how we want to do this, but just testing the idea of changing scenes 
-		var room_scene = make_room(last_room, connector_position, connect_to)
-		dungeon.add_end_trigger(room_scene.end_trigger)
+		make_room(last_room, connector_position, connect_to)
 		return
 	var rooms = room_set.rooms
 	if room_count % 3 == 0 and rest_room_set.rooms.size() > 0:

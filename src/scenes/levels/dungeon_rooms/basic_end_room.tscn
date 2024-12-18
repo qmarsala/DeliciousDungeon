@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=4 uid="uid://dojvv35t76k1m"]
+[gd_scene load_steps=7 format=4 uid="uid://dojvv35t76k1m"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_uys1d"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_ysad6"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_8kimv"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="4_pm77i"]
+[ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="5_e51vu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbclh"]
 
-[node name="BasicEndRoom" type="Node2D" node_paths=PackedStringArray("end_trigger")]
+[node name="BasicEndRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_uys1d")
 is_ending_room = true
-end_trigger = NodePath("OnPlayerAreaTrigger")
 
 [node name="Background" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD+//7/AAAGABIAAAD+////AAACAA8AAAD+/wAAAAACAA8AAAD+/wEAAAAGABEAAAD///7/AAACAA8AAAD/////AAACAA8AAAD//wAAAAACAA8AAAD//wEAAAACAA8AAAAAAP7/AAACAA8AAAAAAP//AAACAA8AAAAAAAAAAAACAA8AAAAAAAEAAAACAA8AAAABAP7/AAACAA8AAAABAP//AAACAA8AAAABAAAAAAACAA8AAAABAAEAAAACAA8AAAACAP7/AAACAA8AAAACAP//AAACAA8AAAACAAAAAAACAA8AAAACAAEAAAACAA8AAAD//wIAAAACAA8AAAD//wMAAAACAA8AAAAAAAIAAAACAA8AAAAAAAMAAAACAA8AAAABAAIAAAACAA8AAAABAAMAAAACAA8AAAACAAIAAAACAA8AAAACAAMAAAACAA8AAAADAP7/AAACAA8AAAADAP//AAACAA8AAAADAAAAAAACAA8AAAADAAEAAAACAA8AAAADAAIAAAACAA8AAAADAAMAAAACAA8AAAAEAP7/AAACAA8AAAAEAP//AAACAA8AAAAEAAAAAAACAA8AAAAEAAEAAAACAA8AAAAEAAIAAAACAA8AAAAEAAMAAAACAA8AAAD+//3/AAABAA4AAAD///3/AAACAA4AAAAAAP3/AAACAA4AAAABAP3/AAACAA4AAAACAP3/AAACAA4AAAADAP3/AAACAA4AAAAEAP3/AAACAA4AAAAFAP3/AAAEAA4AAAAFAP7/AAAEAA8AAAAFAP//AAAEAA8AAAAFAAAAAAAEAA8AAAAFAAEAAAAEAA8AAAAFAAIAAAAEAA8AAAAFAAMAAAAEAA8AAAAFAAQAAAAEABEAAAD//wQAAAACABEAAAAAAAQAAAACABEAAAABAAQAAAACABEAAAACAAQAAAACABEAAAADAAQAAAACABEAAAAEAAQAAAACABEAAAD+/wQAAAABABEAAAD+/wMAAAABAA8AAAD9////AAACAA8AAAD9/wAAAAACAA8AAAD9/wEAAAACABEAAAD+/wIAAAABAA8AAAD9//7/AAACAA4AAAA=")
@@ -39,3 +39,5 @@ position = Vector2(-20, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnPlayerAreaTrigger"]
 shape = SubResource("RectangleShape2D_nbclh")
+
+[node name="ChangeLevelTriggerStrategy" parent="OnPlayerAreaTrigger" instance=ExtResource("5_e51vu")]

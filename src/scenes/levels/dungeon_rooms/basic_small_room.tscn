@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=4 uid="uid://bsph7trbf48ah"]
+[gd_scene load_steps=7 format=4 uid="uid://bsph7trbf48ah"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_80axm"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_0byur"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/goblin.tscn" id="3_8gamx"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_spawner.gd" id="3_q5txl"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="5_a4d02"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_40xl6"]
-size = Vector2(8, 47.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k8qk"]
+size = Vector2(8, 48)
 
 [node name="BasicRoomB" type="Node2D"]
 y_sort_enabled = true
@@ -32,20 +33,6 @@ position = Vector2(-96, -22)
 [node name="EastConnector" type="Node2D" parent="."]
 position = Vector2(96, -22)
 
-[node name="EastTrigger" type="Area2D" parent="."]
-position = Vector2(89, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
-shape = SubResource("RectangleShape2D_40xl6")
-
-[node name="WestTrigger" type="Area2D" parent="."]
-position = Vector2(-89, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
-shape = SubResource("RectangleShape2D_40xl6")
-
 [node name="GoblinSpawner" type="Node2D" parent="."]
 position = Vector2(0, -56)
 script = ExtResource("3_q5txl")
@@ -55,3 +42,15 @@ enemy_scene = ExtResource("3_8gamx")
 position = Vector2(0, 56)
 script = ExtResource("3_q5txl")
 enemy_scene = ExtResource("3_8gamx")
+
+[node name="WestTrigger" parent="." instance=ExtResource("5_a4d02")]
+position = Vector2(-89, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestTrigger"]
+shape = SubResource("RectangleShape2D_4k8qk")
+
+[node name="EastTrigger" parent="." instance=ExtResource("5_a4d02")]
+position = Vector2(89, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastTrigger"]
+shape = SubResource("RectangleShape2D_4k8qk")
