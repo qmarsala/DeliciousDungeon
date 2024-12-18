@@ -15,10 +15,3 @@ func handle_process(delta: float) -> void:
 	if time - died_at >= .7 and not signaled_death:
 		signaled_death = true
 		player.PlayerDied.emit()
-	
-func handle_interact_action() -> void:
-	pass
-func handle_movement_input(delta: float) -> void:
-	pass
-func handle_dash_input() -> void:
-	pass

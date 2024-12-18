@@ -1,7 +1,6 @@
 extends PlayerState
 class_name PlayerDashState
 
-
 var dash_velocity
 
 func enter():
@@ -35,6 +34,5 @@ func exit():
 	if player.weapon_equipped:
 		player.weapon.show()
 
-
-func handle_movement_input(delta):
+func handle_physics_process(delta: float) -> void:
 	pass
