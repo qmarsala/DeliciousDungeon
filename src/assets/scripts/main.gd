@@ -5,6 +5,7 @@ extends Node2D
 @export var outdoors: PackedScene
 @export var dungeon: PackedScene
 @export var main_menu: PackedScene
+@export var damage_number: PackedScene
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 
@@ -22,6 +23,8 @@ var next_scene
 
 func _ready():
 	SignalBusService.SceneChange.connect(_toggle_levels)
+	#temp here: should go to a damage number service in the main scene
+	SignalBusService.DamageReceived.connect(_add_damage_number)
 	_change_scene(main_menu, true)
 
 func _toggle_levels():
@@ -59,3 +62,9 @@ func _perform_scene_change():
 
 func _game_over():
 	_change_scene(main_menu)
+
+func _add_damage_number(damage: float, position: Vector2):
+	var instance = damage_number.instantiate() as Label
+	instance.text = String.num(damage)
+	instance.global_position = position
+	add_child(instance)

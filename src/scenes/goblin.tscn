@@ -172,9 +172,10 @@ position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_qa6ns")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("4_tqp57")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("4_tqp57")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
+character = NodePath("..")
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "character_sprite")]
 script = ExtResource("5_ekn10")
