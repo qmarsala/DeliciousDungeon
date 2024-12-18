@@ -137,4 +137,3 @@ func _on_dash_timer_timeout() -> void:
 	
 func _on_dash_cooldown_timer_timeout() -> void:
 	is_dash_cooldown = false
-	dash_cooldown_timer.stop()

@@ -15,10 +15,6 @@
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
 [ext_resource type="Texture2D" uid="uid://bp0ujgfwrrxai" path="res://assets/sprites/camelot/merlin_.png" id="8_t1qvo"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
-radius = 4.0
-height = 10.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqaof"]
 atlas = ExtResource("2_35top")
 region = Rect2(64, 192, 32, 32)
@@ -229,15 +225,15 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
+radius = 4.0
+height = 10.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 collision_layer = 524290
 collision_mask = 5
 script = ExtResource("1_511jo")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_kh2an")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -245,6 +241,13 @@ sprite_frames = SubResource("SpriteFrames_65n8r")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.0199755
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_kh2an")
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(0, -5)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
@@ -284,16 +287,20 @@ script = ExtResource("8_o8qu8")
 player = NodePath("../..")
 
 [node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="HungerTimer" type="Timer" parent="."]
 wait_time = 6.0
 autostart = true
 
 [node name="RestTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="DashTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="MagicAttackIndicator" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.196078)
@@ -310,9 +317,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_t1qvo")
 region_enabled = true
 region_rect = Rect2(76, 175, 8, 8)
-
-[node name="Hand" type="Node2D" parent="."]
-position = Vector2(0, -5)
 
 [connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]

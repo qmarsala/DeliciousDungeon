@@ -28,7 +28,6 @@ func exit():
 	player.move_target = player.global_position
 	player.velocity = Vector2.ZERO
 	player.move_destination_indicator.hide()
-	player.dash_timer.stop()
 	player.dash_cooldown_timer.start(player.DASH_COOLDOWN)
 	player.character_sprite.stop()
 	if player.weapon_equipped:
