@@ -334,7 +334,6 @@ hunger_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 12)
-zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
