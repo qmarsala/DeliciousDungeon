@@ -28,7 +28,7 @@ const STARTING_NUTRITION = 10
 var rest_is_cooldown = false
 #todo: inventory
 #this comes from 'game' don't like it, but poc'ing having player data outside of player
-var player_items: Dictionary
+var player_items: Dictionary = {0:1,1:1}
 var nutrition: float
 var health: float: 
 	get: return %HealthComponent.health

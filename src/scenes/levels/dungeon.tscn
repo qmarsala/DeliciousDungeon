@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=15 format=3 uid="uid://v8yl2qd4myvg"]
 
+[ext_resource type="Shader" path="res://assets/fog.gdshader" id="2_nr1ht"]
 [ext_resource type="Script" path="res://assets/scripts/levels/basic_room_generator_poc.gd" id="2_oro8l"]
+[ext_resource type="Texture2D" uid="uid://bituatka5prk2" path="res://assets/sprites/black.jpg" id="3_6o5vc"]
 [ext_resource type="Resource" uid="uid://51tcb3ky62hd" path="res://assets/data/rooms/basic_starting_room.tres" id="3_7jkkf"]
 [ext_resource type="Resource" uid="uid://bbl0uvfrncnp5" path="res://assets/data/rooms/basic_end_room.tres" id="4_mfxjq"]
 [ext_resource type="Resource" uid="uid://dhvhmrtm5kt57" path="res://assets/data/rooms/basic_rooms.tres" id="5_xuv11"]
@@ -10,6 +12,12 @@
 [ext_resource type="Script" path="res://assets/data/room_set.gd" id="9_rfe56"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="10_fgu52"]
 [ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="11_exkqe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xeumt"]
+shader = ExtResource("2_nr1ht")
+shader_parameter/radius = 0.15
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/color = null
 
 [sub_resource type="Resource" id="Resource_kat5d"]
 script = ExtResource("9_rfe56")
@@ -27,6 +35,12 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="Fog" type="Sprite2D" parent="Player"]
+z_index = 10
+material = SubResource("ShaderMaterial_xeumt")
+scale = Vector2(2, 2)
+texture = ExtResource("3_6o5vc")
+
 [node name="Rooms" type="Node2D" parent="."]
 script = ExtResource("2_oro8l")
 initial_room = ExtResource("3_7jkkf")
@@ -35,14 +49,7 @@ room_set = ExtResource("5_xuv11")
 rest_room_set = SubResource("Resource_kat5d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("11_exkqe")]
-offset_left = -160.0
-offset_top = -177.5
-offset_right = -160.0
-offset_bottom = -177.5
-scale = Vector2(0.2, 0.2)
 player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
