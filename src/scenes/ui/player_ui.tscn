@@ -20,6 +20,7 @@ grow_vertical = 0
 script = ExtResource("1_bgem0")
 
 [node name="FoodCountLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -315.0
 offset_top = -356.0
@@ -30,6 +31,7 @@ label_settings = SubResource("LabelSettings_p08b3")
 vertical_alignment = 1
 
 [node name="WoodCountLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -315.0
 offset_top = -342.0
@@ -40,6 +42,7 @@ label_settings = SubResource("LabelSettings_p08b3")
 vertical_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -142.0
 offset_top = -49.0
@@ -58,6 +61,7 @@ offset_bottom = 20.0
 scale = Vector2(0.662172, 0.408148)
 
 [node name="HealthBar" type="ProgressBar" parent="Panel"]
+unique_name_in_owner = true
 modulate = Color(0.827964, 0.119937, 0.216825, 1)
 layout_mode = 0
 offset_left = 10.0
@@ -69,6 +73,7 @@ value = 5.0
 show_percentage = false
 
 [node name="HungerBar" type="ProgressBar" parent="Panel"]
+unique_name_in_owner = true
 modulate = Color(0.224528, 0.402987, 0.931931, 1)
 layout_mode = 0
 offset_left = 220.0
@@ -80,6 +85,7 @@ value = 5.0
 show_percentage = false
 
 [node name="ChargedAttackBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
 modulate = Color(0.909804, 0.666667, 0.0823529, 1)
 layout_mode = 0
 offset_left = -67.0
@@ -90,6 +96,7 @@ scale = Vector2(0.663405, 0.435025)
 show_percentage = false
 
 [node name="DashIcon" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 111.0
 offset_top = -46.0

@@ -3,13 +3,13 @@ class_name PlayerUI
 
 @export var player: Player
 
-@onready var health_bar: ProgressBar = $HealthBar
-@onready var hunger_bar: ProgressBar = $HungerBar
-@onready var charged_attack_bar: ProgressBar = $ChargedAttackBar
-@onready var food_count_label: Label = $FoodCountLabel
-@onready var wood_count_label: Label = $WoodCountLabel
-@onready var status_label: Label = $StatusLabel
-@onready var dash_icon: Label = $DashIcon
+@onready var health_bar: ProgressBar = %HealthBar
+@onready var hunger_bar: ProgressBar = %HungerBar
+@onready var charged_attack_bar: ProgressBar = %ChargedAttackBar
+@onready var food_count_label: Label = %FoodCountLabel
+@onready var wood_count_label: Label = %WoodCountLabel
+@onready var status_label: Label = %StatusLabel
+@onready var dash_icon: Label = %DashIcon
 
 var dash_icon_hidden = false
 
