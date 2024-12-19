@@ -13,22 +13,28 @@ font_size = 32
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("1_bgem0")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = -179.0
+offset_left = -220.0
 offset_top = -75.0
-offset_right = 251.0
+offset_right = 210.0
 offset_bottom = -25.0
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(0.827964, 0.119937, 0.216825, 1)
 layout_mode = 0
-offset_left = -169.0
+offset_left = -210.0
 offset_top = -65.0
-offset_right = 31.0
+offset_right = -10.0
 offset_bottom = -35.0
 max_value = 10.0
 value = 5.0
@@ -37,9 +43,8 @@ show_percentage = false
 [node name="HungerBar" type="ProgressBar" parent="."]
 modulate = Color(0.224528, 0.402987, 0.931931, 1)
 layout_mode = 0
-offset_left = 41.0
 offset_top = -65.0
-offset_right = 241.0
+offset_right = 200.0
 offset_bottom = -35.0
 max_value = 10.0
 value = 5.0
@@ -48,44 +53,44 @@ show_percentage = false
 [node name="ChargedAttackBar" type="ProgressBar" parent="."]
 modulate = Color(0.909804, 0.666667, 0.0823529, 1)
 layout_mode = 0
-offset_left = -61.0
+offset_left = -102.0
 offset_top = -130.0
-offset_right = 139.0
+offset_right = 98.0
 offset_bottom = -103.0
 show_percentage = false
 
 [node name="FoodCountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 5.0
+offset_left = -36.0
 offset_top = -101.0
-offset_right = 89.0
+offset_right = 48.0
 offset_bottom = -75.0
 text = "Food: 0"
 label_settings = SubResource("LabelSettings_p08b3")
 
 [node name="WoodCountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 99.0
+offset_left = 58.0
 offset_top = -101.0
-offset_right = 183.0
+offset_right = 142.0
 offset_bottom = -75.0
 text = "Wood: 0"
 label_settings = SubResource("LabelSettings_p08b3")
 
 [node name="StatusLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = -178.0
+offset_left = -219.0
 offset_top = -101.0
-offset_right = -10.0
+offset_right = -51.0
 offset_bottom = -75.0
 text = "Status: Rested"
 label_settings = SubResource("LabelSettings_51dl0")
 
 [node name="DashIcon" type="Label" parent="."]
 layout_mode = 0
-offset_left = 203.0
+offset_left = 162.0
 offset_top = -101.0
-offset_right = 251.0
+offset_right = 210.0
 offset_bottom = -75.0
 text = "Dash"
 label_settings = SubResource("LabelSettings_k6bk4")
