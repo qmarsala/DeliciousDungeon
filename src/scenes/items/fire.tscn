@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfesvjhulwkvx"]
+[gd_scene load_steps=16 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
 [ext_resource type="Script" path="res://assets/scripts/levels/fire.gd" id="2_dth6p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4teui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
 atlas = ExtResource("1_j4fss")
@@ -92,12 +91,16 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bi4h"]
 radius = 19.0263
 
-[node name="Fire" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
+radius = 5.0
+
+[node name="Fire" type="Area2D"]
+monitoring = false
 script = ExtResource("2_dth6p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 z_index = 1
-shape = SubResource("CircleShape2D_chxww")
+shape = SubResource("RectangleShape2D_4teui")
 
 [node name="Unlit" type="Sprite2D" parent="."]
 texture = ExtResource("1_j4fss")
@@ -124,7 +127,14 @@ libraries = {
 }
 
 [node name="RestArea" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestArea"]
 shape = SubResource("CircleShape2D_2bi4h")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+shape = SubResource("CircleShape2D_chxww")
