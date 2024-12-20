@@ -47,6 +47,7 @@ initial_room = ExtResource("3_7jkkf")
 last_room = ExtResource("4_mfxjq")
 room_set = ExtResource("5_xuv11")
 rest_room_set = SubResource("Resource_kat5d")
+total_room_count = 13
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
