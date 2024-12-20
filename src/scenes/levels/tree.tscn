@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2ydsutrfwhu5"]
+[gd_scene load_steps=14 format=3 uid="uid://b2ydsutrfwhu5"]
 
 [ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_18ktc"]
 [ext_resource type="Script" path="res://assets/scripts/levels/forest_tree.gd" id="1_cgee7"]
@@ -6,10 +6,11 @@
 [ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/data/items/wood.tres" id="3_l5na6"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_vqeq6"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="4_cnckc"]
+[ext_resource type="AudioStream" uid="uid://bptdhvbi4eb2m" path="res://assets/audio/hit_tree.wav" id="7_3kwa6"]
+[ext_resource type="AudioStream" uid="uid://03vbuukyhaa4" path="res://assets/audio/tree_break.wav" id="8_ebkim"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
-radius = 4.0
-height = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o18qs"]
+size = Vector2(12, 23)
 
 [sub_resource type="Animation" id="Animation_rcunq"]
 length = 0.001
@@ -48,17 +49,21 @@ _data = {
 "receive_damage": SubResource("Animation_rd3it")
 }
 
-[node name="Tree" type="StaticBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
+radius = 4.0
+height = 12.0
+
+[node name="Tree" type="Area2D"]
 y_sort_enabled = true
+monitoring = false
 script = ExtResource("1_cgee7")
 felled_tree_top = ExtResource("2_a2c71")
 wood_item = ExtResource("3_l5na6")
 pickup_scene = ExtResource("4_cnckc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ospfv")
+[node name="ChopHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_o18qs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11.5)
@@ -76,3 +81,16 @@ starting_health = 3.0
 libraries = {
 "": SubResource("AnimationLibrary_l23id")
 }
+
+[node name="Stump" type="StaticBody2D" parent="."]
+
+[node name="StumpCollision" type="CollisionShape2D" parent="Stump"]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ospfv")
+
+[node name="TreeHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3kwa6")
+
+[node name="TreeBreakSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ebkim")

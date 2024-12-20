@@ -1,7 +1,6 @@
 extends Node2D
 
 #poc: multi scenes
-#todo: 'global' script? for game/scene management?
 @export var outdoors: PackedScene
 @export var dungeon: PackedScene
 @export var main_menu: PackedScene

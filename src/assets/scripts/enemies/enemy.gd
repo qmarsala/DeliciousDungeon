@@ -25,6 +25,9 @@ func receive_damage(damage):
 			var dropInstance = pickupScene.instantiate()
 			dropInstance.item = drop
 			dropInstance.position = global_position
+			# todo: this needs to stay 'in world' not in root
+			# should we signal and have a drop manager?
+			# otherwise food doesn't get cleaned up on scene changes
 			get_tree().root.add_child(dropInstance)
 
 func _on_death_timer_timeout():

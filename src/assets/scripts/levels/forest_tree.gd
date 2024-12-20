@@ -1,5 +1,5 @@
 class_name ForestTree
-extends StaticBody2D
+extends Area2D
 
 @export var felled_tree_top: PackedScene
 @export var wood_item: Item
@@ -7,6 +7,9 @@ extends StaticBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
+
+@onready var tree_hit_sound: AudioStreamPlayer2D = $TreeHitSound
+@onready var tree_break_sound: AudioStreamPlayer2D = $TreeBreakSound
 
 func _init() -> void:
 	add_to_group(Interfaces.Interactable, true)
@@ -17,8 +20,13 @@ func interact(player: Player) -> void:
 func chop():
 	if health_component.is_dead(): return
 	
+	if tree_hit_sound:
+		tree_hit_sound.play()
+	
 	health_component.take_damage(1)
 	if health_component.is_dead():
+		if tree_break_sound:
+			tree_break_sound.play()
 		create_stump()
 		animate_fell()
 		drop_logs()

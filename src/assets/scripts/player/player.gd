@@ -17,6 +17,7 @@ const STARTING_NUTRITION = 10
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var hand: Node2D = $Hand
+@onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
@@ -58,6 +59,7 @@ func _ready() -> void:
 		move_disabled = true
 
 func _process(delta: float) -> void:
+	interaction_ray_cast.look_at(get_global_mouse_position())
 	#todo: move this to ui layer?
 	move_destination_indicator.global_position = move_target
 	if global_position.distance_to(move_target) <= 5:
@@ -94,15 +96,10 @@ func pickup(item: Item):
 		player_items[item.item_id] += 1
 	
 func interact():
-	var space_state = get_world_2d().direct_space_state
-	var direction = get_global_mouse_position() - global_position
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + direction.normalized() * INTERACTION_RANGE)
-	query.exclude = [self]
-	var result = space_state.intersect_ray(query)
+	var result = interaction_ray_cast.get_collider()
 	if not result: return
-	var target = result["collider"] as Node2D
-	if Interfaces.is_interface(target, Interfaces.Interactable):
-		target.interact(self)
+	if Interfaces.is_interface(result, Interfaces.Interactable):
+		result.interact(self)
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return
