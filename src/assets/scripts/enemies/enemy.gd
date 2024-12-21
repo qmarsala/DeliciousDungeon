@@ -1,23 +1,23 @@
 extends CharacterBody2D
 class_name Enemy
 
-const SPEED = 45
-const MIN_DISTANCE = 15
-const ATTACK_COOLDOWN = 1
-
 # how to combine these things?
 # the scene can't be in the item because of circlular ref
 # need some other parent? or just live with it
 @export var drop: Item
 @export var pickupScene: PackedScene 
+@export var speed: float = 45
 
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var melee_range: RayCast2D = $MeleeRange
+var attack_is_cooling_down = false
 
 func is_dead(): return %HealthComponent.is_dead()
 
 func receive_damage(damage):
+	if is_dead():
+		return
 	%HealthComponent.take_damage(damage)
 	if is_dead():
 		var r = random.randf()
@@ -31,4 +31,8 @@ func receive_damage(damage):
 			get_tree().root.add_child(dropInstance)
 
 func _on_death_timer_timeout():
+	print("queue free")
 	queue_free()
+
+func _on_attack_cooldown_timer_timeout():
+	attack_is_cooling_down = false

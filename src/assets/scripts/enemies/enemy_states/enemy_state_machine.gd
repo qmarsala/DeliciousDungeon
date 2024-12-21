@@ -6,6 +6,7 @@ var current_state: EnemyState
 var states: Dictionary = {}
 
 func _ready() -> void:
+	%HealthComponent.HealthDepleted.connect(_on_health_depleted)
 	for child in get_children():
 		if child is EnemyState:
 			states[child.name.to_lower()] = child
@@ -29,9 +30,8 @@ func on_child_transition(state, new_state_name):
 
 func transition_to(new_state_name):
 	var new_state = states.get(new_state_name.to_lower())
-	if !new_state: 
+	if !new_state or new_state == current_state: 
 		return
-		
 	if current_state:
 		current_state.exit()
 	new_state.enter()
