@@ -45,7 +45,7 @@ func handle_movement_input(delta):
 		player.move_target = mouse_pos
 		player.move_destination_indicator.show()
 		Transitioned.emit(self, "MoveState")
-	elif Input.is_action_pressed("move") and time - pressed_at > .25:
+	elif Input.is_action_pressed("move") and time - pressed_at > .25 and player.move_target.distance_to(mouse_pos) > 5:
 		player.move_target = mouse_pos
 		player.move_destination_indicator.hide()
 		Transitioned.emit(self, "MoveState")
