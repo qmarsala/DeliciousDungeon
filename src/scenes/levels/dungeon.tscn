@@ -45,6 +45,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_6o5vc")
 
 [node name="Rooms" type="Node2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("2_oro8l")
 initial_room = ExtResource("3_7jkkf")
