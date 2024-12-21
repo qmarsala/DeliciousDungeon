@@ -43,7 +43,7 @@ func handle_attack_animations():
 	var animation = "swing_east"
 	if player.global_position.x - enemy.global_position.x < 0:
 		animation = "swing_west"
-	if player.global_position.y - enemy.global_position.y > 0 and abs(player.global_position.x - enemy.global_position.x) < 10:
+	if player.global_position.y - enemy.global_position.y > 0 and abs(player.global_position.x - enemy.global_position.x) < 20:
 		animation = "swing_south"
 	if not attack_animation_player.is_playing():
 		attack_animation_player.play(animation)

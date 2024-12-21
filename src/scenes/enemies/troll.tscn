@@ -298,7 +298,7 @@ region_rect = Rect2(2, 98, 8, 20)
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
 character = NodePath("..")
-starting_health = 25.0
+starting_health = 35.0
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "character_sprite")]
 script = ExtResource("4_fkqlc")
@@ -338,7 +338,6 @@ target_position = Vector2(15, 0)
 collision_mask = 2
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="."]
-process_mode = 4
 libraries = {
 "": SubResource("AnimationLibrary_u3ldw")
 }
