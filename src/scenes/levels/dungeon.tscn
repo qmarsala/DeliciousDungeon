@@ -15,7 +15,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xeumt"]
 shader = ExtResource("2_nr1ht")
-shader_parameter/radius = 0.15
+shader_parameter/radius = 0.2
 shader_parameter/origin = Vector2(0.5, 0.5)
 shader_parameter/color = null
 
