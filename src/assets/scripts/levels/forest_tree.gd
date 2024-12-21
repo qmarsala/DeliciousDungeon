@@ -14,7 +14,11 @@ func _init() -> void:
 func interact(player: Player) -> void:
 	chop()
 
-func chop():
+func _ready() -> void:
+	var size = randf_range(0.85, 1.15)
+	apply_scale(Vector2(size, size))
+
+func chop() -> void:
 	if health_component.is_dead(): return
 	
 	health_component.take_damage(1)
