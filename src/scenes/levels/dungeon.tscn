@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://v8yl2qd4myvg"]
+[gd_scene load_steps=16 format=3 uid="uid://v8yl2qd4myvg"]
 
+[ext_resource type="Script" path="res://assets/scripts/dungeon_manager.gd" id="1_qfxch"]
 [ext_resource type="Shader" path="res://assets/fog.gdshader" id="2_nr1ht"]
 [ext_resource type="Script" path="res://assets/scripts/levels/basic_room_generator_poc.gd" id="2_oro8l"]
 [ext_resource type="Texture2D" uid="uid://bituatka5prk2" path="res://assets/sprites/black.jpg" id="3_6o5vc"]
@@ -24,9 +25,11 @@ script = ExtResource("9_rfe56")
 rooms = Array[ExtResource("6_t6tku")]([ExtResource("7_aut4m"), ExtResource("8_4i6pv")])
 
 [node name="Dungeon" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_qfxch")
 
 [node name="Player" parent="." instance=ExtResource("10_fgu52")]
-z_index = 5
+z_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, 12)
@@ -42,6 +45,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_6o5vc")
 
 [node name="Rooms" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("2_oro8l")
 initial_room = ExtResource("3_7jkkf")
 last_room = ExtResource("4_mfxjq")
