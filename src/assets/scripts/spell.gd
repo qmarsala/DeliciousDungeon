@@ -13,9 +13,10 @@ func _on_final_damage_timer_timeout() -> void:
 	queue_free()
 
 func deal_damage(amount):
-	var targets = area_2d.get_overlapping_bodies()
+	var targets = area_2d.get_overlapping_areas()
 	for t in targets:
-		t.receive_damage(amount)
+		if t is Hitbox:
+			t.receive_damage(amount)
 
 func _on_mid_damage_timer_timeout() -> void:
 	deal_damage(2)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=34 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
 [ext_resource type="Texture2D" uid="uid://d3bkdx3n808em" path="res://assets/sprites/forestSprites_ v1.2/troll_.png" id="2_o0od4"]
 [ext_resource type="Texture2D" uid="uid://dyywsx6uxabdm" path="res://assets/sprites/forestSprites_ v1.2/weapons_.png" id="3_dhr1q"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_f1a2u"]
+[ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="3_rcevn"]
 [ext_resource type="Script" path="res://assets/scripts/components/movement_component.gd" id="4_fkqlc"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_state_machine.gd" id="5_glwib"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="6_dte23"]
@@ -286,6 +287,16 @@ position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_dggjw")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
+[node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_rcevn")]
+position = Vector2(0, -7)
+collision_layer = 64
+collision_mask = 32
+character = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_dggjw")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
 [node name="Club" type="Sprite2D" parent="."]
 position = Vector2(4, -3)
 rotation = 1.5708
@@ -332,10 +343,15 @@ enemy = NodePath("../..")
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
 
+[node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
+one_shot = true
+
 [node name="MeleeRange" type="RayCast2D" parent="."]
 position = Vector2(0, -7)
-target_position = Vector2(15, 0)
-collision_mask = 2
+target_position = Vector2(20, 0)
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -344,3 +360,4 @@ libraries = {
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="StateMachine/EnemyFightingState/AttackTimer" to="StateMachine/EnemyFightingState" method="handle_attack"]

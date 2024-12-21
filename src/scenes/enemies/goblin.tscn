@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=31 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_0vklg"]
 [ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_njhog"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_tb4fj"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="4_c6iyo"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="5_awlvx"]
+[ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="5_h3vuw"]
 [ext_resource type="Script" path="res://assets/scripts/components/movement_component.gd" id="6_8upb2"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_state_machine.gd" id="7_8pbow"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="8_0refy"]
@@ -150,6 +151,10 @@ animations = [{
 radius = 5.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhtg0"]
+radius = 5.0
+height = 14.0
+
 [node name="Goblin" type="CharacterBody2D"]
 z_index = 4
 position = Vector2(0, -12)
@@ -167,6 +172,17 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_qa6ns")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_h3vuw")]
+position = Vector2(0, 6)
+collision_layer = 64
+collision_mask = 32
+character = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_mhtg0")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("5_awlvx")]
@@ -200,10 +216,16 @@ enemy = NodePath("../..")
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
 
+[node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
+one_shot = true
+
 [node name="MeleeRange" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
 target_position = Vector2(20, 0)
-collision_mask = 2
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="StateMachine/EnemyFightingState/AttackTimer" to="." method="_on_attack_cooldown_timer_timeout"]
