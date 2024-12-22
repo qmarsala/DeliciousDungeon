@@ -227,4 +227,4 @@ collide_with_bodies = false
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
-[connection signal="timeout" from="StateMachine/EnemyFightingState/AttackTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="StateMachine/EnemyFightingState/AttackTimer" to="StateMachine/EnemyFightingState" method="handle_attack"]

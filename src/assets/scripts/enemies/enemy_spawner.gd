@@ -5,7 +5,7 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var enemy_scene_b: PackedScene
 @export var enemy_scene_b_rate: float = 0.1
-@export var no_enemy_rate: float = 0.1
+@export var no_enemy_rate: float = 0.15
 
 func _ready():
 	if randf() <= no_enemy_rate:

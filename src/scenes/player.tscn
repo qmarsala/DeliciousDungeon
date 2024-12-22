@@ -302,9 +302,6 @@ player = NodePath("../..")
 script = ExtResource("8_o8qu8")
 player = NodePath("../..")
 
-[node name="DeathTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="HungerTimer" type="Timer" parent="."]
 wait_time = 6.0
 autostart = true
@@ -346,6 +343,5 @@ collide_with_bodies = false
 [connection signal="ranged_attack_charge" from="MagicAttack" to="." method="_on_magic_attack_charge"]
 [connection signal="timeout" from="MagicAttack/CooldownTimer" to="MagicAttack" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="MagicAttack/CastTimer" to="MagicAttack" method="_on_cast_timer_timeout"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

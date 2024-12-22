@@ -12,7 +12,6 @@ const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
-@onready var death_timer: Timer = $DeathTimer
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var state_machine: PlayerStateMachine = $StateMachine

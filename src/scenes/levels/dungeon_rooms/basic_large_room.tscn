@@ -47,9 +47,11 @@ position = Vector2(169, 2)
 shape = SubResource("RectangleShape2D_uoyv1")
 
 [node name="Trap" parent="." instance=ExtResource("6_5iaqn")]
+y_sort_enabled = true
 position = Vector2(-89, 50)
 
 [node name="Trap2" parent="." instance=ExtResource("6_5iaqn")]
+y_sort_enabled = true
 position = Vector2(88, -77)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_akpay")]

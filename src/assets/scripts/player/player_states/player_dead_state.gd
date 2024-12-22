@@ -5,7 +5,6 @@ var died_at : float = 0
 var signaled_death : bool 
 func enter() -> void:
 	died_at = time
-	player.death_timer.start(.7)
 	player.character_sprite.play("die")
 
 func handle_physics_process(delta: float) -> void:
