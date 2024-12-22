@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dyf3o58msblhx" path="res://scenes/levels/hill_area.tscn" id="8_sol47"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="9_jer4p"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klaes"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r3gl"]
 texture = ExtResource("1_vlgdl")
 1:1/0 = 0
 2:1/0 = 0
@@ -127,7 +127,7 @@ texture = ExtResource("1_vlgdl")
 18:7/0 = 0
 19:7/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldo6j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e57t"]
 texture = ExtResource("2_jadg7")
 1:1/0 = 0
 2:1/0 = 0
@@ -303,8 +303,8 @@ texture = ExtResource("2_jadg7")
 
 [sub_resource type="TileSet" id="TileSet_ug3co"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_klaes")
-sources/2 = SubResource("TileSetAtlasSource_ldo6j")
+sources/0 = SubResource("TileSetAtlasSource_2r3gl")
+sources/2 = SubResource("TileSetAtlasSource_0e57t")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h14ll"]
 

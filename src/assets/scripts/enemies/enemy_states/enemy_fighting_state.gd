@@ -30,7 +30,10 @@ func handle_process(delta: float):
 		attack_cooldown_timer.start(attack_cooldown)
 
 func handle_physics_process(delta: float):
-	if enemy and player:
+	if player == null: 
+		Transitioned.emit(self, "EnemyExploringState")
+		return
+	if enemy:
 		var direction = player.global_position - enemy.global_position
 		var distance = direction.length()
 		if distance <= 15:

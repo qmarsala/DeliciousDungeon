@@ -157,7 +157,6 @@ height = 14.0
 
 [node name="Goblin" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_0vklg")
@@ -165,17 +164,16 @@ drop = ExtResource("2_njhog")
 pickupScene = ExtResource("3_tb4fj")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_s8l4v")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_qa6ns")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_h3vuw")]
-position = Vector2(0, 4)
 collision_layer = 64
 collision_mask = 32
 character = NodePath("..")
@@ -183,6 +181,12 @@ character = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_mhtg0")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="MeleeRange" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("5_awlvx")]
 unique_name_in_owner = true
@@ -217,13 +221,6 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
-
-[node name="MeleeRange" type="RayCast2D" parent="."]
-position = Vector2(0, 5)
-target_position = Vector2(20, 0)
-collision_mask = 32
-collide_with_areas = true
-collide_with_bodies = false
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
