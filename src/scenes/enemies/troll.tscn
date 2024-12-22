@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=38 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
 [ext_resource type="Texture2D" uid="uid://d3bkdx3n808em" path="res://assets/sprites/forestSprites_ v1.2/troll_.png" id="2_o0od4"]
@@ -152,8 +152,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dggjw"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eq1ge"]
 radius = 5.0
-height = 14.0
+height = 15.0
 
 [sub_resource type="Animation" id="Animation_i3pbn"]
 length = 0.001
@@ -180,6 +184,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Club:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Club:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.65, 0.65)]
 }
 
 [sub_resource type="Animation" id="Animation_bf2iw"]
@@ -209,6 +237,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [1.5708, 1.14038, -0.321141, 0.616577, 1.39801]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Club:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_147ht"]
 resource_name = "swing_south"
@@ -220,10 +260,10 @@ tracks/0/path = NodePath("Club:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.333333, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(7, -3), Vector2(7.5, -2), Vector2(5.5, 0.5), Vector2(4.76837e-07, 3.5), Vector2(-6.5, -1)]
+"values": [Vector2(6.5, -4), Vector2(7.5, -2.5), Vector2(-2.98023e-08, 2), Vector2(-6, -1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -232,10 +272,34 @@ tracks/1/path = NodePath("Club:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.233333, 0.333333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [1.5708, 1.81689, 2.22006, 3.14159, 4.31794]
+"values": [1.5708, 1.74498, 2.99324, 4.17832]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Club:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.65, 0.65), Vector2(0.74, 0.74), Vector2(0.65, 0.65)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Club:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.493928, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_e1rsi"]
@@ -265,11 +329,76 @@ tracks/1/keys = {
 "update": 0,
 "values": [-1.5708, -1.1397, 0.321141, -0.616101, -1.39801]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Club:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5vhay"]
+resource_name = "swing_north"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Club:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, 0.275), Vector2(-5, -14), Vector2(5, -12.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Club:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5708, 0.0479368, 1.46433]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Club:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.872665, -0.740485, -0.624828]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Club:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.133333, 0.233333, 0.366667, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.69, 0.69), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.65, 0.65)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u3ldw"]
 _data = {
 "RESET": SubResource("Animation_i3pbn"),
 "swing_east": SubResource("Animation_bf2iw"),
+"swing_north": SubResource("Animation_5vhay"),
 "swing_south": SubResource("Animation_147ht"),
 "swing_west": SubResource("Animation_e1rsi")
 }
@@ -288,7 +417,7 @@ drop_rate = 1.0
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_higk4")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -303,7 +432,7 @@ collision_mask = 32
 character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_dggjw")
+shape = SubResource("CapsuleShape2D_eq1ge")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="Club" type="Sprite2D" parent="."]

@@ -47,13 +47,16 @@ func handle_attack():
 		target.receive_damage(attack_damage)
 
 func handle_attack_animations():
-	if not (attack_animation_player or weapon_sprite):
+	if (not (attack_animation_player or weapon_sprite)) or attack_animation_player.is_playing():
 		return
 	
+	var player_width_distance = abs(enemy.global_position.x - player.global_position.x)
+	var player_height_distance = enemy.global_position.y - player.global_position.y
 	var animation = "swing_east"
-	if player.global_position.x - enemy.global_position.x < 0:
+	if enemy.global_position.x > player.global_position.x:
 		animation = "swing_west"
-	if player.global_position.y - enemy.global_position.y > .5 and abs(player.global_position.x - enemy.global_position.x) < 15:
+	if player_height_distance <= -10 and player_width_distance <= 30:
 		animation = "swing_south"
-	if not attack_animation_player.is_playing():
-		attack_animation_player.play(animation)
+	if player_height_distance >= 10 and player_width_distance <= 30:
+		animation = "swing_north"
+	attack_animation_player.play(animation)

@@ -148,8 +148,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qa6ns"]
-radius = 5.0
-height = 14.0
+radius = 3.0
+height = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhtg0"]
 radius = 5.0
@@ -166,22 +166,21 @@ pickupScene = ExtResource("3_tb4fj")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s8l4v")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_qa6ns")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_h3vuw")]
-position = Vector2(0, 6)
+position = Vector2(0, 4)
 collision_layer = 64
 collision_mask = 32
 character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_mhtg0")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
