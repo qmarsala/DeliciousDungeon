@@ -63,3 +63,8 @@ func handle_attack_animations():
 	if player_height_distance >= 10 and player_width_distance <= 30:
 		animation = "swing_north"
 	attack_animation_player.play(animation)
+
+
+func _on_attack_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name != "RESET":
+		attack_animation_player.play("RESET")

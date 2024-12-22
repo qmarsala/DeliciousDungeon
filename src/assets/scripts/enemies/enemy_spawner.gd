@@ -13,7 +13,7 @@ func _ready():
 
 	if randf() <= enemy_scene_b_rate:
 		var enemy = enemy_scene_b.instantiate() as Enemy
-		add_child.call_deferred(enemy)
+		add_sibling.call_deferred(enemy)
 	else:
 		var enemy = enemy_scene.instantiate() as Enemy
-		add_child.call_deferred(enemy)
+		add_sibling.call_deferred(enemy)
