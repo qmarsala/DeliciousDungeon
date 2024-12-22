@@ -1,14 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://b61iqknq8r7m2"]
+[gd_scene load_steps=7 format=4 uid="uid://b61iqknq8r7m2"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_2laa5"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="1_222id"]
-[ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="3_f2kin"]
-[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_spawner.gd" id="4_d21cb"]
+[ext_resource type="PackedScene" uid="uid://c56wrcs86blaf" path="res://scenes/enemy_spawner.tscn" id="5_akpay"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="5_gb0je"]
 [ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/items/trap.tscn" id="6_5iaqn"]
-[ext_resource type="PackedScene" uid="uid://cwoqb0h58gi6y" path="res://scenes/enemies/troll.tscn" id="7_c4abc"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="8_ruyrv"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="9_wvqyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoyv1"]
 size = Vector2(8, 48)
@@ -38,21 +34,6 @@ position = Vector2(-176, -22)
 [node name="EastConnector" type="Node2D" parent="."]
 position = Vector2(176, -22)
 
-[node name="GoblinSpawner" type="Node2D" parent="."]
-position = Vector2(-54, -44)
-script = ExtResource("4_d21cb")
-enemy_scene = ExtResource("3_f2kin")
-
-[node name="GoblinSpawner2" type="Node2D" parent="."]
-position = Vector2(67, -34)
-script = ExtResource("4_d21cb")
-enemy_scene = ExtResource("3_f2kin")
-
-[node name="GoblinSpawner3" type="Node2D" parent="."]
-position = Vector2(-11, 54)
-script = ExtResource("4_d21cb")
-enemy_scene = ExtResource("3_f2kin")
-
 [node name="WestTrigger" parent="." instance=ExtResource("5_gb0je")]
 position = Vector2(-169, 2)
 
@@ -71,7 +52,17 @@ position = Vector2(-89, 50)
 [node name="Trap2" parent="." instance=ExtResource("6_5iaqn")]
 position = Vector2(88, -77)
 
-[node name="Troll" parent="." instance=ExtResource("7_c4abc")]
-position = Vector2(0, 1)
-drop = ExtResource("8_ruyrv")
-pickupScene = ExtResource("9_wvqyo")
+[node name="EnemySpawner" parent="." instance=ExtResource("5_akpay")]
+position = Vector2(-1, -2)
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("5_akpay")]
+position = Vector2(-82, -80)
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("5_akpay")]
+position = Vector2(85, 69)
+
+[node name="EnemySpawner4" parent="." instance=ExtResource("5_akpay")]
+position = Vector2(91, -3)
+
+[node name="EnemySpawner5" parent="." instance=ExtResource("5_akpay")]
+position = Vector2(-90, -4)

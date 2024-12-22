@@ -1,9 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=36 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
 [ext_resource type="Texture2D" uid="uid://d3bkdx3n808em" path="res://assets/sprites/forestSprites_ v1.2/troll_.png" id="2_o0od4"]
+[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_uhaql"]
 [ext_resource type="Texture2D" uid="uid://dyywsx6uxabdm" path="res://assets/sprites/forestSprites_ v1.2/weapons_.png" id="3_dhr1q"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_f1a2u"]
+[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_mlcm0"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="3_rcevn"]
 [ext_resource type="Script" path="res://assets/scripts/components/movement_component.gd" id="4_fkqlc"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_state_machine.gd" id="5_glwib"]
@@ -182,6 +184,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_bf2iw"]
 resource_name = "swing_east"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -209,6 +212,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_147ht"]
 resource_name = "swing_south"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -216,7 +220,7 @@ tracks/0/path = NodePath("Club:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.366667),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.333333, 0.433333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(7, -3), Vector2(7.5, -2), Vector2(5.5, 0.5), Vector2(4.76837e-07, 3.5), Vector2(-6.5, -1)]
@@ -236,6 +240,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_e1rsi"]
 resource_name = "swing"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -270,11 +275,15 @@ _data = {
 }
 
 [node name="Troll" type="CharacterBody2D"]
+y_sort_enabled = true
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_b43ex")
+drop = ExtResource("2_uhaql")
+pickupScene = ExtResource("3_mlcm0")
 speed = 30.0
+drop_rate = 1.0
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

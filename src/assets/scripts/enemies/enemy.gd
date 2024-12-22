@@ -7,6 +7,7 @@ class_name Enemy
 @export var drop: Item
 @export var pickupScene: PackedScene 
 @export var speed: float = 45
+@export var drop_rate: float = .3
 
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
@@ -21,7 +22,7 @@ func receive_damage(damage):
 	%HealthComponent.take_damage(damage)
 	if is_dead():
 		var r = random.randf()
-		if r <= .5 and drop:
+		if r <= drop_rate and drop:
 			var dropInstance = pickupScene.instantiate()
 			dropInstance.item = drop
 			dropInstance.position = global_position
