@@ -35,7 +35,7 @@ func receive_damage(damage):
 			# todo: this needs to stay 'in world' not in root
 			# should we signal and have a drop manager?
 			# otherwise food doesn't get cleaned up on scene changes
-			get_tree().root.add_child(dropInstance)
+			get_tree().get_first_node_in_group("World").add_child(dropInstance)
 
 func _on_death_timer_timeout():
 	queue_free()
