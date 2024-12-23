@@ -6,19 +6,16 @@ extends Node2D
 @export var room_set: RoomDataSet 
 @export var rest_room_set: RoomDataSet 
 @export var total_room_count: int = 7
+@export var should_make_all_rooms: bool = false
 
 var random: RandomNumberGenerator = RandomNumberGenerator.new()
 var finished: bool = false
 var room_count: int = 0
 
+var next_room_pos: Vector2
+
 func _ready() -> void:
 	make_room(initial_room, global_position)
-
-func _on_east_trigger(trigger_connector_position: Vector2, connect_to: String) -> void: 
-	handle_trigger(trigger_connector_position, connect_to)
-	
-func _on_west_trigger(trigger_connector_position: Vector2,  connect_to: String) -> void: 
-	handle_trigger(trigger_connector_position, connect_to)
 
 func handle_trigger(connector_position: Vector2, connect_to: String):
 	if finished: return
@@ -38,7 +35,8 @@ func make_room(room: RoomData, position: Vector2, connect_to: String = ""):
 	var room_scene = room.scene.instantiate() as Room
 	room_scene.connect_to = connect_to
 	room_scene.global_position = position
-	room_scene.EastTrigger.connect(_on_east_trigger)
-	room_scene.WestTrigger.connect(_on_west_trigger)
+	room_scene.EastTrigger.connect(handle_trigger)
+	room_scene.WestTrigger.connect(handle_trigger)
+	room_scene.should_make_all_rooms = should_make_all_rooms
 	add_child.call_deferred(room_scene)
 	return room_scene

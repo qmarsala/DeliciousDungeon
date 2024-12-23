@@ -12,6 +12,7 @@ var east_trigger: Area2D
 var west_trigger: Area2D
 var east_connector: Node2D
 var west_connector: Node2D
+var should_make_all_rooms: bool
 #todo: north south?
 #todo: rooms that don't have another connector, or not all of the connectors
 
@@ -47,6 +48,9 @@ func _ready():
 	else:
 		west_trigger.body_entered.connect(_on_west_trigger_body_entered)
 		east_trigger.body_entered.connect(_on_east_trigger_body_entered)
+	# quick poc on generating the whole dungeon at once
+	if should_make_all_rooms:
+		_on_west_trigger_body_entered(null)
 
 func _on_east_trigger_body_entered(body: Node2D) -> void:
 	east_trigger.queue_free()
