@@ -27,6 +27,11 @@ class_name EnemyFightingState
 @export var retreat_speed = 0.7
 @export var engage_speed = 1.15
 
+#maybe need to pull this out to an audio component
+#that reacts to attack events?
+@export var attack_sound: AudioStream
+@export var attack_sound_on_delay: bool = false
+
 @export var is_ranged: bool = false
 @export var projectile: PackedScene
 
@@ -90,6 +95,9 @@ func handle_physics_process(delta: float):
 # todo: strategy pattern?
 # the 'weapon' being the strategy?
 func handle_attack():
+	if attack_sound and enemy.audio_stream_player and attack_sound_on_delay:
+		enemy.audio_stream_player.stream = attack_sound
+		enemy.audio_stream_player.play()
 	if is_ranged:
 		var projectile_instance = projectile.instantiate() as Projectile
 		projectile_instance.init(enemy.global_position, attack_target)
@@ -103,6 +111,9 @@ func handle_attack():
 	target_locked = false
 
 func handle_attack_animations():
+	if attack_sound and enemy.audio_stream_player and not attack_sound_on_delay:
+		enemy.audio_stream_player.stream = attack_sound
+		enemy.audio_stream_player.play()
 	#would this also be in the 'weapon'
 	if is_ranged:
 		if not animated_weapon_sprite or animated_weapon_sprite.is_playing():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=47 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player/player.gd" id="1_511jo"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="7_kg3fl"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
 [ext_resource type="Texture2D" uid="uid://bp0ujgfwrrxai" path="res://assets/sprites/camelot/merlin_.png" id="8_t1qvo"]
+[ext_resource type="AudioStream" uid="uid://ck2wkfdfp2hij" path="res://assets/audio/Explosion.wav" id="16_rsfy3"]
+[ext_resource type="AudioStream" uid="uid://dup3swn76q3oi" path="res://assets/audio/PlayerRest.wav" id="17_clfv3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqaof"]
 atlas = ExtResource("2_35top")
@@ -336,6 +338,14 @@ one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="PlayerSpellSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_rsfy3")
+volume_db = -20.0
+
+[node name="PlayerRestSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_clfv3")
+volume_db = -20.0
 
 [connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]

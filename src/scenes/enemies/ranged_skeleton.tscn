@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d0nk2tnjt4nfh"]
+[gd_scene load_steps=38 format=3 uid="uid://d0nk2tnjt4nfh"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_adk1w"]
 [ext_resource type="Texture2D" uid="uid://b8oevf8utgr0q" path="res://assets/sprites/dungeon/skeleton_.png" id="2_nwp28"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="8_qote8"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="9_6ro1r"]
 [ext_resource type="PackedScene" uid="uid://bqkw7smlx0kjy" path="res://scenes/items/enemy_arrow.tscn" id="10_baqdl"]
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/GoblinAttack.wav" id="11_rd5yt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gww3"]
 atlas = ExtResource("2_nwp28")
@@ -249,6 +250,9 @@ animation = &"shoot"
 frame = 3
 frame_progress = 1.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -20.0
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("4_i88yj")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
@@ -288,6 +292,8 @@ ideal_distance_max = 70
 max_distance = 90
 retreat_speed = 1.15
 engage_speed = 0.7
+attack_sound = ExtResource("11_rd5yt")
+attack_sound_on_delay = true
 is_ranged = true
 projectile = ExtResource("10_baqdl")
 enemy = NodePath("../..")

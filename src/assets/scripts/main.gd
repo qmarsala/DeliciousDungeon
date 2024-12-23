@@ -7,6 +7,8 @@ extends Node2D
 @export var damage_number: PackedScene
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
+@onready var outdoor_music: AudioStreamPlayer2D = $OutdoorMusic
+@onready var dungeon_music: AudioStreamPlayer2D = $DungeonMusic
 
 #need to keep track of player data... is this where 'RefCounted' comes in?
 # how do we want to track this? for now maybe we can pass in a dictionary or something?
@@ -30,9 +32,13 @@ func _toggle_levels():
 	if is_outdoors:
 		next_scene = dungeon
 		is_outdoors = false
+		outdoor_music.stop()
+		dungeon_music.play()
 	else:
 		next_scene = outdoors
 		is_outdoors = true
+		dungeon_music.stop()
+		outdoor_music.play()
 	_change_scene.call_deferred(next_scene)
 
 func _change_scene(scene: PackedScene, force: bool = false):

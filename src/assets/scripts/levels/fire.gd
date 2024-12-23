@@ -6,6 +6,7 @@ extends Node2D
 @onready var rest_area: Area2D = $RestArea
 @onready var unlit: Sprite2D = $Unlit
 @onready var lit_animation: AnimatedSprite2D = $LitAnimation
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 
 @export var animation_name: String = "campfire_light_flicker"
 @export var lit: bool = true
@@ -31,6 +32,7 @@ func interact(player: Player) -> void:
 		# feels bad mutating the player passed in like this
 		player.player_items[Enums.Items.Wood] -= 1
 		player.rest()
+		audio_stream_player.play()
 		lite()
 
 func lite() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=39 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
 [ext_resource type="Texture2D" uid="uid://d3bkdx3n808em" path="res://assets/sprites/forestSprites_ v1.2/troll_.png" id="2_o0od4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="6_dte23"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="7_47qvp"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="8_lq3vs"]
+[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="13_ky7qa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jx43"]
 atlas = ExtResource("2_o0od4")
@@ -496,6 +497,9 @@ collision_mask = 32
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -20.0
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("3_f1a2u")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
@@ -528,6 +532,7 @@ script = ExtResource("8_lq3vs")
 attack_animation_player = NodePath("../../AttackAnimation")
 attack_cooldown = 1.8
 attack_damage = 3.5
+attack_sound = ExtResource("13_ky7qa")
 enemy = NodePath("../..")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/EnemyFightingState"]

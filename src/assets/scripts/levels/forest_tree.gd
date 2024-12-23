@@ -23,9 +23,12 @@ func chop() -> void:
 	
 	health_component.take_damage(1)
 	if health_component.is_dead():
+		$FelledTreePlayer.play()
 		create_stump()
 		animate_fell()
 		drop_logs()
+	else:
+		$ChopAudioPlayer.play()
 
 func create_stump():
 	#todo: want to create a new spirte that is an actual stump, for now just shortening the displayed view

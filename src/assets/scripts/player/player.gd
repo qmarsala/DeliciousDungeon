@@ -11,12 +11,14 @@ const INTERACTION_RANGE = 15.0
 const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
+
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var hand: Node2D = $Hand
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
+@onready var player_spell_sound: AudioStreamPlayer2D = $PlayerSpellSound
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
@@ -77,6 +79,7 @@ func rest():
 	rest_timer.start(30)
 	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
 	%HealthComponent.heal(%HealthComponent.starting_health * .35)
+	$PlayerRestSound.play()
 
 #todo: health component could have a hit box?
 # but what about other ways of taking damage?
@@ -111,6 +114,7 @@ func _on_hunger_timer_timeout() -> void:
 # need to check is dead before casting
 func _on_magic_attack() -> void:
 	if is_dead() or not weapon_equipped: return
+	player_spell_sound.play()
 	var target_location = get_magic_attack_location()
 	magic_attack.cast_at_location(target_location)
 

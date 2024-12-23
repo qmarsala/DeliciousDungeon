@@ -14,6 +14,7 @@ class_name Enemy
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var attack_range: RayCast2D = %AttackRange
 @onready var state_machine: EnemyStateMachine = $StateMachine
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 
 var attack_is_cooling_down = false
 var agro: float = 0.0

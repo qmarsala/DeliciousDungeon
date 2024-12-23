@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c38pvspamielw"]
+[gd_scene load_steps=13 format=3 uid="uid://c38pvspamielw"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dl4c3hhbw5max" path="res://scenes/main_menu.tscn" id="4_yc5bf"]
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="5_k5bt7"]
 [ext_resource type="Shader" path="res://assets/fog.gdshader" id="6_rybb5"]
+[ext_resource type="AudioStream" uid="uid://w2t0u6v60bjx" path="res://assets/audio/Harmony.ogg" id="7_pw28q"]
+[ext_resource type="AudioStream" uid="uid://v6mjp1y51k5k" path="res://assets/audio/SandsOfTime.mp3" id="8_bp6xg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_32tff"]
 shader = ExtResource("6_rybb5")
@@ -124,3 +126,15 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_khrm0")
 }
+
+[node name="OutdoorMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_pw28q")
+volume_db = -30.0
+max_distance = 100000.0
+attenuation = 1e-05
+
+[node name="DungeonMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_bp6xg")
+volume_db = -30.0
+max_distance = 100000.0
+attenuation = 1e-05
