@@ -12,7 +12,7 @@ class_name Enemy
 
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
-@onready var melee_range: RayCast2D = $MeleeRange
+@onready var attack_range: RayCast2D = $AttackRange
 @onready var state_machine: EnemyStateMachine = $StateMachine
 
 var attack_is_cooling_down = false

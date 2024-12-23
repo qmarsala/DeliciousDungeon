@@ -239,6 +239,12 @@ animation = &"shoot"
 frame = 3
 frame_progress = 1.0
 
+[node name="AttackRange" type="RayCast2D" parent="."]
+target_position = Vector2(70, 0)
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("4_i88yj")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
@@ -272,6 +278,12 @@ animated_weapon_sprite = NodePath("../../Hand/Bow")
 attack_cooldown = 2.0
 attack_delay = 0.5
 attack_damage = 2.0
+min_distance = 40
+ideal_distance_min = 50
+ideal_distance_max = 70
+max_distance = 90
+retreat_speed = 1.15
+engage_speed = 0.7
 is_ranged = true
 projectile = ExtResource("10_baqdl")
 enemy = NodePath("../..")
@@ -281,8 +293,6 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
-
-[node name="MeleeRange" type="RayCast2D" parent="."]
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
