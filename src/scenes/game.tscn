@@ -96,7 +96,7 @@ dungeon = ExtResource("3_sqakx")
 main_menu = ExtResource("4_yc5bf")
 damage_number = ExtResource("5_k5bt7")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." groups=["World"]]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
