@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://chrbwvn5udqeh"]
+[gd_scene load_steps=11 format=4 uid="uid://chrbwvn5udqeh"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_jdimc"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_td5qt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="4_oaukl"]
 [ext_resource type="Resource" uid="uid://3gf50wxc3jkw" path="res://assets/data/items/staff_of_fire.tres" id="5_nthjt"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="6_bmdef"]
+[ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="6_l6r4d"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="7_w6wpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdkqv"]
@@ -44,6 +45,10 @@ position = Vector2(46, -45)
 [node name="Pickup" parent="." instance=ExtResource("4_oaukl")]
 position = Vector2(30, 26)
 item = ExtResource("5_nthjt")
+
+[node name="EnemyBounds" parent="." instance=ExtResource("6_l6r4d")]
+position = Vector2(79, 1)
+rotation = 1.5708
 
 [node name="EastTrigger" parent="." instance=ExtResource("6_bmdef")]
 position = Vector2(74, 1)

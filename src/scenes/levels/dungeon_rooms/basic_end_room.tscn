@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://dojvv35t76k1m"]
+[gd_scene load_steps=8 format=4 uid="uid://dojvv35t76k1m"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_uys1d"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_ysad6"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_8kimv"]
+[ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="4_cr274"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="4_pm77i"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="5_e51vu"]
 
@@ -34,6 +35,10 @@ position = Vector2(-48, -22)
 
 [node name="Fire" parent="." instance=ExtResource("3_8kimv")]
 position = Vector2(59, 48)
+
+[node name="EnemyBounds" parent="." instance=ExtResource("4_cr274")]
+position = Vector2(-46, 0)
+rotation = -1.5708
 
 [node name="OnPlayerAreaTrigger" parent="." instance=ExtResource("4_pm77i")]
 position = Vector2(91, -5)

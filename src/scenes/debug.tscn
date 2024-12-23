@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=18 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://3gf50wxc3jkw" path="res://assets/data/items/staff_of_fire.tres" id="10_ope03"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
+[ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
 texture = ExtResource("1_rxblh")
@@ -398,13 +399,8 @@ position = Vector2(175, 166)
 [node name="RangedSkeleton" parent="." instance=ExtResource("12_i7yee")]
 position = Vector2(121, -104)
 
-[node name="EnemyBounds" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds"]
-position = Vector2(1, 193)
-shape = SubResource("WorldBoundaryShape2D_k741k")
+[node name="EnemyBounds" parent="." instance=ExtResource("13_hvojg")]
+position = Vector2(0, 192)
 
 [node name="EnemyBounds2" type="StaticBody2D" parent="."]
 position = Vector2(32, 1)
