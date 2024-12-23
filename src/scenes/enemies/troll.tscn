@@ -516,10 +516,9 @@ enemy = NodePath("../..")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/EnemyDeadState"]
 
-[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player", "weapon_sprite", "enemy")]
+[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player", "enemy")]
 script = ExtResource("8_lq3vs")
 attack_animation_player = NodePath("../../AttackAnimation")
-weapon_sprite = NodePath("../../Club")
 attack_cooldown = 1.8
 attack_damage = 3.5
 enemy = NodePath("../..")

@@ -262,6 +262,27 @@ debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(0, 3)
 
+[node name="MagicAttackIndicator" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.196078)
+texture = ExtResource("7_kg3fl")
+region_enabled = true
+region_rect = Rect2(20, 19, 8, 9)
+
+[node name="MoveIndicator" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.184314, 0.305882, 0.945098, 1)
+z_index = 100
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_t1qvo")
+region_enabled = true
+region_rect = Rect2(76, 175, 8, 8)
+
+[node name="InteractionRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
 character_sprite = NodePath("../CharacterSprite")
@@ -299,6 +320,10 @@ player = NodePath("../..")
 script = ExtResource("8_o8qu8")
 player = NodePath("../..")
 
+[node name="DeathTimer" type="Timer" parent="StateMachine/DeadState"]
+wait_time = 0.7
+one_shot = true
+
 [node name="HungerTimer" type="Timer" parent="."]
 wait_time = 6.0
 autostart = true
@@ -311,27 +336,6 @@ one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="MagicAttackIndicator" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.196078)
-texture = ExtResource("7_kg3fl")
-region_enabled = true
-region_rect = Rect2(20, 19, 8, 9)
-
-[node name="MoveIndicator" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.184314, 0.305882, 0.945098, 1)
-z_index = 100
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_t1qvo")
-region_enabled = true
-region_rect = Rect2(76, 175, 8, 8)
-
-[node name="InteractionRayCast" type="RayCast2D" parent="."]
-target_position = Vector2(15, 0)
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
 
 [connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]

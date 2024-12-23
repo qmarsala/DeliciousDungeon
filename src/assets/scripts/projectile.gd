@@ -10,11 +10,6 @@ var target = Vector2(0,0)
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Enemy:
-		body.receive_damage(damage)
-	queue_free()
-	
 func init(starting_position, target_position):
 	# todo: is it possible to add it to the scene tree from here?
 	position = starting_position
@@ -30,4 +25,14 @@ func face_target():
 	rotate(deg_to_rad(90))
 
 func _on_timer_timeout() -> void:
+	queue_free()
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if Interfaces.is_interface(area, Interfaces.Damageable):
+		area.receive_damage(damage)
+	queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if Interfaces.is_interface(body, Interfaces.Damageable):
+		body.receive_damage(damage)
 	queue_free()

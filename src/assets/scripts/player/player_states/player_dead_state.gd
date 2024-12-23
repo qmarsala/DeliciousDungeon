@@ -1,16 +1,14 @@
 extends PlayerState
 class_name PlayerDeadState
 
-var died_at : float = 0
-var signaled_death : bool 
+@onready var death_timer: Timer = $DeathTimer
+
+func _ready() -> void:
+	death_timer.timeout.connect(player.PlayerDied.emit)
+
 func enter() -> void:
-	died_at = time
+	death_timer.start()
 	player.character_sprite.play("die")
 
 func handle_physics_process(delta: float) -> void:
-	player.velocity = Vector2(move_toward(player.velocity.x, Vector2.ZERO.x, delta), move_toward(player.velocity.y, Vector2.ZERO.y, delta))
-
-func handle_process(delta: float) -> void:
-	if time - died_at >= .7 and not signaled_death:
-		signaled_death = true
-		player.PlayerDied.emit()
+	player.velocity = Vector2.ZERO
