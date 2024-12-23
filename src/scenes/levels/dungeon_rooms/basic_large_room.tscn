@@ -55,16 +55,23 @@ position = Vector2(169, 2)
 shape = SubResource("RectangleShape2D_uoyv1")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_akpay")]
-position = Vector2(-1, -2)
+position = Vector2(-1, 0)
+enemy_scene_b_rate = 0.3
+enemy_scene_c_rate = 0.05
+no_enemy_rate = 0.25
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("5_akpay")]
-position = Vector2(-82, -80)
+z_index = 1
+position = Vector2(-93, -71)
 
 [node name="EnemySpawner3" parent="." instance=ExtResource("5_akpay")]
-position = Vector2(85, 69)
+z_index = 1
+position = Vector2(91, 75)
 
 [node name="EnemySpawner4" parent="." instance=ExtResource("5_akpay")]
-position = Vector2(91, -3)
+z_index = 1
+position = Vector2(-58, 0)
 
 [node name="EnemySpawner5" parent="." instance=ExtResource("5_akpay")]
-position = Vector2(-90, -4)
+z_index = 1
+position = Vector2(58, -1)

@@ -46,7 +46,11 @@ position = Vector2(-138, 0)
 shape = SubResource("RectangleShape2D_arsex")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_eo528")]
-position = Vector2(-60, 1)
+position = Vector2(57, 0)
+enemy_scene_b_rate = 0.05
+enemy_scene_c_rate = 0.35
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("4_eo528")]
-position = Vector2(64, 0)
+position = Vector2(-45, 0)
+enemy_scene_b_rate = 0.05
+enemy_scene_c_rate = 0.35
