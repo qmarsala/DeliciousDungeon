@@ -13,7 +13,7 @@ func _ready():
 	var seed = randf()
 	if seed <= no_enemy_rate:
 		return
-	
+
 	var enemy
 	var enemy_b = 1 - enemy_scene_b_rate
 	var enemy_c = enemy_b - enemy_scene_c_rate
@@ -26,5 +26,4 @@ func _ready():
 	# WATCH: this line seems to potentially fix the "HELLO THERE" bug where
 	# enemies zip to you as you walk into render distance.  not sure if
 	# this is just a coincedence, or real.
-	enemy.global_position = position
-	add_sibling.call_deferred(enemy)
+	add_child.call_deferred(enemy)

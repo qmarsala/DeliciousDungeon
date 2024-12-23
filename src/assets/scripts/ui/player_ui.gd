@@ -55,7 +55,10 @@ var status_map: Dictionary = {
 }
 func update_status_label(status):
 	if status_label:
-		status_label.text = "Status: " + status_map[status]
+		var status_text = status_map[status]
+		if hunger_bar.value == 0:
+			status_text = "Starving"
+		status_label.text = "Status: " + status_text
 
 func update_charge_bar(charge):
 	if charged_attack_bar:
