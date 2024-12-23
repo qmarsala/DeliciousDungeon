@@ -35,6 +35,7 @@ class_name EnemyFightingState
 
 var player: CharacterBody2D
 var attack_target: Vector2
+var target_locked: bool
 
 var retreat_cooldown : float = 0.5
 var retreated_at : float = 0
@@ -49,13 +50,15 @@ func enter():
 func handle_process(delta: float) -> void:
 	if not player: return
 	# perhaps some angles should cause some skewing / z index changes?
-	enemy.attack_range.look_at(player.global_position)
+	if not target_locked:
+		enemy.attack_range.look_at(player.global_position)
 	
 	if enemy.attack_is_cooling_down: return
 	var potential_target = player.global_position
 	enemy.attack_range.look_at(potential_target)
 	var target = enemy.attack_range.get_collider()
 	if target is Hitbox:
+		target_locked = true
 		enemy.attack_is_cooling_down = true
 		handle_attack_animations()
 		attack_target = potential_target
@@ -89,7 +92,7 @@ func handle_physics_process(delta: float):
 func handle_attack():
 	if is_ranged:
 		var projectile_instance = projectile.instantiate() as Projectile
-		projectile_instance.init(enemy.global_position, player.global_position)
+		projectile_instance.init(enemy.global_position, attack_target)
 		# todo: where is the best place to spawn these things?
 		get_tree().root.add_child(projectile_instance)
 	else:
@@ -97,6 +100,7 @@ func handle_attack():
 		var target = enemy.attack_range.get_collider()
 		if target is Hitbox:
 			target.receive_damage(attack_damage)
+	target_locked = false
 
 func handle_attack_animations():
 	#would this also be in the 'weapon'
