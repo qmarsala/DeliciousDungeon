@@ -19,6 +19,7 @@ class_name EnemyFightingState
 @export var attack_delay: float = .3
 @export var attack_damage = 1.5
 
+# wonder if 'retreat' should be its own state
 @export var min_distance = 10
 @export var ideal_distance_min = 11
 @export var ideal_distance_max = 19
@@ -35,12 +36,22 @@ class_name EnemyFightingState
 var player: CharacterBody2D
 var attack_target: Vector2
 
+var retreat_cooldown : float = 0.5
+var retreated_at : float = 0
+var min_retreat_time : float = 0.5
+var time : float = 0
+func _process(delta: float) -> void:
+	time += delta
+
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
 
-func handle_process(delta: float):
-	if not player or enemy.attack_is_cooling_down: return
+func handle_process(delta: float) -> void:
+	if not player: return
+	# perhaps some angles should cause some skewing / z index changes?
+	enemy.attack_range.look_at(player.global_position)
 	
+	if enemy.attack_is_cooling_down: return
 	var potential_target = player.global_position
 	enemy.attack_range.look_at(potential_target)
 	var target = enemy.attack_range.get_collider()
@@ -58,9 +69,14 @@ func handle_physics_process(delta: float):
 	if enemy:
 		var direction = player.global_position - enemy.global_position
 		var distance = direction.length()
-		if distance <= min_distance:
+		
+		if time - retreated_at <= min_retreat_time:
 			# todo: what about when this means running into a wall?
 			enemy.velocity = -(direction.normalized() * (enemy.speed * retreat_speed))
+			return
+
+		if distance <= min_distance and time - retreated_at >= retreat_cooldown:
+			retreated_at = time
 		elif distance >= max_distance:
 			Transitioned.emit(self, "EnemyExploringState")
 		elif distance >= ideal_distance_min and distance <= ideal_distance_max:
