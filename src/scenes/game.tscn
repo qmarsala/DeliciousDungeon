@@ -129,7 +129,7 @@ libraries = {
 
 [node name="OutdoorMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_pw28q")
-volume_db = -30.0
+volume_db = -20.0
 max_distance = 100000.0
 attenuation = 1e-05
 
