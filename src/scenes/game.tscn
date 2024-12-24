@@ -1,14 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://c38pvspamielw"]
+[gd_scene load_steps=21 format=3 uid="uid://c38pvspamielw"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
 [ext_resource type="PackedScene" uid="uid://v8yl2qd4myvg" path="res://scenes/levels/dungeon.tscn" id="3_sqakx"]
 [ext_resource type="PackedScene" uid="uid://dl4c3hhbw5max" path="res://scenes/main_menu.tscn" id="4_yc5bf"]
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="5_k5bt7"]
+[ext_resource type="Script" path="res://assets/quests/quest_poc.gd" id="6_gulh1"]
+[ext_resource type="Resource" uid="uid://c0dp35sx4iu0w" path="res://assets/quests/kill_trolls.tres" id="6_h1k7r"]
 [ext_resource type="Shader" path="res://assets/fog.gdshader" id="6_rybb5"]
-[ext_resource type="PackedScene" uid="uid://y304jg6volpg" path="res://scenes/ui/quest_poc_ui.tscn" id="7_d3qop"]
+[ext_resource type="Resource" uid="uid://bl634ciahvr2a" path="res://assets/quests/kill_goblins.tres" id="6_vyjaa"]
+[ext_resource type="Resource" uid="uid://dfp1vr0asb72d" path="res://assets/quests/kill_skeletons.tres" id="7_abv55"]
+[ext_resource type="PackedScene" uid="uid://y304jg6volpg" path="res://scenes/ui/quest_ui_poc.tscn" id="7_d3qop"]
 [ext_resource type="AudioStream" uid="uid://w2t0u6v60bjx" path="res://assets/audio/Harmony.ogg" id="7_pw28q"]
 [ext_resource type="AudioStream" uid="uid://v6mjp1y51k5k" path="res://assets/audio/SandsOfTime.mp3" id="8_bp6xg"]
+[ext_resource type="Resource" uid="uid://b57cfm3fouo4v" path="res://assets/quests/dungeon_steward.tres" id="8_ek0gc"]
 [ext_resource type="Script" path="res://assets/scripts/ui/quest_log_ui_poc.gd" id="9_2b5w3"]
 [ext_resource type="AudioStream" uid="uid://bug8pb2tjjyjr" path="res://assets/audio/QuestCompleted.wav" id="10_m8g1c"]
 
@@ -98,6 +103,7 @@ outdoors = ExtResource("2_re2jb")
 dungeon = ExtResource("3_sqakx")
 main_menu = ExtResource("4_yc5bf")
 damage_number = ExtResource("5_k5bt7")
+quests = Array[ExtResource("6_gulh1")]([ExtResource("6_vyjaa"), ExtResource("8_ek0gc"), ExtResource("7_abv55"), ExtResource("6_h1k7r")])
 
 [node name="World" type="Node2D" parent="." groups=["World"]]
 
@@ -105,7 +111,7 @@ damage_number = ExtResource("5_k5bt7")
 layer = 100
 visible = false
 
-[node name="Control" type="Control" parent="QuestLogLayer"]
+[node name="QuestLogUI" type="Control" parent="QuestLogLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 488.0
@@ -114,29 +120,16 @@ offset_right = 638.0
 offset_bottom = 402.0
 mouse_filter = 1
 script = ExtResource("9_2b5w3")
+quest_ui_scene = ExtResource("7_d3qop")
 
-[node name="ActiveQuestsContainer" type="VBoxContainer" parent="QuestLogLayer/Control"]
+[node name="ActiveQuestsContainer" type="VBoxContainer" parent="QuestLogLayer/QuestLogUI"]
+layout_mode = 0
 offset_top = 26.0
 offset_right = 150.0
 offset_bottom = 426.0
 
-[node name="BountyQuest" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-
-[node name="BountyQuest2" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-
-[node name="BountyQuest3" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-
-[node name="ActionQuest" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-
-[node name="ToggleQuestLog" type="Button" parent="QuestLogLayer/Control"]
+[node name="ToggleQuestLog" type="Button" parent="QuestLogLayer/QuestLogUI"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 1.0
 offset_right = 132.0
@@ -144,6 +137,7 @@ offset_bottom = 22.0
 text = "show/hide quest log"
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 101
 
 [node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
 modulate = Color(0, 0, 0, 0)

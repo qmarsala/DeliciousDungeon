@@ -12,3 +12,6 @@ func enter() -> void:
 
 func handle_physics_process(delta: float) -> void:
 	player.velocity = Vector2.ZERO
+
+func handle_movement_input(input: InputEvent) -> void:
+	pass

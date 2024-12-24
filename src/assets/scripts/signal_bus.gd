@@ -13,4 +13,4 @@ signal DamageReceived(damage: float, position: Vector2)
 # quest poc: is this how we want to track actions we care about?
 signal EnemyDied(enemy_id: int)
 signal ActionPerformed(action_id: int)
-signal QuestCompleted(name: String)
+signal QuestCompleted(quest: Quest)

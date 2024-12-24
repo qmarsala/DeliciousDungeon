@@ -9,6 +9,10 @@ var time = 0
 func _process(delta: float) -> void:
 	time += delta 
 
+func _unhandled_input(event: InputEvent) -> void:
+	handle_movement_input(event)
+	handle_interact_action(event)
+	
 func enter():
 	pass
 
@@ -18,23 +22,22 @@ func exit():
 func handle_process(delta: float):
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	handle_movement_input(event)
-	handle_interact_action(event)
-
 func handle_physics_process(delta: float):
 	var was_holding = holding_move
 	holding_move = move_pressed and time - pressed_at > .25
 	if holding_move:
 		player.move_destination_indicator.hide()
 		player.move_target = player.get_global_mouse_position()
+		Transitioned.emit(self, "MoveState")
 	if was_holding and !holding_move:
 		player.move_destination_indicator.show()
+		player.move_target = player.get_global_mouse_position()
 
 func handle_interact_action(event: InputEvent) -> void:
 	if not player: return
 	if event.is_action_pressed("interact"):
 		player.interact()
+		get_viewport().set_input_as_handled()
 
 #in this method we have the details implemented here, in contrast to above where we call 'interact'
 #just to play around with different approaches

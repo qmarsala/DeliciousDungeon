@@ -5,11 +5,13 @@ extends Node2D
 @export var dungeon: PackedScene
 @export var main_menu: PackedScene
 @export var damage_number: PackedScene
+@export var quests: Array[Quest]
 
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 @onready var outdoor_music: AudioStreamPlayer2D = $OutdoorMusic
 @onready var dungeon_music: AudioStreamPlayer2D = $DungeonMusic
+@onready var quest_log_ui: Control = $QuestLogLayer/QuestLogUI
 
 #need to keep track of player data... is this where 'RefCounted' comes in?
 # how do we want to track this? for now maybe we can pass in a dictionary or something?
@@ -28,6 +30,9 @@ func _ready():
 	SignalBusService.SceneChange.connect(_toggle_levels)
 	#temp: should go to a damage number service in the main scene
 	SignalBusService.DamageReceived.connect(_add_damage_number)
+	SignalBusService.QuestCompleted.connect(on_quest_completed)
+	QuestSystemService.add_quests(quests)
+	quest_log_ui.init()
 	_change_scene(main_menu, true)
 
 func _toggle_levels():
@@ -74,7 +79,7 @@ func _perform_scene_change():
 func _game_over():
 	# todo: death penalty of some kind.
 	# thinking maybe you need to 'pay gold' or 'discard an item'?
-	_change_scene(outdoors)
+	_toggle_levels()
 
 func _add_damage_number(damage: float, position: Vector2):
 	var instance = damage_number.instantiate() as Label
@@ -83,6 +88,6 @@ func _add_damage_number(damage: float, position: Vector2):
 	add_child(instance)
 
 # sound service?
-func on_quest_completed(completed_quest_name: String):
+func on_quest_completed(completed_quest: Quest):
 	#global sounds? how do we not care how far from source you are? just use a big number?
 	$QuestCompletedSound.play()
