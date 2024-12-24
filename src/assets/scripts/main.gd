@@ -6,11 +6,6 @@ extends Node2D
 @export var main_menu: PackedScene
 @export var damage_number: PackedScene
 
-@export var bounty_one: BountyQuest
-@export var bounty_two: BountyQuest
-@export var bounty_three: BountyQuest
-@export var action_quest: ActionQuest
-
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 @onready var outdoor_music: AudioStreamPlayer2D = $OutdoorMusic
@@ -33,26 +28,7 @@ func _ready():
 	SignalBusService.SceneChange.connect(_toggle_levels)
 	#temp: should go to a damage number service in the main scene
 	SignalBusService.DamageReceived.connect(_add_damage_number)
-	
-	#temp: quest poc
-	wire_quests()
 	_change_scene(main_menu, true)
-
-func wire_quests():
-	SignalBusService.EnemyDied.connect(bounty_one.on_enemy_died)
-	SignalBusService.EnemyDied.connect(bounty_two.on_enemy_died)
-	SignalBusService.EnemyDied.connect(bounty_three.on_enemy_died)
-	bounty_one.QuestCompleted.connect(on_quest_completed)
-	bounty_two.QuestCompleted.connect(on_quest_completed)
-	bounty_three.QuestCompleted.connect(on_quest_completed)
-	
-	SignalBusService.ActionPerformed.connect(action_quest.on_action)
-	action_quest.QuestCompleted.connect(on_quest_completed)
-	
-	$QuestLogLayer/VBoxContainer/BountyQuest.quest = bounty_one
-	$QuestLogLayer/VBoxContainer/BountyQuest2.quest = bounty_two
-	$QuestLogLayer/VBoxContainer/BountyQuest3.quest = bounty_three
-	$QuestLogLayer/VBoxContainer/ActionQuest.quest = action_quest
 
 func _toggle_levels():
 	if not game_started:
@@ -92,17 +68,13 @@ func _perform_scene_change():
 			break
 	world.add_child.call_deferred(current_scene)
 	world.process_mode = Node.PROCESS_MODE_INHERIT
-	if game_started and !$QuestLogLayer/VBoxContainer.visible:
-		$QuestLogLayer/VBoxContainer.show()
+	if game_started and !$QuestLogLayer.visible:
+		$QuestLogLayer.show()
 
 func _game_over():
-	$QuestLogLayer/VBoxContainer.hide()
-	game_started = false
-	action_quest.progress = 0
-	bounty_one.progress = 0
-	bounty_two.progress = 0
-	bounty_three.progress = 0
-	_change_scene(main_menu)
+	# todo: death penalty of some kind.
+	# thinking maybe you need to 'pay gold' or 'discard an item'?
+	_change_scene(outdoors)
 
 func _add_damage_number(damage: float, position: Vector2):
 	var instance = damage_number.instantiate() as Label
@@ -110,21 +82,7 @@ func _add_damage_number(damage: float, position: Vector2):
 	instance.global_position = position
 	add_child(instance)
 
-# quest service?
-# should encompas hooking up quest events
-# managing a list of multiple quests
-# showing and hiding quests, playing notification sounds
-# probably would be moving these to a completed list and then they would no longer show
-# in the active quests 
+# sound service?
 func on_quest_completed(completed_quest_name: String):
-	print("Quest completed: ", completed_quest_name)
 	#global sounds? how do we not care how far from source you are? just use a big number?
 	$QuestCompletedSound.play()
-	if $QuestLogLayer/VBoxContainer/BountyQuest.quest.name == completed_quest_name:
-		$QuestLogLayer/VBoxContainer/BountyQuest.hide()
-	elif $QuestLogLayer/VBoxContainer/BountyQuest2.quest.name == completed_quest_name:
-		$QuestLogLayer/VBoxContainer/BountyQuest2.hide()
-	elif $QuestLogLayer/VBoxContainer/BountyQuest3.quest.name == completed_quest_name:
-		$QuestLogLayer/VBoxContainer/BountyQuest3.hide()
-	else:
-		$QuestLogLayer/VBoxContainer/ActionQuest.hide()

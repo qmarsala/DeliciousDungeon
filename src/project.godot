@@ -19,8 +19,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Interfaces="*res://assets/scripts/interfaces.gd"
-SignalBusService="*res://assets/scripts/signal_bus.gd"
 Enums="*res://assets/scripts/enums.gd"
+SignalBusService="*res://assets/scripts/signal_bus.gd"
+QuestSystemService="*res://assets/scripts/systems/quest_system.gd"
 
 [display]
 

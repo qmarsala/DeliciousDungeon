@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cj44w170s0wa3"]
 
-[ext_resource type="Script" path="res://assets/scripts/spell.gd" id="1_2wrd2"]
+[ext_resource type="Script" path="res://assets/scripts/items/spell.gd" id="1_2wrd2"]
 [ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="1_4t0kg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d85sh"]

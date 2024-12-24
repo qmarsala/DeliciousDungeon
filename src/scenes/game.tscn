@@ -1,18 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://c38pvspamielw"]
+[gd_scene load_steps=16 format=3 uid="uid://c38pvspamielw"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
 [ext_resource type="PackedScene" uid="uid://v8yl2qd4myvg" path="res://scenes/levels/dungeon.tscn" id="3_sqakx"]
 [ext_resource type="PackedScene" uid="uid://dl4c3hhbw5max" path="res://scenes/main_menu.tscn" id="4_yc5bf"]
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="5_k5bt7"]
-[ext_resource type="Resource" uid="uid://c0dp35sx4iu0w" path="res://assets/quests/kill_trolls.tres" id="6_h1k7r"]
 [ext_resource type="Shader" path="res://assets/fog.gdshader" id="6_rybb5"]
-[ext_resource type="Resource" uid="uid://bl634ciahvr2a" path="res://assets/quests/kill_goblins.tres" id="6_vyjaa"]
-[ext_resource type="Resource" uid="uid://dfp1vr0asb72d" path="res://assets/quests/kill_skeletons.tres" id="7_abv55"]
 [ext_resource type="PackedScene" uid="uid://y304jg6volpg" path="res://scenes/ui/quest_poc_ui.tscn" id="7_d3qop"]
-[ext_resource type="Resource" uid="uid://rs6br4sf1g1c" path="res://assets/quests/light_fires.tres" id="7_o7wu1"]
 [ext_resource type="AudioStream" uid="uid://w2t0u6v60bjx" path="res://assets/audio/Harmony.ogg" id="7_pw28q"]
 [ext_resource type="AudioStream" uid="uid://v6mjp1y51k5k" path="res://assets/audio/SandsOfTime.mp3" id="8_bp6xg"]
+[ext_resource type="Script" path="res://assets/scripts/ui/quest_log_ui_poc.gd" id="9_2b5w3"]
 [ext_resource type="AudioStream" uid="uid://bug8pb2tjjyjr" path="res://assets/audio/QuestCompleted.wav" id="10_m8g1c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_32tff"]
@@ -101,39 +98,50 @@ outdoors = ExtResource("2_re2jb")
 dungeon = ExtResource("3_sqakx")
 main_menu = ExtResource("4_yc5bf")
 damage_number = ExtResource("5_k5bt7")
-bounty_one = ExtResource("6_vyjaa")
-bounty_two = ExtResource("7_abv55")
-bounty_three = ExtResource("6_h1k7r")
-action_quest = ExtResource("7_o7wu1")
 
 [node name="World" type="Node2D" parent="." groups=["World"]]
 
 [node name="QuestLogLayer" type="CanvasLayer" parent="."]
-scale = Vector2(0.7, 0.7)
-transform = Transform2D(0.7, 0, 0, 0.7, 0, 0)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="QuestLogLayer"]
+layer = 100
 visible = false
-offset_left = 764.286
-offset_top = 1.42857
-offset_right = 914.286
-offset_bottom = 401.429
 
-[node name="BountyQuest" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+[node name="Control" type="Control" parent="QuestLogLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 488.0
+offset_top = 2.0
+offset_right = 638.0
+offset_bottom = 402.0
+mouse_filter = 1
+script = ExtResource("9_2b5w3")
+
+[node name="ActiveQuestsContainer" type="VBoxContainer" parent="QuestLogLayer/Control"]
+offset_top = 26.0
+offset_right = 150.0
+offset_bottom = 426.0
+
+[node name="BountyQuest" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 
-[node name="BountyQuest2" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+[node name="BountyQuest2" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 
-[node name="BountyQuest3" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+[node name="BountyQuest3" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 
-[node name="ActionQuest" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+[node name="ActionQuest" parent="QuestLogLayer/Control/ActiveQuestsContainer" instance=ExtResource("7_d3qop")]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
+
+[node name="ToggleQuestLog" type="Button" parent="QuestLogLayer/Control"]
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 22.0
+text = "show/hide quest log"
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
@@ -151,6 +159,7 @@ offset_right = 400.0
 offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionLayer"]
 root_node = NodePath("../..")

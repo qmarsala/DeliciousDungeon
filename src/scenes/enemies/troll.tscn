@@ -462,7 +462,7 @@ drop = ExtResource("2_uhaql")
 pickupScene = ExtResource("3_mlcm0")
 speed = 30.0
 drop_rate = 1.0
-enemy_id = 1
+enemy_id = 3
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)

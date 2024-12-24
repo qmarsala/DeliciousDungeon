@@ -7,9 +7,10 @@ extends Node
 signal SceneChange
 
 #probably want to know who got damaged by what?
-signal DamageReceived(damage, position)
+signal DamageReceived(damage: float, position: Vector2)
 
-signal EnemyDied(enemy_id)
 
-# part of quest poc for lighting fires, is this how we want to track actions we care about?
-signal ActionPerformed(action_id)
+# quest poc: is this how we want to track actions we care about?
+signal EnemyDied(enemy_id: int)
+signal ActionPerformed(action_id: int)
+signal QuestCompleted(name: String)
