@@ -33,5 +33,5 @@ func exit():
 	if player.weapon_equipped:
 		player.weapon.show()
 
-func handle_physics_process(delta: float) -> void:
+func handle_movement_input(event: InputEvent) -> void:
 	pass

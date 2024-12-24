@@ -16,45 +16,47 @@ func exit():
 	pass
 
 func handle_process(delta: float):
-	handle_interact_action()
-	
-func handle_physics_process(delta: float):
-	handle_movement_input(delta)
-	handle_dash_input()
+	pass
 
-# this is calling up... is this ok?
-func handle_interact_action() -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	handle_movement_input(event)
+	handle_interact_action(event)
+
+func handle_physics_process(delta: float):
+	var was_holding = holding_move
+	holding_move = move_pressed and time - pressed_at > .25
+	if holding_move:
+		player.move_destination_indicator.hide()
+		player.move_target = player.get_global_mouse_position()
+	if was_holding and !holding_move:
+		player.move_destination_indicator.show()
+
+func handle_interact_action(event: InputEvent) -> void:
 	if not player: return
-	if Input.is_action_just_pressed("interact"):
+	if event.is_action_pressed("interact"):
 		player.interact()
 
 #in this method we have the details implemented here, in contrast to above where we call 'interact'
 #just to play around with different approaches
 #todo: how can we get the move indicator code consolidated into one spot?
 var pressed_at = 0
-func handle_movement_input(delta):
+var move_pressed = false
+var holding_move = false
+func handle_movement_input(event: InputEvent):
 	if not player: return
-	time += delta
-	if player.move_disabled and Input.is_action_just_released("move"):
+	if player.move_disabled and event.is_action_released("move"):
 		player.move_disabled = false
 	
 	if player.move_disabled: return
 	var mouse_pos = player.get_global_mouse_position()
-	if Input.is_action_just_pressed("move"):
+	if event.is_action_pressed("move"):
 		pressed_at = time
+		move_pressed = true
 		player.move_target = mouse_pos
 		player.move_destination_indicator.show()
 		Transitioned.emit(self, "MoveState")
-	elif Input.is_action_pressed("move") and time - pressed_at > .25 and player.move_target.distance_to(mouse_pos) > 5:
-		player.move_target = mouse_pos
-		player.move_destination_indicator.hide()
-		Transitioned.emit(self, "MoveState")
-	elif Input.is_action_just_released("move") and time - pressed_at > .25:
-		player.move_destination_indicator.show()
-
-func handle_dash_input():
-	if not player: return
-	var mouse_pos = player.get_global_mouse_position()
-	if Input.is_action_just_pressed("dash") and not player.is_dash_cooldown:
+	elif event.is_action_released("move"):
+		move_pressed = false
+	elif event.is_action_pressed("dash") and not player.is_dash_cooldown:
 		player.move_target = mouse_pos
 		Transitioned.emit(self, "DashState")

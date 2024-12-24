@@ -2,7 +2,6 @@ extends PlayerState
 class_name PlayerMoveState
 
 func handle_process(delta): 
-	handle_interact_action()
 	weapon_animation()
 	if player.global_position.distance_to(player.move_target) <= 5:
 		player.move_target = player.global_position
