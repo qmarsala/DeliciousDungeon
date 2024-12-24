@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_877ma")
-target_enemy_id = 1
+target_enemy_id = 3
 name = "The bigger they are"
 description = "Kill 5 trolls"
 count = 5

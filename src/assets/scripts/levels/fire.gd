@@ -24,7 +24,7 @@ func _ready() -> void:
 		point_light_2d.enabled = true
 		return
 	if !lit and randf() <= lit_chance:
-		lite()
+		light()
 
 func interact(player: Player) -> void:
 	if player.player_items.has(Enums.Items.Wood) and player.player_items[Enums.Items.Wood] > 0:
@@ -33,11 +33,11 @@ func interact(player: Player) -> void:
 		player.player_items[Enums.Items.Wood] -= 1
 		player.rest()
 		audio_stream_player.play()
-		lite()
-		#for quest poc
-		SignalBusService.ActionPerformed.emit(3)
+		light()
+		#for quest poc - these events could include the player position? that might help with sounds problem?
+		SignalBusService.ActionPerformed.emit(Enums.Actions.LightFire)
 
-func lite() -> void:
+func light() -> void:
 	if lit: return
 	lit = true
 	lit_animation.show()

@@ -5,3 +5,15 @@ enum Items {
 	Food,
 	StaffOfFire
 }
+
+enum Enemies {
+	None,
+	Goblin,
+	RangedSkeleton,
+	Troll
+}
+
+enum Actions {
+	None,
+	LightFire
+}

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_jvxjs")
-target_enemy_id = 0
+target_enemy_id = 1
 name = "A goblin problem"
 description = "kill 25 goblins"
 count = 25

@@ -1,8 +1,7 @@
 class_name Quest
 extends Resource
 
-signal QuestCompleted(name: String)
-
+#todo: create 'quest steps' and allow quests to have several steps
 @export var name: String
 @export var description: String
 @export var count: int
@@ -19,4 +18,4 @@ func log_progress(more_progress: int) -> void:
 	progress += more_progress
 	if progress >= count:
 		completed = true
-		QuestCompleted.emit(name)
+		SignalBusService.QuestCompleted.emit(name)
