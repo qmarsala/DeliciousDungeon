@@ -34,6 +34,8 @@ func interact(player: Player) -> void:
 		player.rest()
 		audio_stream_player.play()
 		lite()
+		#for quest poc
+		SignalBusService.ActionPerformed.emit(3)
 
 func lite() -> void:
 	if lit: return

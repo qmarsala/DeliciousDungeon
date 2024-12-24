@@ -5,6 +5,10 @@ extends Node2D
 @export var dungeon: PackedScene
 @export var main_menu: PackedScene
 @export var damage_number: PackedScene
+
+@export var current_bounty: BountyQuest
+@export var current_action_quest: ActionQuest
+
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 @onready var outdoor_music: AudioStreamPlayer2D = $OutdoorMusic
@@ -19,16 +23,28 @@ var player_items: Dictionary = {
 }
 
 var is_outdoors = false
+var game_started = false
 var current_scene
 var next_scene
 
 func _ready():
 	SignalBusService.SceneChange.connect(_toggle_levels)
-	#temp here: should go to a damage number service in the main scene
+	#temp: should go to a damage number service in the main scene
 	SignalBusService.DamageReceived.connect(_add_damage_number)
+	#temp: quest poc
+	current_bounty.QuestCompleted.connect(on_quest_completed)
+	SignalBusService.EnemyDied.connect(current_bounty.on_enemy_died)
+	SignalBusService.ActionPerformed.connect(current_action_quest.on_action)
+	
+	$QuestLogLayer/BountyQuest.quest = current_bounty
+	$QuestLogLayer/ActionQuest.quest = current_action_quest
 	_change_scene(main_menu, true)
 
 func _toggle_levels():
+	if not game_started:
+		game_started = true
+		$QuestLogLayer/BountyQuest.show()
+		$QuestLogLayer/ActionQuest.show()
 	if is_outdoors:
 		next_scene = dungeon
 		is_outdoors = false
@@ -66,6 +82,8 @@ func _perform_scene_change():
 	world.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _game_over():
+	current_action_quest.progress = 0
+	current_bounty.progress = 0
 	_change_scene(main_menu)
 
 func _add_damage_number(damage: float, position: Vector2):
@@ -73,3 +91,15 @@ func _add_damage_number(damage: float, position: Vector2):
 	instance.text = String.num(damage)
 	instance.global_position = position
 	add_child(instance)
+
+# quest service?
+# should encompas hooking up quest events
+# managing a list of multiple quests
+# showing and hiding quests, playing notification sounds
+func on_quest_completed(completed_quest_name: String):
+	print("Quest completed: ", completed_quest_name)
+	$QuestCompletedSound.play()
+	if $QuestLogLayer/BountyQuest.quest.name == completed_quest_name:
+		$QuestLogLayer/BountyQuest.hide()
+	else:
+		$QuestLogLayer/ActionQuest.hide()

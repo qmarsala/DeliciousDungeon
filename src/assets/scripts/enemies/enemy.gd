@@ -9,6 +9,7 @@ class_name Enemy
 @export var pickupScene: PackedScene 
 @export var speed: float = 45
 @export var drop_rate: float = .3
+@export var enemy_id: int = 0
 
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations

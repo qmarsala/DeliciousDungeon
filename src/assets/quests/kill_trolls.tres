@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BountyQuest" load_steps=2 format=3 uid="uid://c0dp35sx4iu0w"]
+
+[ext_resource type="Script" path="res://assets/quests/bounty_quest_poc.gd" id="1_xvsjm"]
+
+[resource]
+script = ExtResource("1_xvsjm")
+name = "The bigger they are"
+description = "Kill 3 trolls"
+target_enemy_id = 1
+count = 3
