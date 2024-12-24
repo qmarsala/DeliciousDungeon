@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BountyQuest" load_steps=2 format=3 uid="uid://bl634ciahvr2a"]
+
+[ext_resource type="Script" path="res://assets/quests/bounty_quest_poc.gd" id="1_jvxjs"]
+
+[resource]
+script = ExtResource("1_jvxjs")
+target_enemy_id = 0
+name = "A goblin problem"
+description = "kill 25 goblins"
+count = 25

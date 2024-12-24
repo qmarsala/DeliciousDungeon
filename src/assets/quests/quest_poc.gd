@@ -7,19 +7,16 @@ signal QuestCompleted(name: String)
 @export var description: String
 @export var count: int
 
+var completed: bool = false
+
 var progress: int: 
 	set(v):
 		progress = v
 		clamp(progress, 0, count)
 
-func log_progress(more_progress: int) -> bool:
-	if is_complete(): return true
-
+func log_progress(more_progress: int) -> void:
+	if completed: return
 	progress += more_progress
-	var completed = is_complete()
-	if completed:
+	if progress >= count:
+		completed = true
 		QuestCompleted.emit(name)
-	return completed
-
-func is_complete() -> bool:
-	return progress >= count

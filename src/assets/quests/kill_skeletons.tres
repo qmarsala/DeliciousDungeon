@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BountyQuest" load_steps=2 format=3 uid="uid://dfp1vr0asb72d"]
+
+[ext_resource type="Script" path="res://assets/quests/bounty_quest_poc.gd" id="1_10nhg"]
+
+[resource]
+script = ExtResource("1_10nhg")
+target_enemy_id = 2
+name = "Watch your knees!"
+description = "Kill 15 archer skeletons"
+count = 15

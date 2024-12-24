@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c38pvspamielw"]
+[gd_scene load_steps=19 format=3 uid="uid://c38pvspamielw"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="5_k5bt7"]
 [ext_resource type="Resource" uid="uid://c0dp35sx4iu0w" path="res://assets/quests/kill_trolls.tres" id="6_h1k7r"]
 [ext_resource type="Shader" path="res://assets/fog.gdshader" id="6_rybb5"]
+[ext_resource type="Resource" uid="uid://bl634ciahvr2a" path="res://assets/quests/kill_goblins.tres" id="6_vyjaa"]
+[ext_resource type="Resource" uid="uid://dfp1vr0asb72d" path="res://assets/quests/kill_skeletons.tres" id="7_abv55"]
 [ext_resource type="PackedScene" uid="uid://y304jg6volpg" path="res://scenes/ui/quest_poc_ui.tscn" id="7_d3qop"]
 [ext_resource type="Resource" uid="uid://rs6br4sf1g1c" path="res://assets/quests/light_fires.tres" id="7_o7wu1"]
 [ext_resource type="AudioStream" uid="uid://w2t0u6v60bjx" path="res://assets/audio/Harmony.ogg" id="7_pw28q"]
@@ -99,22 +101,39 @@ outdoors = ExtResource("2_re2jb")
 dungeon = ExtResource("3_sqakx")
 main_menu = ExtResource("4_yc5bf")
 damage_number = ExtResource("5_k5bt7")
-current_bounty = ExtResource("6_h1k7r")
-current_action_quest = ExtResource("7_o7wu1")
+bounty_one = ExtResource("6_vyjaa")
+bounty_two = ExtResource("7_abv55")
+bounty_three = ExtResource("6_h1k7r")
+action_quest = ExtResource("7_o7wu1")
 
 [node name="World" type="Node2D" parent="." groups=["World"]]
 
 [node name="QuestLogLayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.7, 0.7)
+transform = Transform2D(0.7, 0, 0, 0.7, 0, 0)
 
-[node name="BountyQuest" parent="QuestLogLayer" instance=ExtResource("7_d3qop")]
-offset_left = 490.0
-offset_right = 640.0
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestLogLayer"]
+visible = false
+offset_left = 764.286
+offset_top = 1.42857
+offset_right = 914.286
+offset_bottom = 401.429
 
-[node name="ActionQuest" parent="QuestLogLayer" instance=ExtResource("7_d3qop")]
-offset_left = 490.0
-offset_top = 47.0
-offset_right = 640.0
-offset_bottom = 97.0
+[node name="BountyQuest" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+
+[node name="BountyQuest2" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+
+[node name="BountyQuest3" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+
+[node name="ActionQuest" parent="QuestLogLayer/VBoxContainer" instance=ExtResource("7_d3qop")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
@@ -154,3 +173,4 @@ attenuation = 1e-05
 [node name="QuestCompletedSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_m8g1c")
 volume_db = -20.0
+max_distance = 100000.0
