@@ -1,7 +1,8 @@
 class_name MovementComponent
 extends Node
 
-#todo: is this 'component' for movement really helping at all?
+#todo: could this component also work with a 'get_movement_direction' contract
+# to also handle that part of movement as well?
 
 @export var character: CharacterBody2D
 @export var character_sprite: AnimatedSprite2D
