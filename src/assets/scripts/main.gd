@@ -9,8 +9,6 @@ extends Node2D
 
 @onready var world: Node2D = $World
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
-@onready var outdoor_music: AudioStreamPlayer2D = $OutdoorMusic
-@onready var dungeon_music: AudioStreamPlayer2D = $DungeonMusic
 @onready var quest_log_ui: Control = $QuestLogLayer/QuestLogUI
 
 #need to keep track of player data... is this where 'RefCounted' comes in?
@@ -41,13 +39,13 @@ func _toggle_levels():
 	if is_outdoors:
 		next_scene = dungeon
 		is_outdoors = false
-		outdoor_music.stop()
-		dungeon_music.play()
+		$OutdoorMusic.stop()
+		$DungeonMusic.play()
 	else:
 		next_scene = outdoors
 		is_outdoors = true
-		dungeon_music.stop()
-		outdoor_music.play()
+		$DungeonMusic.stop()
+		$OutdoorMusic.play()
 	_change_scene.call_deferred(next_scene)
 
 func _change_scene(scene: PackedScene, force: bool = false):
@@ -89,5 +87,4 @@ func _add_damage_number(damage: float, position: Vector2):
 
 # sound service?
 func on_quest_completed(completed_quest: Quest):
-	#global sounds? how do we not care how far from source you are? just use a big number?
 	$QuestCompletedSound.play()

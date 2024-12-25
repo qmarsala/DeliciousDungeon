@@ -161,19 +161,14 @@ libraries = {
 "": SubResource("AnimationLibrary_khrm0")
 }
 
-[node name="OutdoorMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="OutdoorMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_pw28q")
 volume_db = -20.0
-max_distance = 100000.0
-attenuation = 1e-05
 
-[node name="DungeonMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="DungeonMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_bp6xg")
 volume_db = -30.0
-max_distance = 100000.0
-attenuation = 1e-05
 
-[node name="QuestCompletedSound" type="AudioStreamPlayer2D" parent="."]
+[node name="QuestCompletedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_m8g1c")
 volume_db = -20.0
-max_distance = 100000.0
