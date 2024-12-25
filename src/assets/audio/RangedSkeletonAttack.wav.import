@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ctlfpnj1tkedh"
-path="res://.godot/imported/GoblinAttack.wav-80cf307a8d3ec1ad70c6586dcb00522b.sample"
+path="res://.godot/imported/RangedSkeletonAttack.wav-9f0331b2b8fbe4a7b96760b0900abcab.sample"
 
 [deps]
 
-source_file="res://assets/audio/GoblinAttack.wav"
-dest_files=["res://.godot/imported/GoblinAttack.wav-80cf307a8d3ec1ad70c6586dcb00522b.sample"]
+source_file="res://assets/audio/RangedSkeletonAttack.wav"
+dest_files=["res://.godot/imported/RangedSkeletonAttack.wav-9f0331b2b8fbe4a7b96760b0900abcab.sample"]
 
 [params]
 
