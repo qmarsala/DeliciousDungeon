@@ -1,8 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=30 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_0vklg"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_njhog"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_tb4fj"]
+[ext_resource type="Resource" uid="uid://bimn8sgkvl2o3" path="res://assets/data/enemies/goblin.tres" id="2_1c58a"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="4_c6iyo"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="5_awlvx"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="5_h3vuw"]
@@ -11,7 +10,6 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="8_0refy"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="9_86ol2"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="10_ojrjy"]
-[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="12_532co"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b577t"]
 atlas = ExtResource("4_c6iyo")
@@ -161,9 +159,7 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_0vklg")
-drop = ExtResource("2_njhog")
-pickupScene = ExtResource("3_tb4fj")
-enemy_id = 1
+data = ExtResource("2_1c58a")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
@@ -208,20 +204,16 @@ character_sprite = NodePath("../Animations")
 script = ExtResource("7_8pbow")
 initial_state = NodePath("EnemyExploringState")
 
-[node name="EnemyExploringState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyExploringState" type="Node" parent="StateMachine"]
 script = ExtResource("8_0refy")
-enemy = NodePath("../..")
 
-[node name="EnemyDeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyDeadState" type="Node" parent="StateMachine"]
 script = ExtResource("9_86ol2")
-enemy = NodePath("../..")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/EnemyDeadState"]
 
-[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyFightingState" type="Node" parent="StateMachine"]
 script = ExtResource("10_ojrjy")
-attack_sound = ExtResource("12_532co")
-enemy = NodePath("../..")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true

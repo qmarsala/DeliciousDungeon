@@ -4,12 +4,14 @@ class_name EnemyStateMachine
 @export var initial_state: EnemyState
 var current_state: EnemyState
 var states: Dictionary = {}
+var enemy: Enemy
 
-func _ready() -> void:
-	%HealthComponent.HealthDepleted.connect(_on_health_depleted)
+func init(e: Enemy):
+	enemy = e
 	for child in get_children():
 		if child is EnemyState:
 			states[child.name.to_lower()] = child
+			child.enemy = enemy
 			child.Transitioned.connect(on_child_transition)
 	if initial_state:
 		initial_state.enter()
@@ -36,6 +38,3 @@ func transition_to(new_state_name):
 		current_state.exit()
 	new_state.enter()
 	current_state = new_state
-
-func _on_health_depleted() -> void:
-	transition_to("EnemyDeadState")

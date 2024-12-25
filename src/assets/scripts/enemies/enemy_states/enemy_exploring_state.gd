@@ -1,9 +1,6 @@
 extends EnemyState
 class_name EnemyExploringState
 
-@export var move_speed := 25
-@export var vision_range: float = 40
-
 var player : CharacterBody2D
 var move_direction : Vector2
 var explore_time : float
@@ -22,12 +19,13 @@ func handle_process(delta: float):
 	else:
 		randomize_explore()
 
+#test: is_instance_valid vs != null?
 func handle_physics_process(delta: float):
-	if enemy != null:
-		enemy.velocity = move_direction * move_speed
-		if player != null:
+	if is_instance_valid(enemy):
+		enemy.velocity = move_direction * enemy.data.speed
+		if is_instance_valid(player):
 			var direction = player.global_position - enemy.global_position
-			if direction.length() <= vision_range:
+			if direction.length() <= enemy.data.vision_range:
 				Transitioned.emit(self, "EnemyFightingState")
 		else:
 			#todo: why do we need this? the first 'state enter' isn't setting it correctly for some reason

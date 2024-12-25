@@ -1,6 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://d0nk2tnjt4nfh"]
+[gd_scene load_steps=37 format=3 uid="uid://d0nk2tnjt4nfh"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_adk1w"]
+[ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://assets/data/enemies/ranged_skeleton.tres" id="2_7pu6r"]
 [ext_resource type="Texture2D" uid="uid://b8oevf8utgr0q" path="res://assets/sprites/dungeon/skeleton_.png" id="2_nwp28"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="3_60mma"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="4_i88yj"]
@@ -10,8 +11,6 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="7_vwvb0"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="8_qote8"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="9_6ro1r"]
-[ext_resource type="PackedScene" uid="uid://bqkw7smlx0kjy" path="res://scenes/items/enemy_arrow.tscn" id="10_baqdl"]
-[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/GoblinAttack.wav" id="11_rd5yt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gww3"]
 atlas = ExtResource("2_nwp28")
@@ -213,8 +212,7 @@ animations = [{
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_adk1w")
-speed = 35.0
-enemy_id = 2
+data = ExtResource("2_7pu6r")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
@@ -268,36 +266,18 @@ character_sprite = NodePath("../Animations")
 script = ExtResource("6_wq5x7")
 initial_state = NodePath("EnemyExploringState")
 
-[node name="EnemyExploringState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyExploringState" type="Node" parent="StateMachine"]
 script = ExtResource("7_vwvb0")
-move_speed = 15
-vision_range = 95.0
-enemy = NodePath("../..")
 
-[node name="EnemyDeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyDeadState" type="Node" parent="StateMachine"]
 script = ExtResource("8_qote8")
-enemy = NodePath("../..")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/EnemyDeadState"]
 one_shot = true
 
-[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_weapon_sprite", "enemy")]
+[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_weapon_sprite")]
 script = ExtResource("9_6ro1r")
 animated_weapon_sprite = NodePath("../../Hand/AttackRange/Bow")
-attack_cooldown = 2.0
-attack_delay = 0.5
-attack_damage = 2.0
-min_distance = 40
-ideal_distance_min = 50
-ideal_distance_max = 70
-max_distance = 90
-retreat_speed = 1.15
-engage_speed = 0.7
-attack_sound = ExtResource("11_rd5yt")
-attack_sound_on_delay = true
-is_ranged = true
-projectile = ExtResource("10_baqdl")
-enemy = NodePath("../..")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true

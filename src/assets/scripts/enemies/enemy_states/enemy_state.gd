@@ -1,7 +1,7 @@
 extends Node
 class_name EnemyState
 
-@export var enemy: Enemy
+var enemy: Enemy
 
 signal Transitioned
  

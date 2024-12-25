@@ -1,18 +1,16 @@
-[gd_scene load_steps=39 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=37 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
+[ext_resource type="Resource" uid="uid://dme853k8xu4qu" path="res://assets/data/enemies/troll.tres" id="2_f36uu"]
 [ext_resource type="Texture2D" uid="uid://d3bkdx3n808em" path="res://assets/sprites/forestSprites_ v1.2/troll_.png" id="2_o0od4"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_uhaql"]
 [ext_resource type="Texture2D" uid="uid://dyywsx6uxabdm" path="res://assets/sprites/forestSprites_ v1.2/weapons_.png" id="3_dhr1q"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_f1a2u"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_mlcm0"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="3_rcevn"]
 [ext_resource type="Script" path="res://assets/scripts/components/movement_component.gd" id="4_fkqlc"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_state_machine.gd" id="5_glwib"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="6_dte23"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="7_47qvp"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="8_lq3vs"]
-[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="13_ky7qa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jx43"]
 atlas = ExtResource("2_o0od4")
@@ -458,11 +456,7 @@ scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_b43ex")
-drop = ExtResource("2_uhaql")
-pickupScene = ExtResource("3_mlcm0")
-speed = 30.0
-drop_rate = 1.0
-enemy_id = 3
+data = ExtResource("2_f36uu")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
@@ -516,25 +510,17 @@ character_sprite = NodePath("../Animations")
 script = ExtResource("5_glwib")
 initial_state = NodePath("EnemyExploringState")
 
-[node name="EnemyExploringState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyExploringState" type="Node" parent="StateMachine"]
 script = ExtResource("6_dte23")
-move_speed = 15
-vision_range = 70.0
-enemy = NodePath("../..")
 
-[node name="EnemyDeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyDeadState" type="Node" parent="StateMachine"]
 script = ExtResource("7_47qvp")
-enemy = NodePath("../..")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/EnemyDeadState"]
 
-[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player", "enemy")]
+[node name="EnemyFightingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player")]
 script = ExtResource("8_lq3vs")
 attack_animation_player = NodePath("../../AttackAnimation")
-attack_cooldown = 1.8
-attack_damage = 3.5
-attack_sound = ExtResource("13_ky7qa")
-enemy = NodePath("../..")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
