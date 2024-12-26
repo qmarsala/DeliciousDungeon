@@ -53,8 +53,6 @@ var weapon_equipped: bool
 func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
-	#todo: do more signal hook ups this way?
-	dash_timer.timeout.connect(_on_dash_timer_timeout)
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
@@ -132,8 +130,5 @@ func _on_health_depleted() -> void:
 func _on_rest_timer_timeout() -> void:
 	rest_is_cooldown = false
 
-func _on_dash_timer_timeout() -> void:
-	state_machine.transition_to("IdleState")
-	
 func _on_dash_cooldown_timer_timeout() -> void:
 	is_dash_cooldown = false
