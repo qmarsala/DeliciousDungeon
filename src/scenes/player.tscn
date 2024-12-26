@@ -247,6 +247,8 @@ position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_65n8r")
 animation = &"dash"
 autoplay = "idle"
+frame = 4
+frame_progress = 0.752015
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kh2an")
@@ -262,12 +264,6 @@ debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(0, 3)
-
-[node name="MagicAttackIndicator" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.196078)
-texture = ExtResource("7_kg3fl")
-region_enabled = true
-region_rect = Rect2(20, 19, 8, 9)
 
 [node name="MoveIndicator" type="Sprite2D" parent="."]
 visible = false
@@ -293,13 +289,24 @@ starting_health = 10.0
 character = NodePath("..")
 character_sprite = NodePath("../CharacterSprite")
 
-[node name="MagicAttack" type="Node" parent="."]
+[node name="MagicAttack" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_tx3l7")
 spell_data = ExtResource("6_8gct0")
+player = NodePath("..")
 
 [node name="CooldownTimer" type="Timer" parent="MagicAttack"]
 
 [node name="CastTimer" type="Timer" parent="MagicAttack"]
+
+[node name="PlayerSpellSound" type="AudioStreamPlayer" parent="MagicAttack"]
+stream = ExtResource("16_rsfy3")
+volume_db = -15.0
+
+[node name="MagicAttackIndicator" type="Sprite2D" parent="MagicAttack"]
+self_modulate = Color(1, 1, 1, 0.196078)
+texture = ExtResource("7_kg3fl")
+region_enabled = true
+region_rect = Rect2(20, 19, 8, 9)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qkuth")
@@ -338,17 +345,11 @@ one_shot = true
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="PlayerSpellSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("16_rsfy3")
-volume_db = -20.0
-
 [node name="PlayerRestSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_clfv3")
 volume_db = -20.0
 
 [connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
-[connection signal="ranged_attack" from="MagicAttack" to="." method="_on_magic_attack"]
-[connection signal="ranged_attack_charge" from="MagicAttack" to="." method="_on_magic_attack_charge"]
 [connection signal="timeout" from="MagicAttack/CooldownTimer" to="MagicAttack" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="MagicAttack/CastTimer" to="MagicAttack" method="_on_cast_timer_timeout"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]

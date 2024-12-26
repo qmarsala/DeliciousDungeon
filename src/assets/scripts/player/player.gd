@@ -18,11 +18,9 @@ const STARTING_NUTRITION = 10
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var hand: Node2D = $Hand
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
-@onready var player_spell_sound: AudioStreamPlayer2D = $PlayerSpellSound
 
 #todo: use 'pickup' to get a weapon that enables these attacks
 @onready var magic_attack: MagicAttack = $MagicAttack
-@onready var magic_attack_indicator: Sprite2D = $MagicAttackIndicator
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
 @onready var rest_timer: Timer = $RestTimer
 
@@ -63,12 +61,6 @@ func _process(delta: float) -> void:
 	move_destination_indicator.global_position = move_target
 	if global_position.distance_to(move_target) <= 5:
 		move_destination_indicator.hide()
-	if not weapon_equipped:
-		magic_attack_indicator.hide()
-	else:
-		magic_attack_indicator.show()
-		var magic_attack_pos = get_magic_attack_location()
-		magic_attack_indicator.global_position = magic_attack_pos
 
 func rest():
 	if player_items[Enums.Items.Food] < 1 or rest_is_cooldown: return
@@ -107,22 +99,6 @@ func _on_hunger_timer_timeout() -> void:
 		receive_damage(1)
 	else:
 		nutrition = nutrition - 1
-
-# todo: how could we encapsulate this in the magic attack component?
-# need to check is dead before casting
-func _on_magic_attack() -> void:
-	if is_dead() or not weapon_equipped: return
-	player_spell_sound.play()
-	var target_location = get_magic_attack_location()
-	magic_attack.cast_at_location(target_location)
-
-func get_magic_attack_location() -> Vector2:
-	var mouse_pos = get_global_mouse_position()
-	var direction = mouse_pos - global_position
-	var target_location = mouse_pos
-	if direction.length() > 75:
-		target_location = global_position + (direction.normalized() * 75)
-	return target_location
 
 func _on_health_depleted() -> void:
 	state_machine.transition_to("DeadState")
