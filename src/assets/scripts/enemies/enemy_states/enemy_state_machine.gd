@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 func on_child_transition(state, new_state_name):
 	if state != current_state:
+		print("state != current_state, ", state)
 		return
 	transition_to(new_state_name)
 
