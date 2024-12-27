@@ -81,7 +81,7 @@ func _game_over():
 
 func _add_damage_number(damage: float, position: Vector2):
 	var instance = damage_number.instantiate() as Label
-	instance.text = String.num(damage)
+	instance.text = String.num(ceil(damage))
 	instance.global_position = position
 	add_child(instance)
 
