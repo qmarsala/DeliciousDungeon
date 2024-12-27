@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://3gf50wxc3jkw"]
 
-[ext_resource type="Script" path="res://assets/data/weapon.gd" id="1_nbd06"]
+[ext_resource type="Script" path="res://assets/data/items/weapon_data.gd" id="1_nbd06"]
 [ext_resource type="PackedScene" uid="uid://btrke7rn4blxm" path="res://scenes/items/staff_of_fire.tscn" id="2_m8des"]
 
 [resource]

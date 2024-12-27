@@ -1,38 +1,39 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1tv7g4ssauru"]
+[gd_scene load_steps=14 format=3 uid="uid://c1tv7g4ssauru"]
 
-[ext_resource type="Script" path="res://assets/scripts/items/conflagrate.gd" id="1_1lhgn"]
-[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="2_8uc83"]
+[ext_resource type="Script" path="res://assets/scripts/items/conflagrate.gd" id="1_w1lis"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="2_eqfx4"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/abilities/burning.tres" id="2_y37v0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d85sh"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqory"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_txlnw"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6c5x"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7ogn"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vpd4u"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_giwgs"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1wgu"]
-atlas = ExtResource("2_8uc83")
+atlas = ExtResource("2_eqfx4")
 region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ng0eb"]
@@ -72,7 +73,8 @@ radius = 9.0
 
 [node name="Conflagrate" type="Node2D"]
 z_index = 4
-script = ExtResource("1_1lhgn")
+script = ExtResource("1_w1lis")
+synergy_effect = ExtResource("2_y37v0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ng0eb")

@@ -12,14 +12,17 @@ func handle_process(delta):
 		if player.is_hill:
 			player.velocity = player.velocity / 2 
 
+# this needs to be closer to the weapon
+# it makes sense the move state wants to make the weapon animate a certain way
+# but it sucks for the move state to reach into the weapon like this.
 func weapon_animation():
 	if player.weapon_equipped and player.weapon:
 		if player.velocity.x < 0:
-			player.weapon.z_index = player.z_index - 1
-			player.weapon.rotation_degrees = -75
-			player.weapon.global_position = player.hand.global_position - Vector2(2,0)
+			player.weapon.sprite.z_index = player.z_index - 1
+			player.weapon.sprite.rotation_degrees = -75
+			player.weapon.sprite.global_position = player.hand.global_position - Vector2(2,0)
 		else:
-			player.weapon.z_index = player.z_index + 1
-			player.weapon.rotation_degrees = 75
-			player.weapon.global_position = player.hand.global_position + Vector2(2,0)
+			player.weapon.sprite.z_index = player.z_index + 1
+			player.weapon.sprite.rotation_degrees = 75
+			player.weapon.sprite.global_position = player.hand.global_position + Vector2(2,0)
 		

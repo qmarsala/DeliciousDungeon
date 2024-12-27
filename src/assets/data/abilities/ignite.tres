@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=5 format=3 uid="uid://b61mb8vxpb1ml"]
+
+[ext_resource type="Script" path="res://assets/data/abilities/attack_data.gd" id="1_coii3"]
+[ext_resource type="PackedScene" uid="uid://d0ijtlxrsxwu6" path="res://scenes/spells/ignite.tscn" id="1_t34em"]
+[ext_resource type="Script" path="res://assets/data/abilities/status_effect.gd" id="2_o13bg"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/abilities/burning.tres" id="3_m311l"]
+
+[resource]
+script = ExtResource("1_coii3")
+scene = ExtResource("1_t34em")
+charge_time = 0.0
+cooldown = 5.0
+attack_action = "basic_attack"
+damage = Array[float]([1.0])
+status_effects = Array[ExtResource("2_o13bg")]([ExtResource("3_m311l")])

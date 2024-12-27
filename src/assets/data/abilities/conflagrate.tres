@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=4 format=3 uid="uid://chw5576wg47v4"]
+
+[ext_resource type="PackedScene" uid="uid://c1tv7g4ssauru" path="res://scenes/spells/conflagrate.tscn" id="1_6pt40"]
+[ext_resource type="Script" path="res://assets/data/abilities/attack_data.gd" id="1_s7coy"]
+[ext_resource type="Script" path="res://assets/data/abilities/status_effect.gd" id="3_aqt5x"]
+
+[resource]
+script = ExtResource("1_s7coy")
+scene = ExtResource("1_6pt40")
+charge_time = 0.25
+cooldown = 1.0
+attack_action = "heavy_attack"
+damage = Array[float]([1.0, 2.0, 3.0])
+status_effects = Array[ExtResource("3_aqt5x")]([])
