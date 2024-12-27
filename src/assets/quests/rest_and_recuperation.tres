@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ActionQuest" load_steps=2 format=3 uid="uid://gcxnng0sb438"]
+
+[ext_resource type="Script" path="res://assets/quests/action_quest_poc.gd" id="1_bbhp7"]
+
+[resource]
+script = ExtResource("1_bbhp7")
+target_action_id = 2
+name = "Rest and Recuperation"
+description = "Eat a meal to rest 5 times"
+count = 5
