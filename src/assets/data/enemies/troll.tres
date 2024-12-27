@@ -9,10 +9,10 @@
 script = ExtResource("1_xx6b1")
 enemy_id = 3
 name = "Troll"
-starting_health = 35.0
+starting_health = 50.0
 speed = 25.0
 vision_range = 70.0
-engage_speed_multiplier = 1.15
+engage_speed_multiplier = 1.2
 retreat_speed_multiplier = 0.7
 drop_rate = 1.0
 drop = ExtResource("2_jrt6g")

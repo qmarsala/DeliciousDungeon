@@ -110,6 +110,7 @@ quests = Array[ExtResource("6_gulh1")]([ExtResource("8_ek0gc"), ExtResource("8_w
 
 [node name="QuestLogLayer" type="CanvasLayer" parent="."]
 layer = 100
+visible = false
 
 [node name="QuestLogUI" type="Control" parent="QuestLogLayer"]
 layout_mode = 3
