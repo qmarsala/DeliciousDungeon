@@ -19,8 +19,6 @@ const STARTING_NUTRITION = 10
 @onready var hand: Node2D = $Hand
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 
-#todo: use 'pickup' to get a weapon that enables these attacks
-@onready var magic_attack: MagicAttack = $MagicAttack
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
 @onready var rest_timer: Timer = $RestTimer
 
@@ -46,7 +44,7 @@ var is_dash_cooldown: bool
 var is_hill: bool
 
 #temp:
-var weapon: Sprite2D
+var weapon: Weapon
 var weapon_equipped: bool
 
 func _ready() -> void:
@@ -79,10 +77,11 @@ func receive_damage(damage):
 
 func pickup(item: Item):
 	print("picked up: " + item.name)
-	if item is Weapon:
+	if item is WeaponData: # don't love that we have weapon and weapon data, maybe that is normal?
 		var weaponScene = item.scene
-		var weaponInstance = weaponScene.instantiate() as Sprite2D
+		var weaponInstance = weaponScene.instantiate() as Weapon
 		weapon = weaponInstance
+		weapon.init(self)
 		weapon_equipped = true
 		hand.add_child.call_deferred(weaponInstance)
 	else:

@@ -1,21 +1,17 @@
-[gd_scene load_steps=47 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=43 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player/player.gd" id="1_511jo"]
 [ext_resource type="Texture2D" uid="uid://b7ktjn6ru0i4a" path="res://assets/sprites/playerSprites_ [version 1.0]/mPlayer_ [human].png" id="2_35top"]
-[ext_resource type="Script" path="res://assets/scripts/player/magic_attack.gd" id="2_tx3l7"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_state_machine.gd" id="4_qkuth"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="4_r4pyj"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_idle_state.gd" id="5_xp3sm"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
-[ext_resource type="Resource" uid="uid://chw5576wg47v4" path="res://assets/data/conflagrate.tres" id="6_8gct0"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_move_state.gd" id="7_bwmhs"]
-[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="7_kg3fl"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
 [ext_resource type="Texture2D" uid="uid://bp0ujgfwrrxai" path="res://assets/sprites/camelot/merlin_.png" id="8_t1qvo"]
-[ext_resource type="AudioStream" uid="uid://ck2wkfdfp2hij" path="res://assets/audio/Explosion.wav" id="16_rsfy3"]
 [ext_resource type="AudioStream" uid="uid://dup3swn76q3oi" path="res://assets/audio/PlayerRest.wav" id="17_clfv3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqaof"]
@@ -289,25 +285,6 @@ starting_health = 10.0
 character = NodePath("..")
 character_sprite = NodePath("../CharacterSprite")
 
-[node name="MagicAttack" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_tx3l7")
-spell_data = ExtResource("6_8gct0")
-player = NodePath("..")
-
-[node name="CooldownTimer" type="Timer" parent="MagicAttack"]
-
-[node name="CastTimer" type="Timer" parent="MagicAttack"]
-
-[node name="PlayerSpellSound" type="AudioStreamPlayer" parent="MagicAttack"]
-stream = ExtResource("16_rsfy3")
-volume_db = -15.0
-
-[node name="MagicAttackIndicator" type="Sprite2D" parent="MagicAttack"]
-self_modulate = Color(1, 1, 1, 0.196078)
-texture = ExtResource("7_kg3fl")
-region_enabled = true
-region_rect = Rect2(20, 19, 8, 9)
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qkuth")
 initial_state = NodePath("IdleState")
@@ -350,7 +327,5 @@ stream = ExtResource("17_clfv3")
 volume_db = -20.0
 
 [connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
-[connection signal="timeout" from="MagicAttack/CooldownTimer" to="MagicAttack" method="_on_cooldown_timer_timeout"]
-[connection signal="timeout" from="MagicAttack/CastTimer" to="MagicAttack" method="_on_cast_timer_timeout"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

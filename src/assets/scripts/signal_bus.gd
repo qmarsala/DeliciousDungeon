@@ -14,3 +14,6 @@ signal DamageReceived(damage: float, position: Vector2)
 signal EnemyDied(enemy_id: int)
 signal ActionPerformed(action_id: int)
 signal QuestCompleted(quest: Quest)
+
+#how do we want to communicate to the ui componens? signal bus?
+signal AttackCharge(time_left: float, total_time: float)

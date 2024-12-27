@@ -1,16 +1,16 @@
 extends Node
 class_name MagicAttack
 
-signal attack()
-signal attack_charge(value: float)
-
 #todo: could 'swap' spells from a spell book
 @export var spell_data: SpellData
-@export var player: Player # todo: not sure I like this, though it is like a component - maybe its ok?
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var cast_timer: Timer = $CastTimer
 
 var is_on_cooldown = false
+var player: Player # todo: not sure I like this, though it is like a component - maybe its ok?
+
+func init(p: Player):
+	player = p
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(spell_data.attack_action) and not is_on_cooldown:
@@ -19,16 +19,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		cooldown_timer.start(spell_data.cooldown + spell_data.cast_time)
 
 func _process(delta: float) -> void:
+	if player == null: return
 	if not player.weapon_equipped:
 		$MagicAttackIndicator.hide()
 	else:
 		$MagicAttackIndicator.show()
 		$MagicAttackIndicator.global_position = get_magic_attack_location()
+	if !cast_timer.is_stopped():
+		SignalBusService.AttackCharge.emit(cast_timer.time_left, spell_data.cast_time)
 
 func cast_at_location(target_location):
 	#todo: show cast timer
-	var spell_instance = spell_data.spell.instantiate() as Spell
+	var spell_instance = spell_data.spell.instantiate()
 	spell_instance.global_position = target_location
+	spell_instance.init(spell_data.damage)
 	#todo: how to play this at a spot? seems to get weird when inside our non node2d
 	# maybe sound service can handle that? also only needed if we want things to react 
 	# to sound with a listener
