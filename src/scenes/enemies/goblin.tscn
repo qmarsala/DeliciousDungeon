@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=31 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_0vklg"]
 [ext_resource type="Resource" uid="uid://bimn8sgkvl2o3" path="res://assets/data/enemies/goblin.tres" id="2_1c58a"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="8_0refy"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="9_86ol2"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="10_ojrjy"]
+[ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="11_xhh3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b577t"]
 atlas = ExtResource("4_c6iyo")
@@ -171,15 +172,6 @@ autoplay = "idle"
 shape = SubResource("CapsuleShape2D_qa6ns")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_h3vuw")]
-collision_layer = 64
-collision_mask = 32
-character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_mhtg0")
-debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
-
 [node name="AttackRange" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(20, 0)
@@ -190,10 +182,17 @@ collide_with_bodies = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("5_awlvx")]
+[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("5_h3vuw")]
+node = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_mhtg0")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("5_awlvx")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
-character = NodePath("..")
+node = NodePath("..")
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "character_sprite")]
 script = ExtResource("6_8upb2")
@@ -220,6 +219,8 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
+
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("11_xhh3o")]
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

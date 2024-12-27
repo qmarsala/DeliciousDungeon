@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=38 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
 [ext_resource type="Resource" uid="uid://dme853k8xu4qu" path="res://assets/data/enemies/troll.tres" id="2_f36uu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="6_dte23"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="7_47qvp"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="8_lq3vs"]
+[ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="8_vo60l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jx43"]
 atlas = ExtResource("2_o0od4")
@@ -468,15 +469,6 @@ autoplay = "idle"
 shape = SubResource("CapsuleShape2D_dggjw")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_rcevn")]
-collision_layer = 64
-collision_mask = 32
-character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_eq1ge")
-debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
-
 [node name="Club" type="Sprite2D" parent="."]
 position = Vector2(4.5, 4.5)
 rotation = 1.5708
@@ -495,16 +487,25 @@ collide_with_bodies = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("3_f1a2u")]
+[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_rcevn")]
+node = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_eq1ge")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("3_f1a2u")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
-character = NodePath("..")
+node = NodePath("..")
 starting_health = 35.0
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "character_sprite")]
 script = ExtResource("4_fkqlc")
 character = NodePath("..")
 character_sprite = NodePath("../Animations")
+
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("8_vo60l")]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_glwib")

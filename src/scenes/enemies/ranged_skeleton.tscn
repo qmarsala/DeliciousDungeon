@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d0nk2tnjt4nfh"]
+[gd_scene load_steps=38 format=3 uid="uid://d0nk2tnjt4nfh"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_adk1w"]
 [ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://assets/data/enemies/ranged_skeleton.tres" id="2_7pu6r"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="5_jdqjc"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_state_machine.gd" id="6_wq5x7"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="7_vwvb0"]
+[ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="8_p86yj"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="8_qote8"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="9_6ro1r"]
 
@@ -163,10 +164,6 @@ animations = [{
 radius = 2.0
 height = 10.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ste6r"]
-radius = 4.0
-height = 16.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_e600d"]
 atlas = ExtResource("4_t54us")
 region = Rect2(12, 0, 12, 24)
@@ -208,6 +205,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ste6r"]
+radius = 4.0
+height = 16.0
+
 [node name="RangedSkeleton" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
@@ -221,14 +222,6 @@ animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ecyxy")
-
-[node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_60mma")]
-collision_layer = 64
-collision_mask = 32
-character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_ste6r")
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(4, 0)
@@ -252,15 +245,23 @@ frame_progress = 1.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "character") instance=ExtResource("4_i88yj")]
+[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_60mma")]
+node = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_ste6r")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("4_i88yj")]
 unique_name_in_owner = true
 character_sprite = NodePath("../Animations")
-character = NodePath("..")
+node = NodePath("..")
 starting_health = 3.0
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("character", "character_sprite") instance=ExtResource("5_jdqjc")]
 character = NodePath("..")
 character_sprite = NodePath("../Animations")
+
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("8_p86yj")]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_wq5x7")
