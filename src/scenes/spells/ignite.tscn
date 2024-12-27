@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0ijtlxrsxwu6"]
 
 [ext_resource type="Script" path="res://assets/scripts/ignite.gd" id="1_w50xc"]
-[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="2_wpupk"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="2_q4gwy"]
 
 [sub_resource type="Gradient" id="Gradient_s5vbd"]
 offsets = PackedFloat32Array(0, 0.694332)
@@ -22,7 +22,6 @@ script = ExtResource("1_w50xc")
 position = Vector2(-1.2219e-06, -1.19209e-07)
 scale = Vector2(0.28125, 0.28125)
 color = Color(1, 0.560784, 0.160784, 1)
-energy = 0.5
 texture = SubResource("GradientTexture2D_ej3ht")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -33,6 +32,6 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_s7u6y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_wpupk")
+texture = ExtResource("2_q4gwy")
 region_enabled = true
-region_rect = Rect2(166, 180, 4, 5)
+region_rect = Rect2(20, 19, 8, 9)
