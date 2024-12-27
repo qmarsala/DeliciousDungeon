@@ -19,7 +19,7 @@ func deal_damage(amount):
 	for t in targets:
 		if t is Hitbox:
 			var damage_amount = amount
-			if t.character.is_in_group(Interfaces.HasStatusEffects) and t.character.has_effect(synergy_effect):
+			if t.node.is_in_group(Interfaces.HasStatusEffects) and t.node.status_effects_component.has_effect(synergy_effect):
 				damage_amount *= 2
 			t.receive_damage(damage_amount)
 

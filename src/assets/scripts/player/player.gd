@@ -70,10 +70,12 @@ func rest():
 	%HealthComponent.heal(%HealthComponent.starting_health * .35)
 	$PlayerRestSound.play()
 
-#todo: health component could have a hit box?
-# but what about other ways of taking damage?
-func receive_damage(damage):
-	%HealthComponent.take_damage(damage)
+# was hoping component would limit needing to alter parents, but 
+# you still need to if the parent needs to expose the method
+# and to hook up signals
+# is this just the way it is?
+func receive_damage(damage: float):
+	%HealthComponent.receive_damage(damage)
 
 func pickup(item: Item):
 	print("picked up: " + item.name)
@@ -96,7 +98,7 @@ func interact():
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or is_dead(): return
 	if nutrition <= 0:
-		receive_damage(1)
+		%HealthComponent.receive_damage(1)
 	else:
 		nutrition = nutrition - 1
 

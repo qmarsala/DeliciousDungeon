@@ -21,7 +21,7 @@ func _ready() -> void:
 func chop() -> void:
 	if health_component.is_dead(): return
 	
-	health_component.take_damage(1)
+	health_component.receive_damage(1)
 	if health_component.is_dead():
 		$FelledTreePlayer.play()
 		create_stump()
