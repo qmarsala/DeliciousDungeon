@@ -7,4 +7,4 @@ func _ready() -> void:
 	status_effects_component.init(self)
 	
 func receive_damage(damage):
-	SignalBusService.DamageReceived.emit(damage, global_position)
+	SignalBusService.DamageReceived.emit(damage, global_position, false)

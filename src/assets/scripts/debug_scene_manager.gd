@@ -14,9 +14,8 @@ func _ready() -> void:
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()
 
-# this should be a component?
-func _add_damage_number(damage: float, position: Vector2):
-	var instance = damage_number.instantiate() as Label
-	instance.text = String.num(damage)
-	instance.global_position = position
+# this should be a service?
+func _add_damage_number(damage: float, position: Vector2, is_target_player: bool):
+	var instance = damage_number.instantiate() as DamageNumber
+	instance.init(damage, position, is_target_player)
 	add_child(instance)
