@@ -27,8 +27,7 @@ func _on_mid_damage_timer_timeout() -> void:
 	
 func _on_final_damage_timer_timeout() -> void:
 	if damage.size() > 2:
-		deal_damage([damage[2]])
+		deal_damage(damage[2])
 	elif damage.size() > 0:
 		deal_damage(damage.back())
-	#animated_sprite_2d.visible = false
 	queue_free()
