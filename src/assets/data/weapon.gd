@@ -1,4 +1,2 @@
-class_name Weapon
+class_name WeaponData
 extends Item
-
-@export var attack: Attack
