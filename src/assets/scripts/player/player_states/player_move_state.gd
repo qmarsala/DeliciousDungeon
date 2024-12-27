@@ -19,7 +19,7 @@ func handle_process(delta):
 # but it sucks for the move state to reach into the weapon like this.
 # see idle too
 func weapon_animation():
-	if player.weapon_equipped and player.weapon:
+	if player.weapon_equipped and player.weapon.sprite:
 		if player.velocity.x < 0:
 			player.weapon.sprite.z_index = player.z_index - 1
 			player.weapon.sprite.rotation_degrees = -75
