@@ -2,6 +2,8 @@ extends Control
 
 @export var quest_ui_scene: PackedScene
 
+@onready var quest_container: VBoxContainer = $ScrollContainer/ActiveQuestsContainer
+
 func init():
 	$ToggleQuestLog.pressed.connect(on_toggle_pressed)
 	var quests = QuestSystemService.available_quests
@@ -9,10 +11,10 @@ func init():
 	for q in quests:
 		var qui = quest_ui_scene.instantiate()
 		qui.quest = q
-		$ActiveQuestsContainer.add_child(qui)
+		quest_container.add_child(qui)
 
 func on_toggle_pressed():
-	if $ActiveQuestsContainer.visible:
-		$ActiveQuestsContainer.hide()
+	if quest_container.visible:
+		quest_container.hide()
 	else:
-		$ActiveQuestsContainer.show()
+		quest_container.show()
