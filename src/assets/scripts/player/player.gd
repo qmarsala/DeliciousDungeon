@@ -82,6 +82,9 @@ func receive_damage(damage: float):
 func pickup(item: Item):
 	print("picked up: " + item.name)
 	if item is WeaponData: # don't love that we have weapon and weapon data, maybe that is normal?
+		if weapon_equipped:
+			#todo: drop the other weapon, or put it in inventory with a way to switch?
+			weapon.queue_free()
 		var weaponScene = item.scene
 		var weaponInstance = weaponScene.instantiate() as Weapon
 		weapon = weaponInstance

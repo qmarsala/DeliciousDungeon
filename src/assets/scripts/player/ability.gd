@@ -7,7 +7,6 @@ class_name Ability
 @onready var cast_timer: Timer = $CastTimer
 @onready var ability_sound: AudioStreamPlayer = $AbilitySound
 
-
 var is_on_cooldown = false
 var player: Player # todo: not sure I like this, though it is like a component - maybe its ok?
 var weapon: Weapon # todo: not sure I like this, though it is like a component - maybe its ok?
@@ -25,7 +24,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if player == null or player.is_dead() or not player.weapon_equipped: return
 	if event.is_action_pressed(ability_data.input_event) and not is_on_cooldown:
 		is_on_cooldown = true
+		#ranged poc:
+		if weapon.animations:
+			weapon.animations.play("shoot")
 		if ability_data.cast_time > 0:
+			#ranged poc:
 			cast_timer.start(ability_data.cast_time)
 		else:
 			attack(weapon.get_attack_location())
@@ -33,16 +36,23 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if player == null: return
-	if !cast_timer.is_stopped():
+	#ranged poc: weapon.animations
+	if !cast_timer.is_stopped() and not weapon.animations:
 		SignalBusService.AttackCharge.emit(cast_timer.time_left, ability_data.cast_time)
 
 # maybe this could be the attack contract
 # melee would swing towards this direction, magic and range shoot toward it
+# probably need to start breaking this into sub types of abilities
+# like magic/range/melee
 func attack(target_location):
 	if ability_data.scene != null:
 		var ability_instance = ability_data.scene.instantiate()
 		ability_instance.global_position = target_location
-		ability_instance.init(ability_data)
+		#ranged poc:
+		if ability_instance is Projectile:
+			ability_instance.init(ability_data, weapon.global_position, target_location)
+		else:
+			ability_instance.init(ability_data)
 		add_child(ability_instance)
 	ability_sound.play()
 
