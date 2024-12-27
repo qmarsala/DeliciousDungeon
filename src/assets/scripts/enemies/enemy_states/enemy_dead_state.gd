@@ -16,7 +16,9 @@ func enter():
 		# todo: this needs to stay 'in world' not in root
 		# should we signal and have a drop manager?
 		# otherwise food doesn't get cleaned up on scene changes
-		get_tree().get_first_node_in_group("World").add_child(dropInstance)
+		var world = get_tree().get_first_node_in_group("World")
+		if world:
+			world.add_child(dropInstance)
 
 func handle_physics_process(delta: float):
 	enemy.velocity = Vector2(move_toward(enemy.velocity.x, Vector2.ZERO.x, delta), move_toward(enemy.velocity.y, Vector2.ZERO.y, delta))
