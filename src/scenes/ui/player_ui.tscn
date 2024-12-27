@@ -17,6 +17,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 script = ExtResource("1_bgem0")
 
 [node name="FoodCountLabel" type="Label" parent="."]
@@ -59,6 +60,7 @@ offset_top = -30.0
 offset_right = 288.0
 offset_bottom = 20.0
 scale = Vector2(0.662172, 0.408148)
+mouse_filter = 2
 
 [node name="HealthBar" type="ProgressBar" parent="Panel"]
 unique_name_in_owner = true
@@ -68,6 +70,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 210.0
 offset_bottom = 40.0
+mouse_filter = 2
 max_value = 10.0
 value = 5.0
 show_percentage = false
@@ -80,6 +83,7 @@ offset_left = 220.0
 offset_top = 10.0
 offset_right = 420.0
 offset_bottom = 40.0
+mouse_filter = 2
 max_value = 10.0
 value = 5.0
 show_percentage = false
@@ -93,6 +97,7 @@ offset_top = -62.0
 offset_right = 133.0
 offset_bottom = -35.0
 scale = Vector2(0.663405, 0.435025)
+mouse_filter = 2
 show_percentage = false
 
 [node name="DashIcon" type="Label" parent="."]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=19 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
 [ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="2_d2tid"]
 [ext_resource type="TileSet" uid="uid://l2q7sjwj8ykk" path="res://assets/outdoor_tileset.tres" id="3_7xxu8"]
+[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="3_oq7gx"]
 [ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://scenes/levels/tree.tscn" id="5_70lwd"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
@@ -317,6 +318,15 @@ sources/2 = SubResource("TileSetAtlasSource_jrh5p")
 y_sort_enabled = true
 script = ExtResource("1_ain6m")
 player_scene = ExtResource("6_ucoae")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("3_oq7gx")]
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = -1.0
+player = NodePath("../../Player")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -1
