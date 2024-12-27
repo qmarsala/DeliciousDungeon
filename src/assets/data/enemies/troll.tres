@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dme853k8xu4qu"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://dme853k8xu4qu"]
 
 [ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="1_pu7h2"]
 [ext_resource type="Script" path="res://assets/data/enemy_data.gd" id="1_xx6b1"]
 [ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/data/items/goblin_steak.tres" id="2_jrt6g"]
+[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_22ohr"]
 
 [resource]
 script = ExtResource("1_xx6b1")
@@ -15,6 +16,7 @@ engage_speed_multiplier = 1.15
 retreat_speed_multiplier = 0.7
 drop_rate = 1.0
 drop = ExtResource("2_jrt6g")
+pickupScene = ExtResource("3_22ohr")
 min_distance = 10
 ideal_distance_min = 11
 ideal_distance_max = 19
