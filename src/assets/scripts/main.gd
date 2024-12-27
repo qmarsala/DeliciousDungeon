@@ -79,13 +79,10 @@ func _game_over():
 	# thinking maybe you need to 'pay gold' or 'discard an item'?
 	_toggle_levels()
 
-func _add_damage_number(damage: float, position: Vector2, is_player_damaged: bool):
+func _add_damage_number(damage: float, position: Vector2, is_target_player: bool):
 	#todo: pull this into a damage number type?
-	var instance = damage_number.instantiate() as Label
-	instance.text = String.num(ceil(damage))
-	instance.global_position = position
-	if is_player_damaged:
-		instance.modulate = Color("fd5469")
+	var instance = damage_number.instantiate() as DamageNumber
+	instance.init(damage, position, is_target_player)
 	add_child(instance)
 
 # sound service?

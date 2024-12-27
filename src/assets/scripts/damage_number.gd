@@ -6,9 +6,16 @@ extends Label
 
 var direction
 
+func init(damage: float, position: Vector2, target_is_player: bool):
+	text = String.num(ceil(damage))
+	global_position = position
+	direction = Vector2(randf_range(-.5,.5), -1)
+	if target_is_player:
+		modulate = Color("fd5469")
+		direction *= -1
+
 func _ready() -> void:
 	timer.timeout.connect(_cleanup)
-	direction = Vector2(randf_range(-.5,.5), -1)
 
 func _process(delta: float) -> void:
 	global_position += direction * speed * delta
