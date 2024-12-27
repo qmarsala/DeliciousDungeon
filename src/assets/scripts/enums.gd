@@ -3,7 +3,8 @@ extends Node
 enum Items {
 	Wood,
 	Food,
-	StaffOfFire
+	StaffOfFire,
+	Bow
 }
 
 enum Enemies {

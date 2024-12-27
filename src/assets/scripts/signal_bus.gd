@@ -7,7 +7,7 @@ extends Node
 signal SceneChange
 
 #probably want to know who got damaged by what?
-signal DamageReceived(damage: float, position: Vector2)
+signal DamageReceived(damage: float, position: Vector2, is_player_target: bool)
 
 
 # quest poc: is this how we want to track actions we care about?
