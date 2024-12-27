@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://blb4ph6xjfls0"]
+
+[ext_resource type="Script" path="res://assets/scripts/items/weapon.gd" id="1_1ns8r"]
+[ext_resource type="SpriteFrames" uid="uid://cawxta7v7inqw" path="res://assets/animations/bow_animation.tres" id="2_0cybm"]
+[ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://assets/sprites/robinhood/weapons_.png" id="3_33x1b"]
+[ext_resource type="Script" path="res://assets/scripts/player/ability.gd" id="4_ekvm2"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/data/abilities/shoot_arrow.tres" id="5_p2ib4"]
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/RangedSkeletonAttack.wav" id="6_gtyh8"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/data/abilities/piercing_shot.tres" id="7_hfiri"]
+
+[node name="Bow" type="Node2D"]
+script = ExtResource("1_1ns8r")
+max_range = 90.0
+aim_follows_cursor = true
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_0cybm")
+animation = &"shoot"
+frame = 3
+frame_progress = 1.0
+
+[node name="AttackIndicator" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_33x1b")
+region_enabled = true
+region_rect = Rect2(52, 5, 4, 14)
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="RangedAttack" type="Node" parent="Abilities"]
+script = ExtResource("4_ekvm2")
+ability_data = ExtResource("5_p2ib4")
+
+[node name="CooldownTimer" type="Timer" parent="Abilities/RangedAttack"]
+one_shot = true
+
+[node name="CastTimer" type="Timer" parent="Abilities/RangedAttack"]
+one_shot = true
+
+[node name="AbilitySound" type="AudioStreamPlayer" parent="Abilities/RangedAttack"]
+stream = ExtResource("6_gtyh8")
+volume_db = -15.0
+pitch_scale = 1.1
+
+[node name="Ability" type="Node" parent="Abilities"]
+script = ExtResource("4_ekvm2")
+ability_data = ExtResource("7_hfiri")
+
+[node name="CooldownTimer" type="Timer" parent="Abilities/Ability"]
+one_shot = true
+
+[node name="CastTimer" type="Timer" parent="Abilities/Ability"]
+one_shot = true
+
+[node name="AbilitySound" type="AudioStreamPlayer" parent="Abilities/Ability"]
+stream = ExtResource("6_gtyh8")
+volume_db = -15.0
+pitch_scale = 1.1

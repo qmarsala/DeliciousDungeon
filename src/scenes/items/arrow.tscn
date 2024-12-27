@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwmoi0dahea8s"]
+[gd_scene load_steps=5 format=3 uid="uid://dwmoi0dahea8s"]
 
 [ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://assets/sprites/robinhood/weapons_.png" id="1_cgbgu"]
 [ext_resource type="Script" path="res://assets/scripts/items/projectile.gd" id="1_k70sm"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/abilities/burning.tres" id="2_24p5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_088qw"]
 size = Vector2(4, 14)
@@ -9,10 +10,11 @@ size = Vector2(4, 14)
 [node name="Arrow" type="Node2D"]
 z_index = 6
 script = ExtResource("1_k70sm")
+synergy_effect = ExtResource("2_24p5u")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 32
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_088qw")
@@ -21,11 +23,3 @@ shape = SubResource("RectangleShape2D_088qw")
 texture = ExtResource("1_cgbgu")
 region_enabled = true
 region_rect = Rect2(52.1356, 5, 3.91202, 14)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.75
-one_shot = true
-autostart = true
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
