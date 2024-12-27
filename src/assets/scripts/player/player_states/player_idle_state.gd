@@ -8,5 +8,5 @@ func enter():
 func handle_process(delta):
 	super(delta)
 	if time - idle_at >= 1 and player.weapon_equipped:
-		player.weapon.global_position = player.hand.global_position - Vector2(6, 2)
-		player.weapon.rotation = 0
+		player.weapon.sprite.global_position = player.hand.global_position - Vector2(6, 2)
+		player.weapon.sprite.rotation = 0

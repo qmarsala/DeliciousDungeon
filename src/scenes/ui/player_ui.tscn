@@ -90,6 +90,7 @@ show_percentage = false
 
 [node name="ChargedAttackBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0.909804, 0.666667, 0.0823529, 1)
 layout_mode = 0
 offset_left = -67.0

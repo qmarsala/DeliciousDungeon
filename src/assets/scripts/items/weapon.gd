@@ -10,7 +10,7 @@ var player: Player
 func init(p: Player):
 	player = p
 	for a in $Abilities.get_children():
-		if a is MagicAttack: #todo: ability contract
+		if a is Ability:
 			a.init(player, self)
 
 func _process(delta: float) -> void:

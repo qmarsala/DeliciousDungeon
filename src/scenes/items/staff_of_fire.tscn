@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://btrke7rn4blxm"]
+[gd_scene load_steps=9 format=3 uid="uid://btrke7rn4blxm"]
 
 [ext_resource type="Script" path="res://assets/scripts/items/weapon.gd" id="1_7dyo7"]
 [ext_resource type="Texture2D" uid="uid://cqyuvlxinqtqc" path="res://assets/sprites/dungeon/weapons_.png" id="1_hhwgu"]
-[ext_resource type="Script" path="res://assets/scripts/player/magic_attack.gd" id="2_j7ahm"]
+[ext_resource type="Script" path="res://assets/scripts/player/ability.gd" id="2_j7ahm"]
 [ext_resource type="Resource" uid="uid://chw5576wg47v4" path="res://assets/data/abilities/conflagrate.tres" id="3_i3gh3"]
 [ext_resource type="AudioStream" uid="uid://ck2wkfdfp2hij" path="res://assets/audio/Explosion.wav" id="4_rcbxt"]
 [ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="5_ew75c"]
+[ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://assets/audio/LightFire.wav" id="6_okcxo"]
 [ext_resource type="Resource" uid="uid://b61mb8vxpb1ml" path="res://assets/data/abilities/ignite.tres" id="7_sevts"]
 
 [node name="StaffOfFire" type="Node2D"]
@@ -31,25 +32,28 @@ region_rect = Rect2(20, 19, 8, 9)
 
 [node name="MagicAttack" type="Node" parent="Abilities"]
 script = ExtResource("2_j7ahm")
-attack_data = ExtResource("3_i3gh3")
+ability_data = ExtResource("7_sevts")
 
 [node name="CooldownTimer" type="Timer" parent="Abilities/MagicAttack"]
+one_shot = true
 
 [node name="CastTimer" type="Timer" parent="Abilities/MagicAttack"]
+one_shot = true
 
-[node name="PlayerSpellSound" type="AudioStreamPlayer" parent="Abilities/MagicAttack"]
-stream = ExtResource("4_rcbxt")
+[node name="AbilitySound" type="AudioStreamPlayer" parent="Abilities/MagicAttack"]
+stream = ExtResource("6_okcxo")
 volume_db = -15.0
 
 [node name="MagicAttack2" type="Node" parent="Abilities"]
 script = ExtResource("2_j7ahm")
-attack_data = ExtResource("7_sevts")
+ability_data = ExtResource("3_i3gh3")
 
 [node name="CooldownTimer" type="Timer" parent="Abilities/MagicAttack2"]
+one_shot = true
 
 [node name="CastTimer" type="Timer" parent="Abilities/MagicAttack2"]
+one_shot = true
 
-[connection signal="timeout" from="Abilities/MagicAttack/CooldownTimer" to="Abilities/MagicAttack" method="_on_cooldown_timer_timeout"]
-[connection signal="timeout" from="Abilities/MagicAttack/CastTimer" to="Abilities/MagicAttack" method="_on_cast_timer_timeout"]
-[connection signal="timeout" from="Abilities/MagicAttack2/CooldownTimer" to="Abilities/MagicAttack2" method="_on_cooldown_timer_timeout"]
-[connection signal="timeout" from="Abilities/MagicAttack2/CastTimer" to="Abilities/MagicAttack2" method="_on_cast_timer_timeout"]
+[node name="AbilitySound" type="AudioStreamPlayer" parent="Abilities/MagicAttack2"]
+stream = ExtResource("4_rcbxt")
+volume_db = -15.0

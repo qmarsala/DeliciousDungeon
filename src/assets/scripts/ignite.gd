@@ -3,9 +3,9 @@ class_name Ignite
 
 @onready var area_2d: Area2D = $Area2D
 
-var data: AttackData
+var data: AbilityData
 
-func init(attack_data: AttackData):
+func init(attack_data: AbilityData):
 	data = attack_data
 
 #todo: delay seems to be needed or we wont detect targets

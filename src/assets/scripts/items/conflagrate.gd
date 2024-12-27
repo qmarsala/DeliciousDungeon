@@ -5,11 +5,13 @@ class_name Conflagrate
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 #todo: should this go to attack data?
+# and how do we want to control what the synergy does?
+# maybe it 'pops' the status effect, maybe it doubles our damage?
 @export var synergy_effect: StatusEffect
 
-var data: AttackData
+var data: AbilityData
 
-func init(attack_data: AttackData):
+func init(attack_data: AbilityData):
 	data = attack_data
 
 func deal_damage(amount):
