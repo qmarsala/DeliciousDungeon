@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3 uid="uid://chw5576wg47v4"]
 
 [ext_resource type="Script" path="res://assets/data/spell.gd" id="1_tv6dx"]
-[ext_resource type="PackedScene" uid="uid://cj44w170s0wa3" path="res://scenes/items/spell.tscn" id="2_rpfhk"]
+[ext_resource type="PackedScene" uid="uid://c1tv7g4ssauru" path="res://scenes/items/conflagrate.tscn" id="2_wrou6"]
 
 [resource]
 script = ExtResource("1_tv6dx")
-spell = ExtResource("2_rpfhk")
+spell = ExtResource("2_wrou6")
 cast_time = 0.25
 cooldown = 1.0
 attack_action = "heavy_attack"

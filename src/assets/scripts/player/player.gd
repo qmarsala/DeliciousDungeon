@@ -42,6 +42,7 @@ var is_dashing: bool
 var is_dash_cooldown: bool
 
 #how else could we do this?
+# if hills go east west we may also want to pitch the angle of movement
 var is_hill: bool
 
 #temp:
