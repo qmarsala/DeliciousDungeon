@@ -7,7 +7,7 @@ class_name Enemy
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var attack_range: RayCast2D = %AttackRange
 @onready var state_machine: EnemyStateMachine = $StateMachine
-@onready var status_effects_component: Node = $StatusEffectsComponent
+@onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 
 # should attack state take care of this?
