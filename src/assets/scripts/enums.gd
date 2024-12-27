@@ -15,5 +15,6 @@ enum Enemies {
 
 enum Actions {
 	None,
-	LightFire
+	LightFire,
+	Rest
 }
