@@ -9,7 +9,7 @@ signal HealthDepleted
 
 # still unsure how I feel about this, maybe it make sense
 # that as a component of the character we have access to the character?
-@export var character: CharacterBody2D
+@export var node: Node2D
 @export var starting_health : float = 5
 
 var health : float = 1
@@ -19,13 +19,17 @@ func is_dead() -> bool :
 
 func _ready() -> void:
 	health = starting_health
+	add_to_group(Interfaces.Damageable)
 
-func take_damage(damage) -> void:
+# todo: what about armour/effects that reduce damage
+# should we have th parent control the final damage somehow?
+func receive_damage(damage) -> void:
 	if is_dead(): return
-	if character:
-		SignalBusService.DamageReceived.emit(damage, character.global_position)
+	if node:
+		SignalBusService.DamageReceived.emit(damage, node.global_position)
 
 	health -= damage
+	# maybe this can be moved to an animations controller that listens for a signal?
 	if character_sprite and !(character_sprite.is_playing() and character_sprite.animation == "dash"):
 		character_sprite.stop()
 		character_sprite.play("receive_damage")
