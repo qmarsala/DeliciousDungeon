@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=26 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="9_rtcjk"]
 [ext_resource type="Resource" uid="uid://3gf50wxc3jkw" path="res://assets/data/items/staff_of_fire.tres" id="10_ope03"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
+[ext_resource type="Resource" uid="uid://2xdqysd14632" path="res://assets/data/items/bow.tres" id="11_ywk8e"]
 [ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
@@ -400,6 +401,10 @@ drag_vertical_enabled = true
 z_index = 1
 position = Vector2(27, -7)
 item = ExtResource("10_ope03")
+
+[node name="Pickup2" parent="." instance=ExtResource("9_rtcjk")]
+position = Vector2(-22, -8)
+item = ExtResource("11_ywk8e")
 
 [node name="Fire" parent="." instance=ExtResource("11_wrpau")]
 z_index = 1
