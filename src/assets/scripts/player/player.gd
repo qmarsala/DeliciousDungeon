@@ -51,6 +51,7 @@ func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
+	add_to_group(Interfaces.Damageable)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
@@ -66,6 +67,7 @@ func rest():
 	player_items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
+	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
 	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
 	%HealthComponent.heal(%HealthComponent.starting_health * .35)
 	$PlayerRestSound.play()

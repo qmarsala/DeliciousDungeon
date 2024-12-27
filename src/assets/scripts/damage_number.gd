@@ -8,7 +8,7 @@ var direction
 
 func _ready() -> void:
 	timer.timeout.connect(_cleanup)
-	direction = Vector2(randf_range(-.4,.4), -1)
+	direction = Vector2(randf_range(-.5,.5), -1)
 
 func _process(delta: float) -> void:
 	global_position += direction * speed * delta

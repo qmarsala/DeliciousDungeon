@@ -249,10 +249,10 @@ frame_progress = 0.752015
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kh2an")
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_r4pyj")]
+[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("4_r4pyj")]
 collision_layer = 32
 collision_mask = 64
-character = NodePath("..")
+node = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_belmi")
@@ -276,9 +276,10 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite") instance=ExtResource("2_vxtdb")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
 character_sprite = NodePath("../CharacterSprite")
+node = NodePath("..")
 starting_health = 10.0
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("character", "character_sprite") instance=ExtResource("3_fvtna")]

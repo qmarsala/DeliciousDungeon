@@ -488,7 +488,7 @@ collide_with_bodies = false
 volume_db = -20.0
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_rcevn")]
-node = NodePath("../HealthComponent")
+node = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_eq1ge")

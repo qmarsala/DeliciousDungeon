@@ -17,6 +17,7 @@ func _ready() -> void:
 	state_machine.init(self)
 	status_effects_component.init(self)
 	%HealthComponent.HealthDepleted.connect(_on_health_depleted)
+	add_to_group(Interfaces.Damageable)
 
 func is_dead(): return %HealthComponent.is_dead()
 
