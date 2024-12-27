@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=4 format=3 uid="uid://w4avb0eafw6r"]
+
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/items/arrow.tscn" id="1_qost3"]
+[ext_resource type="Script" path="res://assets/data/abilities/ability_data.gd" id="1_vrb6u"]
+[ext_resource type="Script" path="res://assets/data/abilities/status_effect.gd" id="2_v76rn"]
+
+[resource]
+script = ExtResource("1_vrb6u")
+has_scene = true
+scene = ExtResource("1_qost3")
+target_self = false
+cast_time = 0.5
+cooldown = 0.3
+input_event = "ability_two"
+damage = Array[float]([2.0])
+status_effects = Array[ExtResource("2_v76rn")]([])

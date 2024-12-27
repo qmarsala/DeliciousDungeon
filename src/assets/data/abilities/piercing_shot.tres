@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://b1tjegfgivt36"]
+
+[ext_resource type="Script" path="res://assets/data/abilities/ability_data.gd" id="1_iek6i"]
+[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/items/piercing_arrow.tscn" id="1_nb3sn"]
+[ext_resource type="Script" path="res://assets/data/abilities/status_effect.gd" id="2_vvjgw"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/abilities/burning.tres" id="3_y8shr"]
+
+[resource]
+script = ExtResource("1_iek6i")
+has_scene = true
+scene = ExtResource("1_nb3sn")
+target_self = false
+cast_time = 0.5
+cooldown = 5.0
+input_event = "ability_one"
+damage = Array[float]([1.0])
+status_effects = Array[ExtResource("2_vvjgw")]([ExtResource("3_y8shr")])
