@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=25 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
 [ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="2_d2tid"]
 [ext_resource type="TileSet" uid="uid://l2q7sjwj8ykk" path="res://assets/outdoor_tileset.tres" id="3_7xxu8"]
 [ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="3_oq7gx"]
+[ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="3_wyuhu"]
 [ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://scenes/levels/tree.tscn" id="5_70lwd"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
@@ -14,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
+[ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
+[ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="16_8mkye"]
+[ext_resource type="Script" path="res://assets/scripts/attack_dummy.gd" id="17_xrdwp"]
+[ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
 texture = ExtResource("1_rxblh")
@@ -314,10 +319,13 @@ sources/2 = SubResource("TileSetAtlasSource_jrh5p")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k741k"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twrvr"]
+
 [node name="debug" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ain6m")
 player_scene = ExtResource("6_ucoae")
+damage_number = ExtResource("3_wyuhu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -441,3 +449,18 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds4"]
 position = Vector2(1, 193)
 shape = SubResource("WorldBoundaryShape2D_k741k")
+
+[node name="AttackDummy" type="Sprite2D" parent="."]
+position = Vector2(-410, 0)
+texture = ExtResource("15_7g4ju")
+region_enabled = true
+region_rect = Rect2(6, 14, 19, 14)
+script = ExtResource("17_xrdwp")
+
+[node name="Hitbox" parent="AttackDummy" node_paths=PackedStringArray("node") instance=ExtResource("16_8mkye")]
+node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy/Hitbox"]
+shape = SubResource("RectangleShape2D_twrvr")
+
+[node name="StatusEffectsComponent" parent="AttackDummy" instance=ExtResource("20_04imu")]
