@@ -9,7 +9,7 @@ offsets = PackedFloat32Array(0.508097, 0.894737)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_28j1c"]
 gradient = SubResource("Gradient_k3ro5")
 fill_from = Vector2(0.542735, 0.995726)
-fill_to = Vector2(0.542735, 0.0384615)
+fill_to = Vector2(0.542735, 0.320513)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_088qw"]
 size = Vector2(4, 14)
@@ -27,13 +27,13 @@ region_enabled = true
 region_rect = Rect2(52.1356, 5, 3.91202, 14)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(2.98023e-08, 7)
-scale = Vector2(0.03125, 0.4375)
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(0.0625, 0.21875)
 texture = SubResource("GradientTexture2D_28j1c")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 64
+collision_mask = 65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_088qw")
