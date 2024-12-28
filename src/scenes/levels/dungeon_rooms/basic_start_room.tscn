@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://chrbwvn5udqeh"]
+[gd_scene load_steps=12 format=4 uid="uid://chrbwvn5udqeh"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_jdimc"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_td5qt"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_ve0fs"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="4_oaukl"]
+[ext_resource type="Resource" uid="uid://2xdqysd14632" path="res://assets/data/items/bow.tres" id="5_dgfw8"]
 [ext_resource type="Resource" uid="uid://3gf50wxc3jkw" path="res://assets/data/items/staff_of_fire.tres" id="5_nthjt"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="6_bmdef"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="6_l6r4d"]
@@ -42,8 +43,12 @@ position = Vector2(80, -22)
 y_sort_enabled = true
 position = Vector2(46, -45)
 
+[node name="Pickup2" parent="." instance=ExtResource("4_oaukl")]
+position = Vector2(-22, 39)
+item = ExtResource("5_dgfw8")
+
 [node name="Pickup" parent="." instance=ExtResource("4_oaukl")]
-position = Vector2(30, 26)
+position = Vector2(28, 39)
 item = ExtResource("5_nthjt")
 
 [node name="EnemyBounds" parent="." instance=ExtResource("6_l6r4d")]
