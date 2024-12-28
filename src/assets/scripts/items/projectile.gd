@@ -7,6 +7,7 @@ class_name Projectile
 @export var can_pierce = false
 @export var max_pierce_count = 1
 @export var max_range = 100
+@export var bonus_range = 0 # how do we want to do this? maybe it can just be part of the projectile data? maybe we add this from ability contexts?
 @export var synergy_effect: StatusEffect
 
 var direction = Vector2(0,0)
@@ -21,7 +22,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
-	if position.distance_to(starting_location) >= max_range:
+	if position.distance_to(starting_location) >= max_range + bonus_range:
 		queue_free()
 
 func init(ability_data: AbilityData, starting_position, target_position):

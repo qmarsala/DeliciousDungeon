@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://btrke7rn4blxm"]
+
+[ext_resource type="Script" path="res://assets/scripts/items/weapon.gd" id="1_7aqb2"]
+[ext_resource type="Texture2D" uid="uid://cqyuvlxinqtqc" path="res://assets/sprites/dungeon/weapons_.png" id="2_63vhr"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="3_t05x7"]
+
+[node name="FireStaff" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_7aqb2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
+texture = ExtResource("2_63vhr")
+region_enabled = true
+region_rect = Rect2(2, 72, 8, 24)
+
+[node name="AttackIndicator" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.196078)
+scale = Vector2(1.33333, 1.33333)
+texture = ExtResource("3_t05x7")
+region_enabled = true
+region_rect = Rect2(20, 19, 8, 9)
+
+[node name="Abilities" type="Node" parent="."]

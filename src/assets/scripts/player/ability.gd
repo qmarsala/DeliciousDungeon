@@ -1,24 +1,36 @@
 extends Node
 class_name Ability
 
-@export var ability_data: AbilityData
+#notes: eventually this class should serve
+# as a 'contract' into abilities
+# but should be configurable by the abilities themselves.
+# for now its a mess of all the things we may need around abilities
 
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var cast_timer: Timer = $CastTimer
+
+# how to get his back? maybe we need to create a sound service and signal it shold be played?
+# where should the ref to the audio be? in ability data?
 @onready var ability_sound: AudioStreamPlayer = $AbilitySound
 
 var is_on_cooldown = false
 var player: Player # todo: not sure I like this, though it is like a component - maybe its ok?
 var weapon: Weapon # todo: not sure I like this, though it is like a component - maybe its ok?
 
-func init(p: Player, w: Weapon):
+#todo: feels like this should be preconfigured? not injected? /shrug
+# this is the 'comonent node' that executes the data, so maybe its ok
+var ability_data: AbilityData
+
+func init(p: Player, w: Weapon, data: AbilityData):
 	player = p
 	weapon = w
+	ability_data = data
 
 func _ready() -> void:
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	cast_timer.timeout.connect(_on_cast_timer_timeout)
 
+# should this signal, and perhaps the player ultimately 'uses' the ability?
 func _unhandled_input(event: InputEvent) -> void:
 	# might want the weapon to listen, how will we prevent casting two attacks at once?
 	if player == null or player.is_dead() or not player.weapon_equipped: return
@@ -31,7 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			#ranged poc:
 			cast_timer.start(ability_data.cast_time)
 		else:
-			attack(weapon.get_attack_location())
+			use(weapon.get_attack_location())
 		cooldown_timer.start(ability_data.cooldown + ability_data.cast_time)
 
 func _process(delta: float) -> void:
@@ -44,12 +56,16 @@ func _process(delta: float) -> void:
 # melee would swing towards this direction, magic and range shoot toward it
 # probably need to start breaking this into sub types of abilities
 # like magic/range/melee
-func attack(target_location):
+func use(target_location):
 	if ability_data.scene != null:
 		var ability_instance = ability_data.scene.instantiate()
 		ability_instance.global_position = target_location
 		#ranged poc:
 		if ability_instance is Projectile:
+			#todo: this should be part of init?
+			# abilities that spawn projectiles may be their own class of ability
+			ability_instance.damage = ability_data.damage.front()
+			ability_instance.max_range = weapon.weapon_data.max_range
 			ability_instance.init(ability_data, weapon.global_position, target_location)
 		else:
 			ability_instance.init(ability_data)
@@ -61,4 +77,4 @@ func _on_cooldown_timer_timeout() -> void:
 
 func _on_cast_timer_timeout() -> void:
 	if player.is_dead() or not player.weapon_equipped: return
-	attack(weapon.get_attack_location())
+	use(weapon.get_attack_location())
