@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://bvak4qjj02fj3"]
+
+[ext_resource type="Script" path="res://assets/data/weapons/weapon_data.gd" id="2_6qkyh"]
+[ext_resource type="Script" path="res://assets/data/abilities/weapon_abilities/weapon_ability_data.gd" id="3_gscbr"]
+[ext_resource type="Resource" uid="uid://j5kdyvmygvhm" path="res://assets/data/abilities/weapon_abilities/firestaff_levelone_abilityone.tres" id="4_gtlvk"]
+[ext_resource type="Resource" uid="uid://bno05g36osipf" path="res://assets/data/abilities/weapon_abilities/firestaff_levelone_abilitytwo.tres" id="5_iw641"]
+
+[resource]
+script = ExtResource("2_6qkyh")
+max_range = 70.0
+weapon_abilities = Array[ExtResource("3_gscbr")]([ExtResource("4_gtlvk"), ExtResource("5_iw641")])
+item_id = 2
+name = "Fire Staff"
+description = "A low level staff capable of short range fire spells"
