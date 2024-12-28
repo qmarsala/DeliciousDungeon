@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=27 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="16_8mkye"]
 [ext_resource type="Script" path="res://assets/scripts/attack_dummy.gd" id="17_xrdwp"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
+[ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/items/trap.tscn" id="21_i40ug"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
 texture = ExtResource("1_rxblh")
@@ -484,3 +485,6 @@ node = NodePath("..")
 shape = SubResource("RectangleShape2D_twrvr")
 
 [node name="StatusEffectsComponent" parent="AttackDummy2" instance=ExtResource("20_04imu")]
+
+[node name="Trap" parent="AttackDummy2" instance=ExtResource("21_i40ug")]
+position = Vector2(326, 51)

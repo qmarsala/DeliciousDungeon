@@ -10,9 +10,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	animated_sprite_2d.play("trigger")
 	timer.start(.5)
 
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	animated_sprite_2d.play("trigger")
+	timer.start(.5)
 
 func _on_timer_timeout() -> void:
 	animated_sprite_2d.play("default")
-	var targets = area_2d.get_overlapping_bodies()
+	var targets = area_2d.get_overlapping_areas()
 	for t in targets:
-		t.receive_damage(2)
+		if t is Hitbox:
+			t.receive_damage(2)
