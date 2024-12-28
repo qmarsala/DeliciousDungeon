@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponAbilityData" load_steps=4 format=3 uid="uid://bno05g36osipf"]
+
+[ext_resource type="Resource" uid="uid://chw5576wg47v4" path="res://assets/data/abilities/conflagrate.tres" id="1_1na0r"]
+[ext_resource type="Script" path="res://assets/data/abilities/weapon_abilities/weapon_ability_data.gd" id="1_fy5ii"]
+[ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="3_8vnrq"]
+
+[resource]
+script = ExtResource("1_fy5ii")
+weapon_ability_component = ExtResource("3_8vnrq")
+ability_data = ExtResource("1_1na0r")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponAbilityData" load_steps=4 format=3 uid="uid://j5kdyvmygvhm"]
+
+[ext_resource type="Resource" uid="uid://b61mb8vxpb1ml" path="res://assets/data/abilities/ignite.tres" id="1_l8372"]
+[ext_resource type="Script" path="res://assets/data/abilities/weapon_abilities/weapon_ability_data.gd" id="1_vwejy"]
+[ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="3_ck2oc"]
+
+[resource]
+script = ExtResource("1_vwejy")
+weapon_ability_component = ExtResource("3_ck2oc")
+ability_data = ExtResource("1_l8372")

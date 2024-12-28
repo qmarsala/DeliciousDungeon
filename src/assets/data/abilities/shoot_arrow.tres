@@ -11,6 +11,6 @@ scene = ExtResource("1_qost3")
 target_self = false
 cast_time = 0.5
 cooldown = 0.3
-input_event = "ability_two"
 damage = Array[float]([2.0])
 status_effects = Array[ExtResource("2_v76rn")]([])
+input_event = "ability_two"

@@ -12,6 +12,6 @@ scene = ExtResource("1_t34em")
 target_self = false
 cast_time = 0.0
 cooldown = 5.0
-input_event = "ability_one"
 damage = Array[float]([1.0])
 status_effects = Array[ExtResource("2_o13bg")]([ExtResource("3_m311l")])
+input_event = "ability_one"
