@@ -469,3 +469,18 @@ node = NodePath("..")
 shape = SubResource("RectangleShape2D_twrvr")
 
 [node name="StatusEffectsComponent" parent="AttackDummy" instance=ExtResource("20_04imu")]
+
+[node name="AttackDummy2" type="Sprite2D" parent="."]
+position = Vector2(-433, -23)
+texture = ExtResource("15_7g4ju")
+region_enabled = true
+region_rect = Rect2(6, 14, 19, 14)
+script = ExtResource("17_xrdwp")
+
+[node name="Hitbox" parent="AttackDummy2" node_paths=PackedStringArray("node") instance=ExtResource("16_8mkye")]
+node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy2/Hitbox"]
+shape = SubResource("RectangleShape2D_twrvr")
+
+[node name="StatusEffectsComponent" parent="AttackDummy2" instance=ExtResource("20_04imu")]

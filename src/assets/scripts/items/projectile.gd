@@ -54,6 +54,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				area.receive_damage(damage * 2)
 			else: 
 				area.receive_damage(damage)
+		else: 
+			area.receive_damage(damage)
 	pierce_count += 1
 	if can_pierce and pierce_count > max_pierce_count:
 		queue_free()

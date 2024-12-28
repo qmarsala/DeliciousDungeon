@@ -18,7 +18,7 @@ func enter():
 		# otherwise food doesn't get cleaned up on scene changes
 		var world = get_tree().get_first_node_in_group("World")
 		if world:
-			world.add_child(dropInstance)
+			world.add_child.call_deferred(dropInstance)
 
 func handle_physics_process(delta: float):
 	enemy.velocity = Vector2(move_toward(enemy.velocity.x, Vector2.ZERO.x, delta), move_toward(enemy.velocity.y, Vector2.ZERO.y, delta))
