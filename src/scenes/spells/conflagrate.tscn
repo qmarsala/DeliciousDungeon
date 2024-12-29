@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c1tv7g4ssauru"]
 
-[ext_resource type="Script" path="res://assets/scripts/items/conflagrate.gd" id="1_w1lis"]
+[ext_resource type="Script" path="res://assets/scripts/spells/conflagrate.gd" id="1_w1lis"]
 [ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="2_eqfx4"]
 [ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/abilities/burning.tres" id="2_y37v0"]
 
