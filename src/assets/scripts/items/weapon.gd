@@ -8,19 +8,28 @@ var player: Player
 @export var weapon_data: WeaponData
 
 @export var aim_follows_cursor: bool
+@export var use_sprite: bool
 
 # todo: animations - see move state in player
 @onready var sprite = $Sprite2D
 @onready var animations: AnimatedSprite2D = $Animations
+@onready var ability_slots: Node = $AbilitySlots
+
+func use_data(data: WeaponData):
+	if data != null:
+		weapon_data = data
 
 # how could we hook up some ui for showing cooldowns?
-func init(p: Player, data: WeaponData):
+func init(p: Player, data: WeaponData = null):
 	player = p
-	weapon_data = data
-	for a in weapon_data.weapon_abilities:
-		var ability_component = a.weapon_ability_component.instantiate()
-		ability_component.init(player, self, a.ability_data)
-		$Abilities.add_child(ability_component)
+	use_data(data)
+
+func _ready() -> void:
+	for ability_slot in ability_slots.get_child_count():
+		if ability_slot < weapon_data.weapon_abilities.size():
+			var ability = weapon_data.weapon_abilities[ability_slot]
+			var slot = ability_slots.get_child(ability_slot) as Ability
+			slot.init(player, self, ability)
 
 func _process(delta: float) -> void:
 	if player == null: return

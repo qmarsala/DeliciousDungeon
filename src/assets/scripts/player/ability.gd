@@ -33,11 +33,14 @@ func _ready() -> void:
 # should this signal, and perhaps the player ultimately 'uses' the ability?
 func _unhandled_input(event: InputEvent) -> void:
 	# might want the weapon to listen, how will we prevent casting two attacks at once?
-	if player == null or player.is_dead() or not player.weapon_equipped: return
+	# do we want to prevent that though? its fun
+	if not (is_instance_valid(player) and is_instance_valid(ability_data)): return
+	if player.is_dead() or not player.weapon_equipped: return
+
 	if event.is_action_pressed(ability_data.input_event) and not is_on_cooldown:
 		is_on_cooldown = true
-		#ranged poc:
-		if weapon.animations:
+		#ranged poc: the ability should signal and let the weapon do this probably
+		if not weapon.use_sprite:
 			weapon.animations.play("shoot")
 		if ability_data.cast_time > 0:
 			#ranged poc:
@@ -48,8 +51,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if player == null: return
-	#ranged poc: weapon.animations
-	if !cast_timer.is_stopped() and not weapon.animations:
+	#ranged poc: probably want to have a setting for 'use charge bar' or something
+	if !cast_timer.is_stopped() and weapon.weapon_data.item_id == Enums.Items.Staff:
 		SignalBusService.AttackCharge.emit(cast_timer.time_left, ability_data.cast_time)
 
 # maybe this could be the attack contract
@@ -60,7 +63,7 @@ func use(target_location):
 	if ability_data.scene != null:
 		var ability_instance = ability_data.scene.instantiate()
 		ability_instance.global_position = target_location
-		#ranged poc:
+		#ranged poc: need to get something bettew for projectiles
 		if ability_instance is Projectile:
 			#todo: this should be part of init?
 			# abilities that spawn projectiles may be their own class of ability

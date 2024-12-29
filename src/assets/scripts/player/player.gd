@@ -80,20 +80,25 @@ func receive_damage(damage: float):
 	%HealthComponent.receive_damage(damage)
 
 func pickup(item: Item):
-	print("picked up: " + item.name)
-	if item.is_weapon:
-		if weapon_equipped:
-			#todo: drop the other weapon, or put it in inventory with a way to switch?
-			weapon.queue_free()
-		var weaponScene = item.scene
-		var weaponInstance = weaponScene.instantiate() as Weapon
-		weapon = weaponInstance
-		weapon.init(self, item.weapon_data)
-		weapon_equipped = true
-		hand.add_child.call_deferred(weaponInstance)
+	print("picked up: " + item.data.name)
+	if item.data is WeaponData:
+		equip(item)
 	else:
-		player_items[item.item_id] += 1
-	
+		player_items[item.data.item_id] += 1
+
+func equip(item: Item):
+	if weapon_equipped:
+		#todo: drop the other weapon, or put it in inventory with a way to switch?
+		weapon.queue_free()
+	weapon_equipped = true
+	weapon = item.create_item_scene() as Weapon
+	# calling back up - it feels more extension like, with signals we'd need to have
+	# something implemented here too?  but maybe the handler could be a generic
+	# 'execute' that the signaling objects sends up? then some player 
+	# specific logic could happen before that happens if needed, like 'is dead' checks 
+	weapon.init(self)
+	hand.add_child.call_deferred(weapon)
+
 func interact():
 	var result = interaction_ray_cast.get_collider()
 	if not result: return
