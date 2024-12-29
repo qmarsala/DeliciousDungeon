@@ -6,9 +6,5 @@
 
 [resource]
 script = ExtResource("1_cohig")
-item_id = 2
+data = ExtResource("3_sjwyb")
 scene = ExtResource("1_xofx7")
-name = "Fire staff"
-description = "a basic staff capable of short range fire spells"
-is_weapon = true
-weapon_data = ExtResource("3_sjwyb")

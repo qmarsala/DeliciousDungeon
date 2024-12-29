@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://b5ajp2cpjk2pw"]
 
 [ext_resource type="Script" path="res://assets/data/weapons/weapon_data.gd" id="1_oxbym"]
-[ext_resource type="Script" path="res://assets/data/abilities/weapon_abilities/weapon_ability_data.gd" id="2_iqjsg"]
-[ext_resource type="Resource" uid="uid://bufm614t1hqen" path="res://assets/data/abilities/weapon_abilities/bow_levelone_abilityone.tres" id="3_wex53"]
-[ext_resource type="Resource" uid="uid://byunkulrj03k2" path="res://assets/data/abilities/weapon_abilities/bow_levelone_abilitytwo.tres" id="4_yeo4h"]
+[ext_resource type="Script" path="res://assets/data/abilities/ability_data.gd" id="2_xcrct"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/data/abilities/piercing_shot.tres" id="3_nx15s"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/data/abilities/shoot_arrow.tres" id="4_sspcf"]
 
 [resource]
 script = ExtResource("1_oxbym")
 max_range = 90.0
-weapon_abilities = Array[ExtResource("2_iqjsg")]([ExtResource("3_wex53"), ExtResource("4_yeo4h")])
+weapon_abilities = Array[ExtResource("2_xcrct")]([ExtResource("3_nx15s"), ExtResource("4_sspcf")])
 item_id = 3
-name = "Shortbow"
-description = "a basic ranged weapon"
+name = "Bow"
+description = "Bow"

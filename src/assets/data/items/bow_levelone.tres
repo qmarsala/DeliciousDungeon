@@ -6,9 +6,5 @@
 
 [resource]
 script = ExtResource("2_00hex")
-item_id = 3
+data = ExtResource("3_0q6vt")
 scene = ExtResource("1_3ir7x")
-name = "Shortbow"
-description = "A basic ranged weapon that shoots arrows"
-is_weapon = true
-weapon_data = ExtResource("3_0q6vt")
