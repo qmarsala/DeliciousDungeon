@@ -6,8 +6,8 @@ extends Resource
 
 @export var target_self: bool
 
-@export var cast_time = .25
-@export var cooldown = 1.0
+@export var cast_time = .3
+@export var cooldown = 1.3
 @export var damage: Array[float] = [1]
 @export var status_effects: Array[StatusEffect]
 

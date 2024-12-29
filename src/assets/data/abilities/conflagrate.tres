@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c1tv7g4ssauru" path="res://scenes/spells/conflagrate.tscn" id="1_6pt40"]
 [ext_resource type="Script" path="res://assets/data/abilities/ability_data.gd" id="2_mb2tj"]
-[ext_resource type="Script" path="res://assets/data/abilities/status_effect.gd" id="3_aqt5x"]
+[ext_resource type="Script" path="res://assets/data/status_effects/status_effect.gd" id="3_128js"]
 
 [resource]
 script = ExtResource("2_mb2tj")
@@ -10,7 +10,7 @@ has_scene = true
 scene = ExtResource("1_6pt40")
 target_self = false
 cast_time = 0.3
-cooldown = 0.8
+cooldown = 1.3
 damage = Array[float]([1.0, 2.0, 3.0])
-status_effects = Array[ExtResource("3_aqt5x")]([])
+status_effects = Array[ExtResource("3_128js")]([])
 input_event = "ability_two"
