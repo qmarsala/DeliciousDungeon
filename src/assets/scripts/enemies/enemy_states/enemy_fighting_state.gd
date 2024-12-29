@@ -83,6 +83,9 @@ func handle_physics_process(delta: float):
 func handle_attack():
 	if enemy.data.attack_sound and enemy.audio_stream_player and enemy.data.attack_sound_on_delay:
 		enemy.audio_stream_player.stream = enemy.data.attack_sound
+		# would be nice if this could be handled the same way as in player abilities
+		# sound service? also it would be cool if enemies and players used the same 'weapon' objects.
+		enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
 		enemy.audio_stream_player.play()
 	if enemy.data.is_ranged:
 		var projectile_instance = enemy.data.projectile.instantiate() as Projectile

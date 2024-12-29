@@ -25,6 +25,7 @@ func init(p: Player, w: Weapon, data: AbilityData):
 	player = p
 	weapon = w
 	ability_data = data
+	ability_sound.stream = ability_data.ability_sound
 
 func _ready() -> void:
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
@@ -73,6 +74,7 @@ func use(target_location):
 		else:
 			ability_instance.init(ability_data)
 		add_child(ability_instance)
+	ability_sound.pitch_scale = randf_range(.95,1.05)
 	ability_sound.play()
 
 func _on_cooldown_timer_timeout() -> void:
