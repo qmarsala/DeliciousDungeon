@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal PlayerDied
 
-const SPEED = 75.0
+const SPEED = 60.0
 const DASH_MULTIPLIER = 2
 const DASH_TIME = .5
 const DASH_COOLDOWN = 1
