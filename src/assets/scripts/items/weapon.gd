@@ -24,6 +24,7 @@ func init(p: Player, data: WeaponData = null):
 	player = p
 	use_data(data)
 
+# todo: need to figure out how to be consistent with init vs ready
 func _ready() -> void:
 	for ability_slot in ability_slots.get_child_count():
 		if ability_slot < weapon_data.weapon_abilities.size():

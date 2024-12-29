@@ -12,3 +12,4 @@ one_shot = true
 one_shot = true
 
 [node name="AbilitySound" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
