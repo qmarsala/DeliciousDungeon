@@ -9,10 +9,10 @@ extends Resource
 @export var name: String = "Goblin"
 @export var starting_health: float = 5
 @export var speed: float = 40
-@export var vision_range: float = 70
-@export var engage_speed_multiplier: float = 1.15
-@export var retreat_speed_multiplier: float =  0.7
-@export var drop_rate: float = .3
+@export var vision_range: float = 80
+@export var engage_speed_multiplier: float = 1.25
+@export var retreat_speed_multiplier: float =  0.75
+@export var drop_rate: float = .334
 @export var drop: Item
 # what can we do here? I could see that maybe we would want a 
 # custom pickup area and therefor have a different pickup scene to 
