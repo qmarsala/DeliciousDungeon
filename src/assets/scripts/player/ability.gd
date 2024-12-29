@@ -47,7 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			cast_timer.start(ability_data.cast_time)
 		else:
 			use(weapon.get_attack_location())
-		cooldown_timer.start(ability_data.cooldown + ability_data.cast_time)
+		cooldown_timer.start((ability_data.cooldown + ability_data.cast_time) - ability_data.cooldown * weapon.weapon_data.cooldown_reduction)
 
 func _process(delta: float) -> void:
 	if player == null: return
