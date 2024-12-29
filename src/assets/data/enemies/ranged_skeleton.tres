@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://73gucalk24fs"]
 
 [ext_resource type="Script" path="res://assets/data/enemy_data.gd" id="1_0eorm"]
-[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/RangedSkeletonAttack.wav" id="1_23dib"]
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/BowAttack.wav" id="1_23dib"]
 [ext_resource type="PackedScene" uid="uid://bqkw7smlx0kjy" path="res://scenes/items/enemy_arrow.tscn" id="2_jn723"]
 
 [resource]
