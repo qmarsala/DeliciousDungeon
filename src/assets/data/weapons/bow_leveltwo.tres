@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://bxslsp2tvvin1"]
+
+[ext_resource type="Script" path="res://assets/data/weapons/weapon_data.gd" id="1_bmtdg"]
+[ext_resource type="Script" path="res://assets/data/abilities/ability_data.gd" id="2_4pefr"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/data/abilities/piercing_shot.tres" id="3_4ujmv"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/data/abilities/shoot_arrow.tres" id="4_5adoi"]
+
+[resource]
+script = ExtResource("1_bmtdg")
+max_range = 110.0
+weapon_abilities = Array[ExtResource("2_4pefr")]([ExtResource("3_4ujmv"), ExtResource("4_5adoi")])
+item_id = 3
+name = "Bow"
+description = "A bettew bow"
