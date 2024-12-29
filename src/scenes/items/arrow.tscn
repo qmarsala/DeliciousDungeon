@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://assets/sprites/robinhood/weapons_.png" id="1_cgbgu"]
 [ext_resource type="Script" path="res://assets/scripts/items/projectile.gd" id="1_k70sm"]
-[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/abilities/burning.tres" id="2_24p5u"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/status_effects/burning.tres" id="2_24p5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_088qw"]
 size = Vector2(4, 14)
