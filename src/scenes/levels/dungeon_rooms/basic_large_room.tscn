@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://b61iqknq8r7m2"]
+[gd_scene load_steps=8 format=4 uid="uid://b61iqknq8r7m2"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room.gd" id="1_2laa5"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="1_222id"]
 [ext_resource type="PackedScene" uid="uid://c56wrcs86blaf" path="res://scenes/enemy_spawner.tscn" id="5_akpay"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="5_gb0je"]
 [ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/items/trap.tscn" id="6_5iaqn"]
+[ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="6_ygesj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoyv1"]
 size = Vector2(8, 48)
@@ -75,3 +76,6 @@ position = Vector2(-58, 0)
 [node name="EnemySpawner5" parent="." instance=ExtResource("5_akpay")]
 z_index = 1
 position = Vector2(58, -1)
+
+[node name="Chest" parent="." instance=ExtResource("6_ygesj")]
+position = Vector2(-95, -101)

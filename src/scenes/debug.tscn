@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=25 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -10,11 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
 [ext_resource type="PackedScene" uid="uid://cwoqb0h58gi6y" path="res://scenes/enemies/troll.tscn" id="7_mkydk"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="9_rtcjk"]
-[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/data/items/bow_levelone.tres" id="10_tg44i"]
-[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/data/items/firestaff_levelone.tres" id="11_e4n71"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
-[ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://assets/data/items/bow_leveltwo.tres" id="12_37d3x"]
 [ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
@@ -22,6 +18,7 @@
 [ext_resource type="Script" path="res://assets/scripts/attack_dummy.gd" id="17_xrdwp"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
 [ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/items/trap.tscn" id="21_i40ug"]
+[ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="23_nkwgo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
 texture = ExtResource("1_rxblh")
@@ -399,19 +396,6 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Pickup" parent="." instance=ExtResource("9_rtcjk")]
-z_index = 1
-position = Vector2(27, -7)
-item = ExtResource("10_tg44i")
-
-[node name="Pickup2" parent="." instance=ExtResource("9_rtcjk")]
-position = Vector2(-22, -8)
-item = ExtResource("11_e4n71")
-
-[node name="Pickup3" parent="." instance=ExtResource("9_rtcjk")]
-position = Vector2(28, 22)
-item = ExtResource("12_37d3x")
-
 [node name="Fire" parent="." instance=ExtResource("11_wrpau")]
 z_index = 1
 position = Vector2(-70, -46)
@@ -427,6 +411,26 @@ position = Vector2(175, 166)
 
 [node name="RangedSkeleton" parent="." instance=ExtResource("12_i7yee")]
 position = Vector2(121, -104)
+
+[node name="Chest" parent="." instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-292, -23)
+spawn_rate = 1.0
+
+[node name="Chest2" parent="." instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-242, -22)
+spawn_rate = 1.0
+
+[node name="Chest3" parent="." instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-293, 26)
+spawn_rate = 1.0
+
+[node name="Chest4" parent="." instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-239, 28)
+spawn_rate = 1.0
 
 [node name="EnemyBounds" parent="." instance=ExtResource("13_hvojg")]
 position = Vector2(0, 192)
