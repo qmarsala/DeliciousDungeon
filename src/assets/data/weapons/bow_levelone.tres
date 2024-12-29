@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("1_oxbym")
 max_range = 90.0
+cooldown_reduction = 0.0
 weapon_abilities = Array[ExtResource("2_xcrct")]([ExtResource("3_nx15s"), ExtResource("4_sspcf")])
 item_id = 3
 name = "Bow"
