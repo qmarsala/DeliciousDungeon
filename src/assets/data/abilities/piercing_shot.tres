@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://b1tjegfgivt36"]
+[gd_resource type="Resource" script_class="AbilityData" load_steps=6 format=3 uid="uid://b1tjegfgivt36"]
 
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/BowAttack.wav" id="1_0yq8j"]
 [ext_resource type="Script" path="res://assets/data/abilities/ability_data.gd" id="1_iek6i"]
 [ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/items/piercing_arrow.tscn" id="1_nb3sn"]
 [ext_resource type="Script" path="res://assets/data/status_effects/status_effect.gd" id="3_1dyk2"]
@@ -10,6 +11,7 @@ script = ExtResource("1_iek6i")
 has_scene = true
 scene = ExtResource("1_nb3sn")
 target_self = false
+ability_sound = ExtResource("1_0yq8j")
 cast_time = 0.3
 cooldown = 5.0
 damage = Array[float]([1.0])

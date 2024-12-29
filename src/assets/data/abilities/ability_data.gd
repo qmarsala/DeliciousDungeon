@@ -5,7 +5,7 @@ extends Resource
 @export var scene: PackedScene
 
 @export var target_self: bool
-
+@export var ability_sound: AudioStream
 @export var cast_time = .3
 @export var cooldown = 1.3
 @export var damage: Array[float] = [1]
