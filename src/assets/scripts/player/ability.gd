@@ -17,6 +17,8 @@ var is_on_cooldown = false
 var player: Player # todo: not sure I like this, though it is like a component - maybe its ok?
 var weapon: Weapon # todo: not sure I like this, though it is like a component - maybe its ok?
 
+var total_cooldown: float = 0
+
 #todo: feels like this should be preconfigured? not injected? /shrug
 # this is the 'comonent node' that executes the data, so maybe its ok
 var ability_data: AbilityData
@@ -26,6 +28,7 @@ func init(p: Player, w: Weapon, data: AbilityData):
 	weapon = w
 	ability_data = data
 	ability_sound.stream = ability_data.ability_sound
+	total_cooldown = (ability_data.cooldown + ability_data.cast_time) - ability_data.cooldown * weapon.weapon_data.cooldown_reduction
 
 func _ready() -> void:
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
@@ -48,7 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			cast_timer.start(ability_data.cast_time)
 		else:
 			use(weapon.get_attack_location())
-		cooldown_timer.start((ability_data.cooldown + ability_data.cast_time) - ability_data.cooldown * weapon.weapon_data.cooldown_reduction)
+		cooldown_timer.start(total_cooldown)
 
 func _process(delta: float) -> void:
 	if player == null: return
