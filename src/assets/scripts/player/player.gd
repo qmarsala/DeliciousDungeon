@@ -2,6 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 signal PlayerDied
+signal EquippedWeapon(weapon: Weapon)
+
 
 const SPEED = 60.0
 const DASH_MULTIPLIER = 2
@@ -11,7 +13,7 @@ const INTERACTION_RANGE = 15.0
 const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
-
+@export var pickup_scene: PackedScene # should we make a drop service to encapulate this drop scene everywhere?
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
@@ -44,6 +46,7 @@ var is_dash_cooldown: bool
 var is_hill: bool
 
 #temp:
+var weapon_item: Item
 var weapon: Weapon
 var weapon_equipped: bool
 
@@ -88,10 +91,20 @@ func pickup(item: Item):
 
 func equip(item: Item):
 	if weapon_equipped:
-		#todo: drop the other weapon, or put it in inventory with a way to switch?
 		weapon.queue_free()
+		if pickup_scene:
+			var pickup = pickup_scene.instantiate() as Pickup
+			pickup.item = weapon_item
+			pickup.global_position = global_position + Vector2.UP * 10
+			add_sibling.call_deferred(pickup)
 	weapon_equipped = true
-	weapon = item.create_item_scene() as Weapon
+	# todo: don't love that we need to track the item version and the weapon scene instance.  
+	# what elce can we do?
+	weapon_item = item
+	weapon = weapon_item.create_item_scene() as Weapon
+	# currently sending the whole scene to be able to track ability cooldowns
+	# there is probably a better way to do this?
+	EquippedWeapon.emit(weapon)
 	# calling back up - it feels more extension like, with signals we'd need to have
 	# something implemented here too?  but maybe the handler could be a generic
 	# 'execute' that the signaling objects sends up? then some player 
