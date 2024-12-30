@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1bfcy70vhh2k"]
+[gd_scene load_steps=4 format=3 uid="uid://b1bfcy70vhh2k"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/player_ui.gd" id="1_bgem0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p08b3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_51dl0"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_k6bk4"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -23,10 +21,10 @@ script = ExtResource("1_bgem0")
 [node name="FoodCountLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -315.0
-offset_top = -356.0
-offset_right = -242.0
-offset_bottom = -340.0
+offset_left = -310.0
+offset_top = -350.0
+offset_right = -237.0
+offset_bottom = -334.0
 text = "Food: 0"
 label_settings = SubResource("LabelSettings_p08b3")
 vertical_alignment = 1
@@ -34,10 +32,10 @@ vertical_alignment = 1
 [node name="WoodCountLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -315.0
-offset_top = -342.0
-offset_right = -252.0
-offset_bottom = -327.0
+offset_left = -310.0
+offset_top = -336.0
+offset_right = -247.0
+offset_bottom = -321.0
 text = "Wood: 0"
 label_settings = SubResource("LabelSettings_p08b3")
 vertical_alignment = 1
@@ -45,70 +43,133 @@ vertical_alignment = 1
 [node name="StatusLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -142.0
-offset_top = -49.0
-offset_right = -50.0
-offset_bottom = -31.0
-text = "Status: Rested"
+offset_left = 94.0
+offset_top = -77.0
+offset_right = 166.0
+offset_bottom = -59.0
+text = "Rested"
 label_settings = SubResource("LabelSettings_51dl0")
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = -142.0
-offset_top = -30.0
-offset_right = 288.0
-offset_bottom = 20.0
-scale = Vector2(0.662172, 0.408148)
-mouse_filter = 2
-
-[node name="HealthBar" type="ProgressBar" parent="Panel"]
+[node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.827964, 0.119937, 0.216825, 1)
 layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 210.0
-offset_bottom = 40.0
+offset_left = -165.0
+offset_top = -60.0
+offset_right = -108.0
+offset_bottom = -6.0
 mouse_filter = 2
 max_value = 10.0
 value = 5.0
+fill_mode = 3
 show_percentage = false
 
-[node name="HungerBar" type="ProgressBar" parent="Panel"]
+[node name="HungerBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.224528, 0.402987, 0.931931, 1)
+modulate = Color(0.568627, 0, 0.517647, 1)
 layout_mode = 0
-offset_left = 220.0
-offset_top = 10.0
-offset_right = 420.0
-offset_bottom = 40.0
+offset_left = 101.0
+offset_top = -61.0
+offset_right = 157.0
+offset_bottom = -7.0
 mouse_filter = 2
 max_value = 10.0
 value = 5.0
+fill_mode = 3
 show_percentage = false
+
+[node name="Ability1Cooldown" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = -99.0
+offset_top = -45.0
+offset_right = -62.0
+offset_bottom = -7.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="Ability1Cooldown"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 36.0
+offset_bottom = 35.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Ability2Cooldown" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -45.0
+offset_right = -11.0
+offset_bottom = -7.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="Ability2Cooldown"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 36.0
+offset_bottom = 35.0
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Ability3Cooldown" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -45.0
+offset_right = 41.0
+offset_bottom = -7.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="Ability3Cooldown"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 36.0
+offset_bottom = 35.0
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DashCooldown" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = -45.0
+offset_right = 91.0
+offset_bottom = -7.0
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="DashCooldown"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 36.0
+offset_bottom = 35.0
+text = "Dash"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ChargedAttackBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.909804, 0.666667, 0.0823529, 1)
 layout_mode = 0
-offset_left = -67.0
-offset_top = -62.0
-offset_right = 133.0
-offset_bottom = -35.0
+offset_left = -98.0
+offset_top = -60.0
+offset_right = 185.0
+offset_bottom = -33.0
 scale = Vector2(0.663405, 0.435025)
 mouse_filter = 2
 show_percentage = false
-
-[node name="DashIcon" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 111.0
-offset_top = -46.0
-offset_right = 142.0
-offset_bottom = -31.0
-text = "Dash"
-label_settings = SubResource("LabelSettings_k6bk4")
-horizontal_alignment = 1
-vertical_alignment = 1
