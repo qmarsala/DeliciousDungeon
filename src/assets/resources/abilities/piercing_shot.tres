@@ -10,6 +10,7 @@
 script = ExtResource("1_iek6i")
 has_scene = true
 scene = ExtResource("1_nb3sn")
+animation_name = "attack"
 target_self = false
 ability_sound = ExtResource("1_0yq8j")
 cast_time = 0.3
