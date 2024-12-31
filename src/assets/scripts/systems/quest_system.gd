@@ -1,13 +1,6 @@
 class_name QuestSystem
 extends Node
 
-#if quest system is a global service
-# how do we feed it data?
-# there are three lists really: available (in the game) inprogress (ones we are currently doing) and completed
-# for now avail and inprog are the same list
-# does the quest system read files itself somehow?
-# does it get fed in from another context like 'game'?
-
 var available_quests: Array[Quest]
 var completed_quests: Array[Quest]
 

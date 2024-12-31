@@ -17,8 +17,6 @@ func _ready() -> void:
 	add_to_group(Interfaces.Interactable)
 	interactbox.interacted.connect(interact)
 
-# interact as a component?
-# if so - strategy pattern for what to do on interact?
 func interact(player: Player):
 	if is_locked or is_open:
 		return # todo check for key

@@ -9,8 +9,7 @@ class_name Ability
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var cast_timer: Timer = $CastTimer
 
-# how to get his back? maybe we need to create a sound service and signal it shold be played?
-# where should the ref to the audio be? in ability data?
+#audio service?
 @onready var ability_sound: AudioStreamPlayer = $AbilitySound
 
 var is_on_cooldown = false
@@ -56,6 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if player == null: return
 	#ranged poc: probably want to have a setting for 'use charge bar' or something
+	# also is this what we want the signal bus for? or should this be a regular signal?
 	if !cast_timer.is_stopped() and weapon.weapon_data.item_id == Enums.Items.Staff:
 		SignalBusService.AttackCharge.emit(cast_timer.time_left, ability_data.cast_time)
 

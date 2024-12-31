@@ -19,7 +19,6 @@ func handle_process(delta: float):
 	else:
 		randomize_explore()
 
-#test: is_instance_valid vs != null?
 func handle_physics_process(delta: float):
 	if !is_instance_valid(enemy): return
 

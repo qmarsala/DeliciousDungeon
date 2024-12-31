@@ -58,9 +58,7 @@ func _process(delta: float) -> void:
 		$AttackIndicator.rotation_degrees = 90
 		#this type of state makes me want scripts for the weapons indicators that can vary
 		# maybe strategy pattern?
-		# I think this worked well on the skeleton because of the 'aim vector'
 		look_at(location)
-		# trying this in player instead
 		var direction = location - player.hand.global_position
 		var target_location = location
 		if direction.length() > 4:

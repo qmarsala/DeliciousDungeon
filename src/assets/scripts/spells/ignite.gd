@@ -8,9 +8,7 @@ var data: AbilityData
 func init(attack_data: AbilityData):
 	data = attack_data
 
-#todo: delay seems to be needed or we wont detect targets
-# maybe this is fine - but is there something else we can do?
-var delay = 0.10
+var delay = 0.1
 var time = 0
 func _process(delta: float) -> void:
 	time += delta

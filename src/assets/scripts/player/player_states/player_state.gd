@@ -22,6 +22,9 @@ func exit():
 func handle_process(delta: float):
 	pass
 
+# should these things be moved to a 'movement controller'
+# states that need this disabled could then set the controller to be 
+# enabled/disabled on state changes?
 func handle_physics_process(delta: float):
 	var was_holding = holding_move
 	holding_move = move_pressed and time - pressed_at > .25
@@ -39,9 +42,6 @@ func handle_interact_action(event: InputEvent) -> void:
 		player.interact()
 		get_viewport().set_input_as_handled()
 
-#in this method we have the details implemented here, in contrast to above where we call 'interact'
-#just to play around with different approaches
-#todo: how can we get the move indicator code consolidated into one spot?
 var pressed_at = 0
 var move_pressed = false
 var holding_move = false

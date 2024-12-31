@@ -1,6 +1,10 @@
 extends Node2D
 class_name Projectile
 
+# redesign notes:
+# - how does this fit into 'ability'
+# - how can enemy/player bow/spells benefit from projectile?
+
 # todo: these params need to come from a recourse
 @export var speed = 300.0
 @export var damage = 2
@@ -35,9 +39,6 @@ func init_old(starting_position, target_position):
 	direction = global_position.direction_to(target)
 	face_target()
 
-# this should just be look at target, 
-# not sure why I need the extra rotate
-# rotating first in the arrow scene doesn't do anything
 func face_target():
 	look_at(target)
 	rotate(deg_to_rad(90))
