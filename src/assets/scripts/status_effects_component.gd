@@ -10,11 +10,11 @@ func _process(delta: float) -> void:
 	time += delta
 	var expired_effects = status_effects.filter(func(se: StatusEffect): return se.is_expired(time))
 	for ee in expired_effects: 
+		ee.on_expired(self)
 		status_effects.erase(ee)
 	for se in status_effects:
 		if se.is_applicable(time):
-			se.tick(time)
-			Proc.emit(se)
+			tick_effect(se)
 
 func has_effect(effect) -> bool:
 	return find_effects(effect).size() > 0
@@ -25,12 +25,17 @@ func find_effects(effect) -> Array[StatusEffect]:
 	else:
 		return status_effects.filter(func(e): return e.effect_name == effect)
 
-func apply_effect(effect: StatusEffect):
+func apply_effect(effect: StatusEffect) -> void:
+	if has_effect(effect.blocked_by_effect): return
 	var existing_effects = find_effects(effect)
 	if existing_effects.size() > 0:
 		existing_effects.front().extend(time)
 	else:
 		var new_effect = effect.duplicate()
 		status_effects.append(new_effect)
-		new_effect.tick(time)
+		tick_effect(new_effect)
 	print(status_effects)
+
+func tick_effect(effect: StatusEffect):
+	effect.tick(time)
+	Proc.emit(effect)
