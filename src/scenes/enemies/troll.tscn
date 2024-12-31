@@ -1,7 +1,7 @@
 [gd_scene load_steps=38 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
-[ext_resource type="Resource" uid="uid://dme853k8xu4qu" path="res://assets/data/enemies/troll.tres" id="2_f36uu"]
+[ext_resource type="Resource" uid="uid://dme853k8xu4qu" path="res://assets/resources/enemies/troll.tres" id="2_f36uu"]
 [ext_resource type="Texture2D" uid="uid://d3bkdx3n808em" path="res://assets/sprites/forestSprites_ v1.2/troll_.png" id="2_o0od4"]
 [ext_resource type="Texture2D" uid="uid://dyywsx6uxabdm" path="res://assets/sprites/forestSprites_ v1.2/weapons_.png" id="3_dhr1q"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_f1a2u"]

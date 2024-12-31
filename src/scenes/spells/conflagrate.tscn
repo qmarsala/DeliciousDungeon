@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/spells/conflagrate.gd" id="1_w1lis"]
 [ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="2_eqfx4"]
-[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/data/status_effects/burning.tres" id="2_y37v0"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://assets/resources/status_effects/burning.tres" id="2_y37v0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d85sh"]
 atlas = ExtResource("2_eqfx4")

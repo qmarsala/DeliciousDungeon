@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0nk2tnjt4nfh"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_adk1w"]
-[ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://assets/data/enemies/ranged_skeleton.tres" id="2_7pu6r"]
+[ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://assets/resources/enemies/ranged_skeleton.tres" id="2_7pu6r"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="3_60mma"]
 [ext_resource type="SpriteFrames" uid="uid://b6tsfs76tcrb1" path="res://assets/animations/skeleton_animation.tres" id="3_w30yt"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="4_i88yj"]

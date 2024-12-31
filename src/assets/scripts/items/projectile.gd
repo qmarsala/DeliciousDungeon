@@ -8,7 +8,6 @@ class_name Projectile
 @export var max_pierce_count = 1
 @export var max_range = 100
 @export var bonus_range = 0 # how do we want to do this? maybe it can just be part of the projectile data? maybe we add this from ability contexts?
-@export var synergy_effect: StatusEffect
 
 var direction = Vector2(0,0)
 var target = Vector2(0,0)
@@ -48,14 +47,11 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		var effect_synergy = StatusEffectSynergy.new()
-		effect_synergy.status_effect = synergy_effect
-		effect_synergy.bonus_damage_modifier = 2
 		var attack = Attack.new()
-		attack.effect_synergy = effect_synergy
 		if data:
 			attack.damage = data.damage.front()
 			attack.status_effects = data.status_effects
+			attack.effect_synergy = data.status_effect_synergy
 		else:
 			attack.damage = damage
 		area.apply_attack(attack)

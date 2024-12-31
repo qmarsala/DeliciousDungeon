@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/items/weapon.gd" id="1_dpge4"]
 [ext_resource type="SpriteFrames" uid="uid://cawxta7v7inqw" path="res://assets/animations/bow_animation.tres" id="2_715ou"]
-[ext_resource type="Resource" uid="uid://bxslsp2tvvin1" path="res://assets/data/weapons/bow_leveltwo.tres" id="2_qwfde"]
+[ext_resource type="Resource" uid="uid://bxslsp2tvvin1" path="res://assets/resources/weapons/bow_leveltwo.tres" id="2_qwfde"]
 [ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://assets/sprites/robinhood/weapons_.png" id="3_w3xtp"]
 [ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="4_0pdda"]
 
