@@ -5,6 +5,8 @@ var status_effects: Array[StatusEffect] = []
 var effect_synergy: StatusEffectSynergy
 
 #do we like this?
+# maybe if we like this pattern
+# we can have armour resoulved here too?
 func apply(health_component: HealthComponent, status_effects_component: StatusEffectComponent) -> void:
 	if status_effects_component:
 		if effect_synergy and status_effects_component.has_effect(effect_synergy.status_effect):
