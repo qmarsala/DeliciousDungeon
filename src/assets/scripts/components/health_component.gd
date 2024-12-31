@@ -19,6 +19,8 @@ func is_dead() -> bool :
 
 func _ready() -> void:
 	health = starting_health
+	if not node:
+		node = get_parent()
 
 # todo: what about armour/effects that reduce damage
 # should we have th parent control the final damage somehow?
