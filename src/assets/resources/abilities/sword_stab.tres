@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=6 format=3 uid="uid://bbipk0xulhe0j"]
+
+[ext_resource type="PackedScene" uid="uid://cvxvecph7j317" path="res://scenes/melee/sword_stab.tscn" id="1_4465o"]
+[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="1_b6omi"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="1_s64vy"]
+[ext_resource type="Script" path="res://assets/resources/status_effects/status_effect.gd" id="2_d1b7f"]
+[ext_resource type="Resource" uid="uid://boby8lv0fqfht" path="res://assets/resources/status_effects/bleeding.tres" id="4_cbetj"]
+
+[resource]
+script = ExtResource("1_s64vy")
+has_scene = true
+scene = ExtResource("1_4465o")
+animation_name = "stab"
+target_self = false
+ability_sound = ExtResource("1_b6omi")
+cast_time = 0.0
+cooldown = 3.5
+damage = Array[float]([1.0])
+status_effects = Array[ExtResource("2_d1b7f")]([ExtResource("4_cbetj")])
+input_event = "ability_one"

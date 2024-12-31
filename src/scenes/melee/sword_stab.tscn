@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvxvecph7j317"]
+
+[ext_resource type="Script" path="res://assets/scripts/sword_swing.gd" id="1_d1ct4"]
+[ext_resource type="PackedScene" uid="uid://dek57qt07lvfp" path="res://scenes/melee/melee_hurtbox.tscn" id="2_2x2x4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf4sm"]
+size = Vector2(20, 4)
+
+[node name="SwordStab" type="Node2D"]
+script = ExtResource("1_d1ct4")
+
+[node name="MeleeHurtbox" parent="." instance=ExtResource("2_2x2x4")]
+position = Vector2(10, 0)
+collision_layer = 32
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHurtbox"]
+shape = SubResource("RectangleShape2D_uf4sm")
