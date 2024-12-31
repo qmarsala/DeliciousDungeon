@@ -63,13 +63,12 @@ func handle_physics_process(delta: float):
 	if enemy:
 		var direction = player.global_position - enemy.global_position
 		var distance = direction.length()
-		
 		if time - retreated_at <= min_retreat_time:
 			# todo: what about when this means running into a wall?
 			enemy.velocity = -(direction.normalized() * (enemy.data.speed * enemy.data.retreat_speed_multiplier))
 			return
 
-		if distance <= enemy.data.min_distance and time - retreated_at >= retreat_cooldown:
+		if (distance <= enemy.data.ideal_distance_min and time - retreated_at >= retreat_cooldown) or distance <= enemy.data.min_distance:
 			retreated_at = time
 		elif distance >= enemy.data.max_distance:
 			Transitioned.emit(self, "EnemyExploringState")
@@ -110,7 +109,7 @@ func handle_attack_animations():
 	if enemy.data.is_ranged:
 		if not animated_weapon_sprite or animated_weapon_sprite.is_playing():
 			return
-		animated_weapon_sprite.play("shoot")
+		animated_weapon_sprite.play("attack")
 	else:
 		if (not attack_animation_player) or attack_animation_player.is_playing():
 			return
