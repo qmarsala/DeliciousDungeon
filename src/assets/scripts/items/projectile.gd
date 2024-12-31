@@ -48,13 +48,16 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		var attack = Attack.new()
-		attack.damage = damage
-		attack.status_effects = data.status_effects
 		var effect_synergy = StatusEffectSynergy.new()
 		effect_synergy.status_effect = synergy_effect
 		effect_synergy.bonus_damage_modifier = 2
+		var attack = Attack.new()
 		attack.effect_synergy = effect_synergy
+		if data:
+			attack.damage = data.damage.front()
+			attack.status_effects = data.status_effects
+		else:
+			attack.damage = damage
 		area.apply_attack(attack)
 	pierce_count += 1
 	if can_pierce and pierce_count > max_pierce_count:

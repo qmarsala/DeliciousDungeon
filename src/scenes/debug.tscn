@@ -472,8 +472,7 @@ region_enabled = true
 region_rect = Rect2(6, 14, 19, 14)
 script = ExtResource("17_xrdwp")
 
-[node name="Hitbox" parent="AttackDummy" node_paths=PackedStringArray("node") instance=ExtResource("16_8mkye")]
-node = NodePath("..")
+[node name="Hitbox" parent="AttackDummy" instance=ExtResource("16_8mkye")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy/Hitbox"]
 shape = SubResource("RectangleShape2D_twrvr")
@@ -487,8 +486,7 @@ region_enabled = true
 region_rect = Rect2(6, 14, 19, 14)
 script = ExtResource("17_xrdwp")
 
-[node name="Hitbox" parent="AttackDummy2" node_paths=PackedStringArray("node") instance=ExtResource("16_8mkye")]
-node = NodePath("..")
+[node name="Hitbox" parent="AttackDummy2" instance=ExtResource("16_8mkye")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy2/Hitbox"]
 shape = SubResource("RectangleShape2D_twrvr")
