@@ -13,7 +13,6 @@ const INTERACTION_RANGE = 15.0
 const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
-@export var pickup_scene: PackedScene # should we make a drop service to encapulate this drop scene everywhere?
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
@@ -86,11 +85,7 @@ func pickup(item: Item):
 func equip(item: Item):
 	if weapon_equipped:
 		weapon.queue_free()
-		if pickup_scene:
-			var pickup = pickup_scene.instantiate() as Pickup
-			pickup.item = weapon_item
-			pickup.global_position = global_position + Vector2.UP * 10
-			add_sibling.call_deferred(pickup)
+		ItemDropService.drop_item(weapon_item, global_position)
 	weapon_equipped = true
 	# todo: don't love that we need to track the item version and the weapon scene instance.  
 	# what elce can we do?

@@ -3,7 +3,6 @@ extends Node2D
 
 @export var spawn_rate: float = 1
 @export var is_locked: bool = false
-@export var pickup_scene: PackedScene
 @export var items: Array[Item]
 
 @onready var reward_location: Node2D = $RewardLocation
@@ -25,7 +24,4 @@ func interact(player: Player):
 	$Open.show()
 	$Closed.hide()
 	var reward = items.pick_random()
-	if pickup_scene:
-		var drop_instance = pickup_scene.instantiate()
-		drop_instance.item = reward
-		reward_location.add_child.call_deferred(drop_instance)
+	ItemDropService.drop_item(reward, reward_location.global_position)

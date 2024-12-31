@@ -3,7 +3,6 @@ extends Area2D
 
 @export var felled_tree_top: PackedScene
 @export var wood_item: Item
-@export var pickup_scene: PackedScene
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
@@ -43,16 +42,4 @@ func animate_fell():
 		add_child.call_deferred(instance)
 
 func drop_logs():
-	if pickup_scene:
-		var dropInstance = pickup_scene.instantiate()
-		dropInstance.item = wood_item
-		var xfac = randi_range(-1,1)
-		if xfac == 0:
-			xfac = 1
-		var x = global_position.x + randf_range(5,7) * xfac
-		var yfac = randi_range(-1,1)
-		if yfac == 0:
-			yfac = -1
-		var y = global_position.y + randf_range(5,7) * yfac
-		dropInstance.position = Vector2(x, y)
-		get_tree().root.add_child(dropInstance)
+	ItemDropService.drop_item(wood_item, global_position)

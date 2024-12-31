@@ -14,14 +14,6 @@ extends Resource
 @export var retreat_speed_multiplier: float =  0.75
 @export var drop_rate: float = .334
 @export var drop: Item
-# what can we do here? I could see that maybe we would want a 
-# custom pickup area and therefor have a different pickup scene to 
-# use for a certain item. So is this ok?
-# it cant live in item due to circlular ref.
-# probably would just like it to somehow live with item
-# maybe we need an item and item data?
-# item can include a scene and pickup scense plus its data?
-@export var pickupScene: PackedScene 
 
 @export var min_distance = 10
 #is ideal_distance_min/max really 'attack range'?

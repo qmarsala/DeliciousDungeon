@@ -9,7 +9,7 @@ class_name Enemy
 @onready var state_machine: EnemyStateMachine = $StateMachine
 @onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
-@onready var health_component: HealthComponent = %HealthComponent
+@onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox: Hitbox = $Hitbox
 
 # should attack state take care of this?
