@@ -9,6 +9,7 @@ var player: Player
 
 @export var aim_follows_cursor: bool
 @export var use_sprite: bool
+@export var level_two_effect: PointLight2D
 
 # todo: animations - see move state in player
 @onready var sprite = $Sprite2D
@@ -18,14 +19,27 @@ var player: Player
 func use_data(data: WeaponData):
 	if data != null:
 		weapon_data = data
+		#temp experiment, how can we cut down on useless extra scenes
+		if weapon_data.weapon_level > 1:
+			scale = Vector2.ONE * .8
+			if level_two_effect:
+				level_two_effect.show()
 
-# how could we hook up some ui for showing cooldowns?
+# temp solution- problem: when we drop a weapon we want to make sure its up top 
+# but when holding we want it to toggle behind us depending on direction
+var sprite_z_rel = true
+
 func init(p: Player, data: WeaponData = null):
 	player = p
 	use_data(data)
+	sprite_z_rel = false
 
 # todo: need to figure out how to be consistent with init vs ready
 func _ready() -> void:
+	if not use_sprite:
+		sprite.hide()
+		animations.show()
+	sprite.z_as_relative = sprite_z_rel
 	for ability_slot in ability_slots.get_child_count():
 		if ability_slot < weapon_data.weapon_abilities.size():
 			var ability = weapon_data.weapon_abilities[ability_slot]

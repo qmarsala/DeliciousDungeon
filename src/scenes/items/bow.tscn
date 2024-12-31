@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="4_5eqhh"]
 
 [node name="Bow" type="Node2D"]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_1ns8r")
 aim_follows_cursor = true
 
