@@ -182,8 +182,7 @@ collide_with_bodies = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("5_h3vuw")]
-node = NodePath("..")
+[node name="Hitbox" parent="." instance=ExtResource("5_h3vuw")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_mhtg0")

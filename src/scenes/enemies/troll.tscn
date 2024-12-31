@@ -487,8 +487,7 @@ collide_with_bodies = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_rcevn")]
-node = NodePath("..")
+[node name="Hitbox" parent="." instance=ExtResource("3_rcevn")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_eq1ge")
