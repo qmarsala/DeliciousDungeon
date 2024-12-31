@@ -3,6 +3,7 @@ extends Resource
 
 @export var has_scene: bool
 @export var scene: PackedScene
+@export var animation_name: String = "attack"
 
 @export var target_self: bool
 @export var ability_sound: AudioStream
