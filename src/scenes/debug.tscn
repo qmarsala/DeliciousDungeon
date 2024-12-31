@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=36 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
+[ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
 [ext_resource type="Resource" uid="uid://dtt8oanr6xk70" path="res://scenes/enemies/attack_dummy.tres" id="16_6vr2r"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="16_8mkye"]
@@ -428,6 +429,7 @@ position = Vector2(121, -104)
 z_index = 1
 position = Vector2(-292, -23)
 spawn_rate = 1.0
+items = Array[ExtResource("14_di3qn")]([ExtResource("22_k8tsf")])
 
 [node name="Chest2" parent="." instance=ExtResource("23_nkwgo")]
 z_index = 1

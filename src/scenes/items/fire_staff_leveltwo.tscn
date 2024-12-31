@@ -15,12 +15,12 @@ fill_from = Vector2(0.504274, 0.470085)
 fill_to = Vector2(0.555556, 0)
 
 [node name="FireStaffLevelTwo" type="Node2D"]
+y_sort_enabled = true
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_lf57o")
 use_sprite = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_as_relative = false
 texture = ExtResource("2_omvrf")
 region_enabled = true
 region_rect = Rect2(2, 72, 8, 24)

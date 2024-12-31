@@ -5,8 +5,7 @@ extends Node
 
 func drop_item(item: Item, target_position: Vector2):
 	if pickup_scene:
-		var drop_instance = pickup_scene.instantiate()
-		drop_instance.item = item
+		var drop_instance = pickup_scene.instantiate() as Pickup
 		var xfac = randi_range(-1,1)
 		if xfac == 0:
 			xfac = 1
@@ -15,8 +14,7 @@ func drop_item(item: Item, target_position: Vector2):
 		if yfac == 0:
 			yfac = -1
 		var y = target_position.y + randf_range(5,7) * yfac
-		drop_instance.z_index = 2
-		drop_instance.position = Vector2(x, y)
+		drop_instance.init(item, Vector2(x,y))
 		var world = get_tree().get_first_node_in_group("World")
 		if world:
 			world.add_child.call_deferred(drop_instance)

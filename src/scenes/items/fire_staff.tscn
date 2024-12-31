@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="4_xu535"]
 
 [node name="FireStaff" type="Node2D"]
+y_sort_enabled = true
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_7aqb2")
 use_sprite = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_as_relative = false
 texture = ExtResource("2_63vhr")
 region_enabled = true
 region_rect = Rect2(2, 72, 8, 24)

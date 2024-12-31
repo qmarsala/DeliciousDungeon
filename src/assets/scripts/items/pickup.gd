@@ -10,6 +10,11 @@ func _ready():
 	var instance = item.create_item_scene()
 	add_child(instance)
 
+func init(dropped_item: Item, drop_position: Vector2):
+	item = dropped_item
+	global_position = drop_position
+	z_index = 2
+
 func _process(delta: float) -> void:
 	time += delta
 

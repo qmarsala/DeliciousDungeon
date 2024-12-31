@@ -1,10 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfesvjhulwkvx"]
+[gd_scene load_steps=18 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
 [ext_resource type="Script" path="res://assets/scripts/levels/fire.gd" id="2_dth6p"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="2_wjhyw"]
 [ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://assets/audio/LightFire.wav" id="3_1suck"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4teui"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r54xq"]
+radius = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
 atlas = ExtResource("1_j4fss")
@@ -92,16 +97,17 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bi4h"]
 radius = 19.0263
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
-radius = 5.0
-
-[node name="Fire" type="Area2D"]
-monitoring = false
+[node name="StaticBody2D" type="StaticBody2D"]
 script = ExtResource("2_dth6p")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-shape = SubResource("RectangleShape2D_4teui")
+shape = SubResource("CircleShape2D_chxww")
+
+[node name="Interactbox" parent="." instance=ExtResource("2_wjhyw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
+shape = SubResource("CircleShape2D_r54xq")
 
 [node name="Unlit" type="Sprite2D" parent="."]
 texture = ExtResource("1_j4fss")
@@ -133,12 +139,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestArea"]
 shape = SubResource("CircleShape2D_2bi4h")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-z_index = 1
-shape = SubResource("CircleShape2D_chxww")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1suck")
