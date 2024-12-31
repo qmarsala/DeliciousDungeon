@@ -1,8 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=43 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player/player.gd" id="1_511jo"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="2_4cgwi"]
 [ext_resource type="Texture2D" uid="uid://b7ktjn6ru0i4a" path="res://assets/sprites/playerSprites_ [version 1.0]/mPlayer_ [human].png" id="2_35top"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
@@ -226,11 +225,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
-radius = 4.0
-height = 10.0
+radius = 3.0
+height = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_belmi"]
-radius = 5.0
+radius = 4.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -238,17 +237,15 @@ y_sort_enabled = true
 collision_layer = 524290
 collision_mask = 5
 script = ExtResource("1_511jo")
-pickup_scene = ExtResource("2_4cgwi")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_65n8r")
-animation = &"dash"
+animation = &"idle"
 autoplay = "idle"
-frame = 4
-frame_progress = 0.752015
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_kh2an")
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_r4pyj")]

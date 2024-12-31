@@ -17,9 +17,7 @@ region_rect = Rect2(2, 72, 8, 24)
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_0cybm")
-animation = &"shoot"
-frame = 3
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="AttackIndicator" type="Sprite2D" parent="."]
 visible = false

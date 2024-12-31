@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cwoqb0h58gi6y"]
+[gd_scene load_steps=39 format=3 uid="uid://cwoqb0h58gi6y"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_b43ex"]
 [ext_resource type="Resource" uid="uid://dme853k8xu4qu" path="res://assets/resources/enemies/troll.tres" id="2_f36uu"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="7_47qvp"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="8_lq3vs"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="8_vo60l"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_stunned_state.gd" id="13_2jtg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jx43"]
 atlas = ExtResource("2_o0od4")
@@ -466,6 +467,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
 shape = SubResource("CapsuleShape2D_dggjw")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 
@@ -527,6 +529,9 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
+
+[node name="EnemyStunnedState" type="Node" parent="StateMachine"]
+script = ExtResource("13_2jtg7")
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="."]
 libraries = {

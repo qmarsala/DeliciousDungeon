@@ -11,6 +11,7 @@ class_name Enemy
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox: Hitbox = $Hitbox
+@onready var move_component: MovementComponent = $MovementComponent
 
 # should attack state take care of this?
 var attack_is_cooling_down = false
@@ -22,7 +23,7 @@ func _ready() -> void:
 	hitbox.init(health_component, status_effects_component)
 
 func _on_status_effect_proc(effect: StatusEffect):
-	effect.apply(health_component)
+	effect.apply(health_component, state_machine)
 
 func _on_death_timer_timeout():
 	queue_free()

@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		is_on_cooldown = true
 		#ranged poc: the ability should signal and let the weapon do this probably
 		if not weapon.use_sprite:
-			weapon.animations.play("shoot")
+			weapon.animations.play(ability_data.animation_name)
 		if ability_data.cast_time > 0:
 			#ranged poc:
 			cast_timer.start(ability_data.cast_time)
@@ -66,16 +66,9 @@ func _process(delta: float) -> void:
 func use(target_location):
 	if ability_data.scene != null:
 		var ability_instance = ability_data.scene.instantiate()
-		ability_instance.global_position = target_location
+		ability_instance.global_position = weapon.global_position
 		#ranged poc: need to get something bettew for projectiles
-		if ability_instance is Projectile:
-			#todo: this should be part of init?
-			# abilities that spawn projectiles may be their own class of ability
-			ability_instance.damage = ability_data.damage.front()
-			ability_instance.max_range = weapon.weapon_data.max_range
-			ability_instance.init(ability_data, weapon.global_position, target_location)
-		else:
-			ability_instance.init(ability_data)
+		ability_instance.init(ability_data, weapon.global_position, target_location)
 		add_child(ability_instance)
 	ability_sound.pitch_scale = randf_range(.95,1.05)
 	ability_sound.play()

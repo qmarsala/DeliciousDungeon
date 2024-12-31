@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0nk2tnjt4nfh"]
+[gd_scene load_steps=16 format=3 uid="uid://d0nk2tnjt4nfh"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_adk1w"]
 [ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://assets/resources/enemies/ranged_skeleton.tres" id="2_7pu6r"]
@@ -12,10 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="8_p86yj"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="8_qote8"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="9_6ro1r"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_stunned_state.gd" id="13_2brf7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecyxy"]
 radius = 2.0
-height = 10.0
+height = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ste6r"]
 radius = 4.0
@@ -33,6 +34,7 @@ sprite_frames = ExtResource("3_w30yt")
 animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_ecyxy")
 
 [node name="Hand" type="Node2D" parent="."]
@@ -50,15 +52,12 @@ collide_with_bodies = false
 position = Vector2(4, 0)
 scale = Vector2(0.7, 0.7)
 sprite_frames = ExtResource("4_riynd")
-animation = &"shoot"
-frame = 3
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_60mma")]
-node = NodePath("..")
+[node name="Hitbox" parent="." instance=ExtResource("3_60mma")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_ste6r")
@@ -97,6 +96,9 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/EnemyFightingState"]
 one_shot = true
+
+[node name="EnemyStunnedState" type="Node" parent="StateMachine"]
+script = ExtResource("13_2brf7")
 
 [connection signal="timeout" from="StateMachine/EnemyDeadState/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/EnemyFightingState/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

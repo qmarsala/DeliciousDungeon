@@ -10,16 +10,16 @@ extends Node2D
 @export var no_enemy_rate: float = 0.15
 
 func _ready():
-	var seed = randf()
-	if seed <= no_enemy_rate:
+	var rand_seed = randf()
+	if rand_seed <= no_enemy_rate:
 		return
 
 	var enemy
 	var enemy_b = 1 - enemy_scene_b_rate
 	var enemy_c = enemy_b - enemy_scene_c_rate
-	if seed >= enemy_b:
+	if rand_seed >= enemy_b:
 		enemy = enemy_scene_b.instantiate() as Enemy
-	elif seed < enemy_b and seed >= enemy_c:
+	elif rand_seed < enemy_b and rand_seed >= enemy_c:
 		enemy = enemy_scene_c.instantiate() as Enemy
 	else:
 		enemy = enemy_scene.instantiate() as Enemy
