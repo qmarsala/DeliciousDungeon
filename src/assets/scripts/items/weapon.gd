@@ -59,10 +59,10 @@ func _process(delta: float) -> void:
 		#this type of state makes me want scripts for the weapons indicators that can vary
 		# maybe strategy pattern?
 		look_at(location)
-		var direction = location - player.hand.global_position
+		var direction = location - player.global_position
 		var target_location = location
 		if direction.length() > 4:
-			target_location = player.hand.global_position + (direction.normalized() * 4)
+			target_location = player.global_position + (direction.normalized() * 4)
 			global_position = target_location
 
 func get_attack_location() -> Vector2:
