@@ -28,11 +28,11 @@ func _physics_process(delta: float) -> void:
 	if position.distance_to(starting_location) >= max_range + bonus_range:
 		queue_free()
 
-func init(ability_data: AbilityData, starting_position, target_position):
-	data = ability_data
+func init(ability_data: AbilityData, starting_position: Vector2, target_position: Vector2):
+	data = ability_data.duplicate()
 	init_old(starting_position, target_position)
 
-func init_old(starting_position, target_position):
+func init_old(starting_position: Vector2, target_position: Vector2):
 	position = starting_position
 	starting_location = starting_position
 	target = target_position

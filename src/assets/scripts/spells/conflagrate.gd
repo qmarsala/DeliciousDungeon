@@ -6,8 +6,9 @@ class_name Conflagrate
 
 var data: AbilityData
 
-func init(attack_data: AbilityData):
-	data = attack_data
+func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
+	data = ability_data.duplicate()
+	global_position = target
 
 func deal_damage(amount):
 	var targets = area_2d.get_overlapping_areas()

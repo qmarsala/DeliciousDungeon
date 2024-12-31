@@ -5,8 +5,9 @@ class_name Ignite
 
 var data: AbilityData
 
-func init(attack_data: AbilityData):
-	data = attack_data
+func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
+	data = ability_data.duplicate()
+	global_position = target
 
 var delay = 0.1
 var time = 0
