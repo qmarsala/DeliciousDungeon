@@ -11,6 +11,7 @@ signal HealthDepleted
 # that as a component of the character we have access to the character?
 @export var node: Node2D
 @export var starting_health : float = 5
+@export var signal_damage: bool = true
 
 var health : float = 1
 
@@ -26,7 +27,7 @@ func _ready() -> void:
 # should we have th parent control the final damage somehow?
 func receive_damage(damage) -> void:
 	if is_dead(): return
-	if node:
+	if signal_damage:
 		SignalBusService.DamageReceived.emit(damage, node.global_position, node.is_in_group("Player"))
 
 	health -= damage
