@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://bvak4qjj02fj3"]
+
+[ext_resource type="Script" path="res://assets/resources/weapons/weapon_data.gd" id="2_6qkyh"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="2_qftt4"]
+[ext_resource type="Resource" uid="uid://b61mb8vxpb1ml" path="res://assets/resources/abilities/ignite.tres" id="3_ndcuv"]
+[ext_resource type="Resource" uid="uid://chw5576wg47v4" path="res://assets/resources/abilities/conflagrate.tres" id="4_2inyr"]
+
+[resource]
+script = ExtResource("2_6qkyh")
+max_range = 70.0
+cooldown_reduction = 0.0
+weapon_abilities = Array[ExtResource("2_qftt4")]([ExtResource("3_ndcuv"), ExtResource("4_2inyr")])
+item_id = 2
+name = "Fire Staff"
+description = "Fire Staff"

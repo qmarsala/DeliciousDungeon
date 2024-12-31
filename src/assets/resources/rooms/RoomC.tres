@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://b41s1cvhudbv"]
+
+[ext_resource type="PackedScene" uid="uid://crn0u0qtbvnbv" path="res://scenes/levels/dungeon_rooms/basic_hall_room.tscn" id="1_hnkog"]
+[ext_resource type="Script" path="res://assets/resources/room.gd" id="2_bqmnp"]
+
+[resource]
+script = ExtResource("2_bqmnp")
+name = "C"
+scene = ExtResource("1_hnkog")

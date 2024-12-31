@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://bbl0uvfrncnp5"]
-
-[ext_resource type="PackedScene" uid="uid://dojvv35t76k1m" path="res://scenes/levels/dungeon_rooms/basic_end_room.tscn" id="1_312kh"]
-[ext_resource type="Script" path="res://assets/data/room.gd" id="1_0480p"]
-
-[resource]
-script = ExtResource("1_0480p")
-name = "end"
-scene = ExtResource("1_312kh")

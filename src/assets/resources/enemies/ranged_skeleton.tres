@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://73gucalk24fs"]
+
+[ext_resource type="Script" path="res://assets/resources/enemies/enemy_data.gd" id="1_0eorm"]
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/BowAttack.wav" id="1_23dib"]
+[ext_resource type="PackedScene" uid="uid://bqkw7smlx0kjy" path="res://scenes/items/enemy_arrow.tscn" id="2_jn723"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/resources/items/wood.tres" id="2_ucbhd"]
+[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="3_soh7u"]
+
+[resource]
+script = ExtResource("1_0eorm")
+enemy_id = 2
+name = "Skeleton Archer"
+starting_health = 3.0
+speed = 30.0
+vision_range = 100.0
+engage_speed_multiplier = 0.7
+retreat_speed_multiplier = 1.15
+drop_rate = 0.25
+drop = ExtResource("2_ucbhd")
+pickupScene = ExtResource("3_soh7u")
+min_distance = 40
+ideal_distance_min = 50
+ideal_distance_max = 90
+max_distance = 95
+attack_cooldown = 2.0
+attack_delay = 0.3
+attack_damage = 2.0
+is_ranged = true
+projectile = ExtResource("2_jn723")
+attack_sound = ExtResource("1_23dib")
+attack_sound_on_delay = true

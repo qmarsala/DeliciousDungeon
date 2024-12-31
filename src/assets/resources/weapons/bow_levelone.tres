@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://b5ajp2cpjk2pw"]
+
+[ext_resource type="Script" path="res://assets/resources/weapons/weapon_data.gd" id="1_oxbym"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="2_xcrct"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/resources/abilities/piercing_shot.tres" id="3_nx15s"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/resources/abilities/shoot_arrow.tres" id="4_sspcf"]
+
+[resource]
+script = ExtResource("1_oxbym")
+max_range = 90.0
+cooldown_reduction = 0.0
+weapon_abilities = Array[ExtResource("2_xcrct")]([ExtResource("3_nx15s"), ExtResource("4_sspcf")])
+item_id = 3
+name = "Bow"
+description = "Bow"

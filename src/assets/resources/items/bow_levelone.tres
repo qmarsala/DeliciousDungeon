@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b4gbq7ksurbo"]
+
+[ext_resource type="PackedScene" uid="uid://blb4ph6xjfls0" path="res://scenes/items/bow.tscn" id="1_3ir7x"]
+[ext_resource type="Script" path="res://assets/resources/items/item.gd" id="2_00hex"]
+[ext_resource type="Resource" uid="uid://b5ajp2cpjk2pw" path="res://assets/resources/weapons/bow_levelone.tres" id="3_0q6vt"]
+
+[resource]
+script = ExtResource("2_00hex")
+data = ExtResource("3_0q6vt")
+scene = ExtResource("1_3ir7x")
