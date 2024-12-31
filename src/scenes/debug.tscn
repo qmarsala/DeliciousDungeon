@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=35 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -10,14 +10,22 @@
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
 [ext_resource type="PackedScene" uid="uid://cwoqb0h58gi6y" path="res://scenes/enemies/troll.tscn" id="7_mkydk"]
+[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="10_tdpce"]
+[ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://assets/data/items/bow_leveltwo.tres" id="11_0023b"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
+[ext_resource type="Resource" uid="uid://dtt8oanr6xk70" path="res://scenes/enemies/attack_dummy.tres" id="16_6vr2r"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="16_8mkye"]
-[ext_resource type="Script" path="res://assets/scripts/attack_dummy.gd" id="17_xrdwp"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="16_wi07l"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
-[ext_resource type="PackedScene" uid="uid://co65eon8oc01c" path="res://scenes/items/trap.tscn" id="21_i40ug"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_state_machine.gd" id="20_5wu08"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_idle_state.gd" id="21_5wrof"]
+[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/data/items/firestaff_levelone.tres" id="21_h7dnt"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="22_d5fxq"]
+[ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/data/items/firestaff_leveltwo.tres" id="22_k8tsf"]
+[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/data/items/bow_levelone.tres" id="23_3mj40"]
 [ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="23_nkwgo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
@@ -319,6 +327,10 @@ sources/2 = SubResource("TileSetAtlasSource_jrh5p")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k741k"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye2s3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy8vj"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twrvr"]
 
 [node name="debug" type="Node2D"]
@@ -465,33 +477,86 @@ collision_mask = 4
 position = Vector2(1, 193)
 shape = SubResource("WorldBoundaryShape2D_k741k")
 
-[node name="AttackDummy" type="Sprite2D" parent="."]
+[node name="AttackDummy" type="CharacterBody2D" parent="."]
 position = Vector2(-410, 0)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("16_wi07l")
+data = ExtResource("16_6vr2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy"]
+shape = SubResource("RectangleShape2D_ye2s3")
+
+[node name="Hitbox" parent="AttackDummy" node_paths=PackedStringArray("health", "status_effects") instance=ExtResource("16_8mkye")]
+health = NodePath("../HealthComponent")
+status_effects = NodePath("../../AttackDummy2/StatusEffectsComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy/Hitbox"]
+shape = SubResource("RectangleShape2D_yy8vj")
+
+[node name="Sprite" type="Sprite2D" parent="AttackDummy"]
 texture = ExtResource("15_7g4ju")
 region_enabled = true
 region_rect = Rect2(6, 14, 19, 14)
-script = ExtResource("17_xrdwp")
 
-[node name="Hitbox" parent="AttackDummy" instance=ExtResource("16_8mkye")]
+[node name="StateMachine" type="Node" parent="AttackDummy" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("20_5wu08")
+initial_state = NodePath("EnemyIdleState")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy/Hitbox"]
-shape = SubResource("RectangleShape2D_twrvr")
+[node name="EnemyIdleState" type="Node" parent="AttackDummy/StateMachine"]
+script = ExtResource("21_5wrof")
 
 [node name="StatusEffectsComponent" parent="AttackDummy" instance=ExtResource("20_04imu")]
 
-[node name="AttackDummy2" type="Sprite2D" parent="."]
-position = Vector2(-433, -23)
-texture = ExtResource("15_7g4ju")
-region_enabled = true
-region_rect = Rect2(6, 14, 19, 14)
-script = ExtResource("17_xrdwp")
+[node name="HealthComponent" parent="AttackDummy" instance=ExtResource("22_d5fxq")]
+starting_health = 1e+09
 
-[node name="Hitbox" parent="AttackDummy2" instance=ExtResource("16_8mkye")]
+[node name="AttackDummy2" type="CharacterBody2D" parent="."]
+position = Vector2(-433, -23)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("16_wi07l")
+data = ExtResource("16_6vr2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy2"]
+shape = SubResource("RectangleShape2D_ye2s3")
+
+[node name="Hitbox" parent="AttackDummy2" node_paths=PackedStringArray("health", "status_effects") instance=ExtResource("16_8mkye")]
+health = NodePath("../HealthComponent")
+status_effects = NodePath("../StatusEffectsComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDummy2/Hitbox"]
 shape = SubResource("RectangleShape2D_twrvr")
 
+[node name="Sprite" type="Sprite2D" parent="AttackDummy2"]
+texture = ExtResource("15_7g4ju")
+region_enabled = true
+region_rect = Rect2(6, 14, 19, 14)
+
+[node name="StateMachine" type="Node" parent="AttackDummy2" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("20_5wu08")
+initial_state = NodePath("EnemyIdleState")
+
+[node name="EnemyIdleState" type="Node" parent="AttackDummy2/StateMachine"]
+script = ExtResource("21_5wrof")
+
 [node name="StatusEffectsComponent" parent="AttackDummy2" instance=ExtResource("20_04imu")]
 
-[node name="Trap" parent="AttackDummy2" instance=ExtResource("21_i40ug")]
-position = Vector2(326, 51)
+[node name="HealthComponent" parent="AttackDummy2" instance=ExtResource("22_d5fxq")]
+starting_health = 1e+09
+
+[node name="Pickup" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-53, -2)
+item = ExtResource("21_h7dnt")
+
+[node name="Pickup2" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-75, -2)
+item = ExtResource("22_k8tsf")
+
+[node name="Pickup3" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-97, -2)
+item = ExtResource("23_3mj40")
+
+[node name="Pickup4" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-118, -2)
+item = ExtResource("11_0023b")

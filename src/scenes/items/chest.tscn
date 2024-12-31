@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8s7nl3sdl2xv"]
+[gd_scene load_steps=10 format=3 uid="uid://b8s7nl3sdl2xv"]
 
 [ext_resource type="Script" path="res://assets/scripts/items/chest.gd" id="1_3cevd"]
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_qy1vr"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="2_dbodw"]
 [ext_resource type="Script" path="res://assets/data/items/item.gd" id="3_es4yf"]
 [ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://assets/data/items/bow_leveltwo.tres" id="4_p0lmn"]
 [ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/data/items/firestaff_leveltwo.tres" id="5_6ec4j"]
@@ -19,7 +18,6 @@ y_sort_enabled = true
 monitoring = false
 script = ExtResource("1_3cevd")
 spawn_rate = 0.334
-pickup_scene = ExtResource("2_dbodw")
 items = Array[ExtResource("3_es4yf")]([ExtResource("4_p0lmn"), ExtResource("5_6ec4j"), ExtResource("7_v1b2c"), ExtResource("7_v1b2c"), ExtResource("8_2nmhp"), ExtResource("8_2nmhp")])
 
 [node name="InteractionArea" type="CollisionShape2D" parent="."]
@@ -40,7 +38,7 @@ region_rect = Rect2(84, 38, 24, 23)
 
 [node name="RewardLocation" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(17, -6)
+position = Vector2(0, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 7
