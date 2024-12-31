@@ -6,11 +6,11 @@ var effect_synergy: StatusEffectSynergy
 
 #do we like this?
 # maybe if we like this pattern
-# we can have armour resoulved here too?
+# we can have armour resolved here too?
 func apply(health_component: HealthComponent, status_effects_component: StatusEffectComponent) -> void:
 	if status_effects_component:
 		if effect_synergy and status_effects_component.has_effect(effect_synergy.status_effect):
-			effect_synergy.apply_synergy(self)
+			effect_synergy.apply(self)
 		for effect in status_effects:
 			status_effects_component.apply_effect(effect)
 	if health_component and damage > 0:

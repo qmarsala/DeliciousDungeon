@@ -22,10 +22,7 @@ func _ready() -> void:
 	hitbox.init(health_component, status_effects_component)
 
 func _on_status_effect_proc(effect: StatusEffect):
-	if effect.damage > 0:
-		var attack = Attack.new()
-		attack.damage = effect.damage
-		hitbox.apply_attack(attack)
+	effect.apply(health_component)
 
 func _on_death_timer_timeout():
 	queue_free()
