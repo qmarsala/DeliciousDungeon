@@ -9,5 +9,5 @@ extends Node
 # components that deal with 'movables' 'damageables' etc.
 
 const Interactable = "Interactables"
-const Damageable = "Damageables"
+const Attackable = "Attackable"
 const HasStatusEffects = "HasStatusEffects"
