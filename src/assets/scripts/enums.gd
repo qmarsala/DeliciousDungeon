@@ -4,7 +4,8 @@ enum Items {
 	Wood,
 	Food,
 	Staff,
-	Bow
+	Bow,
+	Sword
 }
 
 enum Enemies {
