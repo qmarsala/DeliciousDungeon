@@ -14,27 +14,29 @@ const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
 @export var pickup_scene: PackedScene # should we make a drop service to encapulate this drop scene everywhere?
-@onready var character_sprite: AnimatedSprite2D = $CharacterSprite
-@onready var dash_timer: Timer = $DashTimer
-@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
-@onready var state_machine: PlayerStateMachine = $StateMachine
-@onready var hand: Node2D = $Hand
-@onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 
+@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
+@onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
+@onready var player_rest_sound: AudioStreamPlayer2D = $PlayerRestSound
+@onready var health_component: HealthComponent = %HealthComponent
+@onready var hitbox: Hitbox = $Hitbox
+
+#todo: component
 @onready var rest_timer: Timer = $RestTimer
 
+#todo: component
+@onready var dash_timer: Timer = $DashTimer
+@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+
+@onready var hand: Node2D = $Hand
 
 var rest_is_cooldown = false
 #todo: inventory
 #this comes from 'game' don't like it, but poc'ing having player data outside of player
 var player_items: Dictionary = {0:1,1:1}
 var nutrition: float
-var health: float: 
-	get: return %HealthComponent.health
-
-func is_dead(): 
-	return %HealthComponent.is_dead()
 
 var move_target: Vector2
 var move_disabled: bool
@@ -54,7 +56,6 @@ func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
-	add_to_group(Interfaces.Damageable)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
@@ -70,17 +71,10 @@ func rest():
 	player_items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
-	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
 	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
-	%HealthComponent.heal(%HealthComponent.starting_health * .35)
-	$PlayerRestSound.play()
-
-# was hoping component would limit needing to alter parents, but 
-# you still need to if the parent needs to expose the method
-# and to hook up signals
-# is this just the way it is?
-func receive_damage(damage: float):
-	%HealthComponent.receive_damage(damage)
+	health_component.heal(health_component.starting_health * .35) # todo: should come from food
+	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
+	player_rest_sound.play()
 
 func pickup(item: Item):
 	print("picked up: " + item.data.name)
@@ -119,11 +113,11 @@ func interact():
 		result.interact(self)
 
 func _on_hunger_timer_timeout() -> void:
-	if not hunger_enabled or is_dead(): return
+	if not hunger_enabled or health_component.is_dead(): return
 	if nutrition <= 0:
-		%HealthComponent.receive_damage(1)
+		health_component.receive_damage(1)
 	else:
-		nutrition = nutrition - 1
+		nutrition -= 1
 
 func _on_health_depleted() -> void:
 	state_machine.transition_to("DeadState")

@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	update_health_bar(player.health)
+	update_health_bar(player.health_component.health)
 	update_hunger_bar(player.nutrition)
 	update_food_count(player.player_items[Enums.Items.Food])
 	update_wood_count(player.player_items[Enums.Items.Wood])

@@ -8,7 +8,7 @@ extends Node
 @export var character_sprite: AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
-	if character.has_method("is_dead") and character.is_dead(): return
+	if character.health_component and character.health_component.is_dead(): return
 	play_movement_animation()
 	character.move_and_slide()
 	

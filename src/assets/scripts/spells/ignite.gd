@@ -20,11 +20,8 @@ func _process(delta: float) -> void:
 	for t in targets:
 		if t is Hitbox:
 			var damage_amount = data.damage.front()
-			t.receive_damage(damage_amount)
-			if t.node.is_in_group(Interfaces.HasStatusEffects):
-				for se in data.status_effects:
-					# how else could we benefit from it being a component?
-					# even with this we have to assume a parent exists with this property
-					# which required several changes to 'add' the component
-					t.node.status_effects_component.apply_effect(se)
+			var attack = Attack.new()
+			attack.damage = damage_amount
+			attack.status_effects = data.status_effects
+			t.apply_attack(attack)
 	queue_free()

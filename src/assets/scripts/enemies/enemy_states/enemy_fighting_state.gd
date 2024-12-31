@@ -97,7 +97,9 @@ func handle_attack():
 		enemy.attack_range.look_at(attack_target)
 		var target = enemy.attack_range.get_collider()
 		if target is Hitbox:
-			target.receive_damage(enemy.data.attack_damage)
+			var attack = Attack.new()
+			attack.damage = enemy.data.attack_damage
+			target.apply_attack(attack)
 	target_locked = false
 
 func handle_attack_animations():

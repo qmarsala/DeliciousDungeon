@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# might want the weapon to listen, how will we prevent casting two attacks at once?
 	# do we want to prevent that though? its fun
 	if not (is_instance_valid(player) and is_instance_valid(ability_data)): return
-	if player.is_dead() or not player.weapon_equipped: return
+	if player.health_component.is_dead() or not player.weapon_equipped: return
 
 	if event.is_action_pressed(ability_data.input_event) and not is_on_cooldown:
 		is_on_cooldown = true
@@ -84,5 +84,8 @@ func _on_cooldown_timer_timeout() -> void:
 	is_on_cooldown = false
 
 func _on_cast_timer_timeout() -> void:
-	if player.is_dead() or not player.weapon_equipped: return
+	if player.health_component.is_dead() or not player.weapon_equipped: return
+	# perhaps we signal the ability and the player calls use if applicable?
+	# or player.use(self, weapon)? reason being - we may want to account for
+	# player gear/status_effects during the usage?
 	use(weapon.get_attack_location())

@@ -48,15 +48,14 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		if area.node.is_in_group(Interfaces.HasStatusEffects):
-			if can_pierce:
-				area.node.status_effects_component.apply_effect(data.status_effects.front())
-			if area.node.status_effects_component.has_effect(synergy_effect):
-				area.receive_damage(damage * 2)
-			else: 
-				area.receive_damage(damage)
-		else: 
-			area.receive_damage(damage)
+		var attack = Attack.new()
+		attack.damage = damage
+		attack.status_effects = data.status_effects
+		var effect_synergy = StatusEffectSynergy.new()
+		effect_synergy.status_effect = synergy_effect
+		effect_synergy.bonus_damage_modifier = 2
+		attack.effect_synergy = effect_synergy
+		area.apply_attack(attack)
 	pierce_count += 1
 	if can_pierce and pierce_count > max_pierce_count:
 		queue_free()
@@ -64,6 +63,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group(Interfaces.Damageable):
-		body.receive_damage(damage)
 	queue_free()

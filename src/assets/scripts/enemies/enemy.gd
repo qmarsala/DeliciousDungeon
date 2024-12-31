@@ -9,20 +9,23 @@ class_name Enemy
 @onready var state_machine: EnemyStateMachine = $StateMachine
 @onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
+@onready var health_component: HealthComponent = %HealthComponent
+@onready var hitbox: Hitbox = $Hitbox
 
 # should attack state take care of this?
 var attack_is_cooling_down = false
 
 func _ready() -> void:
 	state_machine.init(self)
-	status_effects_component.init(self)
-	%HealthComponent.HealthDepleted.connect(_on_health_depleted)
-	add_to_group(Interfaces.Damageable)
+	health_component.HealthDepleted.connect(_on_health_depleted)
+	status_effects_component.Proc.connect(_on_status_effect_proc)
+	hitbox.init(health_component, status_effects_component)
 
-func is_dead(): return %HealthComponent.is_dead()
-
-func receive_damage(damage: float):
-	%HealthComponent.receive_damage(damage)
+func _on_status_effect_proc(effect: StatusEffect):
+	if effect.damage > 0:
+		var attack = Attack.new()
+		attack.damage = effect.damage
+		hitbox.apply_attack(attack)
 
 func _on_death_timer_timeout():
 	queue_free()

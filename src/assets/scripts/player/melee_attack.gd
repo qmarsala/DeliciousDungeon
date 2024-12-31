@@ -37,11 +37,11 @@ func swing(attack_type):
 	cooldown_timer.start(cooldowns[attack_type])
 	if attack_type == "heavy_attack" and aoe_area.has_overlapping_bodies():
 		var targets = aoe_area.get_overlapping_bodies() 
-		for t in targets:
-			t.receive_damage(damages[attack_type])
+		#for t in targets:
+			#t.receive_damage(damages[attack_type])
 	elif attack_ray_cast.is_colliding():
 		var target = attack_ray_cast.get_collider()
-		target.receive_damage(damages[attack_type])
+		#target.receive_damage(damages[attack_type])
 
 func _on_cooldown_timer_timeout() -> void:
 	attack_is_cooling_down = false

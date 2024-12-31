@@ -18,10 +18,15 @@ func deal_damage(amount):
 	var targets = area_2d.get_overlapping_areas()
 	for t in targets:
 		if t is Hitbox:
-			var damage_amount = amount
-			if t.node.is_in_group(Interfaces.HasStatusEffects) and t.node.status_effects_component.has_effect(synergy_effect):
-				damage_amount *= 2
-			t.receive_damage(damage_amount)
+			var effect_synergy = StatusEffectSynergy.new()
+			effect_synergy.status_effect = synergy_effect
+			effect_synergy.bonus_damage_modifier = 2
+			
+			var attack = Attack.new()
+			attack.damage = amount
+			attack.effect_synergy = effect_synergy
+
+			t.apply_attack(attack)
 
 func _on_initial_damage_timer_timeout() -> void:
 	if data.damage.size() > 0:

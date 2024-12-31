@@ -19,4 +19,6 @@ func _on_timer_timeout() -> void:
 	var targets = area_2d.get_overlapping_areas()
 	for t in targets:
 		if t is Hitbox:
-			t.receive_damage(2)
+			var attack = Attack.new()
+			attack.damage = 2
+			t.apply_attack(attack)
