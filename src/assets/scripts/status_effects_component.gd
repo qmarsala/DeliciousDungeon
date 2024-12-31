@@ -1,12 +1,9 @@
 class_name StatusEffectComponent
 extends Node
 
-var status_effects: Array[StatusEffect]
-var node: Node
+signal Proc(effect: StatusEffect)
 
-func init(n: Node):
-	node = n
-	node.add_to_group(Interfaces.HasStatusEffects)
+var status_effects: Array[StatusEffect]
 
 var time: float = 0
 func _process(delta: float) -> void:
@@ -17,7 +14,7 @@ func _process(delta: float) -> void:
 	for se in status_effects:
 		if se.is_applicable(time):
 			se.tick(time)
-			node.receive_damage(se.damage)
+			Proc.emit(se)
 
 # pulling these into a component isnt helping - since a parent script
 # may still need to accept calls for these methods?
