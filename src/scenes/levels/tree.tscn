@@ -3,13 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_18ktc"]
 [ext_resource type="Script" path="res://assets/scripts/levels/forest_tree.gd" id="1_cgee7"]
 [ext_resource type="PackedScene" uid="uid://1klbv4dx44kw" path="res://scenes/levels/felled_tree_top.tscn" id="2_a2c71"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="3_31mae"]
 [ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/resources/items/wood.tres" id="3_l5na6"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="3_vqeq6"]
-[ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="4_cnckc"]
 [ext_resource type="AudioStream" uid="uid://cu14xetrk850x" path="res://assets/audio/FelledTree.wav" id="7_5rf2q"]
 [ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="7_vd0bx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o18qs"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05c1w"]
 size = Vector2(12, 23)
 
 [sub_resource type="Animation" id="Animation_rcunq"]
@@ -17,7 +21,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("../Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +37,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("../Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,21 +53,16 @@ _data = {
 "receive_damage": SubResource("Animation_rd3it")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
-radius = 4.0
-height = 12.0
-
-[node name="Tree" type="Area2D"]
+[node name="Tree" type="StaticBody2D"]
 y_sort_enabled = true
-monitoring = false
 script = ExtResource("1_cgee7")
 felled_tree_top = ExtResource("2_a2c71")
 wood_item = ExtResource("3_l5na6")
-pickup_scene = ExtResource("4_cnckc")
 
-[node name="ChopHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11.5)
-shape = SubResource("RectangleShape2D_o18qs")
+[node name="StumpCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ospfv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11.5)
@@ -73,21 +72,22 @@ region_enabled = true
 region_rect = Rect2(98, 24, 12, 22)
 region_filter_clip_enabled = true
 
+[node name="Interactbox" parent="." instance=ExtResource("3_31mae")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_05c1w")
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("3_vqeq6")]
 animation_player = NodePath("../AnimationPlayer")
 starting_health = 3.0
+signal_damage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_l23id")
 }
-
-[node name="Stump" type="StaticBody2D" parent="."]
-
-[node name="StumpCollision" type="CollisionShape2D" parent="Stump"]
-position = Vector2(0, -4)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ospfv")
 
 [node name="ChopAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_vd0bx")

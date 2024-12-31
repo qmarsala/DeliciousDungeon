@@ -6,6 +6,7 @@ extends Node2D
 @export var items: Array[Item]
 
 @onready var reward_location: Node2D = $RewardLocation
+@onready var interactbox: InteractBox = $Interactbox
 
 var is_open = false
 
@@ -14,6 +15,7 @@ func _ready() -> void:
 		queue_free()
 		return
 	add_to_group(Interfaces.Interactable)
+	interactbox.interacted.connect(interact)
 
 # interact as a component?
 # if so - strategy pattern for what to do on interact?

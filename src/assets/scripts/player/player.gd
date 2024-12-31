@@ -103,8 +103,7 @@ func equip(item: Item):
 
 func interact():
 	var result = interaction_ray_cast.get_collider()
-	if not result: return
-	if result.is_in_group(Interfaces.Interactable):
+	if result is InteractBox:
 		result.interact(self)
 
 func _on_hunger_timer_timeout() -> void:

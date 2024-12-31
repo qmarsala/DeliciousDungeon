@@ -7,6 +7,7 @@ extends Node2D
 @onready var unlit: Sprite2D = $Unlit
 @onready var lit_animation: AnimatedSprite2D = $LitAnimation
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
+@onready var interactbox: InteractBox = $Interactbox
 
 @export var animation_name: String = "campfire_light_flicker"
 @export var lit: bool = true
@@ -16,6 +17,7 @@ func _init() -> void:
 	add_to_group(Interfaces.Interactable, true)
 
 func _ready() -> void:
+	interactbox.interacted.connect(interact)
 	rest_area.body_entered.connect(_on_rest_area_body_entered)
 	if lit:
 		unlit.hide()
