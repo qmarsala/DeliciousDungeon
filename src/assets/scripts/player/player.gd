@@ -4,7 +4,6 @@ extends CharacterBody2D
 signal PlayerDied
 signal EquippedWeapon(weapon: Weapon)
 
-
 const SPEED = 60.0
 const DASH_MULTIPLIER = 1.8
 const DASH_TIME = .4
@@ -91,8 +90,6 @@ func equip(item: Item):
 		weapon.queue_free()
 		ItemDropService.drop_item(weapon_item, global_position)
 	weapon_equipped = true
-	# todo: don't love that we need to track the item version and the weapon scene instance.  
-	# what elce can we do?
 	weapon_item = item
 	weapon = weapon_item.create_item_scene() as Weapon
 	# currently sending the whole scene to be able to track ability cooldowns
