@@ -15,10 +15,10 @@ extends Resource
 # some status effects may want to toggle state though
 #  we could pass in a new state to state contract that works for enem and player
 #  or figure out something else
-@export var modifies_state: bool
+@export var modifies_state: bool = false
 # this also means a state must be implemented for the status
 # and only one effect that alters state could be active at any time
-@export var new_state: String = "EnemyIdleState"
+@export var new_state: String = "Idle"
 
 var is_applied: bool
 var applied_at: float = 0
@@ -27,7 +27,7 @@ var stack_count: float = 1
 var tick_count: float = 0
 
 # should apply add itself to the status component, and tick do these things?
-func apply(health_component: HealthComponent, state_machine: EnemyStateMachine):
+func apply(health_component: HealthComponent, state_machine: StateMachine):
 	if not health_component: return
 	var applied_heal = heal
 	var applied_damage = damage

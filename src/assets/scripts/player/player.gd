@@ -14,7 +14,7 @@ const STARTING_NUTRITION = 10
 
 @export var hunger_enabled: bool = true
 
-@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var state_machine: StateMachine = $StateMachine
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 @onready var character_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
@@ -52,6 +52,7 @@ var weapon: Weapon
 var weapon_equipped: bool
 
 func _ready() -> void:
+	state_machine.init(self)
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
@@ -114,7 +115,7 @@ func _on_hunger_timer_timeout() -> void:
 		nutrition -= 1
 
 func _on_health_depleted() -> void:
-	state_machine.transition_to("DeadState")
+	state_machine.transition_to("Dead")
 	
 func _on_rest_timer_timeout() -> void:
 	rest_is_cooldown = false

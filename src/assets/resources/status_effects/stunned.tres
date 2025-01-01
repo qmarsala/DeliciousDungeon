@@ -15,4 +15,4 @@ stack_bonus_modifier = 0.0
 max_stack_size = 1
 can_extend = false
 modifies_state = true
-new_state = "EnemyStunnedState"
+new_state = "Stunned"

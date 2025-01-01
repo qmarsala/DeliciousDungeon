@@ -6,7 +6,7 @@ class_name Enemy
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var attack_range: RayCast2D = %AttackRange
-@onready var state_machine: EnemyStateMachine = $StateMachine
+@onready var state_machine: StateMachine = $StateMachine
 @onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 @onready var health_component: HealthComponent = $HealthComponent
@@ -32,4 +32,4 @@ func _on_attack_cooldown_timer_timeout():
 	attack_is_cooling_down = false
 
 func _on_health_depleted() -> void:
-	state_machine.transition_to("EnemyDeadState")
+	state_machine.transition_to("Dead")
