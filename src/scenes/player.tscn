@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://b7ktjn6ru0i4a" path="res://assets/sprites/playerSprites_ [version 1.0]/mPlayer_ [human].png" id="2_35top"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
-[ext_resource type="Script" path="res://assets/scripts/player/player_states/player_state_machine.gd" id="4_qkuth"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="4_r4pyj"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_idle_state.gd" id="5_xp3sm"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_move_state.gd" id="7_bwmhs"]
+[ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="8_mgete"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
 [ext_resource type="Texture2D" uid="uid://bp0ujgfwrrxai" path="res://assets/sprites/camelot/merlin_.png" id="8_t1qvo"]
 [ext_resource type="AudioStream" uid="uid://dup3swn76q3oi" path="res://assets/audio/PlayerRest.wav" id="17_clfv3"]
@@ -286,26 +286,22 @@ character = NodePath("..")
 character_sprite = NodePath("../CharacterSprite")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_qkuth")
-initial_state = NodePath("IdleState")
+script = ExtResource("8_mgete")
+initial_state = NodePath("Idle")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_xp3sm")
-player = NodePath("../..")
 
-[node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("6_0evq3")
-player = NodePath("../..")
 
-[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource("7_bwmhs")
-player = NodePath("../..")
 
-[node name="DeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("8_o8qu8")
-player = NodePath("../..")
 
-[node name="DeathTimer" type="Timer" parent="StateMachine/DeadState"]
+[node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
 wait_time = 0.7
 one_shot = true
 
