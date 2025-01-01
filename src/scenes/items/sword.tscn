@@ -97,7 +97,6 @@ y_sort_enabled = true
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_h5lec")
 weapon_data = ExtResource("2_6rlak")
-aim_follows_cursor = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false

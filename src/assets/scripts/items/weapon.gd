@@ -27,7 +27,6 @@ func use_data(data: WeaponData):
 func init(p: Player, data: WeaponData = null):
 	player = p
 	use_data(data)
-	#z_as_relative = false
 
 func _ready() -> void:
 	if not use_sprite:
@@ -44,6 +43,20 @@ func _process(delta: float) -> void:
 	var location = get_attack_location()
 	handle_attack_indicator(location)
 	handle_weapon_aim(location)
+	# feels like it could be in 'idle' state
+	# and this is really what to do with the weapon when idle.
+	# another thing an 'animation controller' could help with?
+	# then maybe weapon data can include an animation controller
+	# or dif implements of weapon ie staff/bow/sword can provide one
+	# with a consistens interface for the states to call
+	# or weapons could have their own state machine?
+	#if player.velocity == Vector2.ZERO:
+		#if use_sprite:
+			#sprite.global_position = player.hand.global_position - Vector2(0, 3)
+			#sprite.rotation_degrees = 0
+		#else:
+			#sprite.global_position = player.hand.global_position
+			#animations.rotation_degrees = 30
 
 func get_attack_location() -> Vector2:
 	var mouse_pos = player.get_global_mouse_position()
@@ -64,20 +77,19 @@ func handle_attack_indicator(attack_location: Vector2) -> void:
 
 # this an the following method probably need to live somewhere else
 # or use better params from the weapon we are representing.
+# perhaps there could be an animatin controller with methods that
+# our state machine could call into for things like 'idle'
 func handle_weapon_aim(attack_location: Vector2):
 	if aim_follows_cursor:
 		look_at(attack_location)
-	elif use_sprite:
+	else: 
 		if attack_location.x > global_position.x:
-			sprite.rotation_degrees = 75
+			if use_sprite:
+				sprite.rotation_degrees = 60
+			else:
+				animations.rotation_degrees = 80
 		else:
-			sprite.rotation_degrees = -75
-
-# this used to be controlled by states, maybe it could be? but the method to do it
-# should be implemented by the weapon
-func handle_weapon_animation():
-	pass
-	#if use_sprite:
-		#player.weapon.sprite.rotation_degrees = -75
-	#else:
-		#player.weapon.sprite.rotation_degrees = 75
+			if use_sprite:
+				sprite.rotation_degrees = -60
+			else:
+				animations.rotation_degrees = -80
