@@ -8,6 +8,7 @@ class_name StatusEffectSynergy
 @export var added_status_effect: StatusEffect
 
 func apply(attack: Attack) -> void:
+	# should this be += dmg * mod or just *= mod?
 	attack.damage += attack.damage * bonus_damage_modifier
 	if adds_new_effect:
 		attack.status_effects.append(added_status_effect)

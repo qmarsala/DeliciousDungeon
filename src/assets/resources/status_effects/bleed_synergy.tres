@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_hp6dy")
 status_effect = ExtResource("2_o05bw")
-bonus_damage_modifier = 2.0
+bonus_damage_modifier = 1.0
+adds_new_effect = false
