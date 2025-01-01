@@ -7,7 +7,7 @@ extends Label
 var direction
 
 func init(damage: float, position: Vector2, target_is_player: bool):
-	text = String.num(ceil(damage))
+	text = String.num(damage)
 	global_position = position
 	direction = Vector2(randf_range(-.5,.5), -1)
 	if target_is_player:
