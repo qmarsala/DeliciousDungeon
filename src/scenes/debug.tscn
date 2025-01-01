@@ -1,6 +1,6 @@
 [gd_scene load_steps=37 format=4 uid="uid://dwrneqjg07t8p"]
 
-[ext_resource type="Script" path="res://assets/scripts/debug_scene_manager.gd" id="1_ain6m"]
+[ext_resource type="Script" path="res://assets/scripts/systems/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
 [ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="2_d2tid"]
 [ext_resource type="TileSet" uid="uid://l2q7sjwj8ykk" path="res://assets/outdoor_tileset.tres" id="3_7xxu8"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
-[ext_resource type="Resource" uid="uid://dtt8oanr6xk70" path="res://scenes/enemies/attack_dummy.tres" id="16_6vr2r"]
+[ext_resource type="Resource" uid="uid://dtt8oanr6xk70" path="res://assets/resources/enemies/attack_dummy.tres" id="16_6vr2r"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="16_8mkye"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="16_wi07l"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
