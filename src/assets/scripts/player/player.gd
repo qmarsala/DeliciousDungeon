@@ -20,6 +20,7 @@ const STARTING_NUTRITION = 10
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
 @onready var player_rest_sound: AudioStreamPlayer2D = $PlayerRestSound
 @onready var health_component: HealthComponent = %HealthComponent
+@onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
 @onready var hitbox: Hitbox = $Hitbox
 
 #todo: component
@@ -53,6 +54,8 @@ var weapon_equipped: bool
 
 func _ready() -> void:
 	state_machine.init(self)
+	health_component.HealthDepleted.connect(_on_health_depleted)
+	status_effects_component.init(health_component, state_machine)
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)

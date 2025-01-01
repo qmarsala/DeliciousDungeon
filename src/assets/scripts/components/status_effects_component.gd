@@ -1,9 +1,14 @@
 class_name StatusEffectComponent
 extends Node
 
-signal Proc(effect: StatusEffect)
-
 var status_effects: Array[StatusEffect]
+
+var health_component: HealthComponent
+var state_machine: StateMachine
+
+func init(health: HealthComponent, state: StateMachine) -> void:
+	health_component = health
+	state_machine = state 
 
 var time: float = 0
 func _process(delta: float) -> void:
@@ -14,7 +19,7 @@ func _process(delta: float) -> void:
 		status_effects.erase(ee)
 	for se in status_effects:
 		if se.is_applicable(time):
-			tick_effect(se)
+			se.apply(time, health_component, state_machine)
 
 func has_effect(effect) -> bool:
 	return find_effects(effect).size() > 0
@@ -33,9 +38,4 @@ func apply_effect(effect: StatusEffect) -> void:
 	else:
 		var new_effect = effect.duplicate()
 		status_effects.append(new_effect)
-		tick_effect(new_effect)
-	print(status_effects)
-
-func tick_effect(effect: StatusEffect):
-	effect.tick(time)
-	Proc.emit(effect)
+		new_effect.apply(time, health_component, state_machine)

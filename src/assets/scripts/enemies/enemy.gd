@@ -19,11 +19,8 @@ var attack_is_cooling_down = false
 func _ready() -> void:
 	state_machine.init(self)
 	health_component.HealthDepleted.connect(_on_health_depleted)
-	status_effects_component.Proc.connect(_on_status_effect_proc)
+	status_effects_component.init(health_component, state_machine)
 	hitbox.init(health_component, status_effects_component)
-
-func _on_status_effect_proc(effect: StatusEffect):
-	effect.apply(health_component, state_machine)
 
 func _on_death_timer_timeout():
 	queue_free()

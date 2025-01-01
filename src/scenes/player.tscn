@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=44 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player/player.gd" id="1_511jo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="4_r4pyj"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_idle_state.gd" id="5_xp3sm"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
+[ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="7_8i15j"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_move_state.gd" id="7_bwmhs"]
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="8_mgete"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
@@ -281,6 +282,8 @@ character_sprite = NodePath("../CharacterSprite")
 node = NodePath("..")
 starting_health = 10.0
 
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("7_8i15j")]
+
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("character", "character_sprite") instance=ExtResource("3_fvtna")]
 character = NodePath("..")
 character_sprite = NodePath("../CharacterSprite")
@@ -322,6 +325,5 @@ one_shot = true
 stream = ExtResource("17_clfv3")
 volume_db = -20.0
 
-[connection signal="HealthDepleted" from="HealthComponent" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

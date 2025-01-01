@@ -27,8 +27,15 @@ var stack_count: float = 1
 var tick_count: float = 0
 
 # should apply add itself to the status component, and tick do these things?
-func apply(health_component: HealthComponent, state_machine: StateMachine):
+func apply(time: float, health_component: HealthComponent, state_machine: StateMachine):
 	if not health_component: return
+	if not state_machine: return
+	if not is_applied:
+		applied_at = time
+		is_applied = true
+	last_tick_at = time
+	tick_count += 1
+	
 	var applied_heal = heal
 	var applied_damage = damage
 	if stack_bonus_modifier > 0 and stack_count > 1:
@@ -45,14 +52,6 @@ func extend(time):
 	stack_count = clamp(stack_count + 1, 1, max_stack_size)
 	if can_extend:
 		applied_at = time
-
-func tick(time: float): 
-	print(effect_name)
-	if not is_applied:
-		applied_at = time
-		is_applied = true
-	last_tick_at = time
-	tick_count += 1
 
 func on_expired(status_effect_component: StatusEffectComponent):
 	if blocked_by_effect:
