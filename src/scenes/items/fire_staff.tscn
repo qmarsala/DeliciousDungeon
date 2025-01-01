@@ -15,11 +15,10 @@ fill_from = Vector2(0.504274, 0.470085)
 fill_to = Vector2(0.555556, 0)
 
 [node name="FireStaff" type="Node2D" node_paths=PackedStringArray("level_two_effect")]
-y_sort_enabled = true
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_7aqb2")
-use_sprite = true
 level_two_effect = NodePath("Sprite2D/LevelTwoEffect")
+use_sprite = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_63vhr")
