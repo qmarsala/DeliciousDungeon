@@ -265,6 +265,7 @@ position = Vector2(0, 3)
 script = ExtResource("5_x0joh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
+visible = false
 texture = ExtResource("6_g0sh7")
 
 [node name="MoveIndicator" type="Sprite2D" parent="."]

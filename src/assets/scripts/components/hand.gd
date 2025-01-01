@@ -13,8 +13,8 @@ func _process(delta: float) -> void:
 	if direction.length() > 4:
 		position = (direction.normalized() * 4) + Vector2(0,2)
 	else:
-		position = character.global_position + Vector2(0, 2)
+		position = direction + Vector2(0, 2)
 	if position.y < 0:
 		z_index = character.z_index - 1
 	else:
-		z_index = character.z_index + 1
+		z_index = character.z_index
