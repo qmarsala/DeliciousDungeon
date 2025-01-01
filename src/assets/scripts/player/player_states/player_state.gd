@@ -1,28 +1,14 @@
-extends Node
+extends State
 class_name PlayerState
 
-@export var player: Player
-
-signal Transitioned
-
-var time = 0
-func _process(delta: float) -> void:
-	time += delta 
+var player: Player:
+	get: return character as Player
 
 func _unhandled_input(event: InputEvent) -> void:
 	handle_movement_input(event)
 	handle_interact_action(event)
-	
-func enter():
-	pass
 
-func exit():
-	pass
-
-func handle_process(delta: float):
-	pass
-
-# should these things be moved to a 'movement controller'
+# should these things be moved to a 'movement constroller'
 # states that need this disabled could then set the controller to be 
 # enabled/disabled on state changes?
 func handle_physics_process(delta: float):
@@ -31,7 +17,7 @@ func handle_physics_process(delta: float):
 	if holding_move:
 		player.move_destination_indicator.hide()
 		player.move_target = player.get_global_mouse_position()
-		Transitioned.emit(self, "MoveState")
+		Transitioned.emit(self, "Move")
 	if was_holding and !holding_move:
 		player.move_destination_indicator.show()
 		player.move_target = player.get_global_mouse_position()
@@ -57,9 +43,9 @@ func handle_movement_input(event: InputEvent):
 		move_pressed = true
 		player.move_target = mouse_pos
 		player.move_destination_indicator.show()
-		Transitioned.emit(self, "MoveState")
+		Transitioned.emit(self, "Move")
 	elif event.is_action_released("move"):
 		move_pressed = false
 	elif event.is_action_pressed("dash") and not player.is_dash_cooldown:
 		player.move_target = mouse_pos
-		Transitioned.emit(self, "DashState")
+		Transitioned.emit(self, "Dash")

@@ -3,7 +3,6 @@ class_name EnemyDeadState
 
 @onready var death_timer: Timer = $DeathTimer
 
-
 func enter():
 	SignalBusService.EnemyDied.emit(enemy.data.enemy_id)
 	death_timer.start(.7)

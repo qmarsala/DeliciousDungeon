@@ -31,9 +31,6 @@ var target_locked: bool
 var retreat_cooldown : float = 0.5
 var retreated_at : float = 0
 var min_retreat_time : float = 0.5
-var time : float = 0
-func _process(delta: float) -> void:
-	time += delta
 
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
@@ -58,7 +55,7 @@ func handle_process(delta: float) -> void:
 
 func handle_physics_process(delta: float):
 	if player == null: 
-		Transitioned.emit(self, "EnemyExploringState")
+		Transitioned.emit(self, "Exploring")
 		return
 	if enemy:
 		var direction = player.global_position - enemy.global_position
@@ -71,7 +68,7 @@ func handle_physics_process(delta: float):
 		if (distance <= enemy.data.ideal_distance_min and time - retreated_at >= retreat_cooldown) or distance <= enemy.data.min_distance:
 			retreated_at = time
 		elif distance >= enemy.data.max_distance:
-			Transitioned.emit(self, "EnemyExploringState")
+			Transitioned.emit(self, "Exploring")
 		elif distance >= enemy.data.ideal_distance_min and distance <= enemy.data.ideal_distance_max:
 			enemy.velocity = Vector2.ZERO
 		else:

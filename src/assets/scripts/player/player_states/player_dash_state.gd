@@ -26,7 +26,7 @@ func handle_process(delta):
 	else:
 		player.velocity = dash_velocity
 	if time - dashed_at >= player.DASH_TIME:
-		Transitioned.emit(self, "MoveState")
+		Transitioned.emit(self, "Move")
 
 func exit():
 	player.set_collision_layer_value(2, true)

@@ -4,7 +4,7 @@ class_name PlayerDeadState
 @onready var death_timer: Timer = $DeathTimer
 
 func _ready() -> void:
-	death_timer.timeout.connect(player.PlayerDied.emit)
+	death_timer.timeout.connect(on_death_timer)
 
 func enter() -> void:
 	death_timer.start()
@@ -15,3 +15,6 @@ func handle_physics_process(delta: float) -> void:
 
 func handle_movement_input(input: InputEvent) -> void:
 	pass
+
+func on_death_timer():
+	player.PlayerDied.emit()
