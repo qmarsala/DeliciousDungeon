@@ -1,13 +1,29 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://bxslsp2tvvin1"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=9 format=3 uid="uid://bxslsp2tvvin1"]
 
 [ext_resource type="Script" path="res://assets/resources/weapons/weapon_data.gd" id="1_bmtdg"]
 [ext_resource type="Script" path="res://assets/resources/abilities/ability.gd" id="2_g2gy2"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/resources/abilities/piercing_shot.tres" id="3_4ujmv"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/resources/abilities/shoot_arrow.tres" id="4_5adoi"]
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/items/arrow.tscn" id="4_f5bsb"]
+[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/items/piercing_arrow.tscn" id="4_uv3aj"]
+
+[sub_resource type="Resource" id="Resource_yv7pr"]
+script = ExtResource("2_g2gy2")
+scene = ExtResource("4_f5bsb")
+data = ExtResource("4_5adoi")
+input_event = "ability_one"
+
+[sub_resource type="Resource" id="Resource_5f65v"]
+script = ExtResource("2_g2gy2")
+scene = ExtResource("4_uv3aj")
+data = ExtResource("3_4ujmv")
+input_event = "ability_two"
 
 [resource]
 script = ExtResource("1_bmtdg")
 max_range = 110.0
 cooldown_reduction = 0.2
-weapon_abilities = Array[ExtResource("2_g2gy2")]([])
+weapon_abilities = Array[ExtResource("2_g2gy2")]([SubResource("Resource_yv7pr"), SubResource("Resource_5f65v")])
 weapon_level = 2
 item_id = 3
 name = "Bow"
