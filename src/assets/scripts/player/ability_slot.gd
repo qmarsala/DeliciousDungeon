@@ -21,6 +21,8 @@ var ability_data: AbilityData
 var ability_scene: PackedScene
 
 func init(player: Player, weapon: Weapon, ability: Ability):
+	self.player = player
+	self.weapon = weapon
 	ability_scene = ability.scene
 	ability_data = ability.data
 	ability_input_event = ability.input_event
