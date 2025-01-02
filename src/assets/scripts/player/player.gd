@@ -99,7 +99,7 @@ func equip(item: Item):
 	# something implemented here too?  but maybe the handler could be a generic
 	# 'execute' that the signaling objects sends up? then some player 
 	# specific logic could happen before that happens if needed, like 'is dead' checks 
-	weapon.init(self)
+	weapon.equip(self)
 	hand.add_child.call_deferred(weapon)
 
 func interact():

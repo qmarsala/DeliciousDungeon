@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfc8242vq64ru"]
+[gd_scene load_steps=14 format=3 uid="uid://bfc8242vq64ru"]
 
-[ext_resource type="Script" path="res://assets/scripts/items/weapon.gd" id="1_h5lec"]
-[ext_resource type="Resource" uid="uid://c5y76p8h84ip0" path="res://assets/resources/weapons/sword_levelone.tres" id="2_6rlak"]
+[ext_resource type="Script" path="res://assets/scripts/items/sword.gd" id="1_cie1y"]
 [ext_resource type="Texture2D" uid="uid://bg35y6j07oktb" path="res://assets/sprites/playerSprites_ [version 1.0]/sword_ [wood].png" id="2_p71ko"]
 [ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="4_aq6i8"]
 
@@ -95,8 +94,7 @@ animations = [{
 [node name="Sword" type="Node2D"]
 y_sort_enabled = true
 scale = Vector2(0.7, 0.7)
-script = ExtResource("1_h5lec")
-weapon_data = ExtResource("2_6rlak")
+script = ExtResource("1_cie1y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false

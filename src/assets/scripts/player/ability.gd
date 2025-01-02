@@ -22,9 +22,9 @@ var total_cooldown: float = 0
 # this is the 'comonent node' that executes the data, so maybe its ok
 var ability_data: AbilityData
 
-func init(p: Player, w: Weapon, data: AbilityData):
-	player = p
-	weapon = w
+func init(player: Player, weapon: Weapon, data: AbilityData):
+	self.player = player
+	self.weapon = weapon
 	ability_data = data
 	ability_sound.stream = ability_data.ability_sound
 	total_cooldown = (ability_data.cooldown + ability_data.cast_time) - ability_data.cooldown * weapon.weapon_data.cooldown_reduction
