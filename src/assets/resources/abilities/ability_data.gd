@@ -9,7 +9,7 @@ extends Resource
 @export var ability_sound: AudioStream
 @export var cast_time = .3
 @export var cooldown = 1.3
-@export var damage: Array[float] = [1]
+@export var damage: float = 1
 @export var status_effects: Array[StatusEffect] = []
 @export var status_effect_synergy: StatusEffectSynergy
 

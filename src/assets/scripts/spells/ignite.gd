@@ -18,9 +18,8 @@ func _process(delta: float) -> void:
 	var targets = area_2d.get_overlapping_areas()
 	for t in targets:
 		if t is Hitbox:
-			var damage_amount = data.damage.front()
 			var attack = Attack.new()
-			attack.damage = damage_amount
+			attack.damage = data.damage
 			attack.status_effects = data.status_effects
 			t.apply_attack(attack)
 	queue_free()

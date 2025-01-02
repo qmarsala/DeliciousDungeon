@@ -50,7 +50,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		var attack = Attack.new()
 		if data:
-			attack.damage = data.damage.front()
+			attack.damage = data.damage
 			attack.status_effects = data.status_effects
 			attack.effect_synergy = data.status_effect_synergy
 		else:

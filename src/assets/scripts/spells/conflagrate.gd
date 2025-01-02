@@ -20,18 +20,11 @@ func deal_damage(amount):
 			t.apply_attack(attack)
 
 func _on_initial_damage_timer_timeout() -> void:
-	if data.damage.size() > 0:
-		deal_damage(data.damage[0])
+		deal_damage(data.damage)
 	
 func _on_mid_damage_timer_timeout() -> void:
-	if data.damage.size() > 1:
-		deal_damage(data.damage[1])
-	elif data.damage.size() > 0:
-		deal_damage(data.damage.back())
+		deal_damage(data.damage + 1)
 	
 func _on_final_damage_timer_timeout() -> void:
-	if data.damage.size() > 2:
-		deal_damage(data.damage[2])
-	elif data.damage.size() > 0:
-		deal_damage(data.damage.back())
+	deal_damage(data.damage + 2)
 	queue_free()
