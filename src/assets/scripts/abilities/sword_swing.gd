@@ -1,5 +1,5 @@
+extends AbilityScene
 class_name SwordAttack
-extends Node2D
 
 # feels like once we have all our different types of attacks in place
 # nodes like swordswing may not be needed?
@@ -11,7 +11,6 @@ extends Node2D
 
 var target_positon = Vector2(0,0)
 var starting_postition = Vector2(0,0)
-var data: AbilityData
 
 func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
 	data = ability_data.duplicate()

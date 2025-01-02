@@ -6,6 +6,9 @@ class_name Projectile
 # - how can enemy/player bow/spells benefit from projectile?
 # maybe projectile should actually be a component that we put in an arrow scene?
 
+# pehaps a piercing projectile is just different?
+# - how can we configure a hurtbox with a piercing arrow?
+
 # todo: these params need to come from a recourse
 @export var speed = 300.0
 @export var can_pierce = false
