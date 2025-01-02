@@ -22,7 +22,7 @@ func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
 func _ready() -> void:
 	look_at(target_positon)
 	var attack = Attack.new()
-	attack.damage = data.damage.front()
+	attack.damage = data.damage
 	attack.status_effects = data.status_effects
 	attack.effect_synergy = data.status_effect_synergy
 	hurtbox.init(attack)

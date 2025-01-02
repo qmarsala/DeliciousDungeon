@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://c5y76p8h84ip0"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://c5y76p8h84ip0"]
 
 [ext_resource type="Script" path="res://assets/resources/weapons/weapon_data.gd" id="1_pkkhl"]
-[ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="2_fa2ta"]
-[ext_resource type="Resource" uid="uid://bbipk0xulhe0j" path="res://assets/resources/abilities/sword_stab.tres" id="3_1yar2"]
-[ext_resource type="Resource" uid="uid://43lcogjjbhl7" path="res://assets/resources/abilities/sword_swing.tres" id="3_oytfk"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability.gd" id="2_rqtov"]
 
 [resource]
 script = ExtResource("1_pkkhl")
 max_range = 15.0
 cooldown_reduction = 0.0
-weapon_abilities = Array[ExtResource("2_fa2ta")]([ExtResource("3_1yar2"), ExtResource("3_oytfk")])
+weapon_abilities = Array[ExtResource("2_rqtov")]([])
 weapon_level = 1
 item_id = 4
 name = "Sword"

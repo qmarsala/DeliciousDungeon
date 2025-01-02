@@ -1,13 +1,10 @@
-extends Node2D
+extends AbilityScene
 class_name Ignite
 
 @onready var area_2d: Area2D = $Area2D
 
-var data: AbilityData
-
-func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
-	data = ability_data.duplicate()
-	global_position = target
+func initialized() -> void:
+	global_position = target_position
 
 var delay = 0.1
 var time = 0

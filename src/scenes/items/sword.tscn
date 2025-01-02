@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/items/sword.gd" id="1_cie1y"]
 [ext_resource type="Texture2D" uid="uid://bg35y6j07oktb" path="res://assets/sprites/playerSprites_ [version 1.0]/sword_ [wood].png" id="2_p71ko"]
-[ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability.tscn" id="4_aq6i8"]
+[ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability_slot.tscn" id="4_aq6i8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aubdb"]
 atlas = ExtResource("2_p71ko")

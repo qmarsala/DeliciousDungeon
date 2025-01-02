@@ -1,10 +1,8 @@
 extends Node
-class_name Ability
+class_name AbilitySlot
 
-#notes: eventually this class should serve
-# as a 'contract' into abilities
-# but should be configurable by the abilities themselves.
-# for now its a mess of all the things we may need around abilities
+signal use_requested(AbilitySlot)
+signal use_pressed(AbilitySlot)
 
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var cast_timer: Timer = $CastTimer
@@ -18,14 +16,14 @@ var weapon: Weapon # todo: not sure I like this, though it is like a component -
 
 var total_cooldown: float = 0
 
-#todo: feels like this should be preconfigured? not injected? /shrug
-# this is the 'comonent node' that executes the data, so maybe its ok
+var ability_input_event: String
 var ability_data: AbilityData
+var ability_scene: PackedScene
 
-func init(player: Player, weapon: Weapon, data: AbilityData):
-	self.player = player
-	self.weapon = weapon
-	ability_data = data
+func init(player: Player, weapon: Weapon, ability: Ability):
+	ability_scene = ability.scene
+	ability_data = ability.data
+	ability_input_event = ability.input_event
 	ability_sound.stream = ability_data.ability_sound
 	total_cooldown = (ability_data.cooldown + ability_data.cast_time) - ability_data.cooldown * weapon.weapon_data.cooldown_reduction
 
@@ -40,17 +38,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not (is_instance_valid(player) and is_instance_valid(ability_data)): return
 	if player.health_component.is_dead() or not player.weapon_equipped: return
 
-	if event.is_action_pressed(ability_data.input_event) and not is_on_cooldown:
+	if event.is_action_pressed(ability_input_event) and not is_on_cooldown:
 		is_on_cooldown = true
-		#ranged poc: the ability should signal and let the weapon do this probably
-		if not weapon.use_sprite:
-			weapon.animations.play(ability_data.animation_name)
+		cooldown_timer.start(total_cooldown)
+		use_pressed.emit(self)
 		if ability_data.cast_time > 0:
-			#ranged poc:
 			cast_timer.start(ability_data.cast_time)
 		else:
-			use(weapon.get_attack_location())
-		cooldown_timer.start(total_cooldown)
+			use_requested.emit(self)
 
 func _process(delta: float) -> void:
 	if player == null: return
@@ -59,17 +54,10 @@ func _process(delta: float) -> void:
 	if !cast_timer.is_stopped() and weapon.weapon_data.item_id == Enums.Items.Staff:
 		SignalBusService.AttackCharge.emit(cast_timer.time_left, ability_data.cast_time)
 
-# maybe this could be the attack contract
-# melee would swing towards this direction, magic and range shoot toward it
-# probably need to start breaking this into sub types of abilities
-# like magic/range/melee
-func use(target_location):
-	if ability_data.scene != null:
-		var ability_instance = ability_data.scene.instantiate()
-		ability_instance.global_position = weapon.global_position
-		#ranged poc: need to get something bettew for projectiles
-		ability_instance.init(ability_data, weapon.global_position, target_location)
-		add_child(ability_instance)
+func use(starting_location: Vector2, target_location: Vector2):
+	var ability_instance = ability_scene.instantiate() as AbilityScene
+	ability_instance.init(ability_data, starting_location, target_location)
+	add_child(ability_instance)
 	ability_sound.pitch_scale = randf_range(.95,1.05)
 	ability_sound.play()
 
@@ -77,8 +65,4 @@ func _on_cooldown_timer_timeout() -> void:
 	is_on_cooldown = false
 
 func _on_cast_timer_timeout() -> void:
-	if player.health_component.is_dead() or not player.weapon_equipped: return
-	# perhaps we signal the ability and the player calls use if applicable?
-	# or player.use(self, weapon)? reason being - we may want to account for
-	# player gear/status_effects during the usage?
-	use(weapon.get_attack_location())
+	use_requested.emit(self)

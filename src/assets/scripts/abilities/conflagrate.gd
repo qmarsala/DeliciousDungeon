@@ -1,14 +1,11 @@
-extends Node2D
+extends AbilityScene
 class_name Conflagrate
 
 @onready var area_2d: Area2D = $Area2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-var data: AbilityData
-
-func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
-	data = ability_data.duplicate()
-	global_position = target
+func initialized() -> void:
+	global_position = target_position
 
 func deal_damage(amount):
 	var targets = area_2d.get_overlapping_areas()

@@ -1,20 +1,16 @@
-[gd_resource type="Resource" script_class="AbilityData" load_steps=6 format=3 uid="uid://b1tjegfgivt36"]
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://b1tjegfgivt36"]
 
 [ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/BowAttack.wav" id="1_0yq8j"]
 [ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="1_iek6i"]
-[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/items/piercing_arrow.tscn" id="1_nb3sn"]
 [ext_resource type="Script" path="res://assets/resources/status_effects/status_effect.gd" id="3_1dyk2"]
 [ext_resource type="Resource" uid="uid://boby8lv0fqfht" path="res://assets/resources/status_effects/bleeding.tres" id="5_1fjv7"]
 
 [resource]
 script = ExtResource("1_iek6i")
-has_scene = true
-scene = ExtResource("1_nb3sn")
-animation_name = "attack"
 target_self = false
+animation_name = "attack"
 ability_sound = ExtResource("1_0yq8j")
 cast_time = 0.3
 cooldown = 5.0
-damage = Array[float]([1.0])
+damage = 1.0
 status_effects = Array[ExtResource("3_1dyk2")]([ExtResource("5_1fjv7")])
-input_event = "ability_one"

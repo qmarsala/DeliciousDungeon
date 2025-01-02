@@ -24,14 +24,16 @@ func use_data(data: WeaponData):
 		scale = Vector2.ONE * weapon_scales[weapon_data.weapon_level]
 
 func equip(player: Player):
-	player = player
+	self.player = player
 
 func _ready() -> void:
 	for ability_slot in ability_slots.get_child_count():
 		if ability_slot < weapon_data.weapon_abilities.size():
 			var ability = weapon_data.weapon_abilities[ability_slot]
-			var slot = ability_slots.get_child(ability_slot) as Ability
+			var slot = ability_slots.get_child(ability_slot) as AbilitySlot
 			slot.init(player, self, ability)
+			slot.use_requested.connect(on_use_ability_requested)
+			slot.use_pressed.connect(on_use_ability_pressed)
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(player): return
@@ -60,3 +62,14 @@ func handle_attack_indicator(attack_location: Vector2) -> void:
 # our state machine could call into for things like 'idle'
 func handle_weapon_aim(attack_location: Vector2):
 	pass
+
+func handle_use_ability_animation(animation_name: String):
+	pass
+
+func on_use_ability_pressed(ability_slot: AbilitySlot):
+	if player.health_component.is_dead() or not player.weapon == self: return
+	handle_use_ability_animation(ability_slot.ability_data.animation_name)
+
+func on_use_ability_requested(ability_slot: AbilitySlot):
+	if player.health_component.is_dead() or not player.weapon == self: return
+	ability_slot.use(global_position, get_attack_location())

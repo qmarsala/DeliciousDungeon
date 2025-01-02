@@ -64,9 +64,9 @@ func update_ability_cooldowns():
 		# we need a contract around 'weapon or abilities' to gain the data about
 		# an ability such as (name, total_cooldown, current_cooldown)
 		var ability_slots = player.weapon.ability_slots.get_children()
-		var ability1 = ability_slots[0] as Ability
-		var ability2 = ability_slots[1] as Ability
-		var ability3 = ability_slots[2] as Ability
+		var ability1 = ability_slots[0] as AbilitySlot
+		var ability2 = ability_slots[1] as AbilitySlot
+		var ability3 = ability_slots[2] as AbilitySlot
 		ability_1_cooldown.value = get_progress_value(ability1.cooldown_timer.time_left, ability1.total_cooldown)
 		ability_2_cooldown.value = get_progress_value(ability2.cooldown_timer.time_left, ability2.total_cooldown) 
 		ability_3_cooldown.value = 0 # get_progress_value(ability3.cooldown_timer.time_left, ability3.ability_data.cooldown) 
