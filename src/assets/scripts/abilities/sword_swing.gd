@@ -12,12 +12,6 @@ class_name SwordAttack
 var target_positon = Vector2(0,0)
 var starting_postition = Vector2(0,0)
 
-func init(ability_data: AbilityData, start: Vector2, target: Vector2) -> void:
-	data = ability_data.duplicate()
-	starting_postition = start
-	target_positon = target
-	global_position = start
-
 func _ready() -> void:
 	look_at(target_positon)
 	var attack = Attack.new()
