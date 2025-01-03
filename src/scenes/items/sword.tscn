@@ -102,7 +102,6 @@ region_enabled = true
 region_rect = Rect2(2, 72, 8, 24)
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
-position = Vector2(4.76837e-07, 0)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_ig5q0")
 animation = &"stab"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=36 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/systems/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -21,11 +21,13 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="16_wi07l"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_idle_state.gd" id="21_5wrof"]
+[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/resources/items/firestaff_levelone.tres" id="21_h7dnt"]
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="21_r03v1"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="22_d5fxq"]
 [ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/resources/items/firestaff_leveltwo.tres" id="22_k8tsf"]
 [ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/bow_levelone.tres" id="23_3mj40"]
 [ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="23_nkwgo"]
+[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/sword_levelone.tres" id="29_aevxd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
 texture = ExtResource("1_rxblh")
@@ -339,7 +341,16 @@ player_scene = ExtResource("6_ucoae")
 damage_number = ExtResource("3_wyuhu")
 
 [node name="Pickup" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-76, 23)
 item = ExtResource("23_3mj40")
+
+[node name="Pickup2" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-95, -3)
+item = ExtResource("29_aevxd")
+
+[node name="Pickup3" parent="." instance=ExtResource("10_tdpce")]
+position = Vector2(-116, 21)
+item = ExtResource("21_h7dnt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
