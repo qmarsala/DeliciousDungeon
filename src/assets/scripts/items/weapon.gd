@@ -1,7 +1,7 @@
 class_name Weapon
 extends Node2D
 
-#something to thing about.
+#something to think about.
 # seems like it would be cool if we had a weapon
 # and that weapon could be a bow or sword or staff, or whatever
 # and an npc could use it too.  Current design is only thinking of player
@@ -72,4 +72,4 @@ func on_use_ability_pressed(ability_slot: AbilitySlot):
 
 func on_use_ability_requested(ability_slot: AbilitySlot):
 	if player.health_component.is_dead() or not player.weapon == self: return
-	ability_slot.use(global_position, get_attack_location())
+	ability_slot.use(player.global_position, get_attack_location())
