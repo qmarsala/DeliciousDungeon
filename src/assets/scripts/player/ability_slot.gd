@@ -59,7 +59,9 @@ func _process(delta: float) -> void:
 func use(starting_location: Vector2, target_location: Vector2):
 	var ability_instance = ability_scene.instantiate() as AbilityScene
 	ability_instance.init(ability_data, starting_location, target_location)
-	add_child(ability_instance)
+	#maybe this whole method is a weapon operation?
+	# ability slot should just be about hanlding input in relation to cooldowns
+	get_tree().root.add_child(ability_instance)
 	ability_sound.pitch_scale = randf_range(.95,1.05)
 	ability_sound.play()
 
