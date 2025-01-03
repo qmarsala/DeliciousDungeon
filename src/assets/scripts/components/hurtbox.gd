@@ -13,14 +13,8 @@ var attack: Attack
 func init(attack_data: Attack):
 	attack = attack_data
 
-var delay = 0.1
-var time = 0
-func _process(delta: float) -> void:
-	time += delta
-	if time < delay: return
-
+func apply_attack():
 	var targets = get_overlapping_areas()
 	for t in targets:
 		if t is Hitbox:
 			t.apply_attack(attack)
-	queue_free()
