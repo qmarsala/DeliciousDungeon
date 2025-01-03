@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="2_vxtdb"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://scenes/components/movement_component.tscn" id="3_fvtna"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="4_r4pyj"]
-[ext_resource type="Script" path="res://assets/scripts/components/hand.gd" id="5_x0joh"]
+[ext_resource type="Script" path="res://assets/scripts/player/hand.gd" id="5_x0joh"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_idle_state.gd" id="5_xp3sm"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="7_8i15j"]
