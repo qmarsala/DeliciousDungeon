@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://do1nl314r0yo1"]
 
 [ext_resource type="Script" path="res://assets/scripts/abilities/sword_swing.gd" id="1_4i861"]
-[ext_resource type="PackedScene" uid="uid://dek57qt07lvfp" path="res://scenes/melee/melee_hurtbox.tscn" id="1_w8ol4"]
+[ext_resource type="PackedScene" uid="uid://dek57qt07lvfp" path="res://scenes/components/hurtbox.tscn" id="1_w8ol4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mlx7f"]
 radius = 8.0

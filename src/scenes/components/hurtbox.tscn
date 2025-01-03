@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dek57qt07lvfp"]
 
-[ext_resource type="Script" path="res://assets/scripts/components/hurtbox.gd" id="1_56bje"]
+[ext_resource type="Script" path="res://assets/scripts/components/hurtbox.gd" id="1_5rr74"]
 
 [node name="MeleeHurtbox" type="Area2D"]
 collision_layer = 32
 collision_mask = 64
 monitorable = false
-script = ExtResource("1_56bje")
+script = ExtResource("1_5rr74")

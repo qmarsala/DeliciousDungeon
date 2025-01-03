@@ -10,7 +10,7 @@ func _ready() -> void:
 	attack.damage = data.damage
 	attack.status_effects = data.status_effects
 	attack.effect_synergy = data.status_effect_synergy
-	melee_hurtbox.init(attack)
+	melee_hurtbox.init(attack, false)
 
 var time = 0
 func _process(delta: float) -> void:

@@ -1,20 +1,18 @@
 class_name Hurtbox
 extends Area2D
 
-# testing an idea of having a hurbox. 
-# this would be what is configured with the attack to deliver.
-# when encountering a hitbox.
-
-# one tricky thing is that for some attacks it would destroy itself after the check
-# other attacks, it would depend
-
 var attack: Attack
 
-func init(attack_data: Attack):
+func init(attack_data: Attack, apply_on_entered: bool):
 	attack = attack_data
+	if apply_on_entered:
+		area_entered.connect(on_area_entererd)
 
 func apply_attack():
 	var targets = get_overlapping_areas()
 	for t in targets:
-		if t is Hitbox:
-			t.apply_attack(attack)
+		on_area_entererd(t)
+
+func on_area_entererd(area: Area2D) -> void:
+	if area is Hitbox:
+		area.apply_attack(attack)
