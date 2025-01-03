@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://assets/scripts/components/hurtbox.gd" id="1_56bje"]
 
 [node name="MeleeHurtbox" type="Area2D"]
-collision_layer = 64
-collision_mask = 32
+collision_layer = 32
+collision_mask = 64
+monitorable = false
 script = ExtResource("1_56bje")

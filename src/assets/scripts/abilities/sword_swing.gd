@@ -1,21 +1,20 @@
 extends AbilityScene
 class_name SwordAttack
 
-# feels like once we have all our different types of attacks in place
-# nodes like swordswing may not be needed?
-# the hurtbox it he main thing we need - and a way to init it from ability data
-# what other benefit is there to creating a script for each attack scene?
-# vs one configurable one that reads ability data
-
-@onready var hurtbox: Hurtbox = $MeleeHurtbox
-
-var target_positon = Vector2(0,0)
-var starting_postition = Vector2(0,0)
-
+@onready var aim: RayCast2D = $Aim
+@onready var melee_hurtbox: Hurtbox = $Aim/MeleeHurtbox
 func _ready() -> void:
-	look_at(target_positon)
+	aim.global_position = starting_position
+	aim.look_at(target_position)
 	var attack = Attack.new()
 	attack.damage = data.damage
 	attack.status_effects = data.status_effects
 	attack.effect_synergy = data.status_effect_synergy
-	hurtbox.init(attack)
+	melee_hurtbox.init(attack)
+
+var time = 0
+func _process(delta: float) -> void:
+	time += delta
+	if time > .05:
+		melee_hurtbox.apply_attack()
+		queue_free()
