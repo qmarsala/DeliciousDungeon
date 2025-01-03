@@ -85,8 +85,9 @@ func handle_attack():
 		enemy.audio_stream_player.play()
 	if enemy.data.is_ranged:
 		var projectile_instance = enemy.data.projectile.instantiate() as Projectile
-		projectile_instance.damage = enemy.data.attack_damage
-		projectile_instance.init_old(enemy.global_position, attack_target)
+		var data = AbilityData.new()
+		data.damage = enemy.data.attack_damage
+		projectile_instance.init(data, enemy.global_position, attack_target)
 		# todo: where is the best place to spawn these things?
 		get_tree().root.add_child(projectile_instance)
 	else:
