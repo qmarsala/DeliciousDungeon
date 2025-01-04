@@ -84,12 +84,7 @@ func handle_attack():
 		enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
 		enemy.audio_stream_player.play()
 	if enemy.data.is_ranged:
-		var projectile_instance = enemy.data.projectile.instantiate() as Projectile
-		var data = AbilityData.new()
-		data.damage = enemy.data.attack_damage
-		projectile_instance.init(data, enemy.global_position, attack_target)
-		# todo: where is the best place to spawn these things?
-		get_tree().root.add_child(projectile_instance)
+		print("shoot")
 	else:
 		enemy.attack_range.look_at(attack_target)
 		var target = enemy.attack_range.get_collider()
