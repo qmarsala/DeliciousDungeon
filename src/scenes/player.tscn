@@ -278,6 +278,10 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="PlayerRestSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_clfv3")
+volume_db = -20.0
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true
 character_sprite = NodePath("../CharacterSprite")
@@ -322,10 +326,6 @@ one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="PlayerRestSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_clfv3")
-volume_db = -20.0
 
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

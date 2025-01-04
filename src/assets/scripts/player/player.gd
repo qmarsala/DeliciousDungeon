@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 signal PlayerDied
-signal EquippedWeapon(weapon: Weapon)
 
 const SPEED = 60.0
 const DASH_MULTIPLIER = 1.8
@@ -46,9 +45,7 @@ var is_dash_cooldown: bool
 # if hills go east west we may also want to pitch the angle of movement
 var is_hill: bool
 
-#temp:
 var weapon_item: Item
-var weapon: Weapon
 var weapon_equipped: bool
 
 func _ready() -> void:
@@ -86,26 +83,26 @@ func pickup(item: Item):
 		player_items[item.data.item_id] += 1
 
 func equip(item: Item):
-	if weapon_equipped:
-		weapon.queue_free()
-		ItemDropService.drop_item(weapon_item, global_position)
+	unequip()
 	weapon_equipped = true
 	weapon_item = item
-	weapon = weapon_item.create_item_scene() as Weapon
-	# currently sending the whole scene to be able to track ability cooldowns
-	# there is probably a better way to do this?
-	EquippedWeapon.emit(weapon)
-	# calling back up - it feels more extension like, with signals we'd need to have
-	# something implemented here too?  but maybe the handler could be a generic
-	# 'execute' that the signaling objects sends up? then some player 
-	# specific logic could happen before that happens if needed, like 'is dead' checks 
-	weapon.equip(self)
-	hand.add_child.call_deferred(weapon)
+	#hand.add_child.call_deferred(weapon)
+
+func unequip():
+	ItemDropService.drop_item(weapon_item, global_position)
+	weapon_equipped = false
+	weapon_item = null # todo: come up with a default weapon item, like 'fist'
 
 func interact():
 	var result = interaction_ray_cast.get_collider()
 	if result is InteractBox:
 		result.interact(self)
+
+func attack():
+	# todo: have fists equipped by default
+	if not weapon_equipped: return
+	# look for target
+	# apply damage
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or health_component.is_dead(): return
