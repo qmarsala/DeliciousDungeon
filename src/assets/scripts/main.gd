@@ -59,6 +59,9 @@ func _change_scene(scene: PackedScene, force: bool = false):
 func _perform_scene_change():
 	if current_scene:
 		current_scene.queue_free()
+	for c in world.get_children():
+		c.queue_free()
+	
 	current_scene = next_scene.instantiate()
 	#todo: probably would want a reference to the player at the game level?
 	# and reposition the player in the new scene?
