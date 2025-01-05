@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://assets/resources/weapons/weapon_data.gd" id="1_oxbym"]
 [ext_resource type="Script" path="res://assets/resources/abilities/ability.gd" id="2_tdr80"]
 [ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/resources/abilities/piercing_shot.tres" id="3_nx15s"]
-[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/items/piercing_arrow.tscn" id="4_f2e5i"]
+[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/abilities/piercing_arrow.tscn" id="4_f2e5i"]
 [ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/resources/abilities/shoot_arrow.tres" id="4_sspcf"]
-[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/items/arrow.tscn" id="6_nxraj"]
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/abilities/arrow.tscn" id="6_nxraj"]
 
 [sub_resource type="Resource" id="Resource_0tgx5"]
 script = ExtResource("2_tdr80")

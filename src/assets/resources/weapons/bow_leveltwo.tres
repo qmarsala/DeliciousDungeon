@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://assets/resources/abilities/ability.gd" id="2_g2gy2"]
 [ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://assets/resources/abilities/piercing_shot.tres" id="3_4ujmv"]
 [ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://assets/resources/abilities/shoot_arrow.tres" id="4_5adoi"]
-[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/items/arrow.tscn" id="4_f5bsb"]
-[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/items/piercing_arrow.tscn" id="4_uv3aj"]
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://scenes/abilities/arrow.tscn" id="4_f5bsb"]
+[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://scenes/abilities/piercing_arrow.tscn" id="4_uv3aj"]
 
 [sub_resource type="Resource" id="Resource_yv7pr"]
 script = ExtResource("2_g2gy2")

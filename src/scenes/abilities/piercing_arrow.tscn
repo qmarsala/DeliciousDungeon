@@ -17,9 +17,6 @@ size = Vector2(4, 14)
 [node name="PiercingArrow" type="Node2D"]
 z_index = 6
 script = ExtResource("1_ld8s0")
-speed = 325.0
-can_pierce = true
-bonus_range = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_i0m4u")
