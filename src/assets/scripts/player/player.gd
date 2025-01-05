@@ -21,6 +21,7 @@ const STARTING_NUTRITION = 10
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
 @onready var hitbox: Hitbox = $Hitbox
+@onready var ability_slots: AbilitySlots = $AbilitySlots
 
 #todo: component
 @onready var rest_timer: Timer = $RestTimer

@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://btrke7rn4blxm"]
+[gd_scene load_steps=6 format=3 uid="uid://btrke7rn4blxm"]
 
 [ext_resource type="Script" path="res://assets/scripts/items/staff.gd" id="1_s7n4d"]
 [ext_resource type="Texture2D" uid="uid://cqyuvlxinqtqc" path="res://assets/sprites/dungeon/weapons_.png" id="2_nv63o"]
 [ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://assets/sprites/dungeon/fire_.png" id="3_0o3c2"]
-[ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://scenes/components/ability_slot.tscn" id="4_t21vp"]
 
 [sub_resource type="Gradient" id="Gradient_mv6vj"]
 colors = PackedColorArray(0.955197, 0.955197, 0.955197, 1, 0, 0, 0, 1)
@@ -14,10 +13,11 @@ fill = 1
 fill_from = Vector2(0.504274, 0.470085)
 fill_to = Vector2(0.555556, 0)
 
-[node name="Staff" type="Node2D" node_paths=PackedStringArray("level_two_effect")]
+[node name="Staff" type="Node2D" node_paths=PackedStringArray("level_two_effect", "ability_slots")]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_s7n4d")
 level_two_effect = NodePath("Sprite2D/LevelTwoEffect")
+ability_slots = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nv63o")
@@ -39,11 +39,3 @@ scale = Vector2(1.33333, 1.33333)
 texture = ExtResource("3_0o3c2")
 region_enabled = true
 region_rect = Rect2(20, 19, 8, 9)
-
-[node name="AbilitySlots" type="Node" parent="."]
-
-[node name="Ability1" parent="AbilitySlots" instance=ExtResource("4_t21vp")]
-
-[node name="Ability2" parent="AbilitySlots" instance=ExtResource("4_t21vp")]
-
-[node name="Ability3" parent="AbilitySlots" instance=ExtResource("4_t21vp")]

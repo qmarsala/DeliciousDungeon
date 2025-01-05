@@ -63,7 +63,7 @@ func update_ability_cooldowns():
 		# we could use a weapon equipped event to wire this up
 		# we need a contract around 'weapon or abilities' to gain the data about
 		# an ability such as (name, total_cooldown, current_cooldown)
-		var ability_slots = player.weapon.ability_slots.get_children()
+		var ability_slots = player.ability_slots.slots
 		var ability1 = ability_slots[0] as AbilitySlot
 		var ability2 = ability_slots[1] as AbilitySlot
 		var ability3 = ability_slots[2] as AbilitySlot

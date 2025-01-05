@@ -1,8 +1,6 @@
 class_name Weapon
 extends Node2D
 
-@onready var ability_slots: AbilitySlots = $AbilitySlots
-
 var player: Player
 
 #temp way to show different levels of weapons
@@ -20,11 +18,11 @@ func use_data(data: WeaponData):
 
 func equip(player: Player):
 	self.player = player
-	ability_slots.bind_abilities(self)
+	player.ability_slots.bind_abilities(self)
 
 func unequip():
+	player.ability_slots.unbind_abilities(self)
 	player = null
-	ability_slots.unbind_abilities(self)
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(player): return
@@ -59,4 +57,6 @@ func on_use_ability_pressed(ability_slot: AbilitySlot):
 
 func on_use_ability_requested(ability_slot: AbilitySlot):
 	if player.health_component.is_dead() or not player.weapon == self: return
-	ability_slot.use_ability(player.global_position, get_attack_location())
+	# probably want to attack from the center of our collision box?
+	# other ideas are player pos and hand pos
+	ability_slot.use_ability(player.global_position + Vector2(0,3), get_attack_location())

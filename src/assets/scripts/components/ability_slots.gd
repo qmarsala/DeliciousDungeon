@@ -4,7 +4,9 @@ extends Node
 var slots: Array[AbilitySlot] = []
 
 func _ready() -> void:
-	slots = get_children() as Array[AbilitySlot]
+	for c in get_children():
+		if c is AbilitySlot:
+			slots.append(c)
 
 func bind_abilities(weapon: Weapon) -> void:
 	for i in slots.size():

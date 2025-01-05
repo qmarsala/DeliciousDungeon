@@ -12,9 +12,9 @@ func _process(delta: float) -> void:
 	if not is_instance_valid(character): return
 	var direction = character.get_global_mouse_position() - character.global_position
 	if direction.length() > reach:
-		position = (direction.normalized() * reach) + Vector2(0,2)
+		position = (direction.normalized() * reach) + Vector2(0,3)
 	else:
-		position = direction + Vector2(0, 2)
+		position = direction + Vector2(0, 3)
 	if position.y < 0:
 		z_index = character.z_index - 1
 	else:

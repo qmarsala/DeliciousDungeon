@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=46 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player/player.gd" id="1_511jo"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="7_8i15j"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_move_state.gd" id="7_bwmhs"]
+[ext_resource type="PackedScene" uid="uid://dmrrebaym06l6" path="res://scenes/components/ability_slots.tscn" id="8_2wv20"]
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="8_mgete"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
 [ext_resource type="Texture2D" uid="uid://bp0ujgfwrrxai" path="res://assets/sprites/camelot/merlin_.png" id="8_t1qvo"]
@@ -281,6 +282,8 @@ collide_with_bodies = false
 [node name="PlayerRestSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_clfv3")
 volume_db = -20.0
+
+[node name="AbilitySlots" parent="." instance=ExtResource("8_2wv20")]
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("2_vxtdb")]
 unique_name_in_owner = true

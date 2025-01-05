@@ -32,11 +32,12 @@ func face_target():
 	rotate(deg_to_rad(90))
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	pierce_count += 1
-	if data.can_pierce and pierce_count > data.max_pierce_count:
-		queue_free.call_deferred()
-	elif not data.can_pierce:
-		queue_free.call_deferred()
+	if area is Hitbox:
+		pierce_count += 1
+		if data.can_pierce and pierce_count > data.max_pierce_count:
+			queue_free.call_deferred()
+		elif not data.can_pierce:
+			queue_free.call_deferred()
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	queue_free.call_deferred()

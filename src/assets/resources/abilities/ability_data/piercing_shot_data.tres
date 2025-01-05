@@ -20,4 +20,5 @@ status_effects = Array[ExtResource("3_3ahvq")]([ExtResource("4_s563j")])
 speed = 325.0
 can_pierce = true
 max_pierce_count = 1
-max_range = 0
+weapon_range = 90
+bonus_range = 50
