@@ -161,10 +161,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ChargedAttackBar" type="ProgressBar" parent="."]
+[node name="CastBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.909804, 0.666667, 0.0823529, 1)
+layout_mode = 0
+offset_left = -98.0
+offset_top = -60.0
+offset_right = 185.0
+offset_bottom = -33.0
+scale = Vector2(0.663405, 0.435025)
+mouse_filter = 2
+show_percentage = false
+
+[node name="RestBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.364706, 0.12549, 0.341176, 1)
 layout_mode = 0
 offset_left = -98.0
 offset_top = -60.0

@@ -15,3 +15,5 @@ signal QuestCompleted(quest: Quest)
 
 #how do we want to communicate to the ui componens? signal bus?
 signal Casting(time_left: float, total_time: float)
+# maybe these could be the same and we send an action or color?
+signal Resting(time_left: float, total_time: float)

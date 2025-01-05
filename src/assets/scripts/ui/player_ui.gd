@@ -5,7 +5,8 @@ class_name PlayerUI
 
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var hunger_bar: ProgressBar = %HungerBar
-@onready var charged_attack_bar: ProgressBar = %ChargedAttackBar
+@onready var cast_bar: ProgressBar = %CastBar
+@onready var rest_bar: ProgressBar = %RestBar
 @onready var food_count_label: Label = %FoodCountLabel
 @onready var wood_count_label: Label = %WoodCountLabel
 @onready var status_label: Label = %StatusLabel
@@ -16,6 +17,7 @@ class_name PlayerUI
 
 func _ready() -> void:
 	SignalBusService.Casting.connect(update_charge_bar)
+	SignalBusService.Resting.connect(update_rest_bar)
 	
 
 func _process(delta: float) -> void:
@@ -75,10 +77,19 @@ func get_progress_value(time_left: float, total_time: float):
 	return 100 - (time_left / total_time) * 100
 
 func update_charge_bar(time_left: float, total_time: float):
-	if charged_attack_bar:
-		var charge = get_progress_value(time_left, total_time)
-		if charge <= 1 or charge >= 99: 
-			charged_attack_bar.hide()
+	if cast_bar:
+		var progress = get_progress_value(time_left, total_time)
+		if progress <= 1 or progress >= 99: 
+			cast_bar.hide()
 		else:
-			charged_attack_bar.show()
-			charged_attack_bar.value = charge
+			cast_bar.show()
+			cast_bar.value = progress
+
+func update_rest_bar(time_left: float, total_time: float):
+	if rest_bar:
+		var progress = get_progress_value(time_left, total_time)
+		if progress <= 1 or progress >= 99: 
+			rest_bar.hide()
+		else:
+			rest_bar.show()
+			rest_bar.value = progress
