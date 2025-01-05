@@ -24,4 +24,4 @@ func on_area_entererd(area: Area2D) -> void:
 	if area is Hitbox:
 		area.apply_attack(attack)
 		if free_on_collision:
-			queue_free()
+			queue_free.call_deferred()

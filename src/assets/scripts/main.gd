@@ -65,7 +65,7 @@ func _perform_scene_change():
 	for c in current_scene.get_children():
 		if c.is_in_group("Player"):
 			var player = c as Player
-			player.PlayerDied.connect(_game_over)
+			player.player_died.connect(_game_over)
 			player.player_items = player_items
 			print(player.player_items)
 			break

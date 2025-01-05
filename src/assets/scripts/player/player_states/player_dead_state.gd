@@ -17,4 +17,4 @@ func handle_movement_input(input: InputEvent) -> void:
 	pass
 
 func on_death_timer():
-	player.PlayerDied.emit()
+	player.player_died.emit()

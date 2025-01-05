@@ -15,7 +15,7 @@ class_name PlayerUI
 @onready var dash_cooldown: ProgressBar = $DashCooldown
 
 func _ready() -> void:
-	SignalBusService.AttackCharge.connect(update_charge_bar)
+	SignalBusService.Casting.connect(update_charge_bar)
 	
 
 func _process(delta: float) -> void:

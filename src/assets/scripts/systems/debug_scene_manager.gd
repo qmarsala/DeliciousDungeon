@@ -8,7 +8,7 @@ var player: Player
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
-	player.PlayerDied.connect(_on_player_died)
+	player.player_died.connect(_on_player_died)
 	SignalBusService.DamageReceived.connect(_add_damage_number)
 
 func _on_player_died() -> void:

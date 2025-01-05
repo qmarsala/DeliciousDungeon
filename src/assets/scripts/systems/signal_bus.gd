@@ -14,4 +14,4 @@ signal ActionPerformed(action_id: int)
 signal QuestCompleted(quest: Quest)
 
 #how do we want to communicate to the ui componens? signal bus?
-signal AttackCharge(time_left: float, total_time: float)
+signal Casting(time_left: float, total_time: float)

@@ -1,9 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-signal PlayerDied
-signal EquippedWeapon(weapon: Weapon)
+signal player_died
 
+#todo: player data
 const SPEED = 60.0
 const DASH_MULTIPLIER = 1.8
 const DASH_TIME = .4
@@ -87,25 +87,27 @@ func pickup(item: Item):
 
 func equip(item: Item):
 	if weapon_equipped:
-		weapon.queue_free()
-		ItemDropService.drop_item(weapon_item, global_position)
+		unequip()
 	weapon_equipped = true
 	weapon_item = item
 	weapon = weapon_item.create_item_scene() as Weapon
-	# currently sending the whole scene to be able to track ability cooldowns
-	# there is probably a better way to do this?
-	EquippedWeapon.emit(weapon)
-	# calling back up - it feels more extension like, with signals we'd need to have
-	# something implemented here too?  but maybe the handler could be a generic
-	# 'execute' that the signaling objects sends up? then some player 
-	# specific logic could happen before that happens if needed, like 'is dead' checks 
 	weapon.equip(self)
 	hand.add_child.call_deferred(weapon)
+
+func unequip():
+	weapon.unequip()
+	weapon_equipped = false
+	weapon.queue_free()
+	ItemDropService.drop_item(weapon_item, global_position)
 
 func interact():
 	var result = interaction_ray_cast.get_collider()
 	if result is InteractBox:
 		result.interact(self)
+
+func _on_ability_pressed(ability_id) -> void:
+	var ability = weapon.get_ability(ability_id)
+	# if ability. use it
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or health_component.is_dead(): return
