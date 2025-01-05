@@ -1,14 +1,9 @@
 class_name Weapon
 extends Node2D
 
-#something to think about.
-# seems like it would be cool if we had a weapon
-# and that weapon could be a bow or sword or staff, or whatever
-# and an npc could use it too.  Current design is only thinking of player
+@onready var ability_slots: AbilitySlots = $AbilitySlots
 
 var player: Player
-
-@onready var ability_slots: Node = $AbilitySlots
 
 #temp way to show different levels of weapons
 var weapon_scales: Dictionary = {
@@ -25,15 +20,11 @@ func use_data(data: WeaponData):
 
 func equip(player: Player):
 	self.player = player
+	ability_slots.bind_abilities(self)
 
-func _ready() -> void:
-	for ability_slot in ability_slots.get_child_count():
-		if ability_slot < weapon_data.weapon_abilities.size():
-			var ability = weapon_data.weapon_abilities[ability_slot]
-			var slot = ability_slots.get_child(ability_slot) as AbilitySlot
-			slot.init(player, self, ability)
-			slot.use_requested.connect(on_use_ability_requested)
-			slot.use_pressed.connect(on_use_ability_pressed)
+func unequip():
+	player = null
+	ability_slots.unbind_abilities(self)
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(player): return
@@ -56,10 +47,6 @@ func handle_attack_indicator(attack_location: Vector2) -> void:
 		$AttackIndicator.show()
 	$AttackIndicator.global_position = attack_location
 
-# this an the following method probably need to live somewhere else
-# or use better params from the weapon we are representing.
-# perhaps there could be an animatin controller with methods that
-# our state machine could call into for things like 'idle'
 func handle_weapon_aim(attack_location: Vector2):
 	pass
 
@@ -72,4 +59,4 @@ func on_use_ability_pressed(ability_slot: AbilitySlot):
 
 func on_use_ability_requested(ability_slot: AbilitySlot):
 	if player.health_component.is_dead() or not player.weapon == self: return
-	ability_slot.use(player.global_position, get_attack_location())
+	ability_slot.use_ability(player.global_position, get_attack_location())
