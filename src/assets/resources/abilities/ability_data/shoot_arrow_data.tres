@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://w4avb0eafw6r"]
 
 [ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://assets/audio/BowAttack.wav" id="1_ce44j"]
-[ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="1_vrb6u"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability_data/ability_data.gd" id="1_vrb6u"]
 [ext_resource type="Script" path="res://assets/resources/status_effects/status_effect.gd" id="3_4j3af"]
 [ext_resource type="Resource" uid="uid://cm2vf8gviiiyy" path="res://assets/resources/status_effects/bleed_synergy.tres" id="4_0j7ei"]
 

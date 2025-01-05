@@ -4,10 +4,10 @@
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_td5qt"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="3_ve0fs"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="4_oaukl"]
-[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/resources/items/firestaff_levelone.tres" id="5_op72h"]
+[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/resources/items/weapons/firestaff_levelone.tres" id="5_op72h"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="6_bmdef"]
-[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/sword_levelone.tres" id="6_cl8vi"]
-[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/bow_levelone.tres" id="6_fo3cp"]
+[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/weapons/sword_levelone.tres" id="6_cl8vi"]
+[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/weapons/bow_levelone.tres" id="6_fo3cp"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="6_l6r4d"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="7_w6wpo"]
 

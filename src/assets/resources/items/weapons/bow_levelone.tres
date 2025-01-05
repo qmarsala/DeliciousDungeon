@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://blb4ph6xjfls0" path="res://scenes/items/bow.tscn" id="1_3ir7x"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="2_00hex"]
-[ext_resource type="Resource" uid="uid://b5ajp2cpjk2pw" path="res://assets/resources/weapons/bow_levelone.tres" id="3_0q6vt"]
+[ext_resource type="Resource" uid="uid://b5ajp2cpjk2pw" path="res://assets/resources/weapon_stats/bow_levelone_stats.tres" id="3_0q6vt"]
 
 [resource]
 script = ExtResource("2_00hex")

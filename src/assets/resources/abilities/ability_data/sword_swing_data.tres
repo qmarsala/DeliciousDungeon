@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://43lcogjjbhl7"]
 
 [ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="1_m8wlm"]
-[ext_resource type="Script" path="res://assets/resources/abilities/ability_data.gd" id="1_ute8q"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability_data/ability_data.gd" id="1_ute8q"]
 [ext_resource type="Script" path="res://assets/resources/status_effects/status_effect.gd" id="2_q0k5i"]
 [ext_resource type="Resource" uid="uid://bk1011e0b4g8c" path="res://assets/resources/status_effects/bleed_to_stun_synergy.tres" id="4_midti"]
 
