@@ -11,13 +11,11 @@
 script = ExtResource("2_rqtov")
 scene = ExtResource("4_o0gx0")
 data = ExtResource("3_oytfk")
-input_event = "ability_one"
 
 [sub_resource type="Resource" id="Resource_ih1qt"]
 script = ExtResource("2_rqtov")
 scene = ExtResource("6_vv4qa")
 data = ExtResource("3_1yar2")
-input_event = "ability_two"
 
 [resource]
 script = ExtResource("1_pkkhl")

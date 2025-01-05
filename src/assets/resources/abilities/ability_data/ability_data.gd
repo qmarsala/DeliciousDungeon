@@ -1,7 +1,8 @@
 class_name AbilityData
 extends Resource
 
-@export var target_self: bool
+@export var targets_player: bool
+@export var targets_enemy: bool
 @export var animation_name: String = "attack"
 @export var ability_sound: AudioStream
 @export var cast_time = .3
@@ -16,9 +17,13 @@ extends Resource
 @export var speed = 300.0
 @export var can_pierce = false
 @export var max_pierce_count = 1
-@export var max_range = 0 # maybe weapons can have bonus range as they level? # how could this fit with melee abilities?
+@export var weapon_range = 20
+@export var bonus_range = 0
+var max_range: float:
+	get: return weapon_range + bonus_range
 
 func apply_weapon_stats(weapon: WeaponData) -> AbilityData:
 	var ability_data: AbilityData = self.duplicate()
 	ability_data.cooldown -= cooldown * weapon.cooldown_reduction
+	ability_data.weapon_range = weapon.max_range
 	return ability_data

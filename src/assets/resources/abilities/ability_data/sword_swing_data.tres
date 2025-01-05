@@ -7,11 +7,18 @@
 
 [resource]
 script = ExtResource("1_ute8q")
-target_self = false
+targets_player = false
+targets_enemy = true
 animation_name = "attack"
 ability_sound = ExtResource("1_m8wlm")
 cast_time = 0.0
 cooldown = 0.5
+show_castbar = true
 damage = 1.0
+heal = 0.0
 status_effects = Array[ExtResource("2_q0k5i")]([])
 status_effect_synergy = ExtResource("4_midti")
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1
+max_range = 0

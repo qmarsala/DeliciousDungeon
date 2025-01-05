@@ -7,10 +7,17 @@
 
 [resource]
 script = ExtResource("1_s64vy")
-target_self = false
+targets_player = false
+targets_enemy = true
 animation_name = "stab"
 ability_sound = ExtResource("1_b6omi")
 cast_time = 0.0
 cooldown = 3.5
+show_castbar = true
 damage = 1.0
+heal = 0.0
 status_effects = Array[ExtResource("2_d1b7f")]([ExtResource("4_cbetj")])
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1
+max_range = 0

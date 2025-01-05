@@ -7,7 +7,8 @@
 
 [resource]
 script = ExtResource("2_743v2")
-target_self = false
+targets_player = false
+targets_enemy = true
 animation_name = "attack"
 ability_sound = ExtResource("1_mhrma")
 cast_time = 0.3
