@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://y4ktplof8y3c"]
+[gd_scene load_steps=47 format=3 uid="uid://y4ktplof8y3c"]
 
 [ext_resource type="Texture2D" uid="uid://b3ehlqk2i520t" path="res://assets/sprites/dungeon/mHero_.png" id="1_0cxf1"]
 [ext_resource type="Script" path="res://assets/scripts/player/player.gd" id="1_511jo"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="8_mgete"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
 [ext_resource type="Texture2D" uid="uid://bp0ujgfwrrxai" path="res://assets/sprites/camelot/merlin_.png" id="8_t1qvo"]
+[ext_resource type="Script" path="res://assets/scripts/player/player_states/player_resting_state.gd" id="15_meny0"]
 [ext_resource type="AudioStream" uid="uid://dup3swn76q3oi" path="res://assets/audio/PlayerRest.wav" id="17_clfv3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqaof"]
@@ -307,6 +308,9 @@ script = ExtResource("5_xp3sm")
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("6_0evq3")
+
+[node name="Rest" type="Node" parent="StateMachine"]
+script = ExtResource("15_meny0")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource("7_bwmhs")

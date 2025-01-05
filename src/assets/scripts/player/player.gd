@@ -69,14 +69,18 @@ func _process(delta: float) -> void:
 	if global_position.distance_to(move_target) <= 5:
 		move_destination_indicator.hide()
 
-func rest():
+func begin_rest():
 	if player_items[Enums.Items.Food] < 1 or rest_is_cooldown: return
+	state_machine.transition_to("Rest")
+
+# should this live in the resting state? or just be called from there?
+func complete_rest():
+	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
 	player_items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
 	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
 	health_component.heal(health_component.starting_health * .35) # todo: should come from food
-	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
 	player_rest_sound.play()
 
 func pickup(item: Item):
