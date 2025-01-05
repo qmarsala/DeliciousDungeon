@@ -1,5 +1,5 @@
 extends EnemyState
-class_name EnemyFightingState
+class_name EnemyAttackingState
 
 #Notes:
 # hacking ranged in here:
@@ -26,7 +26,6 @@ class_name EnemyFightingState
 
 var player: CharacterBody2D
 var attack_target: Vector2
-var target_locked: bool
 
 var retreat_cooldown : float = 0.5
 var retreated_at : float = 0
@@ -34,45 +33,36 @@ var min_retreat_time : float = 0.5
 
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
+	if not is_instance_valid(player): 
+		Transitioned.emit(self, "Idle")
+		return
 
-func handle_process(delta: float) -> void:
-	if not player: return
-	# perhaps some angles should cause some skewing / z index changes?
-	if not target_locked:
-		enemy.attack_range.look_at(player.global_position)
-	
+	enemy.velocity = Vector2.ZERO
+	initiate_attack()
+
+func initiate_attack():
 	if enemy.attack_is_cooling_down: return
-	var potential_target = player.global_position
-	enemy.attack_range.look_at(potential_target)
-	var target = enemy.attack_range.get_collider()
-	if target is Hitbox:
-		target_locked = true
-		enemy.attack_is_cooling_down = true
-		handle_attack_animations()
-		attack_target = potential_target
-		attack_timer.start(enemy.data.attack_delay)
-		attack_cooldown_timer.start(enemy.data.attack_cooldown)
+	enemy.attack_is_cooling_down = true
+	attack_target = player.global_position
+	enemy.attack_range.look_at(attack_target)
+	handle_attack_animations()
+	attack_timer.start(enemy.data.attack_delay)
+	attack_cooldown_timer.start(enemy.data.attack_cooldown + enemy.data.attack_delay)
 
 func handle_physics_process(delta: float):
-	if player == null: 
-		Transitioned.emit(self, "Exploring")
+	if not is_instance_valid(player): 
+		Transitioned.emit(self, "Idle")
 		return
-	if enemy:
-		var direction = player.global_position - enemy.global_position
-		var distance = direction.length()
-		if time - retreated_at <= min_retreat_time:
-			# todo: what about when this means running into a wall?
-			enemy.velocity = -(direction.normalized() * (enemy.data.speed * enemy.data.retreat_speed_multiplier))
-			return
-
-		if (distance <= enemy.data.ideal_distance_min and time - retreated_at >= retreat_cooldown) or distance <= enemy.data.min_distance:
-			retreated_at = time
-		elif distance >= enemy.data.max_distance:
-			Transitioned.emit(self, "Exploring")
-		elif distance >= enemy.data.ideal_distance_min and distance <= enemy.data.ideal_distance_max:
-			enemy.velocity = Vector2.ZERO
-		else:
-			enemy.velocity = direction.normalized() * enemy.data.speed * enemy.data.engage_speed_multiplier
+		
+	var direction = player.global_position - enemy.global_position
+	var distance = direction.length()
+	if (distance <= enemy.data.ideal_distance_min and time - retreated_at >= retreat_cooldown) or distance <= enemy.data.min_distance:
+		retreated_at = time
+		Transitioned.emit(self, "Repositioning")
+	elif distance >= enemy.data.max_distance:
+		Transitioned.emit(self, "Exploring")
+	else:
+		initiate_attack()
 
 # todo: strategy pattern?
 # the 'weapon' being the strategy?
@@ -83,6 +73,7 @@ func handle_attack():
 		# sound service? also it would be cool if enemies and players used the same 'weapon' objects.
 		enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
 		enemy.audio_stream_player.play()
+	enemy.attack(attack_target)
 	if enemy.data.is_ranged:
 		var projectile_instance = enemy.data.projectile.instantiate() as Projectile
 		var data = AbilityData.new()
@@ -97,7 +88,6 @@ func handle_attack():
 			var attack = Attack.new()
 			attack.damage = enemy.data.attack_damage
 			target.apply_attack(attack)
-	target_locked = false
 
 func handle_attack_animations():
 	if enemy.data.attack_sound and enemy.audio_stream_player and not enemy.data.attack_sound_on_delay:

@@ -26,7 +26,7 @@ func handle_physics_process(delta: float):
 	if is_instance_valid(player):
 		var direction = player.global_position - enemy.global_position
 		if direction.length() <= enemy.data.vision_range:
-			Transitioned.emit(self, "Fighting")
+			Transitioned.emit(self, "Engaging")
 	else:
 		#todo: why do we need this? the first 'state enter' isn't setting it correctly for some reason
 		# another option could be to use an 'area' and set player on enter?
