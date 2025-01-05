@@ -3,7 +3,6 @@ extends Node2D
 
 @onready var point_light_2d: PointLight2D = $PointLight2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var rest_area: Area2D = $RestArea
 @onready var unlit: Sprite2D = $Unlit
 @onready var lit_animation: AnimatedSprite2D = $LitAnimation
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
