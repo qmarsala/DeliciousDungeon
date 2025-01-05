@@ -2,24 +2,19 @@ extends EnemyState
 class_name EnemyAttackingState
 
 #Notes:
-# hacking ranged in here:
-# ranged enemies may want their own states?
-# the way the want to handle movement and attacking may 
-# be different enough from melee?
-# if the same states are used, should we use 'strategy' pattern with 'weapons'?
-
+# weapons for enemies?
+# I think we may want to use abilities and scenes for enemies
+# perhaps it would make sense to give them alertering abilities and usage
+# strategies through different weapons?
+# perhaps this could give some of the information like attack cooldown
+# min attack time etc
+# 
 
 #these two exports need to be consolidated into something
 # like an 'animation controller' each weapon may be animated slightly
 # differently
 @export var attack_animation_player: AnimationPlayer
 @export var animated_weapon_sprite: AnimatedSprite2D
-
-# wonder if 'retreat' should be its own state
-
-# maybe need to pull out an audio component
-# that reacts to attack events?
-
 
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var attack_timer: Timer = $AttackTimer
@@ -121,7 +116,6 @@ func handle_attack_animations():
 		if player_height_distance >= 10 and player_width_distance <= 30:
 			animation = "swing_north"
 		attack_animation_player.play(animation)
-
 
 func _on_attack_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "RESET":
