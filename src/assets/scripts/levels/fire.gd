@@ -18,7 +18,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	interactbox.interacted.connect(interact)
-	rest_area.body_entered.connect(_on_rest_area_body_entered)
 	if lit:
 		unlit.hide()
 		lit_animation.show()
@@ -29,15 +28,16 @@ func _ready() -> void:
 		light()
 
 func interact(player: Player) -> void:
+	if lit:
+		player.begin_rest()
+		return
+	
 	if player.player_items.has(Enums.Items.Wood) and player.player_items[Enums.Items.Wood] > 0:
 		#todo: should we use a signal for this?
 		# feels bad mutating the player passed in like this
 		player.player_items[Enums.Items.Wood] -= 1
-		player.rest()
-		audio_stream_player.play()
 		light()
-		#for quest poc - these events could include the player position? that might help with sounds problem?
-		SignalBusService.ActionPerformed.emit(Enums.Actions.LightFire)
+		player.begin_rest()
 
 func light() -> void:
 	if lit: return
@@ -46,7 +46,6 @@ func light() -> void:
 	unlit.hide()
 	point_light_2d.enabled = true
 	animation_player.play(animation_name)
-
-func _on_rest_area_body_entered(body: Node2D) -> void:
-	if lit and body is Player:
-		body.rest()
+	audio_stream_player.play()
+	#for quest poc - these events could include the player position? that might help with sounds problem?
+	SignalBusService.ActionPerformed.emit(Enums.Actions.LightFire)
