@@ -231,9 +231,8 @@ script = ExtResource("9_86ol2")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
 
-[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player")]
+[node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("10_ojrjy")
-attack_animation_player = NodePath("")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Attacking"]
 one_shot = true

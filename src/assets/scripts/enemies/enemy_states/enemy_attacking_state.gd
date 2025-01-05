@@ -30,18 +30,19 @@ var aim_locked: bool
 var retreat_cooldown : float = 0.5
 var retreated_at : float = 0
 var min_retreat_time : float = 0.5
+var attacked_at: float
+var min_attack_time: float = 0.5
 
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
 	if not is_instance_valid(player): 
 		Transitioned.emit(self, "Idle")
 		return
-
-	enemy.velocity = Vector2.ZERO
 	initiate_attack()
 
 func initiate_attack():
 	if enemy.attack_is_cooling_down: return
+	enemy.velocity = Vector2.ZERO
 	enemy.attack_is_cooling_down = true
 	aim_locked = true
 	attack_target = player.global_position
@@ -49,11 +50,13 @@ func initiate_attack():
 	handle_attack_animations()
 	attack_timer.start(enemy.data.attack_delay)
 	attack_cooldown_timer.start(enemy.data.attack_cooldown + enemy.data.attack_delay)
+	attacked_at = time
 
 func handle_physics_process(delta: float):
 	if not is_instance_valid(player): 
 		Transitioned.emit(self, "Idle")
 		return
+	print(enemy.global_position.distance_to(player.global_position))
 	if not aim_locked:
 		enemy.attack_range.look_at(player.global_position)
 	var direction = player.global_position - enemy.global_position
@@ -61,6 +64,8 @@ func handle_physics_process(delta: float):
 	if (distance <= enemy.data.ideal_distance_min and time - retreated_at >= retreat_cooldown) or distance <= enemy.data.min_distance:
 		retreated_at = time
 		Transitioned.emit(self, "Repositioning")
+	elif distance > enemy.data.ideal_distance_max and time - attacked_at >= min_attack_time:
+		Transitioned.emit(self, "Engaging")
 	elif distance >= enemy.data.max_distance:
 		Transitioned.emit(self, "Exploring")
 	else:
