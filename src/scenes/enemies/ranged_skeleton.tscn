@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0nk2tnjt4nfh"]
+[gd_scene load_steps=19 format=3 uid="uid://d0nk2tnjt4nfh"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_8l5wi"]
 [ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://assets/resources/enemies/ranged_skeleton.tres" id="2_7pu6r"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="8_p86yj"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="8_qote8"]
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="9_4k7gg"]
-[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="9_6ro1r"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_attacking_state.gd" id="9_6ro1r"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_repositioning_state.gd" id="11_r5io2"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_engaging_target_state.gd" id="12_dhsmo"]
 [ext_resource type="Script" path="res://assets/scripts/states/stunned_state.gd" id="13_2brf7"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_idle_state.gd" id="14_xatvo"]
 
@@ -26,6 +28,7 @@ height = 16.0
 [node name="RangedSkeleton" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_8l5wi")
 data = ExtResource("2_7pu6r")
 
@@ -82,6 +85,16 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("14_xatvo")
 
+[node name="Repositioning" type="Node" parent="StateMachine"]
+script = ExtResource("11_r5io2")
+
+[node name="RepositionCooldown" type="Timer" parent="StateMachine/Repositioning"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Engaging" type="Node" parent="StateMachine"]
+script = ExtResource("12_dhsmo")
+
 [node name="Exploring" type="Node" parent="StateMachine"]
 script = ExtResource("7_vwvb0")
 
@@ -91,19 +104,19 @@ script = ExtResource("8_qote8")
 [node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
 one_shot = true
 
-[node name="Fighting" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_weapon_sprite")]
+[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player")]
 script = ExtResource("9_6ro1r")
-animated_weapon_sprite = NodePath("../../Hand/AttackRange/Bow")
+attack_animation_player = NodePath("")
 
-[node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Fighting"]
+[node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Attacking"]
 one_shot = true
 
-[node name="AttackTimer" type="Timer" parent="StateMachine/Fighting"]
+[node name="AttackTimer" type="Timer" parent="StateMachine/Attacking"]
 one_shot = true
 
 [node name="Stunned" type="Node" parent="StateMachine"]
 script = ExtResource("13_2brf7")
 
 [connection signal="timeout" from="StateMachine/Dead/DeathTimer" to="." method="_on_death_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Fighting/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Fighting/AttackTimer" to="StateMachine/Fighting" method="handle_attack"]
+[connection signal="timeout" from="StateMachine/Attacking/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Attacking/AttackTimer" to="StateMachine/Attacking" method="handle_attack"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=35 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/systems/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="3_wyuhu"]
 [ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://scenes/levels/tree.tscn" id="5_70lwd"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
+[ext_resource type="PackedScene" uid="uid://cwoqb0h58gi6y" path="res://scenes/enemies/troll.tscn" id="7_mkydk"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="10_tdpce"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
+[ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
@@ -323,40 +325,19 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3hphl")
 sources/2 = SubResource("TileSetAtlasSource_jrh5p")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k741k"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ye2s3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yy8vj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twrvr"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k741k"]
+
 [node name="debug" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ain6m")
 player_scene = ExtResource("6_ucoae")
 damage_number = ExtResource("3_wyuhu")
-
-[node name="Pickup" parent="." instance=ExtResource("10_tdpce")]
-position = Vector2(-76, 23)
-item = ExtResource("23_3mj40")
-
-[node name="Pickup2" parent="." instance=ExtResource("10_tdpce")]
-position = Vector2(-95, -3)
-item = ExtResource("29_aevxd")
-
-[node name="Pickup3" parent="." instance=ExtResource("10_tdpce")]
-position = Vector2(-116, 21)
-item = ExtResource("21_h7dnt")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("3_oq7gx")]
-offset_left = 3.0
-offset_top = -1.0
-offset_right = 3.0
-offset_bottom = -1.0
-player = NodePath("../../Player")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -1
@@ -372,6 +353,29 @@ z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD5//r/AwAEAAMAAAD5//v/AwACAAMAAAD5//z/AwACAAQAAAD6//v/AwADAAMAAAD6//z/AwADAAQAAAD7//v/AwAEAAQAAAD8//7/AwAEAAQAAAD9//3/AwAEAAMAAAABAAcAAwAEAAMAAAABAAkAAwAEAAQAAAADAAcAAwACAAMAAAADAAgAAwACAAQAAAAEAAcAAwADAAMAAAAEAAgAAwADAAQAAAAFAAkAAwAEAAMAAAAHAAgAAwAEAAQAAAA=")
 tile_set = ExtResource("3_7xxu8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("3_oq7gx")]
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = -1.0
+player = NodePath("../../Player")
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Pickups" instance=ExtResource("10_tdpce")]
+position = Vector2(-76, 23)
+item = ExtResource("23_3mj40")
+
+[node name="Pickup2" parent="Pickups" instance=ExtResource("10_tdpce")]
+position = Vector2(-95, -3)
+item = ExtResource("29_aevxd")
+
+[node name="Pickup3" parent="Pickups" instance=ExtResource("10_tdpce")]
+position = Vector2(-116, 21)
+item = ExtResource("21_h7dnt")
 
 [node name="Trees" type="Node2D" parent="."]
 z_index = 1
@@ -407,6 +411,29 @@ position = Vector2(-144, 88)
 [node name="Tree10" parent="Trees" instance=ExtResource("5_70lwd")]
 position = Vector2(-70, 184)
 
+[node name="Chests" type="Node2D" parent="."]
+
+[node name="Chest" parent="Chests" instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-292, -23)
+spawn_rate = 1.0
+items = Array[ExtResource("14_di3qn")]([ExtResource("22_k8tsf")])
+
+[node name="Chest2" parent="Chests" instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-242, -22)
+spawn_rate = 1.0
+
+[node name="Chest3" parent="Chests" instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-293, 26)
+spawn_rate = 1.0
+
+[node name="Chest4" parent="Chests" instance=ExtResource("23_nkwgo")]
+z_index = 1
+position = Vector2(-239, 28)
+spawn_rate = 1.0
+
 [node name="Player" parent="." instance=ExtResource("6_ucoae")]
 z_index = 1
 hunger_enabled = false
@@ -418,64 +445,18 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Troll" parent="Enemies" instance=ExtResource("7_mkydk")]
+position = Vector2(152, 78)
+
+[node name="RangedSkeleton" parent="Enemies" instance=ExtResource("12_i7yee")]
+position = Vector2(125, -103)
+
 [node name="Fire" parent="." instance=ExtResource("11_wrpau")]
 z_index = 1
 position = Vector2(-70, -46)
 lit = false
-
-[node name="Chest" parent="." instance=ExtResource("23_nkwgo")]
-z_index = 1
-position = Vector2(-292, -23)
-spawn_rate = 1.0
-items = Array[ExtResource("14_di3qn")]([ExtResource("22_k8tsf")])
-
-[node name="Chest2" parent="." instance=ExtResource("23_nkwgo")]
-z_index = 1
-position = Vector2(-242, -22)
-spawn_rate = 1.0
-
-[node name="Chest3" parent="." instance=ExtResource("23_nkwgo")]
-z_index = 1
-position = Vector2(-293, 26)
-spawn_rate = 1.0
-
-[node name="Chest4" parent="." instance=ExtResource("23_nkwgo")]
-z_index = 1
-position = Vector2(-239, 28)
-spawn_rate = 1.0
-
-[node name="EnemyBounds" parent="." instance=ExtResource("13_hvojg")]
-position = Vector2(0, 192)
-
-[node name="EnemyBounds2" type="StaticBody2D" parent="."]
-position = Vector2(32, 1)
-rotation = -1.5708
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds2"]
-position = Vector2(1, 193)
-shape = SubResource("WorldBoundaryShape2D_k741k")
-
-[node name="EnemyBounds3" type="StaticBody2D" parent="."]
-position = Vector2(0, -1)
-rotation = 1.5708
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds3"]
-position = Vector2(1, 193)
-shape = SubResource("WorldBoundaryShape2D_k741k")
-
-[node name="EnemyBounds4" type="StaticBody2D" parent="."]
-position = Vector2(1, 16)
-rotation = -3.14159
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds4"]
-position = Vector2(1, 193)
-shape = SubResource("WorldBoundaryShape2D_k741k")
 
 [node name="AttackDummy" type="CharacterBody2D" parent="."]
 position = Vector2(-410, 0)
@@ -544,3 +525,36 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="AttackDummy2/StateMachine"]
 script = ExtResource("21_5wrof")
+
+[node name="EnemyBounds" parent="." instance=ExtResource("13_hvojg")]
+position = Vector2(0, 192)
+
+[node name="EnemyBounds2" type="StaticBody2D" parent="."]
+position = Vector2(32, 1)
+rotation = -1.5708
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds2"]
+position = Vector2(1, 193)
+shape = SubResource("WorldBoundaryShape2D_k741k")
+
+[node name="EnemyBounds3" type="StaticBody2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds3"]
+position = Vector2(1, 193)
+shape = SubResource("WorldBoundaryShape2D_k741k")
+
+[node name="EnemyBounds4" type="StaticBody2D" parent="."]
+position = Vector2(1, 16)
+rotation = -3.14159
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBounds4"]
+position = Vector2(1, 193)
+shape = SubResource("WorldBoundaryShape2D_k741k")

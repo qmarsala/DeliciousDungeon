@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=35 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_kvlj8"]
 [ext_resource type="Resource" uid="uid://bimn8sgkvl2o3" path="res://assets/resources/enemies/goblin.tres" id="2_1c58a"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_exploring_state.gd" id="8_0refy"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_idle_state.gd" id="8_140sp"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_dead_state.gd" id="9_86ol2"]
-[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_fighting_state.gd" id="10_ojrjy"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_repositioning_state.gd" id="10_1x1he"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_attacking_state.gd" id="10_ojrjy"]
 [ext_resource type="Script" path="res://assets/scripts/states/stunned_state.gd" id="11_cbc4p"]
+[ext_resource type="Script" path="res://assets/scripts/enemies/enemy_states/enemy_engaging_target_state.gd" id="11_oqlkp"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="11_xhh3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b577t"]
@@ -161,6 +163,7 @@ height = 14.0
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_kvlj8")
 data = ExtResource("2_1c58a")
 
@@ -201,6 +204,8 @@ script = ExtResource("6_8upb2")
 character = NodePath("..")
 character_sprite = NodePath("../Animations")
 
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("11_xhh3o")]
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_yo3gd")
 initial_state = NodePath("Idle")
@@ -208,28 +213,37 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("8_140sp")
 
+[node name="Repositioning" type="Node" parent="StateMachine"]
+script = ExtResource("10_1x1he")
+
+[node name="RepositionCooldown" type="Timer" parent="StateMachine/Repositioning"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Engaging" type="Node" parent="StateMachine"]
+script = ExtResource("11_oqlkp")
+
 [node name="Exploring" type="Node" parent="StateMachine"]
 script = ExtResource("8_0refy")
-
-[node name="Fighting" type="Node" parent="StateMachine"]
-script = ExtResource("10_ojrjy")
-
-[node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Fighting"]
-one_shot = true
-
-[node name="AttackTimer" type="Timer" parent="StateMachine/Fighting"]
-one_shot = true
-
-[node name="Stunned" type="Node" parent="StateMachine"]
-script = ExtResource("11_cbc4p")
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("9_86ol2")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
 
-[node name="StatusEffectsComponent" parent="." instance=ExtResource("11_xhh3o")]
+[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player")]
+script = ExtResource("10_ojrjy")
+attack_animation_player = NodePath("")
 
-[connection signal="timeout" from="StateMachine/Fighting/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Fighting/AttackTimer" to="StateMachine/Fighting" method="handle_attack"]
+[node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Attacking"]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="StateMachine/Attacking"]
+one_shot = true
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("11_cbc4p")
+
 [connection signal="timeout" from="StateMachine/Dead/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Attacking/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Attacking/AttackTimer" to="StateMachine/Attacking" method="handle_attack"]

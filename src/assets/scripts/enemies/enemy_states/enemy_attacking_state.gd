@@ -26,7 +26,7 @@ class_name EnemyAttackingState
 
 var player: CharacterBody2D
 var attack_target: Vector2
-
+var aim_locked: bool
 var retreat_cooldown : float = 0.5
 var retreated_at : float = 0
 var min_retreat_time : float = 0.5
@@ -43,6 +43,7 @@ func enter():
 func initiate_attack():
 	if enemy.attack_is_cooling_down: return
 	enemy.attack_is_cooling_down = true
+	aim_locked = true
 	attack_target = player.global_position
 	enemy.attack_range.look_at(attack_target)
 	handle_attack_animations()
@@ -53,7 +54,8 @@ func handle_physics_process(delta: float):
 	if not is_instance_valid(player): 
 		Transitioned.emit(self, "Idle")
 		return
-		
+	if not aim_locked:
+		enemy.attack_range.look_at(player.global_position)
 	var direction = player.global_position - enemy.global_position
 	var distance = direction.length()
 	if (distance <= enemy.data.ideal_distance_min and time - retreated_at >= retreat_cooldown) or distance <= enemy.data.min_distance:
@@ -67,17 +69,20 @@ func handle_physics_process(delta: float):
 # todo: strategy pattern?
 # the 'weapon' being the strategy?
 func handle_attack():
+	aim_locked = false
 	if enemy.data.attack_sound and enemy.audio_stream_player and enemy.data.attack_sound_on_delay:
 		enemy.audio_stream_player.stream = enemy.data.attack_sound
 		# would be nice if this could be handled the same way as in player abilities
 		# sound service? also it would be cool if enemies and players used the same 'weapon' objects.
 		enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
 		enemy.audio_stream_player.play()
-	enemy.attack(attack_target)
 	if enemy.data.is_ranged:
-		var projectile_instance = enemy.data.projectile.instantiate() as Projectile
+		var projectile_instance = enemy.data.attack_scene.instantiate() as Projectile
 		var data = AbilityData.new()
 		data.damage = enemy.data.attack_damage
+		data.targets_enemy = false
+		data.targets_player = true
+		data.weapon_range = 90
 		projectile_instance.init(data, enemy.global_position, attack_target)
 		# todo: where is the best place to spawn these things?
 		get_tree().root.add_child(projectile_instance)
@@ -101,7 +106,6 @@ func handle_attack_animations():
 	else:
 		if (not attack_animation_player) or attack_animation_player.is_playing():
 			return
-		
 		var player_width_distance = abs(enemy.global_position.x - player.global_position.x)
 		var player_height_distance = enemy.global_position.y - player.global_position.y
 		var animation = "swing_east"

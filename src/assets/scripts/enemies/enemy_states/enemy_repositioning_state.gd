@@ -19,16 +19,17 @@ func exit():
 	reposition_cooldown.start(cooldown)
 
 func handle_physics_process(delta: float):
-	if reposition_cooldown.time_left > 0:
-		return
 		
 	if not is_instance_valid(player):
 		Transitioned.emit(self, "Idle")
 		return
 
 	direction = player.global_position - enemy.global_position
-	enemy.velocity = -(direction.normalized() * (enemy.data.speed * enemy.data.retreat_speed_multiplier))
 	var distance = direction.length()
+	if reposition_cooldown.time_left > 0 and not distance < enemy.data.min_distance:
+		return
+	
+	enemy.velocity = -(direction.normalized() * (enemy.data.speed * enemy.data.retreat_speed_multiplier))
 	if (distance >= enemy.data.ideal_distance_min and distance <= enemy.data.ideal_distance_max) or time - entered_at > max_time:
 		Transitioned.emit(self, "Attacking")
 	elif distance > enemy.data.ideal_distance_max and distance < enemy.data.max_distance:

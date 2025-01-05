@@ -27,6 +27,7 @@ extends Resource
 @export var attack_delay: float = .3
 @export var attack_damage: float = 1
 @export var is_ranged: bool = false
-@export var projectile: PackedScene
+# could probably utilize 'abilities for enemies'
+@export var attack_scene: PackedScene
 @export var attack_sound: AudioStream
 @export var attack_sound_on_delay: bool = false
