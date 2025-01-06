@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvxvecph7j317"]
 
-[ext_resource type="Script" path="res://assets/scripts/abilities/sword_swing.gd" id="1_d1ct4"]
+[ext_resource type="Script" path="res://assets/scripts/abilities/sword_stab.gd" id="1_35sou"]
 [ext_resource type="PackedScene" uid="uid://dek57qt07lvfp" path="res://scenes/components/hurtbox.tscn" id="2_2x2x4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na5df"]
 size = Vector2(20, 5)
 
 [node name="SwordStab" type="Node2D"]
-script = ExtResource("1_d1ct4")
+script = ExtResource("1_35sou")
 
 [node name="Aim" type="RayCast2D" parent="."]
 target_position = Vector2(20, 0)
