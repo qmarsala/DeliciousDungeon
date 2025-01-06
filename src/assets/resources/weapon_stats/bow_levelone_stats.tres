@@ -21,6 +21,8 @@ data = ExtResource("3_nx15s")
 
 [resource]
 script = ExtResource("1_oxbym")
+armour = 0.0
+evasion = 0.0
 max_range = 90.0
 cooldown_reduction = 0.0
 weapon_abilities = Array[ExtResource("2_tdr80")]([SubResource("Resource_0tgx5"), SubResource("Resource_2dpyk")])

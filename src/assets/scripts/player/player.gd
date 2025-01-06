@@ -69,12 +69,12 @@ func _process(delta: float) -> void:
 	if global_position.distance_to(move_target) <= 5:
 		move_destination_indicator.hide()
 
-func begin_rest():
+func begin_rest() -> void:
 	if player_items[Enums.Items.Food] < 1 or rest_is_cooldown: return
 	state_machine.transition_to("Rest")
 
 # should this live in the resting state? or just be called from there?
-func complete_rest():
+func complete_rest() -> void:
 	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
 	player_items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
@@ -83,14 +83,14 @@ func complete_rest():
 	health_component.heal(health_component.starting_health * .35) # todo: should come from food
 	player_rest_sound.play()
 
-func pickup(item: Item):
+func pickup(item: Item) -> void:
 	print("picked up: " + item.data.name)
 	if item.data is WeaponData:
 		equip(item)
 	else:
 		player_items[item.data.item_id] += 1
 
-func equip(item: Item):
+func equip(item: Item) -> void:
 	if weapon_equipped:
 		unequip()
 	weapon_equipped = true
@@ -99,16 +99,28 @@ func equip(item: Item):
 	weapon.equip(self)
 	hand.add_child.call_deferred(weapon)
 
-func unequip():
+func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
 	weapon.queue_free()
 	ItemDropService.drop_item(weapon_item, global_position)
 
-func interact():
+func interact() -> void:
 	var result = interaction_ray_cast.get_collider()
 	if result is InteractBox:
 		result.interact(self)
+
+func get_armour_value() -> float:
+	if weapon_equipped:
+		return weapon_item.data.armour
+	else:
+		return 0
+
+func get_evasion_value() -> float:
+	if weapon_equipped:
+		return weapon_item.data.evasion
+	else:
+		return 0
 
 func _on_ability_pressed(ability_id) -> void:
 	var ability = weapon.get_ability(ability_id)

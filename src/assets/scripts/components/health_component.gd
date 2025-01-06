@@ -25,8 +25,21 @@ func _ready() -> void:
 
 # todo: what about armour/effects that reduce damage
 # should we have th parent control the final damage somehow?
+
+# health_component should probably just deal with final damage
+# we need a component to receieve the attack, apply status effects and armour, 
+# then resolve health?
+
 func receive_damage(damage) -> void:
 	if is_dead(): return
+	# armour poc: player only
+	if node.has_method("get_armour_value"):
+		damage -= node.get_armour_value()
+	if node.has_method("get_evasion_value"):
+		if randf() <= node.get_evasion_value():
+			SignalBusService.DamageReceived.emit(-1, node.global_position, node.is_in_group("Player"))
+			return
+			
 	if signal_damage:
 		SignalBusService.DamageReceived.emit(damage, node.global_position, node.is_in_group("Player"))
 
