@@ -1,15 +1,6 @@
 extends EnemyState
 class_name EnemyAttackingState
 
-#Notes:
-# weapons for enemies?
-# I think we may want to use abilities and scenes for enemies
-# perhaps it would make sense to give them alertering abilities and usage
-# strategies through different weapons?
-# perhaps this could give some of the information like attack cooldown
-# min attack time etc
-# 
-
 #these two exports need to be consolidated into something
 # like an 'animation controller' each weapon may be animated slightly
 # differently
@@ -74,7 +65,7 @@ func handle_attack():
 	enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
 	enemy.audio_stream_player.play()
 	var ability_scene = enemy.data.ability.scene.instantiate() as AbilityScene
-	var start = enemy.global_position + (enemy.global_position.direction_to(attack_target) * 2)
+	var start = enemy.global_position + (enemy.global_position.direction_to(attack_target) * 8)
 	ability_scene.init(enemy.data.ability.data, start, attack_target)
 	ability_scene.apply_scale(enemy.scale)
 	get_tree().root.add_child(ability_scene)
