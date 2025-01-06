@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://datfiu21hbcv4"]
+
+[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://assets/audio/MeleeSwing.wav" id="1_de6if"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability_data/ability_data.gd" id="2_dbr0m"]
+[ext_resource type="Script" path="res://assets/resources/status_effects/status_effect.gd" id="3_c0uy4"]
+[ext_resource type="PackedScene" uid="uid://cvxvecph7j317" path="res://scenes/abilities/sword_stab.tscn" id="4_i0fsb"]
+[ext_resource type="Script" path="res://assets/resources/abilities/ability.gd" id="5_b35ov"]
+
+[sub_resource type="Resource" id="Resource_8hs7i"]
+script = ExtResource("2_dbr0m")
+targets_player = true
+targets_enemy = false
+animation_name = "attack"
+ability_sound = ExtResource("1_de6if")
+cast_time = 0.3
+cooldown = 3.0
+show_castbar = false
+damage = 3.5
+heal = 0.0
+range = 20
+bonus_range = 0
+status_effects = Array[ExtResource("3_c0uy4")]([])
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1
+
+[resource]
+script = ExtResource("5_b35ov")
+name = "Club Smash"
+scene = ExtResource("4_i0fsb")
+data = SubResource("Resource_8hs7i")

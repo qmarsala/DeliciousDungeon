@@ -10,6 +10,8 @@ extends Resource
 @export var show_castbar: bool = true
 @export var damage: float = 0
 @export var heal: float = 0
+@export var ability_range = 20
+@export var bonus_range = 0
 @export var status_effects: Array[StatusEffect] = []
 @export var status_effect_synergy: StatusEffectSynergy
 
@@ -17,13 +19,12 @@ extends Resource
 @export var speed = 300.0
 @export var can_pierce = false
 @export var max_pierce_count = 1
-@export var weapon_range = 20
-@export var bonus_range = 0
+
 var max_range: float:
-	get: return weapon_range + bonus_range
+	get: return ability_range + bonus_range
 
 func apply_weapon_stats(weapon: WeaponData) -> AbilityData:
 	var ability_data: AbilityData = self.duplicate()
 	ability_data.cooldown -= cooldown * weapon.cooldown_reduction
-	ability_data.weapon_range = weapon.max_range
+	ability_data.ability_range = weapon.max_range
 	return ability_data
