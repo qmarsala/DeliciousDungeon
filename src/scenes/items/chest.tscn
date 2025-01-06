@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_leveltwo.tres" id="5_otbtn"]
 [ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="7_kbtk6"]
 [ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/resources/items/wood.tres" id="7_v1b2c"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/goblin_steak.tres" id="8_2nmhp"]
+[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/food.tres" id="8_2nmhp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiht7"]
 size = Vector2(20, 7)

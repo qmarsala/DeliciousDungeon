@@ -38,7 +38,7 @@ func update_hunger_bar(nutrition):
 
 func update_food_count(food_count):
 	if food_count_label:
-		food_count_label.text = "Food: " + str(food_count)
+		food_count_label.text = str(food_count)
 		
 func update_wood_count(wood_count):
 	if wood_count_label:

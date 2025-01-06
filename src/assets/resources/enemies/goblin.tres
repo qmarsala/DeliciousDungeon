@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://b7g3w5kudeow8" path="res://assets/resources/abilities/enemy_ability/goblin_main_attack.tres" id="1_6dvw2"]
 [ext_resource type="Script" path="res://assets/resources/enemies/enemy_data.gd" id="1_j0utf"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/goblin_steak.tres" id="1_svldr"]
+[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/food.tres" id="1_svldr"]
 
 [resource]
 script = ExtResource("1_j0utf")

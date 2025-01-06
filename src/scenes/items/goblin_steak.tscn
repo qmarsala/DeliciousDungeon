@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2084hee1l50l"]
-
-[ext_resource type="Texture2D" uid="uid://d2adqsivqkw8k" path="res://assets/sprites/dungeon/goblinHand_.png" id="1_v7ewj"]
-
-[node name="GoblinSteak" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_v7ewj")
