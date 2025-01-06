@@ -1,33 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=9 format=3 uid="uid://bimn8sgkvl2o3"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://bimn8sgkvl2o3"]
 
+[ext_resource type="Resource" uid="uid://b7g3w5kudeow8" path="res://assets/resources/abilities/enemy_ability/goblin_main_attack.tres" id="1_6dvw2"]
 [ext_resource type="Script" path="res://assets/resources/enemies/enemy_data.gd" id="1_j0utf"]
 [ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/goblin_steak.tres" id="1_svldr"]
-[ext_resource type="Script" path="res://assets/resources/abilities/ability_data/ability_data.gd" id="2_ftmem"]
-[ext_resource type="PackedScene" uid="uid://do1nl314r0yo1" path="res://scenes/abilities/sword_swing.tscn" id="3_baruf"]
-[ext_resource type="Script" path="res://assets/resources/status_effects/status_effect.gd" id="3_khpve"]
-[ext_resource type="Script" path="res://assets/resources/abilities/ability.gd" id="5_cg6ae"]
-
-[sub_resource type="Resource" id="Resource_2on3d"]
-script = ExtResource("2_ftmem")
-targets_player = true
-targets_enemy = false
-animation_name = "attack"
-cast_time = 0.1
-cooldown = 0.8
-show_castbar = false
-damage = 1.0
-heal = 0.0
-status_effects = Array[ExtResource("3_khpve")]([])
-speed = 300.0
-can_pierce = false
-max_pierce_count = 1
-weapon_range = 20
-bonus_range = 0
-
-[sub_resource type="Resource" id="Resource_uygmg"]
-script = ExtResource("5_cg6ae")
-scene = ExtResource("3_baruf")
-data = SubResource("Resource_2on3d")
 
 [resource]
 script = ExtResource("1_j0utf")
@@ -44,9 +19,4 @@ min_distance = 12
 ideal_distance_min = 15
 ideal_distance_max = 20
 max_distance = 80
-ability = SubResource("Resource_uygmg")
-attack_cooldown = 0.8
-attack_delay = 0.3
-attack_damage = 1.0
-is_ranged = false
-attack_sound_on_delay = false
+ability = ExtResource("1_6dvw2")
