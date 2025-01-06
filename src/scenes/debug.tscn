@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=36 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/systems/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="7_sx02c"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="10_tdpce"]
+[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_leveltwo.tres" id="11_koqab"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
@@ -373,6 +374,10 @@ player = NodePath("../../Player")
 [node name="Pickup" parent="Pickups" instance=ExtResource("10_tdpce")]
 position = Vector2(-76, 23)
 item = ExtResource("23_3mj40")
+
+[node name="Pickup4" parent="Pickups" instance=ExtResource("10_tdpce")]
+position = Vector2(-60, -2)
+item = ExtResource("11_koqab")
 
 [node name="Pickup2" parent="Pickups" instance=ExtResource("10_tdpce")]
 position = Vector2(-95, -3)

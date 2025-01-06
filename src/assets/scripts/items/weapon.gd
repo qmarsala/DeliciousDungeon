@@ -5,9 +5,9 @@ var player: Player
 
 #temp way to show different levels of weapons
 var weapon_scales: Dictionary = {
-	1: .7,
+	1: .75,
 	2: .8,
-	3: .9
+	3: .85
 }
 
 var weapon_data: WeaponData

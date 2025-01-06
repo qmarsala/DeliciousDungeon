@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8s7nl3sdl2xv"]
+[gd_scene load_steps=12 format=3 uid="uid://b8s7nl3sdl2xv"]
 
 [ext_resource type="Script" path="res://assets/scripts/items/chest.gd" id="1_3cevd"]
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_qy1vr"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="3_es4yf"]
 [ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://assets/resources/items/weapons/bow_leveltwo.tres" id="4_p0lmn"]
 [ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/resources/items/weapons/firestaff_leveltwo.tres" id="5_6ec4j"]
+[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_leveltwo.tres" id="5_otbtn"]
 [ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="7_kbtk6"]
 [ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/resources/items/wood.tres" id="7_v1b2c"]
 [ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/goblin_steak.tres" id="8_2nmhp"]
@@ -18,7 +19,7 @@ size = Vector2(20, 7)
 collision_mask = 7
 script = ExtResource("1_3cevd")
 spawn_rate = 0.334
-items = Array[ExtResource("3_es4yf")]([ExtResource("4_p0lmn"), ExtResource("5_6ec4j"), ExtResource("7_v1b2c"), ExtResource("7_v1b2c"), ExtResource("8_2nmhp"), ExtResource("8_2nmhp")])
+items = Array[ExtResource("3_es4yf")]([ExtResource("4_p0lmn"), ExtResource("5_6ec4j"), ExtResource("5_otbtn"), ExtResource("7_v1b2c"), ExtResource("7_v1b2c"), ExtResource("8_2nmhp"), ExtResource("8_2nmhp")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)

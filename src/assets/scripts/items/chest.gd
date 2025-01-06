@@ -3,6 +3,11 @@ extends Node2D
 
 @export var spawn_rate: float = 1
 @export var is_locked: bool = false
+
+# we should have an item database
+# and drop tables as resources? so we only have one place to go to 
+# add new items to the game
+# then we can configure things that drop with a table?
 @export var items: Array[Item]
 
 @onready var reward_location: Node2D = $RewardLocation
