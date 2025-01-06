@@ -35,7 +35,7 @@ data = ExtResource("2_7pu6r")
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = ExtResource("3_w30yt")
-animation = &"die"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -104,9 +104,9 @@ script = ExtResource("8_qote8")
 [node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
 one_shot = true
 
-[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player")]
+[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_weapon_sprite")]
 script = ExtResource("9_6ro1r")
-attack_animation_player = NodePath("")
+animated_weapon_sprite = NodePath("../../Hand/AttackRange/Bow")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Attacking"]
 one_shot = true

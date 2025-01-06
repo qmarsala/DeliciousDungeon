@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=36 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/systems/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://scenes/levels/tree.tscn" id="5_70lwd"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
+[ext_resource type="PackedScene" uid="uid://cwoqb0h58gi6y" path="res://scenes/enemies/troll.tscn" id="7_mkydk"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="10_tdpce"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
+[ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
@@ -448,6 +450,11 @@ drag_vertical_enabled = true
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("6_fding")]
 position = Vector2(139, 53)
+
+[node name="RangedSkeleton" parent="Enemies" instance=ExtResource("12_i7yee")]
+position = Vector2(9, 97)
+
+[node name="Troll" parent="Enemies" instance=ExtResource("7_mkydk")]
 
 [node name="Fire" parent="." instance=ExtResource("11_wrpau")]
 z_index = 1

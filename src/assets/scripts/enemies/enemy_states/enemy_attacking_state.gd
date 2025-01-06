@@ -43,15 +43,15 @@ func initiate_attack():
 	attack_target = player.global_position
 	enemy.attack_range.look_at(attack_target)
 	handle_attack_animations()
-	attack_timer.start(enemy.data.attack_delay)
-	attack_cooldown_timer.start(enemy.data.attack_cooldown + enemy.data.attack_delay)
+	attack_timer.start(enemy.data.ability.data.cast_time)
+	attack_cooldown_timer.start(enemy.data.ability.data.cooldown + enemy.data.ability.data.cast_time)
 	attacked_at = time
 
 func handle_physics_process(delta: float):
 	if not is_instance_valid(player): 
 		Transitioned.emit(self, "Idle")
 		return
-	print(enemy.global_position.distance_to(player.global_position))
+	
 	if not aim_locked:
 		enemy.attack_range.look_at(player.global_position)
 	var direction = player.global_position - enemy.global_position
@@ -66,46 +66,26 @@ func handle_physics_process(delta: float):
 	else:
 		initiate_attack()
 
-# todo: strategy pattern?
-# the 'weapon' being the strategy?
 func handle_attack():
 	aim_locked = false
-	if enemy.data.attack_sound and enemy.audio_stream_player and enemy.data.attack_sound_on_delay:
-		enemy.audio_stream_player.stream = enemy.data.attack_sound
-		# would be nice if this could be handled the same way as in player abilities
-		# sound service? also it would be cool if enemies and players used the same 'weapon' objects.
-		enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
-		enemy.audio_stream_player.play()
-	if enemy.data.is_ranged:
-		var projectile_instance = enemy.data.attack_scene.instantiate() as Projectile
-		var data = AbilityData.new()
-		data.damage = enemy.data.attack_damage
-		data.targets_enemy = false
-		data.targets_player = true
-		data.weapon_range = 90
-		projectile_instance.init(data, enemy.global_position, attack_target)
-		# todo: where is the best place to spawn these things?
-		get_tree().root.add_child(projectile_instance)
-	else:
-		enemy.attack_range.look_at(attack_target)
-		var target = enemy.attack_range.get_collider()
-		if target is Hitbox:
-			var attack = Attack.new()
-			attack.damage = enemy.data.attack_damage
-			target.apply_attack(attack)
+	# the sound stuff should probably happen in the ability scene? though they don't live long
+	# so we would need to change how that works to do that?
+	enemy.audio_stream_player.stream = enemy.data.ability.data.ability_sound
+	enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
+	enemy.audio_stream_player.play()
+	var ability_scene = enemy.data.ability.scene.instantiate() as AbilityScene
+	var start = enemy.global_position + (enemy.global_position.direction_to(attack_target) * 2)
+	ability_scene.init(enemy.data.ability.data, start, attack_target)
+	ability_scene.apply_scale(enemy.scale)
+	get_tree().root.add_child(ability_scene)
 
+# ability has an animation name - but the troll has more complex animations
+# we do need to abstract this part a bit, but how will we deal with the variations
+# in animations?
 func handle_attack_animations():
-	if enemy.data.attack_sound and enemy.audio_stream_player and not enemy.data.attack_sound_on_delay:
-		enemy.audio_stream_player.stream = enemy.data.attack_sound
-		enemy.audio_stream_player.play()
-	#would this also be in the 'weapon'
-	if enemy.data.is_ranged:
-		if not animated_weapon_sprite or animated_weapon_sprite.is_playing():
-			return
+	if animated_weapon_sprite and not animated_weapon_sprite.is_playing():
 		animated_weapon_sprite.play("attack")
-	else:
-		if (not attack_animation_player) or attack_animation_player.is_playing():
-			return
+	elif attack_animation_player and not attack_animation_player.is_playing():
 		var player_width_distance = abs(enemy.global_position.x - player.global_position.x)
 		var player_height_distance = enemy.global_position.y - player.global_position.y
 		var animation = "swing_east"
