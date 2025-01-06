@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dwrneqjg07t8p"]
+[gd_scene load_steps=35 format=4 uid="uid://dwrneqjg07t8p"]
 
 [ext_resource type="Script" path="res://assets/scripts/systems/debug_scene_manager.gd" id="1_ain6m"]
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_rxblh"]
@@ -9,10 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://scenes/levels/tree.tscn" id="5_70lwd"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
-[ext_resource type="PackedScene" uid="uid://cwoqb0h58gi6y" path="res://scenes/enemies/troll.tscn" id="7_mkydk"]
+[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="7_sx02c"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="10_tdpce"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
-[ext_resource type="PackedScene" uid="uid://d0nk2tnjt4nfh" path="res://scenes/enemies/ranged_skeleton.tscn" id="12_i7yee"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
@@ -349,6 +348,11 @@ tile_set = SubResource("TileSet_xgv05")
 z_index = -1
 tile_set = ExtResource("3_7xxu8")
 
+[node name="Midground2" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAAKAAQAAAAEAAYAAAAKAAUAAAAEAAcAAAAKAAMAAAAEAAMAAAAJAAQAAAACAAQAAAAJAAUAAAACAAUAAAAIAAQAAAACAAQAAAAIAAUAAAACAAUAAAAHAAQAAAACAAQAAAAHAAUAAAACAAUAAAAGAAQAAAACAAQAAAAGAAUAAAACAAUAAAAFAAQAAAABAAYAAAAFAAUAAAABAAcAAAAFAAMAAAAEAAMAAAAFAAIAAAAEAAMAAAAFAAAAAAAEAAEAAAAFAAEAAAAEAAIAAAAEAAAAAAACAAQAAAAEAAEAAAACAAUAAAADAAAAAAACAAQAAAADAAEAAAACAAUAAAAKAAEAAAABAAEAAAAKAAIAAAABAAIAAAALAAEAAAACAAQAAAALAAIAAAACAAUAAAAMAAEAAAACAAQAAAAMAAIAAAACAAUAAAANAAEAAAAEAAYAAAANAAIAAAAEAAcAAAANAAAAAAAEAAMAAAANAP7/AAAEAAEAAAANAP//AAAEAAIAAAAMAP7/AAACAAQAAAAMAP//AAACAAUAAAAKAP7/AAACAAQAAAAKAP//AAACAAUAAAALAP7/AAACAAQAAAALAP//AAACAAUAAAAJAP7/AAABAAYAAAAJAP//AAABAAcAAAAJAPz/AAAEAAEAAAAJAP3/AAAEAAIAAAADAPz/AAACAAQAAAADAP3/AAACAAUAAAAEAPz/AAACAAQAAAAEAP3/AAACAAUAAAAFAPz/AAACAAQAAAAFAP3/AAACAAUAAAAGAPz/AAACAAQAAAAGAP3/AAACAAUAAAAHAPz/AAACAAQAAAAHAP3/AAACAAUAAAAIAPz/AAACAAQAAAAIAP3/AAACAAUAAAA=")
+tile_set = ExtResource("7_sx02c")
+
 [node name="Rocks" type="TileMapLayer" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -382,11 +386,6 @@ item = ExtResource("21_h7dnt")
 z_index = 1
 y_sort_enabled = true
 position = Vector2(116, -14)
-
-[node name="Tree" parent="Trees" instance=ExtResource("5_70lwd")]
-
-[node name="Tree2" parent="Trees" instance=ExtResource("5_70lwd")]
-position = Vector2(-49, 6)
 
 [node name="Tree3" parent="Trees" instance=ExtResource("5_70lwd")]
 position = Vector2(-133, -20)
@@ -450,11 +449,6 @@ drag_vertical_enabled = true
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("6_fding")]
 position = Vector2(139, 53)
-
-[node name="RangedSkeleton" parent="Enemies" instance=ExtResource("12_i7yee")]
-position = Vector2(9, 97)
-
-[node name="Troll" parent="Enemies" instance=ExtResource("7_mkydk")]
 
 [node name="Fire" parent="." instance=ExtResource("11_wrpau")]
 z_index = 1

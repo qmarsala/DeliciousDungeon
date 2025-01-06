@@ -9,11 +9,13 @@
 
 [sub_resource type="Resource" id="Resource_0tgx5"]
 script = ExtResource("2_tdr80")
+name = ""
 scene = ExtResource("6_nxraj")
 data = ExtResource("4_sspcf")
 
 [sub_resource type="Resource" id="Resource_2dpyk"]
 script = ExtResource("2_tdr80")
+name = ""
 scene = ExtResource("4_f2e5i")
 data = ExtResource("3_nx15s")
 
