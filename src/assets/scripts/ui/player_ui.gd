@@ -15,10 +15,15 @@ class_name PlayerUI
 @onready var ability_3_cooldown: ProgressBar = $Ability3Cooldown
 @onready var dash_cooldown: ProgressBar = $DashCooldown
 
+var ability_slots: Array[AbilitySlot]
+var ability_cooldowns: Array[ProgressBar]
+
 func _ready() -> void:
-	SignalBusService.Casting.connect(update_charge_bar)
+	SignalBusService.Casting.connect(update_cast_bar)
 	SignalBusService.Resting.connect(update_rest_bar)
-	
+	player.equipped_weapon.connect(setup_ability_bar)
+	player.unequipped_weapon.connect(teardown_ability_bar)
+	ability_cooldowns = [ability_1_cooldown, ability_2_cooldown, ability_3_cooldown]
 
 func _process(delta: float) -> void:
 	update_health_bar(player.health_component.health)
@@ -27,6 +32,15 @@ func _process(delta: float) -> void:
 	update_wood_count(player.player_items[Enums.Items.Wood])
 	update_status_label(player.rest_is_cooldown)
 	update_ability_cooldowns()
+
+func setup_ability_bar():
+	if player.weapon_equipped:
+		ability_slots = player.ability_slots.slots
+
+func teardown_ability_bar():
+	if not player.weapon_equipped:
+		ability_slots = []
+		update_cast_bar(0, 100)
 
 func update_health_bar(health):
 	if health_bar:
@@ -55,28 +69,16 @@ func update_status_label(status):
 			status_text = "Starving"
 		status_label.text = status_text
 
-
 func update_ability_cooldowns():
 	dash_cooldown.value = get_progress_value(player.dash_cooldown_timer.time_left, player.DASH_COOLDOWN)
 	if player.weapon_equipped:
-		#todo: change this, should these signal?
-		# or should there be a mediator for this stuff?
-		# we also only need to grab this once when the weapon is equipped, maybe an event for that too?
-		# we could use a weapon equipped event to wire this up
-		# we need a contract around 'weapon or abilities' to gain the data about
-		# an ability such as (name, total_cooldown, current_cooldown)
-		var ability_slots = player.ability_slots.slots
-		var ability1 = ability_slots[0] as AbilitySlot
-		var ability2 = ability_slots[1] as AbilitySlot
-		var ability3 = ability_slots[2] as AbilitySlot
-		ability_1_cooldown.value = get_progress_value(ability1.cooldown_timer.time_left, ability1.total_cooldown)
-		ability_2_cooldown.value = get_progress_value(ability2.cooldown_timer.time_left, ability2.total_cooldown) 
-		ability_3_cooldown.value = 0 # get_progress_value(ability3.cooldown_timer.time_left, ability3.ability_data.cooldown) 
+		for i in ability_slots.size():
+			ability_cooldowns[i].value = get_progress_value(ability_slots[i].cooldown_timer.time_left, ability_slots[i].total_cooldown)
 
 func get_progress_value(time_left: float, total_time: float):
 	return 100 - (time_left / total_time) * 100
 
-func update_charge_bar(time_left: float, total_time: float):
+func update_cast_bar(time_left: float, total_time: float):
 	if cast_bar:
 		var progress = get_progress_value(time_left, total_time)
 		if progress <= 1 or progress >= 99: 

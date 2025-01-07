@@ -2,6 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 signal player_died
+signal equipped_weapon
+signal unequipped_weapon
 
 #todo: player data
 const SPEED = 60.0
@@ -98,12 +100,14 @@ func equip(item: Item) -> void:
 	weapon = weapon_item.create_item_scene() as Weapon
 	weapon.equip(self)
 	hand.add_child.call_deferred(weapon)
+	equipped_weapon.emit()
 
 func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
 	weapon.queue_free()
 	ItemDropService.drop_item(weapon_item, global_position)
+	unequipped_weapon.emit()
 
 func interact() -> void:
 	var result = interaction_ray_cast.get_collider()
