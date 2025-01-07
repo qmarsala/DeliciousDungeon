@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="6_ucoae"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="7_sx02c"]
 [ext_resource type="PackedScene" uid="uid://bq43heu5kffs1" path="res://scenes/items/pickup.tscn" id="10_tdpce"]
-[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_leveltwo.tres" id="11_koqab"]
+[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_02.tres" id="11_koqab"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
 [ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
@@ -27,7 +27,7 @@
 [ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/resources/items/weapons/firestaff_leveltwo.tres" id="22_k8tsf"]
 [ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/weapons/bow_levelone.tres" id="23_3mj40"]
 [ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="23_nkwgo"]
-[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/weapons/sword_levelone.tres" id="29_aevxd"]
+[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/weapons/sword_01.tres" id="29_aevxd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3hphl"]
 texture = ExtResource("1_rxblh")
