@@ -56,7 +56,7 @@ func update_food_count(food_count):
 		
 func update_wood_count(wood_count):
 	if wood_count_label:
-		wood_count_label.text = "Wood: " + str(wood_count)
+		wood_count_label.text = str(wood_count)
 
 var status_map: Dictionary = {
 	true: "Full",
