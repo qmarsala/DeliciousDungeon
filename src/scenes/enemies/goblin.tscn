@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://l5ic445kl6da"]
+[gd_scene load_steps=39 format=3 uid="uid://l5ic445kl6da"]
 
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="1_kvlj8"]
 [ext_resource type="Resource" uid="uid://bimn8sgkvl2o3" path="res://assets/resources/enemies/goblin.tres" id="2_1c58a"]
 [ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://assets/sprites/dungeon/goblin_.png" id="4_c6iyo"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="5_awlvx"]
+[ext_resource type="Texture2D" uid="uid://d2adqsivqkw8k" path="res://assets/sprites/dungeon/goblinHand_.png" id="5_g6mdy"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="5_h3vuw"]
 [ext_resource type="Script" path="res://assets/scripts/components/movement_component.gd" id="6_8upb2"]
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="7_yo3gd"]
@@ -159,6 +160,67 @@ height = 8.0
 radius = 5.0
 height = 14.0
 
+[sub_resource type="Animation" id="Animation_f6r7j"]
+resource_name = "attack"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackRange/GoblinHand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackRange/GoblinHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 3), Vector2(3, 3), Vector2(4, -1), Vector2(15, 3), Vector2(4, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_jttmw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackRange/GoblinHand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackRange/GoblinHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_77es2"]
+_data = {
+"RESET": SubResource("Animation_jttmw"),
+"attack": SubResource("Animation_f6r7j")
+}
+
 [node name="Goblin" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 4
@@ -185,6 +247,11 @@ collision_mask = 32
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="GoblinHand" type="Sprite2D" parent="AttackRange"]
+visible = false
+position = Vector2(4, 3)
+texture = ExtResource("5_g6mdy")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.0
 
@@ -193,6 +260,11 @@ volume_db = -20.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_mhtg0")
 debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_77es2")
+}
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character_sprite", "node") instance=ExtResource("5_awlvx")]
 unique_name_in_owner = true
@@ -231,8 +303,9 @@ script = ExtResource("9_86ol2")
 
 [node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
 
-[node name="Attacking" type="Node" parent="StateMachine"]
+[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_animation_player")]
 script = ExtResource("10_ojrjy")
+attack_animation_player = NodePath("../../AnimationPlayer")
 
 [node name="AttackCooldownTimer" type="Timer" parent="StateMachine/Attacking"]
 one_shot = true

@@ -77,15 +77,18 @@ func handle_attack_animations():
 	if animated_weapon_sprite and not animated_weapon_sprite.is_playing():
 		animated_weapon_sprite.play("attack")
 	elif attack_animation_player and not attack_animation_player.is_playing():
-		var player_width_distance = abs(enemy.global_position.x - player.global_position.x)
-		var player_height_distance = enemy.global_position.y - player.global_position.y
-		var animation = "swing_east"
-		if enemy.global_position.x > player.global_position.x:
-			animation = "swing_west"
-		if player_height_distance <= -10 and player_width_distance <= 30:
-			animation = "swing_south"
-		if player_height_distance >= 10 and player_width_distance <= 30:
-			animation = "swing_north"
+		var animation = "attack"
+		if enemy.data.enemy_id == Enums.Enemies.Troll:
+			#todo: animation player and animation tree
+			var player_width_distance = abs(enemy.global_position.x - player.global_position.x)
+			var player_height_distance = enemy.global_position.y - player.global_position.y
+			animation = "swing_east"
+			if enemy.global_position.x > player.global_position.x:
+				animation = "swing_west"
+			if player_height_distance <= -10 and player_width_distance <= 30:
+				animation = "swing_south"
+			if player_height_distance >= 10 and player_width_distance <= 30:
+				animation = "swing_north"
 		attack_animation_player.play(animation)
 
 func _on_attack_animation_animation_finished(anim_name: StringName) -> void:
