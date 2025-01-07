@@ -1,0 +1,151 @@
+[gd_scene load_steps=4 format=4 uid="uid://bosfncavtl7j"]
+
+[ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tileset_bg.tres" id="1_hfj7v"]
+[ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_b12vq"]
+[ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://assets/sprites/dungeon/dungeon_.png" id="3_ws5je"]
+
+[node name="StartA" type="Node2D"]
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD/////AAACAA8AAAD//wAAAAACAA8AAAAAAP//AAACAA8AAAAAAAAAAAACAA8AAAD+//7/AAACAA8AAAD+////AAACAA8AAAD+/wAAAAACAA8AAAD+/wEAAAACAA8AAAD///7/AAACAA8AAAD//wEAAAACAA8AAAAAAP7/AAACAA8AAAAAAAEAAAACAA8AAAABAP7/AAACAA8AAAABAP//AAACAA8AAAABAAAAAAACAA8AAAABAAEAAAACAA8AAAD9//3/AAACAA8AAAD9//7/AAACAA8AAAD9////AAACAA8AAAD9/wAAAAACAA8AAAD9/wEAAAACAA8AAAD9/wIAAAACAA8AAAD+//3/AAACAA8AAAD+/wIAAAACAA8AAAD///3/AAACAA8AAAD//wIAAAACAA8AAAAAAP3/AAACAA8AAAAAAAIAAAACAA8AAAABAP3/AAACAA8AAAABAAIAAAACAA8AAAACAP3/AAACAA8AAAACAP7/AAACAA8AAAACAP//AAACAA8AAAACAAAAAAACAA8AAAACAAEAAAACAA8AAAACAAIAAAACAA8AAAD8//z/AAACAA8AAAD8//3/AAACAA8AAAD8//7/AAACAA8AAAD8////AAACAA8AAAD8/wAAAAACAA8AAAD8/wEAAAACAA8AAAD8/wIAAAACAA8AAAD8/wMAAAACAA8AAAD9//z/AAACAA8AAAD9/wMAAAACAA8AAAD+//z/AAACAA8AAAD+/wMAAAACAA8AAAD///z/AAACAA8AAAD//wMAAAACAA8AAAAAAPz/AAACAA8AAAAAAAMAAAACAA8AAAABAPz/AAACAA8AAAABAAMAAAACAA8AAAACAPz/AAACAA8AAAACAAMAAAACAA8AAAADAPz/AAACAA8AAAADAP3/AAACAA8AAAADAP7/AAACAA8AAAADAP//AAACAA8AAAADAAAAAAACAA8AAAADAAEAAAACAA8AAAADAAIAAAACAA8AAAADAAMAAAACAA8AAAD7//v/AAACAA8AAAD7//z/AAACAA8AAAD7//3/AAACAA8AAAD7//7/AAACAA8AAAD7////AAACAA8AAAD7/wAAAAACAA8AAAD7/wEAAAACAA8AAAD7/wIAAAACAA8AAAD7/wMAAAACAA8AAAD7/wQAAAACAA8AAAD8//v/AAACAA8AAAD8/wQAAAACAA8AAAD9//v/AAACAA8AAAD9/wQAAAACAA8AAAD+//v/AAACAA8AAAD+/wQAAAACAA8AAAD///v/AAACAA8AAAD//wQAAAACAA8AAAAAAPv/AAACAA8AAAAAAAQAAAACAA8AAAABAPv/AAACAA8AAAABAAQAAAACAA8AAAACAPv/AAACAA8AAAACAAQAAAACAA8AAAADAPv/AAACAA8AAAADAAQAAAACAA8AAAAEAPv/AAACAA8AAAAEAPz/AAACAA8AAAAEAP3/AAACAA8AAAAEAP7/AAACAA8AAAAEAP//AAACAA8AAAAEAAAAAAACAA8AAAAEAAEAAAACAA8AAAAEAAIAAAACAA8AAAAEAAMAAAACAA8AAAAEAAQAAAACAA8AAAD5//v/AAACAA8AAAD5//z/AAACAA8AAAD5//3/AAACAA8AAAD5//7/AAACAA8AAAD5////AAACAA8AAAD5/wAAAAACAA8AAAD5/wEAAAACAA8AAAD5/wIAAAACAA8AAAD5/wMAAAACAA8AAAD5/wQAAAACAA8AAAD6//v/AAACAA8AAAD6//z/AAACAA8AAAD6//3/AAACAA8AAAD6//7/AAACAA8AAAD6////AAACAA8AAAD6/wAAAAACAA8AAAD6/wEAAAACAA8AAAD6/wIAAAACAA8AAAD6/wMAAAACAA8AAAD6/wQAAAACAA8AAAAFAPv/AAACAA8AAAAFAPz/AAACAA8AAAAFAP3/AAACAA8AAAAFAP7/AAACAA8AAAAFAP//AAACAA8AAAAFAAAAAAACAA8AAAAFAAEAAAACAA8AAAAFAAIAAAACAA8AAAAFAAMAAAACAA8AAAAFAAQAAAACAA8AAAAGAPv/AAACAA8AAAAGAPz/AAACAA8AAAAGAP3/AAACAA8AAAAGAP7/AAACAA8AAAAGAP//AAACAA8AAAAGAAAAAAACAA8AAAAGAAEAAAACAA8AAAAGAAIAAAACAA8AAAAGAAMAAAACAA8AAAAGAAQAAAACAA8AAAD4//v/AAACAA8AAAD4//z/AAACAA8AAAD4//3/AAACAA8AAAD4//7/AAACAA8AAAD4////AAACAA8AAAD4/wAAAAACAA8AAAD4/wEAAAACAA8AAAD4/wIAAAACAA8AAAD4/wMAAAACAA8AAAD4/wQAAAACAA8AAAAHAPv/AAACAA8AAAAHAPz/AAACAA8AAAAHAP3/AAACAA8AAAAHAP7/AAACAA8AAAAHAP//AAACAA8AAAAHAAAAAAACAA8AAAAHAAEAAAACAA8AAAAHAAIAAAACAA8AAAAHAAMAAAACAA8AAAAHAAQAAAACAA8AAAD4//r/AAACAA8AAAD4/wUAAAACAA8AAAD5//r/AAACAA8AAAD5/wUAAAACAA8AAAD6//r/AAACAA8AAAD6/wUAAAACAA8AAAD7//r/AAACAA8AAAD7/wUAAAACAA8AAAD8//r/AAACAA8AAAD8/wUAAAACAA8AAAD9//r/AAACAA8AAAD9/wUAAAACAA8AAAD+//r/AAACAA8AAAD+/wUAAAACAA8AAAD///r/AAACAA8AAAD//wUAAAACAA8AAAAAAPr/AAACAA8AAAAAAAUAAAACAA8AAAABAPr/AAACAA8AAAABAAUAAAACAA8AAAACAPr/AAACAA8AAAACAAUAAAACAA8AAAADAPr/AAACAA8AAAADAAUAAAACAA8AAAAEAPr/AAACAA8AAAAEAAUAAAACAA8AAAAFAPr/AAACAA8AAAAFAAUAAAACAA8AAAAGAPr/AAACAA8AAAAGAAUAAAACAA8AAAAHAPr/AAACAA8AAAAHAAUAAAACAA8AAAA=")
+tile_set = ExtResource("1_hfj7v")
+
+[node name="Midgroud" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_b12vq")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+
+[node name="Connector" type="Node2D" parent="."]
+position = Vector2(-112, -96)
+
+[node name="Wall" type="Node2D" parent="Connector"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Connector/Wall"]
+position = Vector2(8, -8)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 80, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Connector/Wall"]
+position = Vector2(8, -24)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="Wall2" type="Node2D" parent="Connector"]
+visible = false
+position = Vector2(16, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Connector/Wall2"]
+position = Vector2(8, -8)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 80, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Connector/Wall2"]
+position = Vector2(8, -24)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="Wall3" type="Node2D" parent="Connector"]
+visible = false
+position = Vector2(32, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Connector/Wall3"]
+position = Vector2(8, -8)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 80, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Connector/Wall3"]
+position = Vector2(8, -24)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="NoConnectionBackground" type="TileMapLayer" parent="Connector"]
+visible = false
+tile_map_data = PackedByteArray("AAAAAP//AAACAA4AAAABAP//AAACAA4AAAACAP//AAACAA4AAAA=")
+tile_set = ExtResource("1_hfj7v")
+
+[node name="NoConnectionMidground" type="TileMapLayer" parent="Connector"]
+visible = false
+tile_map_data = PackedByteArray("AAAAAP7/AAACAAQAAAAAAP//AAACAAUAAAABAP7/AAACAAQAAAABAP//AAACAAUAAAACAP7/AAACAAQAAAACAP//AAACAAUAAAA=")
+tile_set = ExtResource("2_b12vq")
+
+[node name="ConnectionBackground" type="TileMapLayer" parent="Connector"]
+tile_map_data = PackedByteArray("AAAAAP//AAAGABIAAAABAP//AAACAA8AAAACAP//AAAFABIAAAA=")
+tile_set = ExtResource("1_hfj7v")
+
+[node name="ConnectionMidground" type="TileMapLayer" parent="Connector"]
+tile_map_data = PackedByteArray("AAAAAP7/AAAEAAYAAAAAAP//AAAEAAcAAAACAP7/AAABAAYAAAACAP//AAABAAcAAAA=")
+tile_set = ExtResource("1_hfj7v")
+
+[node name="Connector2" type="Node2D" parent="."]
+position = Vector2(64, -96)
+
+[node name="Wall" type="Node2D" parent="Connector2"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Connector2/Wall"]
+position = Vector2(8, -8)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 80, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Connector2/Wall"]
+position = Vector2(8, -24)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="Wall2" type="Node2D" parent="Connector2"]
+visible = false
+position = Vector2(16, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Connector2/Wall2"]
+position = Vector2(8, -8)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 80, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Connector2/Wall2"]
+position = Vector2(8, -24)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="Wall3" type="Node2D" parent="Connector2"]
+visible = false
+position = Vector2(32, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Connector2/Wall3"]
+position = Vector2(8, -8)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 80, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Connector2/Wall3"]
+position = Vector2(8, -24)
+texture = ExtResource("3_ws5je")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="NoConnectionBackground" type="TileMapLayer" parent="Connector2"]
+visible = false
+tile_map_data = PackedByteArray("AAAAAP//AAACAA4AAAABAP//AAACAA4AAAACAP//AAACAA4AAAA=")
+tile_set = ExtResource("1_hfj7v")
+
+[node name="NoConnectionMidground" type="TileMapLayer" parent="Connector2"]
+visible = false
+tile_map_data = PackedByteArray("AAAAAP7/AAACAAQAAAAAAP//AAACAAUAAAABAP7/AAACAAQAAAABAP//AAACAAUAAAACAP7/AAACAAQAAAACAP//AAACAAUAAAA=")
+tile_set = ExtResource("2_b12vq")
+
+[node name="ConnectionBackground" type="TileMapLayer" parent="Connector2"]
+tile_map_data = PackedByteArray("AAAAAP//AAAGABIAAAABAP//AAACAA8AAAACAP//AAAFABIAAAA=")
+tile_set = ExtResource("1_hfj7v")
+
+[node name="ConnectionMidground" type="TileMapLayer" parent="Connector2"]
+tile_set = ExtResource("1_hfj7v")
