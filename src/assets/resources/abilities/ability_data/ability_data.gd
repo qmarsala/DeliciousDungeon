@@ -25,6 +25,7 @@ var max_range: float:
 
 func apply_weapon_stats(weapon: WeaponData) -> AbilityData:
 	var ability_data: AbilityData = self.duplicate()
-	ability_data.cooldown -= cooldown * weapon.cooldown_reduction
+	ability_data.cooldown -= cooldown * weapon.haste
+	ability_data.damage *= weapon.strength
 	ability_data.ability_range = weapon.max_range
 	return ability_data
