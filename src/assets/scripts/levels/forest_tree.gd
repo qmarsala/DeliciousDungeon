@@ -4,7 +4,6 @@ extends StaticBody2D
 @export var felled_tree_top: PackedScene
 @export var wood_item: Item
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var interactbox: InteractBox = $Interactbox
 
@@ -12,7 +11,6 @@ func _init() -> void:
 	add_to_group(Interfaces.Interactable, true)
 
 func interact(player: Player) -> void:
-	#todo: if player has an axe?
 	chop()
 
 func _ready() -> void:
@@ -22,15 +20,7 @@ func _ready() -> void:
 
 func chop() -> void:
 	if health_component.is_dead(): return
-	
 	health_component.receive_damage(1)
-	if health_component.is_dead():
-		$FelledTreePlayer.play()
-		create_stump()
-		animate_fell()
-		drop_logs()
-	else:
-		$ChopAudioPlayer.play()
 
 func create_stump():
 	$TreeStump.show()
