@@ -33,11 +33,8 @@ func chop() -> void:
 		$ChopAudioPlayer.play()
 
 func create_stump():
-	#todo: want to create a new spirte that is an actual stump, for now just shortening the displayed view
-	var rect = sprite_2d.region_rect
-	sprite_2d.rotation_degrees = 0
-	sprite_2d.region_rect = Rect2(rect.position.x, rect.position.y + 15, rect.size.x, rect.size.y - 14)
-	sprite_2d.global_position = Vector2(sprite_2d.global_position.x, sprite_2d.global_position.y + 8)
+	$TreeStump.show()
+	$Sprite2D.hide()
 
 func animate_fell():
 	if felled_tree_top:
