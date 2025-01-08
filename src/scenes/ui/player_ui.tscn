@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/ui/player_ui.gd" id="1_bgem0"]
 [ext_resource type="Texture2D" uid="uid://8ellw2iqfg2t" path="res://assets/sprites/Foods_Potions_&_Potions/Foods/Food_10.png" id="2_of4rr"]
-[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://assets/sprites/Log.png" id="3_4hw07"]
+[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://assets/sprites/log.png" id="3_4hw07"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p08b3"]
 

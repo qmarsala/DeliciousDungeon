@@ -185,7 +185,7 @@ region_filter_clip_enabled = true
 visible = false
 sprite_frames = SubResource("SpriteFrames_51dwp")
 autoplay = "default"
-frame_progress = 0.662636
+frame_progress = 0.473296
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 enabled = false

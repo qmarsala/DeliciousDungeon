@@ -7,7 +7,6 @@ extends Control
 func init():
 	$ToggleQuestLog.pressed.connect(on_toggle_pressed)
 	var quests = QuestSystemService.available_quests
-	var bounty_index = 0
 	for q in quests:
 		var qui = quest_ui_scene.instantiate()
 		qui.quest = q
