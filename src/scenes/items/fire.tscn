@@ -5,12 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="2_wjhyw"]
 [ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://assets/audio/LightFire.wav" id="3_1suck"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
-radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_r54xq"]
-radius = 12.0
-
 [sub_resource type="Gradient" id="Gradient_8on2x"]
 offsets = PackedFloat32Array(0, 0.227758, 0.608541)
 colors = PackedColorArray(1, 1, 1, 1, 0.395833, 0.395833, 0.395833, 1, 0, 0, 0, 1)
@@ -20,6 +14,12 @@ gradient = SubResource("Gradient_8on2x")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r54xq"]
+radius = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
 atlas = ExtResource("1_j4fss")
@@ -190,6 +190,13 @@ color_ramp = SubResource("GradientTexture1D_h5j8l")
 [node name="StaticBody2D" type="StaticBody2D"]
 script = ExtResource("2_dth6p")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.555, 1.5)
+enabled = false
+color = Color(0.909804, 0.666667, 0.0823529, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_jg4h0")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
 shape = SubResource("CircleShape2D_chxww")
@@ -198,12 +205,6 @@ shape = SubResource("CircleShape2D_chxww")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
 shape = SubResource("CircleShape2D_r54xq")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-enabled = false
-color = Color(0.909804, 0.666667, 0.0823529, 1)
-energy = 0.5
-texture = SubResource("GradientTexture2D_jg4h0")
 
 [node name="Unlit" type="Sprite2D" parent="."]
 texture = ExtResource("1_j4fss")

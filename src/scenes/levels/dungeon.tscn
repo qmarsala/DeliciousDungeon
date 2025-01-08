@@ -16,9 +16,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xeumt"]
 shader = ExtResource("2_nr1ht")
-shader_parameter/radius = 0.2
+shader_parameter/radius = 0.22
 shader_parameter/origin = Vector2(0.5, 0.5)
-shader_parameter/color = null
+shader_parameter/color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_kat5d"]
 script = ExtResource("9_rfe56")
@@ -27,6 +27,10 @@ rooms = Array[ExtResource("6_t6tku")]([ExtResource("7_aut4m"), ExtResource("8_4i
 [node name="Dungeon" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_qfxch")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.4
+blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("10_fgu52")]
 z_index = 1
