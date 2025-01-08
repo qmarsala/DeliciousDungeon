@@ -47,6 +47,8 @@ func receive_damage(damage) -> void:
 		if character_sprite:
 			character_sprite.stop()
 			character_sprite.play("die")
+		if animation_player and animation_player.has_animation("die"):
+			animation_player.play("die")
 
 func heal(added_health) -> void:
 	if is_dead(): return
