@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7x24imnj53j2"]
 
-[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://assets/sprites/Log.png" id="1_0fsrt"]
+[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://assets/sprites/log.png" id="1_0fsrt"]
 
 [node name="wood" type="Sprite2D"]
 z_index = 6
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0fsrt")
 region_rect = Rect2(100, 39, 8, 4)
