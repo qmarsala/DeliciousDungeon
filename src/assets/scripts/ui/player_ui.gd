@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	update_status_label(player.rest_is_cooldown)
 	update_ability_cooldowns()
 
-func setup_ability_bar():
+func setup_ability_bar(weapon: Weapon):
 	if player.weapon_equipped:
 		ability_slots = player.ability_slots.slots
 

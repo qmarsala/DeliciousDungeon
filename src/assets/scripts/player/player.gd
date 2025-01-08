@@ -61,6 +61,7 @@ func _ready() -> void:
 	nutrition = STARTING_NUTRITION
 	move_target = global_position
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
+	hitbox.connect_weapon_events(equipped_weapon, unequipped_weapon)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
@@ -99,13 +100,11 @@ func equip(item: Item) -> void:
 	weapon_item = item
 	weapon = weapon_item.create_item_scene() as Weapon
 	weapon.equip(self)
-	hand.add_child.call_deferred(weapon)
-	equipped_weapon.emit()
+	equipped_weapon.emit(weapon)
 
 func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
-	weapon.queue_free()
 	ItemDropService.drop_item(weapon_item, global_position)
 	unequipped_weapon.emit()
 
