@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfesvjhulwkvx"]
+[gd_scene load_steps=20 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
 [ext_resource type="Script" path="res://assets/scripts/levels/fire.gd" id="2_dth6p"]
@@ -142,8 +142,15 @@ _data = {
 "campfire_light_flicker": SubResource("Animation_lb1jd")
 }
 
+[sub_resource type="Gradient" id="Gradient_j8f1m"]
+offsets = PackedFloat32Array(0, 0.296724, 0.645472, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0815003, 0.0815003, 0.0815003, 0.9185, 0.236994, 0.236994, 0.236994, 0.763006, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h5j8l"]
+gradient = SubResource("Gradient_j8f1m")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hn6ah"]
-lifetime_randomness = 1.0
+lifetime_randomness = 0.25
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(5, 5, 1)
@@ -152,6 +159,9 @@ spread = 5.0
 initial_velocity_min = 2.0
 initial_velocity_max = 10.0
 gravity = Vector3(0, 1, 0)
+scale_min = 0.7
+scale_max = 1.7
+color_ramp = SubResource("GradientTexture1D_h5j8l")
 
 [node name="StaticBody2D" type="StaticBody2D"]
 script = ExtResource("2_dth6p")
@@ -175,7 +185,7 @@ region_filter_clip_enabled = true
 visible = false
 sprite_frames = SubResource("SpriteFrames_51dwp")
 autoplay = "default"
-frame_progress = 0.820731
+frame_progress = 0.662636
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 enabled = false
