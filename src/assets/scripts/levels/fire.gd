@@ -7,6 +7,7 @@ extends Node2D
 @onready var lit_animation: AnimatedSprite2D = $LitAnimation
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 @onready var interactbox: InteractBox = $Interactbox
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
 @export var animation_name: String = "campfire_light_flicker"
 @export var lit: bool = true
@@ -18,10 +19,7 @@ func _init() -> void:
 func _ready() -> void:
 	interactbox.interacted.connect(interact)
 	if lit:
-		unlit.hide()
-		lit_animation.show()
 		animation_player.play(animation_name)
-		point_light_2d.enabled = true
 		return
 	if !lit and randf() <= lit_chance:
 		light()
@@ -41,10 +39,7 @@ func interact(player: Player) -> void:
 func light() -> void:
 	if lit: return
 	lit = true
-	lit_animation.show()
-	unlit.hide()
-	point_light_2d.enabled = true
-	animation_player.play(animation_name)
 	audio_stream_player.play()
+	animation_player.play(animation_name)
 	#for quest poc - these events could include the player position? that might help with sounds problem?
 	SignalBusService.ActionPerformed.emit(Enums.Actions.LightFire)
