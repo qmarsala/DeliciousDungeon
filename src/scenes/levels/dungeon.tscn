@@ -28,10 +28,6 @@ rooms = Array[ExtResource("6_t6tku")]([ExtResource("7_aut4m"), ExtResource("8_4i
 y_sort_enabled = true
 script = ExtResource("1_qfxch")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.4
-blend_mode = 1
-
 [node name="Player" parent="." instance=ExtResource("10_fgu52")]
 z_index = 1
 
@@ -58,6 +54,11 @@ room_set = ExtResource("5_xuv11")
 rest_room_set = SubResource("Resource_kat5d")
 total_room_count = 13
 should_make_all_rooms = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.756465, 0.515074, 0.236785, 1)
+energy = 0.7
+blend_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
