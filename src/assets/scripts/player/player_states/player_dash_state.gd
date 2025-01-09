@@ -22,7 +22,7 @@ func calculate_dash_velocity() -> Vector2:
 
 func handle_process(delta):
 	if player.is_hill:
-		player.velocity = dash_velocity / 3
+		player.velocity = dash_velocity / 2
 	else:
 		player.velocity = dash_velocity
 	if time - dashed_at >= player.DASH_TIME:
