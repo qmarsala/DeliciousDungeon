@@ -7,8 +7,8 @@ signal unequipped_weapon
 
 #todo: player data
 const SPEED = 60.0
-const DASH_MULTIPLIER = 1.8
-const DASH_TIME = .4
+const DASH_MULTIPLIER = 1.75
+const DASH_TIME = .5
 const DASH_COOLDOWN = 1
 const INTERACTION_RANGE = 15.0
 const STARTING_NUTRITION = 10
