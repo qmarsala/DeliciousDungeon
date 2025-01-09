@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	death_timer.start()
-	player.character_sprite.play("die")
+	player.animation_player.play("die")
 
 func handle_physics_process(delta: float) -> void:
 	player.velocity = Vector2.ZERO

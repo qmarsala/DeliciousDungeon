@@ -11,7 +11,8 @@ func enter():
 	player.set_collision_mask_value(3, false)
 	player.is_dash_cooldown = true
 	player.dash_timer.start(player.DASH_TIME)
-	player.character_sprite.play("dash")
+	player.animation_player.speed_scale = 2
+	player.animation_player.play("dash")
 	if player.weapon_equipped:
 		player.weapon.hide()
 	dash_velocity = calculate_dash_velocity()
@@ -38,7 +39,8 @@ func exit():
 		player.move_target = post_dash_move_target
 		player.move_destination_indicator.show()
 	player.dash_cooldown_timer.start(player.DASH_COOLDOWN)
-	player.character_sprite.stop()
+	player.animation_player.speed_scale = 1
+	player.animation_player.stop()
 	if player.weapon_equipped:
 		player.weapon.show()
 

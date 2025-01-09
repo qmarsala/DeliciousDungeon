@@ -17,7 +17,8 @@ const STARTING_NUTRITION = 10
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
-@onready var character_sprite: AnimatedSprite2D = $CharacterSprite
+@onready var character_sprite: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var move_destination_indicator: Sprite2D = $MoveIndicator
 @onready var player_rest_sound: AudioStreamPlayer2D = $PlayerRestSound
 @onready var health_component: HealthComponent = %HealthComponent

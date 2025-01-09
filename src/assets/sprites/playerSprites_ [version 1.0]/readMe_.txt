@@ -11,9 +11,9 @@ stuff to know - character and weapon animations
 
 - weapon animations [from top to bottom]
   - sword_ [wood, iron, gold and diamond]
-    - idle, swing and stab
+	- idle, swing and stab
   - shield_ [wood, iron, gold and diamond]
-    - idle, bash & hit
+	- idle, bash & hit
 
 stuff to know - dust animations
 
@@ -37,4 +37,4 @@ future updates -
 
 
 
-                                                             
+															 

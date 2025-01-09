@@ -4,7 +4,6 @@ extends Node
 signal HealthDepleted
 
 #todo:wrap in animation controller?
-@export var character_sprite : AnimatedSprite2D
 @export var animation_player : AnimationPlayer
 
 # still unsure how I feel about this, maybe it make sense
@@ -37,16 +36,12 @@ func receive_damage(damage) -> void:
 
 	health -= damage
 	# maybe this can be moved to an animations controller that listens for a signal?
-	if character_sprite and !(character_sprite.is_playing() and character_sprite.animation == "dash"):
-		character_sprite.stop()
-		character_sprite.play("receive_damage")
-	if animation_player and animation_player.has_animation("receive_damage"):
+	if animation_player\
+		and animation_player.has_animation("receive_damage")\
+		and !(animation_player.is_playing() and animation_player.current_animation == "dash"):
 		animation_player.play("receive_damage")
 	if is_dead():
 		HealthDepleted.emit()
-		if character_sprite:
-			character_sprite.stop()
-			character_sprite.play("die")
 		if animation_player and animation_player.has_animation("die"):
 			animation_player.play("die")
 
