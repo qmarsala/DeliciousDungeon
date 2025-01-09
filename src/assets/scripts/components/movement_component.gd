@@ -27,8 +27,9 @@ func _physics_process(delta: float) -> void:
 	character.move_and_slide()
 	
 func play_movement_animation():
-	if animation_player.is_playing() and (animation_player.current_animation == "receive_damage" or animation_player.current_animation == "dash"): return
+	if animation_player.is_playing() and animation_player.current_animation == "dash": return
 	if character.velocity.length() == 0:
+		if animation_player.is_playing() and animation_player.current_animation != "run": return
 		animation_player.play("idle")
 	else:
 		var flip_sprite = character.velocity.x < 0
@@ -36,8 +37,7 @@ func play_movement_animation():
 		sprite.flip_h = flip_sprite 
 		if flip_sprite != current_flip:
 			animation_player.advance(0)
-
-		if animation_player.is_playing() and animation_player.current_animation == "run": return
+			
 		animation_player.play("run")
 
 # this was an idea for stun before we realized that needs to do more than freeze you.

@@ -6,7 +6,7 @@ class_name EnemyDeadState
 func enter():
 	SignalBusService.EnemyDied.emit(enemy.data.enemy_id)
 	death_timer.start(.7)
-	enemy.animations.play("die")
+	enemy.animation_player.play("die")
 	var r = enemy.random.randf()
 	if r <= enemy.data.drop_rate and enemy.data.drop:
 		ItemDropService.drop_item(enemy.data.drop, enemy.global_position)

@@ -4,7 +4,7 @@ class_name Enemy
 @export var data: EnemyData
 
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
-@onready var animations: AnimatedSprite2D = $Animations
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_range: RayCast2D = %AttackRange
 @onready var state_machine: StateMachine = $StateMachine
 @onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent

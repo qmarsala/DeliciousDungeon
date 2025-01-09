@@ -4,7 +4,6 @@ class_name EnemyAttackingState
 #these two exports need to be consolidated into something
 # like an 'animation controller' each weapon may be animated slightly
 # differently
-@export var attack_animation_player: AnimationPlayer
 @export var animated_weapon_sprite: AnimatedSprite2D
 
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
@@ -61,6 +60,7 @@ func handle_attack():
 	aim_locked = false
 	# the sound stuff should probably happen in the ability scene? though they don't live long
 	# so we would need to change how that works to do that?
+	# todo: animation player for this?
 	enemy.audio_stream_player.stream = enemy.data.ability.data.ability_sound
 	enemy.audio_stream_player.pitch_scale = randf_range(.95, 1.05)
 	enemy.audio_stream_player.play()
@@ -76,7 +76,7 @@ func handle_attack():
 func handle_attack_animations():
 	if animated_weapon_sprite and not animated_weapon_sprite.is_playing():
 		animated_weapon_sprite.play("attack")
-	elif attack_animation_player and not attack_animation_player.is_playing():
+	elif enemy.animation_player:
 		var animation = "attack"
 		if enemy.data.enemy_id == Enums.Enemies.Troll:
 			#todo: animation player and animation tree
@@ -89,8 +89,6 @@ func handle_attack_animations():
 				animation = "swing_south"
 			if player_height_distance >= 10 and player_width_distance <= 30:
 				animation = "swing_north"
-		attack_animation_player.play(animation)
-
-func _on_attack_animation_animation_finished(anim_name: StringName) -> void:
-	if anim_name != "RESET":
-		attack_animation_player.play("RESET")
+		if enemy.animation_player.is_playing() and enemy.animation_player.current_animation == animation:
+			return
+		enemy.animation_player.play(animation)
