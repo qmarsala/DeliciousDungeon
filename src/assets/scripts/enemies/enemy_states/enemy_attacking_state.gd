@@ -73,6 +73,8 @@ func handle_attack():
 # ability has an animation name - but the troll has more complex animations
 # we do need to abstract this part a bit, but how will we deal with the variations
 # in animations?
+
+#bug: occasionaly attacking close to moving causes the attack animation to get stuck or not play at all
 func handle_attack_animations():
 	if animated_weapon_sprite and not animated_weapon_sprite.is_playing():
 		animated_weapon_sprite.play("attack")
