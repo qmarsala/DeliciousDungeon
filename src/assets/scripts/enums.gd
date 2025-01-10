@@ -20,3 +20,9 @@ enum Actions {
 	LightFire,
 	Rest
 }
+
+enum Scenes {
+	Main,
+	Dungeon,
+	Outdoors
+}

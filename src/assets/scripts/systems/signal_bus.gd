@@ -2,7 +2,7 @@ class_name SignalBus
 extends Node
 
 #todo: what data do we need if any to pass here?
-signal SceneChange
+signal SceneChange(scene: Enums.Scenes)
 
 #probably want to know who got damaged by what?
 signal DamageReceived(damage: float, position: Vector2, is_player_target: bool)
