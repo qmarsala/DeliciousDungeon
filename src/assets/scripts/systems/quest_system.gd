@@ -14,6 +14,11 @@ func wire_quests():
 	for q in available_quests:
 		wire_quest(q)
 
+func reset_quests():
+	available_quests.append_array(completed_quests)
+	for q in available_quests:
+		q.reset()
+
 func wire_quest(q: Quest):
 	if q is BountyQuest:
 		if !SignalBusService.EnemyDied.is_connected(q.on_enemy_died):
