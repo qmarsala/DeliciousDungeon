@@ -11,7 +11,7 @@ func enter():
 	player.set_collision_mask_value(3, false)
 	player.is_dash_cooldown = true
 	player.dash_timer.start(player.DASH_TIME)
-	player.animation_player.speed_scale = 2
+	player.animation_player.speed_scale = player.DASH_MULTIPLIER
 	player.animation_player.play("dash")
 	if player.weapon_equipped:
 		player.weapon.hide()
