@@ -13,39 +13,42 @@ extends Node2D
 
 #need to keep track of player data... is this where 'RefCounted' comes in?
 # how do we want to track this? for now maybe we can pass in a dictionary or something?
-
 var player_items: Dictionary = {
 	Enums.Items.Wood: 0,
 	Enums.Items.Food: 0
 }
 
 var is_outdoors = false
-var game_started = false
-var current_scene
-var next_scene
+var current_scene_type: Enums.Scenes = Enums.Scenes.Main
+var current_scene: Node2D
+var next_scene: PackedScene
 
 func _ready():
-	SignalBusService.SceneChange.connect(_toggle_levels)
+	SignalBusService.SceneChange.connect(_change_level)
 	#temp: should go to a damage number service in the main scene
 	SignalBusService.DamageReceived.connect(_add_damage_number)
 	SignalBusService.QuestCompleted.connect(on_quest_completed)
+	# quests specific to each dungeon floor?
 	QuestSystemService.add_quests(quests)
 	quest_log_ui.init()
 	_change_scene(main_menu, true)
 
-func _toggle_levels():
-	if not game_started:
-		game_started = true
-	if is_outdoors:
+func _change_level(scene: Enums.Scenes):
+	if scene == Enums.Scenes.Dungeon:
+		if not GameManager.game_started:
+			GameManager.start_game()
 		next_scene = dungeon
-		is_outdoors = false
 		$OutdoorMusic.stop()
 		$DungeonMusic.play()
-	else:
+	elif scene == Enums.Scenes.Outdoors:
 		next_scene = outdoors
-		is_outdoors = true
 		$DungeonMusic.stop()
 		$OutdoorMusic.play()
+	else:
+		$DungeonMusic.stop()
+		$OutdoorMusic.play()
+		next_scene = main_menu
+	current_scene_type = scene
 	_change_scene.call_deferred(next_scene)
 
 func _change_scene(scene: PackedScene, force: bool = false):
@@ -74,13 +77,19 @@ func _perform_scene_change():
 			break
 	world.add_child.call_deferred(current_scene)
 	world.process_mode = Node.PROCESS_MODE_INHERIT
-	if game_started and !$QuestLogLayer.visible:
+	if GameManager.game_started and !$QuestLogLayer.visible and current_scene_type != Enums.Scenes.Main:
 		$QuestLogLayer.show()
 
 func _game_over():
 	# todo: death penalty of some kind.
 	# thinking maybe you need to 'pay gold' or 'discard an item'?
-	_toggle_levels()
+	QuestSystemService.reset_quests()
+	if GameManager.game_started and $QuestLogLayer.visible:
+		GameManager.game_over()
+		$QuestLogLayer.hide()
+	player_items[Enums.Items.Wood] = 0
+	player_items[Enums.Items.Food] = 0
+	_change_level(Enums.Scenes.Main)
 
 func _add_damage_number(damage: float, position: Vector2, is_target_player: bool):
 	#todo: pull this into a damage number type?
