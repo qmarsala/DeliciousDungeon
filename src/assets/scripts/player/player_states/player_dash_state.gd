@@ -34,10 +34,10 @@ func exit():
 	player.set_collision_mask_value(3, true)
 	if !post_dash_move:
 		player.move_target = player.global_position
-		player.move_destination_indicator.hide()
+		player.destination_marker.hide()
 	else:
 		player.move_target = post_dash_move_target
-		player.move_destination_indicator.show()
+		player.destination_marker.show_at(player.move_target)
 	player.dash_cooldown_timer.start(player.DASH_COOLDOWN)
 	player.animation_player.speed_scale = 1
 	player.animation_player.stop()

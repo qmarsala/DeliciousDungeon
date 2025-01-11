@@ -19,7 +19,7 @@ const STARTING_NUTRITION = 10
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 @onready var character_sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var move_destination_indicator: Sprite2D = $MoveIndicator
+@onready var destination_marker: DestinationMarker = $DestinationMarker
 @onready var player_rest_sound: AudioStreamPlayer2D = $PlayerRestSound
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var status_effects_component: StatusEffectComponent = $StatusEffectsComponent
@@ -69,9 +69,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	interaction_ray_cast.look_at(get_global_mouse_position())
 	#todo: move this to ui layer?
-	move_destination_indicator.global_position = move_target
 	if global_position.distance_to(move_target) <= 5:
-		move_destination_indicator.hide()
+		destination_marker.hide()
 
 func begin_rest() -> void:
 	if player_items[Enums.Items.Food] < 1 or rest_is_cooldown: return

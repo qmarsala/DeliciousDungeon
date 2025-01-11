@@ -15,12 +15,12 @@ func handle_physics_process(delta: float):
 	var was_holding = holding_move
 	holding_move = move_pressed and time - pressed_at > .25
 	if holding_move:
-		player.move_destination_indicator.hide()
+		player.destination_marker.hide()
 		player.move_target = player.get_global_mouse_position()
 		Transitioned.emit(self, "Move")
 	if was_holding and !holding_move:
-		player.move_destination_indicator.show()
 		player.move_target = player.get_global_mouse_position()
+		player.destination_marker.show_at(player.move_target)
 
 func handle_interact_action(event: InputEvent) -> void:
 	if not player: return
@@ -42,10 +42,11 @@ func handle_movement_input(event: InputEvent):
 		pressed_at = time
 		move_pressed = true
 		player.move_target = mouse_pos
-		player.move_destination_indicator.show()
+		player.destination_marker.show_at(player.move_target)
 		Transitioned.emit(self, "Move")
 	elif event.is_action_released("move"):
 		move_pressed = false
 	elif event.is_action_pressed("dash") and not player.is_dash_cooldown:
 		player.move_target = mouse_pos
+		player.destination_marker.show_at(player.move_target)
 		Transitioned.emit(self, "Dash")

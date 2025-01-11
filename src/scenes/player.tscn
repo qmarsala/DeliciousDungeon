@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_idle_state.gd" id="5_xp3sm"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
 [ext_resource type="Texture2D" uid="uid://crr64lhhdrj6g" path="res://assets/sprites/move_indicator_arrow.png" id="6_af2ob"]
-[ext_resource type="Script" path="res://assets/scripts/player/move_indicator.gd" id="7_6eexy"]
+[ext_resource type="Script" path="res://assets/scripts/player/destination_marker.gd" id="7_6eexy"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="7_8i15j"]
 [ext_resource type="Script" path="res://assets/scripts/player/player_states/player_move_state.gd" id="7_bwmhs"]
 [ext_resource type="PackedScene" uid="uid://dmrrebaym06l6" path="res://scenes/components/ability_slots.tscn" id="8_2wv20"]
@@ -63,8 +63,8 @@ debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 [node name="Hand" type="Node2D" parent="."]
 script = ExtResource("5_x0joh")
 
-[node name="MoveIndicator" type="Sprite2D" parent="."]
-visible = false
+[node name="DestinationMarker" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
 z_index = 100
 texture = ExtResource("6_af2ob")
 region_rect = Rect2(76, 175, 8, 8)
