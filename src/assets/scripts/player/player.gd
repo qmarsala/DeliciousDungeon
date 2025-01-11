@@ -126,6 +126,12 @@ func get_evasion_value() -> float:
 	else:
 		return 0
 
+func increase_max_health(amount: float, duration: float):
+	pass
+
+func increase_min_damage(amount: float, duration: float):
+	pass
+
 func _on_ability_pressed(ability_id) -> void:
 	var ability = weapon.get_ability(ability_id)
 	# if ability. use it
