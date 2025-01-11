@@ -5,6 +5,7 @@ extends Resource
 @export var name: String
 @export var description: String
 @export var count: int
+@export var reward: QuestReward
 
 var completed: bool = false
 
