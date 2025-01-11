@@ -32,6 +32,7 @@ func _ready():
 	QuestSystemService.add_quests(quests)
 	quest_log_ui.init()
 	_change_scene(main_menu, true)
+	$OutdoorMusic.play()
 
 func _change_level(scene: Enums.Scenes):
 	if scene == Enums.Scenes.Dungeon:

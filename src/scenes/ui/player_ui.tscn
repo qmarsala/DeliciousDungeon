@@ -72,6 +72,14 @@ label_settings = SubResource("LabelSettings_51dl0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="StatusEffectsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = -304.0
+offset_top = -84.0
+offset_right = -171.0
+offset_bottom = -7.0
+text = "Status Effects:"
+
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.827964, 0.119937, 0.216825, 1)

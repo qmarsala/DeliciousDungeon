@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 	update_food_count(player.player_items[Enums.Items.Food])
 	update_wood_count(player.player_items[Enums.Items.Wood])
 	update_status_label(player.rest_is_cooldown)
+	update_status_effects_label(player.status_effects_component)
 	update_ability_cooldowns()
 
 func setup_ability_bar(weapon: Weapon):
@@ -68,6 +69,18 @@ func update_status_label(status):
 		if hunger_bar.value == 0:
 			status_text = "Starving"
 		status_label.text = status_text
+
+func update_status_effects_label(status_effect_component: StatusEffectComponent):
+	var status_effects_text = "Status Effects:\n"
+	if status_effect_component.status_effects.size() < 1:
+		$StatusEffectsLabel.hide()
+		return
+	
+	$StatusEffectsLabel.show()
+	for se in status_effect_component.status_effects:
+		status_effects_text += se.effect_name + "\n"
+		print(status_effects_text)
+	$StatusEffectsLabel.text = status_effects_text
 
 func update_ability_cooldowns():
 	dash_cooldown.value = get_progress_value(player.dash_cooldown_timer.time_left, player.DASH_COOLDOWN)
