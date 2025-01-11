@@ -183,7 +183,7 @@ tracks/0/path = NodePath("Club:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.333333, 0.466667, 0.492405),
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.333333, 0.466667, 0.486307),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(4.5, 4.5), Vector2(-3, -2.5), Vector2(1.5, -4), Vector2(7.5, -2.5), Vector2(10, 3.5), Vector2(7, 3.5)]
@@ -235,7 +235,7 @@ tracks/0/path = NodePath("Club:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-4.5, 8.5), Vector2(-5, -14), Vector2(4.5, -4.5), Vector2(6.5, 2)]
@@ -247,7 +247,7 @@ tracks/1/path = NodePath("Club:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.266667, 0.4, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [-1.5708, 0.0479368, 1.46433, 1.39626]
@@ -259,7 +259,7 @@ tracks/2/path = NodePath("Club:skew")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.266667, 0.4, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [-0.872665, -0.740485, -0.624828, 0.0]
@@ -271,7 +271,7 @@ tracks/3/path = NodePath("Club:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.133333, 0.233333, 0.366667, 0.4, 0.5),
+"times": PackedFloat32Array(0.133333, 0.233333, 0.366667, 0.4, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.69, 0.69), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.65, 0.65), Vector2(0.65, 0.65)]
@@ -363,7 +363,7 @@ tracks/0/path = NodePath("Club:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-6.5, 4.5), Vector2(-2, -5), Vector2(-2, -10), Vector2(-6.5, -5), Vector2(-11.5, 1), Vector2(-6, 2)]
