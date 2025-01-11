@@ -64,6 +64,7 @@ debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
 script = ExtResource("5_x0joh")
 
 [node name="DestinationMarker" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.470588)
 z_index = 100
 texture = ExtResource("6_af2ob")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=4 format=3 uid="uid://dllniy4c4s8kg"]
+
+[ext_resource type="Script" path="res://assets/resources/items/potions/potion_data.gd" id="1_ml3v8"]
+[ext_resource type="Texture2D" uid="uid://c4bu1f02l55tu" path="res://assets/sprites/Foods_Potions_&_Potions/Potions/Potions.png" id="2_7hmsq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shiyn"]
+atlas = ExtResource("2_7hmsq")
+region = Rect2(66, 65, 11, 14)
+
+[resource]
+script = ExtResource("1_ml3v8")
+healing = 0.0
+nutrition = 2.0
+item_id = 2
+name = "Nutrition Potion"
+description = "Satisfies a bit of hunger"
+sprite = SubResource("AtlasTexture_shiyn")

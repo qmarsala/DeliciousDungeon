@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bup0epkdls56c"]
+
+[ext_resource type="PackedScene" uid="uid://d2v7p34tnts3u" path="res://scenes/items/potion.tscn" id="1_beusu"]
+[ext_resource type="Script" path="res://assets/resources/items/item.gd" id="1_fwda6"]
+
+[resource]
+script = ExtResource("1_fwda6")
+scene = ExtResource("1_beusu")

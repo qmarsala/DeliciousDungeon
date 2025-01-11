@@ -90,6 +90,8 @@ func pickup(item: Item) -> void:
 	print("picked up: " + item.data.name)
 	if item.data is WeaponData:
 		equip(item)
+	elif item.data is PotionData:
+		drink(item)
 	else:
 		player_items[item.data.item_id] += 1
 
@@ -107,6 +109,13 @@ func unequip() -> void:
 	weapon_equipped = false
 	ItemDropService.drop_item(weapon_item, global_position)
 	unequipped_weapon.emit()
+
+func drink(item: Item):
+	var potion = item.data as PotionData
+	if potion.healing > 0:
+		health_component.heal(potion.healing)
+	if potion.nutrition > 0:
+		nutrition += potion.nutrition
 
 func interact() -> void:
 	var result = interaction_ray_cast.get_collider()
