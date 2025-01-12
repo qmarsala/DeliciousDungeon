@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx1ojtss4q6xc"]
+
+[ext_resource type="Script" path="res://assets/scripts/dungeon_manager.gd" id="1_qac18"]
+[ext_resource type="Script" path="res://assets/scripts/room_generator2.gd" id="1_t3s1t"]
+[ext_resource type="PackedScene" uid="uid://bfsatmdo2yhif" path="res://scenes/levels/room_2.tscn" id="2_daw73"]
+[ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="3_kkhtx"]
+
+[node name="Dungeon2" type="Node2D"]
+script = ExtResource("1_qac18")
+
+[node name="Rooms" type="Node2D" parent="."]
+script = ExtResource("1_t3s1t")
+room_template = ExtResource("2_daw73")
+
+[node name="Player" parent="." instance=ExtResource("3_kkhtx")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.1, 0.1)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
