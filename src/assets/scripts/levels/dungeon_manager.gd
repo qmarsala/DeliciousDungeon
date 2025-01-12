@@ -10,3 +10,5 @@ func _ready() -> void:
 		if child is Player:
 			player = child
 			break
+	#todo: store floor in game state so we can increment it
+	$Rooms.generate_floor(current_floor)

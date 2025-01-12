@@ -1,16 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx1ojtss4q6xc"]
+[gd_scene load_steps=10 format=3 uid="uid://bx1ojtss4q6xc"]
 
-[ext_resource type="Script" path="res://assets/scripts/dungeon_manager.gd" id="1_qac18"]
-[ext_resource type="Script" path="res://assets/scripts/room_generator2.gd" id="1_t3s1t"]
-[ext_resource type="PackedScene" uid="uid://bfsatmdo2yhif" path="res://scenes/levels/room_2.tscn" id="2_daw73"]
+[ext_resource type="Script" path="res://assets/scripts/levels/dungeon_manager.gd" id="1_qac18"]
+[ext_resource type="Script" path="res://assets/scripts/levels/room_generator2.gd" id="1_t3s1t"]
+[ext_resource type="PackedScene" uid="uid://bfsatmdo2yhif" path="res://scenes/levels/dungeon_rooms_two/room_2.tscn" id="2_daw73"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://scenes/player.tscn" id="3_kkhtx"]
+[ext_resource type="PackedScene" uid="uid://benb72lsdvig6" path="res://scenes/levels/dungeon_rooms_two/start.tscn" id="3_yqfn0"]
+[ext_resource type="PackedScene" uid="uid://bk8xhd2kwsvjy" path="res://scenes/levels/dungeon_rooms_two/room_2b.tscn" id="4_3q7es"]
+[ext_resource type="Shader" path="res://assets/fog.gdshader" id="5_x8cwi"]
+[ext_resource type="Texture2D" uid="uid://bituatka5prk2" path="res://assets/sprites/black.jpg" id="6_hk1ox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_507sm"]
+shader = ExtResource("5_x8cwi")
+shader_parameter/radius = 0.22
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/color = Color(0, 0, 0, 1)
 
 [node name="Dungeon2" type="Node2D"]
 script = ExtResource("1_qac18")
 
 [node name="Rooms" type="Node2D" parent="."]
 script = ExtResource("1_t3s1t")
+start_end_template = ExtResource("3_yqfn0")
 room_template = ExtResource("2_daw73")
+room_templateb = ExtResource("4_3q7es")
 
 [node name="Player" parent="." instance=ExtResource("3_kkhtx")]
 
@@ -20,3 +32,10 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="Fog" type="Sprite2D" parent="Player"]
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_507sm")
+scale = Vector2(2, 2)
+texture = ExtResource("6_hk1ox")
