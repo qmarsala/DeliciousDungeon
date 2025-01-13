@@ -1,12 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1bfcy70vhh2k"]
+[gd_scene load_steps=13 format=3 uid="uid://b1bfcy70vhh2k"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/player_ui.gd" id="1_bgem0"]
 [ext_resource type="Texture2D" uid="uid://8ellw2iqfg2t" path="res://assets/sprites/Foods_Potions_&_Potions/Foods/Food_10.png" id="2_of4rr"]
 [ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://assets/sprites/log.png" id="3_4hw07"]
+[ext_resource type="Texture2D" uid="uid://bfpuiwtfdsica" path="res://assets/ui/Tiles/Large tiles/Thin outline/tile_0000.png" id="4_lq6rb"]
+[ext_resource type="Texture2D" uid="uid://ddj3i2hpit0yy" path="res://assets/ui/Tiles/Large tiles/Thin outline/tile_0001.png" id="5_ilvjo"]
+[ext_resource type="Texture2D" uid="uid://cs3idyvxx0lfu" path="res://assets/ui/Tiles/Large tiles/Thin outline/tile_0032.png" id="6_5o3tt"]
+[ext_resource type="Texture2D" uid="uid://bdg0r1vpa0lw0" path="res://assets/ui/Tiles/Small tiles/Thin outline/tile_0138.png" id="7_lusg2"]
+[ext_resource type="Texture2D" uid="uid://d2dakhuvw43ku" path="res://assets/ui/Tiles/Small tiles/Thin outline/tile_0139.png" id="8_teyvk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p08b3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_51dl0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_41ahy"]
+font_color = Color(0.427451, 0.294118, 0.152941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0p4q2"]
+font_color = Color(0.427451, 0.294118, 0.152941, 1)
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -63,10 +74,10 @@ vertical_alignment = 1
 [node name="StatusLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 94.0
-offset_top = -77.0
-offset_right = 166.0
-offset_bottom = -59.0
+offset_left = 62.0
+offset_top = -66.0
+offset_right = 134.0
+offset_bottom = -48.0
 text = "Rested"
 label_settings = SubResource("LabelSettings_51dl0")
 horizontal_alignment = 1
@@ -82,25 +93,33 @@ text = "Status Effects:"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.827964, 0.119937, 0.216825, 1)
+modulate = Color(1, 0.186621, 0.203549, 1)
 layout_mode = 0
-offset_left = -165.0
-offset_top = -60.0
-offset_right = -108.0
-offset_bottom = -6.0
+offset_left = -110.0
+offset_top = -47.0
+offset_right = -70.0
+offset_bottom = -7.0
 mouse_filter = 2
 max_value = 10.0
 value = 5.0
 fill_mode = 3
 show_percentage = false
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -112.0
+offset_top = -49.0
+offset_right = -68.0
+offset_bottom = -5.0
+texture = ExtResource("6_5o3tt")
 
 [node name="HungerBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.568627, 0, 0.517647, 1)
+modulate = Color(0.750113, 0.000208695, 0.684298, 1)
 layout_mode = 0
-offset_left = 101.0
-offset_top = -61.0
-offset_right = 157.0
+offset_left = 76.0
+offset_top = -47.0
+offset_right = 116.0
 offset_bottom = -7.0
 mouse_filter = 2
 max_value = 10.0
@@ -108,98 +127,144 @@ value = 5.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Ability1Cooldown" type="ProgressBar" parent="."]
+[node name="TextureRect4" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -99.0
-offset_top = -45.0
-offset_right = -62.0
-offset_bottom = -7.0
+offset_left = 74.0
+offset_top = -49.0
+offset_right = 118.0
+offset_bottom = -5.0
+texture = ExtResource("6_5o3tt")
+
+[node name="Ability1Cooldown" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -37.0
+offset_right = -32.0
+offset_bottom = -5.0
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("5_ilvjo")
+texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="Ability1Cooldown"]
-layout_mode = 0
-offset_left = 1.0
+offset_left = 9.0
 offset_top = 3.0
-offset_right = 36.0
-offset_bottom = 35.0
+offset_right = 25.0
+offset_bottom = 29.0
 text = "1"
+label_settings = SubResource("LabelSettings_41ahy")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Ability2Cooldown" type="ProgressBar" parent="."]
+[node name="Ability2Cooldown" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = -48.0
-offset_top = -45.0
-offset_right = -11.0
-offset_bottom = -7.0
+offset_left = -30.0
+offset_top = -37.0
+offset_right = 2.0
+offset_bottom = -5.0
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("5_ilvjo")
+texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="Ability2Cooldown"]
-layout_mode = 0
-offset_left = 1.0
+offset_left = 9.0
 offset_top = 3.0
-offset_right = 36.0
-offset_bottom = 35.0
+offset_right = 25.0
+offset_bottom = 29.0
 text = "2"
+label_settings = SubResource("LabelSettings_41ahy")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Ability3Cooldown" type="ProgressBar" parent="."]
+[node name="Ability3Cooldown" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 4.0
-offset_top = -45.0
-offset_right = 41.0
-offset_bottom = -7.0
+offset_top = -37.0
+offset_right = 36.0
+offset_bottom = -5.0
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("5_ilvjo")
+texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="Ability3Cooldown"]
-layout_mode = 0
-offset_left = 1.0
+offset_left = 8.0
 offset_top = 3.0
-offset_right = 36.0
-offset_bottom = 35.0
+offset_right = 24.0
+offset_bottom = 29.0
 text = "3"
+label_settings = SubResource("LabelSettings_41ahy")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DashCooldown" type="ProgressBar" parent="."]
+[node name="DashCooldown" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = 54.0
-offset_top = -45.0
-offset_right = 91.0
-offset_bottom = -7.0
-value = 50.0
+offset_left = 38.0
+offset_top = -37.0
+offset_right = 70.0
+offset_bottom = -5.0
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("5_ilvjo")
+texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="DashCooldown"]
-layout_mode = 0
-offset_left = 1.0
+offset_left = 9.0
 offset_top = 3.0
-offset_right = 36.0
-offset_bottom = 35.0
+offset_right = 25.0
+offset_bottom = 29.0
 text = "Dash"
+label_settings = SubResource("LabelSettings_0p4q2")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="BarBackground" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = -59.0
+offset_top = -48.0
+offset_right = 66.0
+offset_bottom = -38.0
+
+[node name="TextureRect5" type="TextureRect" parent="BarBackground"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = -4.0
+offset_right = 129.0
+offset_bottom = 96.0
+rotation = 1.5708
+texture = ExtResource("7_lusg2")
+
+[node name="TextureRect6" type="TextureRect" parent="BarBackground"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -4.0
+offset_right = 29.0
+offset_bottom = 12.0
+rotation = 1.5708
+texture = ExtResource("8_teyvk")
+
+[node name="TextureRect7" type="TextureRect" parent="BarBackground"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 12.0
+offset_right = 129.0
+offset_bottom = 28.0
+rotation = -1.5708
+texture = ExtResource("8_teyvk")
 
 [node name="CastBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 visible = false
-modulate = Color(0.909804, 0.666667, 0.0823529, 1)
+modulate = Color(1, 0.945098, 0.823529, 1)
 layout_mode = 0
-offset_left = -98.0
-offset_top = -60.0
-offset_right = 185.0
-offset_bottom = -33.0
-scale = Vector2(0.663405, 0.435025)
+offset_left = -56.0
+offset_top = -46.0
+offset_right = 64.0
+offset_bottom = -42.0
 mouse_filter = 2
+value = 38.64
 show_percentage = false
 
 [node name="RestBar" type="ProgressBar" parent="."]
@@ -207,10 +272,9 @@ unique_name_in_owner = true
 visible = false
 modulate = Color(0.536216, 0.000576895, 0.617464, 1)
 layout_mode = 0
-offset_left = -98.0
-offset_top = -60.0
-offset_right = 185.0
-offset_bottom = -33.0
-scale = Vector2(0.663405, 0.435025)
+offset_left = -56.0
+offset_top = -46.0
+offset_right = 64.0
+offset_bottom = -42.0
 mouse_filter = 2
 show_percentage = false

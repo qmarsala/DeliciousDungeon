@@ -10,13 +10,13 @@ class_name PlayerUI
 @onready var food_count_label: Label = %FoodCountLabel
 @onready var wood_count_label: Label = %WoodCountLabel
 @onready var status_label: Label = %StatusLabel
-@onready var ability_1_cooldown: ProgressBar = $Ability1Cooldown
-@onready var ability_2_cooldown: ProgressBar = $Ability2Cooldown
-@onready var ability_3_cooldown: ProgressBar = $Ability3Cooldown
-@onready var dash_cooldown: ProgressBar = $DashCooldown
+@onready var ability_1_cooldown: TextureProgressBar = $Ability1Cooldown
+@onready var ability_2_cooldown: TextureProgressBar = $Ability2Cooldown
+@onready var ability_3_cooldown: TextureProgressBar = $Ability3Cooldown
+@onready var dash_cooldown: TextureProgressBar = $DashCooldown
 
 var ability_slots: Array[AbilitySlot]
-var ability_cooldowns: Array[ProgressBar]
+var ability_cooldowns: Array[TextureProgressBar]
 
 func _ready() -> void:
 	SignalBusService.Casting.connect(update_cast_bar)
@@ -95,8 +95,10 @@ func update_cast_bar(time_left: float, total_time: float):
 	if cast_bar:
 		var progress = get_progress_value(time_left, total_time)
 		if progress <= 1 or progress >= 99: 
+			$BarBackground.hide()
 			cast_bar.hide()
 		else:
+			$BarBackground.show()
 			cast_bar.show()
 			cast_bar.value = progress
 
@@ -104,7 +106,9 @@ func update_rest_bar(time_left: float, total_time: float):
 	if rest_bar:
 		var progress = get_progress_value(time_left, total_time)
 		if progress <= 1 or progress >= 99: 
+			$BarBackground.hide()
 			rest_bar.hide()
 		else:
+			$BarBackground.show()
 			rest_bar.show()
 			rest_bar.value = progress
