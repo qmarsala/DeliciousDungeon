@@ -3,9 +3,7 @@
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tileset_bg.tres" id="1_4ohv1"]
 [ext_resource type="Script" path="res://assets/scripts/levels/room_2.gd" id="1_w6268"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_a2tku"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7a3k6"]
-font_size = 65
+[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="4_oolb5"]
 
 [node name="Room2" type="Node2D"]
 script = ExtResource("1_w6268")
@@ -60,10 +58,6 @@ tile_map_data = PackedByteArray("AAD4/wAAAAACAAQAAAD4/wEAAAACAAUAAAD5/wAAAAACAAQ
 enabled = false
 tile_set = ExtResource("2_a2tku")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -135.0
-offset_top = -56.0
-offset_right = 128.0
-offset_bottom = 61.0
-label_settings = SubResource("LabelSettings_7a3k6")
-horizontal_alignment = 1
+[node name="StaticBody2D" parent="." instance=ExtResource("4_oolb5")]
+position = Vector2(-103, -114)
+lit = false

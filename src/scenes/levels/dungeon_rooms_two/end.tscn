@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://mclk44lljhp6"]
+[gd_scene load_steps=7 format=4 uid="uid://mclk44lljhp6"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room_2.gd" id="1_pv520"]
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tileset_bg.tres" id="2_cvc66"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="3_ty5ir"]
+[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="4_640hw"]
+[ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="5_w78fl"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7a3k6"]
-font_size = 65
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbsex"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pv520")
@@ -60,9 +61,12 @@ tile_map_data = PackedByteArray("AAD6//3/AAAEAAMAAAD6//7/AAAEAAMAAAD6////AAAEAAM
 enabled = false
 tile_set = ExtResource("3_ty5ir")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -143.0
-offset_top = -83.0
-offset_right = 149.0
-offset_bottom = 84.0
-label_settings = SubResource("LabelSettings_7a3k6")
+[node name="OnPlayerAreaTrigger" parent="." instance=ExtResource("4_640hw")]
+position = Vector2(8, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnPlayerAreaTrigger"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bbsex")
+
+[node name="ChangeLevelTriggerStrategy" parent="OnPlayerAreaTrigger" instance=ExtResource("5_w78fl")]
+scene = 0

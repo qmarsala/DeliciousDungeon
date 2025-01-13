@@ -3,7 +3,8 @@ extends Node2D
 
 @export var room_size: int = 320
 
-@export var start_end_template: PackedScene
+@export var start_template: PackedScene
+@export var end_template: PackedScene
 @export var room_template: PackedScene
 @export var room_templateb: PackedScene
 
@@ -64,8 +65,10 @@ func place_tiles():
 	for pos in tile_positions:
 		# todo: tile set
 		var template = room_template
-		if i == 0 or i == tile_positions.size() - 1: 
-			template = start_end_template
+		if i == 0:
+			template = start_template
+		elif i == tile_positions.size() - 1: 
+			template = end_template
 		elif randf() < .5:
 			template = room_templateb
 		var instance = template.instantiate() as Room2

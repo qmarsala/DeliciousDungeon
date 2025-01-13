@@ -20,7 +20,7 @@ size = Vector2(20, 7)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ew13i"]
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="Chest" type="StaticBody2D"]
 collision_mask = 7
 script = ExtResource("1_3cevd")
 spawn_rate = 0.334

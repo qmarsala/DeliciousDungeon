@@ -5,9 +5,6 @@ extends Node2D
 var neighbors: Array[Vector2] = []
 var room_size: int = 0
 
-func _ready():
-	$Label.text = str(global_position)
-
 func init(room_size: int, neighbors: Array[Vector2]):
 	self.room_size = room_size
 	self.neighbors = neighbors
