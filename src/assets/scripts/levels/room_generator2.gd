@@ -5,8 +5,7 @@ extends Node2D
 
 @export var start_template: PackedScene
 @export var end_template: PackedScene
-@export var room_template: PackedScene
-@export var room_templateb: PackedScene
+@export var room_templates: Array[PackedScene]
 
 var directions: Array[Vector2] = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
 var can_turn_right: bool = true
@@ -64,13 +63,13 @@ func place_tiles():
 	var i = 0
 	for pos in tile_positions:
 		# todo: tile set
-		var template = room_template
+		var template
 		if i == 0:
 			template = start_template
 		elif i == tile_positions.size() - 1: 
 			template = end_template
-		elif randf() < .5:
-			template = room_templateb
+		else:
+			template = room_templates.pick_random()
 		var instance = template.instantiate() as Room2
 		instance.global_position = pos.snapped(Vector2.ZERO) 
 		instance.init(room_size, tile_positions.filter(func (p:Vector2): return is_neighbor(p, pos)))
