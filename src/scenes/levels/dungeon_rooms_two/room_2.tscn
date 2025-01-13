@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bfsatmdo2yhif"]
+[gd_scene load_steps=6 format=4 uid="uid://bfsatmdo2yhif"]
 
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tileset_bg.tres" id="1_4ohv1"]
 [ext_resource type="Script" path="res://assets/scripts/levels/room_2.gd" id="1_w6268"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_a2tku"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="4_oolb5"]
+[ext_resource type="PackedScene" uid="uid://c56wrcs86blaf" path="res://scenes/enemy_spawner.tscn" id="5_kvd0k"]
 
 [node name="Room2" type="Node2D"]
 script = ExtResource("1_w6268")
@@ -61,3 +62,12 @@ tile_set = ExtResource("2_a2tku")
 [node name="StaticBody2D" parent="." instance=ExtResource("4_oolb5")]
 position = Vector2(-103, -114)
 lit = false
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_kvd0k")]
+position = Vector2(-58, 73)
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("5_kvd0k")]
+position = Vector2(84, 77)
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("5_kvd0k")]
+position = Vector2(88, -56)
