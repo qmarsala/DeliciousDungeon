@@ -18,15 +18,22 @@ var end_position: Vector2 = Vector2.ZERO
 
 # todo: increase with dungeon floor
 # idea: increase path count by floor_level, then increase tile_count every time path_count passes 4 or 5 - to a min of 1 or 2?
-var tile_count: int = 7
+var tile_count: int = 6
 var path_count: int = 1
 var secondary_path_min_tiles: int = 3
 var turn_ratio = randf_range(0.15, .85)
 var turn_spacing = 1
 var tiles_without_turning = 0
 
-#func _ready() -> void:
 func generate_floor(floor: int) -> void:
+	path_count += floor
+	if path_count > 4:
+		path_count = 2
+		tile_count += 1
+	
+	#todo:
+	# Chose a different tile set on deeper floors
+	# - water til floor 3, acid til floor 6, then lava?
 	generate_tile_positions()
 	place_tiles()
 
@@ -36,10 +43,8 @@ func generate_tile_positions():
 		current_direction = starting_direction
 		current_position = start_position
 		if pc > 0:
-			current_direction = directions.pick_random()
-		if pc > 0:
 			current_position = tile_positions[randi_range(tile_count * .3, tile_count * .7)]
-			next_position(false)
+			next_position()
 		for tc in tile_count:
 			if tile_positions.has(current_position): 
 				next_position(false)
@@ -61,27 +66,23 @@ func next_position(turn_enabled: bool = true) -> void:
 	current_position = (current_position + next_direction * room_size).snappedf(1)
 
 func turn() -> void:
-	print('turn')
 	turn_degrees *= -1
 	current_direction = current_direction.rotated(deg_to_rad(turn_degrees))
 
 func place_tiles():
-	var i = 0
 	for pos in tile_positions:
 		# todo: tile set
 		var template
-		if i == 0:
+		if pos.is_equal_approx(start_position):
 			template = start_template
 		elif pos.is_equal_approx(end_position): 
 			template = end_template
 		else:
 			template = room_templates.pick_random()
 		var instance = template.instantiate() as Room2
-		instance.global_position = pos.snappedf(1) 
-		print(instance.global_position)
+		instance.global_position = pos.snappedf(1)
 		instance.init(room_size, tile_positions.filter(func (p:Vector2): return is_neighbor(p, pos)))
 		add_child(instance)
-		i += 1
 
 func is_neighbor(p: Vector2, pos: Vector2):
 	return p.snappedf(1).is_equal_approx(Vector2(pos.x - room_size, pos.y).snappedf(1))\
