@@ -8,15 +8,22 @@ extends Node2D
 @export var room_templates: Array[PackedScene]
 
 var directions: Array[Vector2] = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
-var can_turn_right: bool = true
+var starting_direction: Vector2
+var current_position: Vector2
+var current_direction: Vector2
+var turn_degrees: int = 90
 var tile_positions: Array[Vector2] = []
 var start_position: Vector2 = Vector2.ZERO
 var end_position: Vector2 = Vector2.ZERO
 
 # todo: increase with dungeon floor
-var path_count: int = 10
+# idea: increase path count by floor_level, then increase tile_count every time path_count passes 4 or 5 - to a min of 1 or 2?
 var tile_count: int = 10
-var branch_size: int = 10
+var path_count: int = 3
+var secondary_path_min_tiles: int = 3
+var turn_ratio = 1#randf_range(0.15, .85)
+var turn_spacing = 1
+var tiles_without_turning = 0
 
 #func _ready() -> void:
 func generate_floor(floor: int) -> void:
@@ -24,34 +31,39 @@ func generate_floor(floor: int) -> void:
 	place_tiles()
 
 func generate_tile_positions():
+	starting_direction = directions.pick_random()
 	for pc in path_count:
-		var direction = directions.pick_random()
-		var turn_ratio = randf_range(0.15, .85)
-		var current_position = start_position
+		current_direction = starting_direction
+		current_position = start_position
 		if pc > 0:
-			current_position = tile_positions[randi_range(tile_count * .3, tile_count * .7)] + direction * room_size
+			current_direction = directions.pick_random()
+		if pc > 0:
+			current_position = tile_positions[randi_range(tile_count * .3, tile_count * .7)]
+			next_position(false)
 		for tc in tile_count:
-			var pos = current_position.snappedf(1)
-			if tile_positions.has(pos): 
-				print('skipping!')
-				current_position += direction * room_size
+			if tile_positions.has(current_position): 
+				next_position(false)
 				continue
-			if (pc > 0 and tc > branch_size):
+			if (pc > 0 and tc > secondary_path_min_tiles and randf() < .5):
 				break
-			tile_positions.append(pos)
-			if randf() < turn_ratio:
-				direction = turn(direction)
-			current_position += direction * room_size
-			if tc >= tile_count - 1:
+			if pc < 1 and tc >= tile_count - 1:
 				end_position = current_position
+			tile_positions.append(current_position)
+			next_position()
 
-func turn(direction: Vector2) -> Vector2:
-	if can_turn_right:
-		can_turn_right = false
-		return direction.rotated(deg_to_rad(90))
+func next_position(turn_enabled: bool = true) -> void:
+	var next_direction: Vector2 = current_direction
+	if turn_enabled and tiles_without_turning >= turn_spacing and randf() <= turn_ratio:
+		tiles_without_turning = 0
+		turn()
 	else:
-		can_turn_right = true
-		return direction.rotated(deg_to_rad(-90))
+		tiles_without_turning += 1
+	current_position = (current_position + next_direction * room_size).snappedf(1)
+
+func turn() -> void:
+	print('turn')
+	turn_degrees *= -1
+	current_direction = current_direction.rotated(deg_to_rad(turn_degrees))
 
 func place_tiles():
 	var i = 0
@@ -60,7 +72,7 @@ func place_tiles():
 		var template
 		if i == 0:
 			template = start_template
-		elif i == tile_positions.size() - 1: 
+		elif pos.is_equal_approx(end_position): 
 			template = end_template
 		else:
 			template = room_templates.pick_random()
