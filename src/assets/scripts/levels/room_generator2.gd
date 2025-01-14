@@ -18,10 +18,10 @@ var end_position: Vector2 = Vector2.ZERO
 
 # todo: increase with dungeon floor
 # idea: increase path count by floor_level, then increase tile_count every time path_count passes 4 or 5 - to a min of 1 or 2?
-var tile_count: int = 10
-var path_count: int = 3
+var tile_count: int = 7
+var path_count: int = 1
 var secondary_path_min_tiles: int = 3
-var turn_ratio = 1#randf_range(0.15, .85)
+var turn_ratio = randf_range(0.15, .85)
 var turn_spacing = 1
 var tiles_without_turning = 0
 
