@@ -14,15 +14,14 @@ var start_position: Vector2 = Vector2.ZERO
 var end_position: Vector2 = Vector2.ZERO
 
 # todo: increase with dungeon floor
-var path_count: int = 3
+var path_count: int = 10
 var tile_count: int = 10
-var min_branch: int = 5
+var branch_size: int = 10
 
 #func _ready() -> void:
 func generate_floor(floor: int) -> void:
 	generate_tile_positions()
 	place_tiles()
-
 
 func generate_tile_positions():
 	for pc in path_count:
@@ -32,24 +31,19 @@ func generate_tile_positions():
 		if pc > 0:
 			current_position = tile_positions[randi_range(tile_count * .3, tile_count * .7)] + direction * room_size
 		for tc in tile_count:
-			if tile_positions.has(current_position.snapped(Vector2.ZERO)): 
+			var pos = current_position.snappedf(1)
+			if tile_positions.has(pos): 
+				print('skipping!')
 				current_position += direction * room_size
 				continue
-			if (pc > 0 \
-				 and (tc >= tile_count * .6 \
-				 or tc > min_branch and randf() <= .5 \
-				 or current_position.distance_to(end_position) <= room_size \
-				 or current_position.distance_to(start_position) <= room_size)):
+			if (pc > 0 and tc > branch_size):
 				break
-
-			tile_positions.append(current_position.snapped(Vector2.ZERO))
-			if tc >= tile_count - 1:
-				end_position = current_position
-				continue
-
-			current_position += direction * room_size
+			tile_positions.append(pos)
 			if randf() < turn_ratio:
 				direction = turn(direction)
+			current_position += direction * room_size
+			if tc >= tile_count - 1:
+				end_position = current_position
 
 func turn(direction: Vector2) -> Vector2:
 	if can_turn_right:
@@ -71,13 +65,14 @@ func place_tiles():
 		else:
 			template = room_templates.pick_random()
 		var instance = template.instantiate() as Room2
-		instance.global_position = pos.snapped(Vector2.ZERO) 
+		instance.global_position = pos.snappedf(1) 
+		print(instance.global_position)
 		instance.init(room_size, tile_positions.filter(func (p:Vector2): return is_neighbor(p, pos)))
 		add_child(instance)
 		i += 1
 
 func is_neighbor(p: Vector2, pos: Vector2):
-	return p.x == pos.x - room_size and p.y == pos.y \
-		or p.x == pos.x and p.y == pos.y - room_size \
-		or p.x == pos.x + room_size and p.y == pos.y \
-		or p.x == pos.x and p.y == pos.y + room_size
+	return p.snappedf(1).is_equal_approx(Vector2(pos.x - room_size, pos.y).snappedf(1))\
+		or p.snappedf(1).is_equal_approx(Vector2(pos.x, pos.y - room_size).snappedf(1))\
+		or p.snappedf(1).is_equal_approx(Vector2(pos.x + room_size, pos.y).snappedf(1))\
+		or p.snappedf(1).is_equal_approx(Vector2(pos.x, pos.y + room_size).snappedf(1))
