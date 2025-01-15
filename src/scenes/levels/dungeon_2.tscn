@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bx1ojtss4q6xc"]
+[gd_scene load_steps=17 format=3 uid="uid://bx1ojtss4q6xc"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/dungeon_manager.gd" id="1_qac18"]
 [ext_resource type="Script" path="res://assets/scripts/levels/room_generator2.gd" id="1_t3s1t"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://blyqfd0wf38q8" path="res://scenes/levels/dungeon_rooms_two/something_new1.tscn" id="9_ckifb"]
 [ext_resource type="PackedScene" uid="uid://cdv6nl02p6t7g" path="res://scenes/levels/dungeon_rooms_two/fist_bump.tscn" id="10_fhkbw"]
 [ext_resource type="PackedScene" uid="uid://ddv0mfxxd3mqw" path="res://scenes/levels/dungeon_rooms_two/fist_bump2.tscn" id="11_dac3l"]
+[ext_resource type="PackedScene" uid="uid://c44d43vnnotwq" path="res://scenes/levels/dungeon_rooms_two/zig.tscn" id="12_qpsxc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_507sm"]
 shader = ExtResource("5_x8cwi")
@@ -28,7 +29,7 @@ script = ExtResource("1_qac18")
 script = ExtResource("1_t3s1t")
 start_template = ExtResource("3_yqfn0")
 end_template = ExtResource("4_eghcd")
-room_templates = Array[PackedScene]([ExtResource("5_bfsvt"), ExtResource("2_daw73"), ExtResource("4_3q7es"), ExtResource("8_tmn4x"), ExtResource("9_ckifb"), ExtResource("10_fhkbw"), ExtResource("11_dac3l")])
+room_templates = Array[PackedScene]([ExtResource("5_bfsvt"), ExtResource("2_daw73"), ExtResource("4_3q7es"), ExtResource("8_tmn4x"), ExtResource("9_ckifb"), ExtResource("10_fhkbw"), ExtResource("11_dac3l"), ExtResource("12_qpsxc")])
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0.756465, 0.515074, 0.236785, 1)
@@ -38,14 +39,12 @@ blend_mode = 1
 [node name="Player" parent="." instance=ExtResource("3_kkhtx")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.1, 0.1)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Fog" type="Sprite2D" parent="Player"]
-visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_507sm")
 scale = Vector2(2, 2)
