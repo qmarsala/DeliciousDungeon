@@ -10,15 +10,14 @@ var room_size: int = 0
 func init(room_size: int, neighbors: Array[Vector2]):
 	self.room_size = room_size
 	self.neighbors = neighbors
-	if not self.neighbors.has(Vector2(global_position.x, global_position.y - room_size).snappedf(1)):
-		$NorthCoverBG.enabled = true
-		$NorthCover.enabled = true
-	if not self.neighbors.has(Vector2(global_position.x + room_size, global_position.y).snappedf(1)):
-		$EastCoverBG.enabled = true
-		$EastCover.enabled = true
-	if not self.neighbors.has(Vector2(global_position.x, global_position.y + room_size).snappedf(1)):
-		$SouthCoverBG.enabled = true
-		$SouthCover.enabled = true
-	if not self.neighbors.has(Vector2(global_position.x - room_size, global_position.y).snappedf(1)):
-		$WestCoverBG.enabled = true
-		$WestCover.enabled = true
+	enable_area($North, self.neighbors.has(Vector2(global_position.x, global_position.y - room_size).snappedf(1)))
+	enable_area($East, self.neighbors.has(Vector2(global_position.x + room_size, global_position.y).snappedf(1)))
+	enable_area($South, self.neighbors.has(Vector2(global_position.x, global_position.y + room_size).snappedf(1)))
+	enable_area($West, self.neighbors.has(Vector2(global_position.x - room_size, global_position.y).snappedf(1)))
+
+func enable_area(tile: Node2D,  is_connector: bool) -> void:
+	for c in tile.get_children():
+		if c.name.contains("Cover"):
+			c.enabled = not is_connector
+		else:
+			c.enabled = is_connector
