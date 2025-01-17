@@ -23,5 +23,6 @@ extends Resource
 @export var ideal_distance_min = 11
 @export var ideal_distance_max = 19
 @export var max_distance = 80
+@export var idle_at_distance = 256
 
 @export var ability: Ability 

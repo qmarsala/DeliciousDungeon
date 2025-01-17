@@ -43,5 +43,7 @@ func handle_physics_process(delta: float):
 		var direction = player.global_position - enemy.global_position
 		if direction.length() <= enemy.data.vision_range:
 			Transitioned.emit(self, "Engaging")
+		elif direction.length() >= enemy.data.idle_at_distance:
+			Transitioned.emit(self, "Idle")
 	else:
 		player = get_tree().get_first_node_in_group("Player")
