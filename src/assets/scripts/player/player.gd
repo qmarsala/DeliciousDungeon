@@ -82,7 +82,7 @@ func complete_rest() -> void:
 	player_items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
-	nutrition = min(STARTING_NUTRITION, nutrition + STARTING_NUTRITION * .65)
+	nutrition = STARTING_NUTRITION
 	health_component.heal(health_component.starting_health * .35) # todo: should come from food
 	player_rest_sound.play()
 
@@ -139,10 +139,6 @@ func increase_max_health(amount: float, duration: float):
 
 func increase_min_damage(amount: float, duration: float):
 	pass
-
-func _on_ability_pressed(ability_id) -> void:
-	var ability = weapon.get_ability(ability_id)
-	# if ability. use it
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or health_component.is_dead(): return
