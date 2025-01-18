@@ -19,9 +19,8 @@ func exit():
 	reposition_cooldown.start(cooldown)
 
 func handle_physics_process(delta: float):
-		
 	if not is_instance_valid(player):
-		Transitioned.emit(self, "Idle")
+		player = get_tree().get_first_node_in_group("Player")
 		return
 
 	direction = player.global_position - enemy.global_position
