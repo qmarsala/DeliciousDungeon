@@ -28,6 +28,6 @@ strength = 1.15
 haste = 0.2
 weapon_abilities = Array[ExtResource("2_ovfft")]([SubResource("Resource_7ugmf"), SubResource("Resource_jp2qe")])
 weapon_level = 2
-item_id = 2
+item_id = 3
 name = "Fire Staff"
 description = "Fire Staff"

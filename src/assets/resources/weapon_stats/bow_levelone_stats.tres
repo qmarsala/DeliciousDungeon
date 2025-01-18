@@ -28,6 +28,6 @@ strength = 1.0
 haste = 0.0
 weapon_abilities = Array[ExtResource("2_tdr80")]([SubResource("Resource_0tgx5"), SubResource("Resource_2dpyk")])
 weapon_level = 1
-item_id = 3
+item_id = 4
 name = "Bow"
 description = "Bow"

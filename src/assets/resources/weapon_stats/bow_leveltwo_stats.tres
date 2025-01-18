@@ -28,6 +28,6 @@ strength = 1.15
 haste = 0.2
 weapon_abilities = Array[ExtResource("2_g2gy2")]([SubResource("Resource_yv7pr"), SubResource("Resource_5f65v")])
 weapon_level = 2
-item_id = 3
+item_id = 4
 name = "Bow"
 description = "A bettew bow"
