@@ -12,7 +12,7 @@ func _ready() -> void:
 	attack.status_effects = data.status_effects
 	attack.effect_synergy = data.status_effect_synergy
 	melee_hurtbox.init(attack, data.targets_player, data.targets_enemy)
-	melee_hurtbox.position.x = aim.target_position.x - 8 # todo: get shape radius
+	melee_hurtbox.position.x = aim.target_position.x - (data.ability_range / 2)
 
 var time = 0
 func _process(delta: float) -> void:
