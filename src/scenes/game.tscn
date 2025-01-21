@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://c44qt8656qxed" path="res://scenes/levels/outdoors.tscn" id="2_re2jb"]
-[ext_resource type="PackedScene" uid="uid://v8yl2qd4myvg" path="res://scenes/levels/dungeon.tscn" id="3_sqakx"]
+[ext_resource type="PackedScene" uid="uid://bx1ojtss4q6xc" path="res://scenes/levels/dungeon_2.tscn" id="3_3oofp"]
 [ext_resource type="PackedScene" uid="uid://dl4c3hhbw5max" path="res://scenes/main_menu.tscn" id="4_yc5bf"]
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://scenes/damage_number.tscn" id="5_k5bt7"]
 [ext_resource type="Script" path="res://assets/quests/quest_poc.gd" id="6_gulh1"]
@@ -101,7 +101,7 @@ _data = {
 [node name="Main" type="Node2D"]
 script = ExtResource("1_j0ii5")
 outdoors = ExtResource("2_re2jb")
-dungeon = ExtResource("3_sqakx")
+dungeon = ExtResource("3_3oofp")
 main_menu = ExtResource("4_yc5bf")
 damage_number = ExtResource("5_k5bt7")
 quests = Array[ExtResource("6_gulh1")]([ExtResource("8_ek0gc"), ExtResource("8_wsfpj"), ExtResource("6_vyjaa"), ExtResource("7_abv55"), ExtResource("6_h1k7r")])

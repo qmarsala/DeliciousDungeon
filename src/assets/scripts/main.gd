@@ -11,14 +11,8 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $TransitionLayer/AnimationPlayer
 @onready var quest_log_ui: Control = $QuestLogLayer/QuestLogUI
 
-#need to keep track of player data... is this where 'RefCounted' comes in?
-# how do we want to track this? for now maybe we can pass in a dictionary or something?
-var player_items: Dictionary = {
-	Enums.Items.Wood: 0,
-	Enums.Items.Food: 0
-}
+@export var game_data: GameData
 
-var is_outdoors = false
 var current_scene_type: Enums.Scenes = Enums.Scenes.Main
 var current_scene: Node2D
 var next_scene: PackedScene
@@ -73,7 +67,7 @@ func _perform_scene_change():
 		if c.is_in_group("Player"):
 			var player = c as Player
 			player.player_died.connect(_game_over)
-			player.player_items = player_items
+			player.player_items = game_data.player_items
 			print(player.player_items)
 			break
 	world.add_child.call_deferred(current_scene)
@@ -82,14 +76,12 @@ func _perform_scene_change():
 		$QuestLogLayer.show()
 
 func _game_over():
-	# todo: death penalty of some kind.
-	# thinking maybe you need to 'pay gold' or 'discard an item'?
 	QuestSystemService.reset_quests()
 	if GameManager.game_started and $QuestLogLayer.visible:
 		GameManager.game_over()
 		$QuestLogLayer.hide()
-	player_items[Enums.Items.Wood] = 0
-	player_items[Enums.Items.Food] = 0
+	# what is the role of game manager? do we need it?
+	game_data.end_game()
 	_change_level(Enums.Scenes.Main)
 
 func _add_damage_number(damage: float, position: Vector2, is_target_player: bool):
