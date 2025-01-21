@@ -2,7 +2,10 @@ class_name DungeonManager
 extends Node2D
 
 var player: Player
-var current_floor: int = 0
+var current_floor: int = 6
+
+func init(game_data: GameData): 
+	current_floor = game_data.current_floor
 
 func _ready() -> void:
 	var children = get_children()
@@ -10,5 +13,4 @@ func _ready() -> void:
 		if child is Player:
 			player = child
 			break
-	#todo: store floor in game state so we can increment it
 	$Rooms.generate_floor(current_floor)

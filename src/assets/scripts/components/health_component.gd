@@ -8,6 +8,8 @@ signal HealthDepleted
 
 # still unsure how I feel about this, maybe it make sense
 # that as a component of the character we have access to the character?
+
+# how do we persist this current health in the player/enemy data?
 @export var node: Node2D
 @export var starting_health : float = 5
 @export var signal_damage: bool = true
@@ -18,9 +20,12 @@ func is_dead() -> bool :
 	return health <= 0
 
 func _ready() -> void:
-	health = starting_health
 	if not node:
 		node = get_parent()
+		if node.has_method("get_data"):
+			var data = node.get_data()
+			starting_health = data.starting_health
+	health = starting_health
 
 # todo: what about armour/effects that reduce damage
 # should we have th parent control the final damage somehow?

@@ -33,7 +33,6 @@ collision_layer = 524290
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_511jo")
-hunger_enabled = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5)

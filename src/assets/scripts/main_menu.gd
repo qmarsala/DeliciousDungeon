@@ -1,5 +1,10 @@
 extends Node2D
 
+var game_started: bool
+
+func init(game_data: GameData):
+	game_started = game_data.game_started
+
 func _ready() -> void:
-	if GameManager.game_started:
+	if game_started:
 		$Label.hide()
