@@ -5,13 +5,7 @@ signal player_died
 signal equipped_weapon
 signal unequipped_weapon
 
-#todo: player data
-const SPEED = 60.0
-const DASH_MULTIPLIER = 1.75
-const DASH_TIME = .5
-const DASH_COOLDOWN = 1
-const INTERACTION_RANGE = 15.0
-const STARTING_NUTRITION = 10
+@export var player_data: PlayerData
 
 @export var hunger_enabled: bool = true
 
@@ -36,33 +30,23 @@ const STARTING_NUTRITION = 10
 @onready var hand: Node2D = $Hand
 
 var rest_is_cooldown = false
-#todo: inventory
-#this comes from 'game' don't like it, but poc'ing having player data outside of player
-var player_items: Dictionary = {0:1,1:1}
-var nutrition: float
-
 var move_target: Vector2
 var move_disabled: bool
 var is_dashing: bool
 var is_dash_cooldown: bool
-
-#how else could we do this?
-# if hills go east west we may also want to pitch the angle of movement
 var is_hill: bool
-
-#temp:
-var weapon_item: Item
 var weapon: Weapon
 var weapon_equipped: bool
 
 func _ready() -> void:
+	player_data.reset_nutrition()
+	player_data.reset_health()
 	state_machine.init(self)
-	health_component.HealthDepleted.connect(_on_health_depleted)
 	status_effects_component.init(health_component, state_machine)
-	nutrition = STARTING_NUTRITION
-	move_target = global_position
+	health_component.HealthDepleted.connect(_on_health_depleted)
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	hitbox.connect_weapon_events(equipped_weapon, unequipped_weapon)
+	move_target = global_position
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
@@ -73,16 +57,16 @@ func _process(delta: float) -> void:
 		destination_marker.hide()
 
 func begin_rest() -> void:
-	if player_items[Enums.Items.Food] < 1 or rest_is_cooldown: return
+	if player_data.items[Enums.Items.Food] < 1 or rest_is_cooldown: return
 	state_machine.transition_to("Rest")
 
 # should this live in the resting state? or just be called from there?
 func complete_rest() -> void:
 	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
-	player_items[Enums.Items.Food] -= 1
+	player_data.items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
-	nutrition = STARTING_NUTRITION
+	player_data.reset_nutrition()
 	health_component.heal(health_component.starting_health * .35) # todo: should come from food
 	player_rest_sound.play()
 
@@ -93,21 +77,21 @@ func pickup(item: Item) -> void:
 	elif item.data is PotionData:
 		drink(item)
 	else:
-		player_items[item.data.item_id] += 1
+		player_data.items[item.data.item_id] += 1
 
 func equip(item: Item) -> void:
 	if weapon_equipped:
 		unequip()
 	weapon_equipped = true
-	weapon_item = item
-	weapon = weapon_item.create_item_scene() as Weapon
+	player_data.weapon = item
+	weapon = player_data.weapon.create_item_scene() as Weapon
 	weapon.equip(self)
 	equipped_weapon.emit(weapon)
 
 func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
-	ItemDropService.drop_item(weapon_item, global_position)
+	ItemDropService.drop_item(player_data.weapon_item, global_position)
 	unequipped_weapon.emit()
 
 func drink(item: Item):
@@ -115,7 +99,7 @@ func drink(item: Item):
 	if potion.healing > 0:
 		health_component.heal(potion.healing)
 	if potion.nutrition > 0:
-		nutrition += potion.nutrition
+		player_data.nutrition += potion.nutrition
 
 func interact() -> void:
 	var result = interaction_ray_cast.get_collider()
@@ -124,13 +108,13 @@ func interact() -> void:
 
 func get_armour_value() -> float:
 	if weapon_equipped:
-		return weapon_item.data.armour
+		return player_data.weapon.data.armour
 	else:
 		return 0
 
 func get_evasion_value() -> float:
 	if weapon_equipped:
-		return weapon_item.data.evasion
+		return player_data.weapon.data.evasion
 	else:
 		return 0
 
@@ -142,10 +126,10 @@ func increase_min_damage(amount: float, duration: float):
 
 func _on_hunger_timer_timeout() -> void:
 	if not hunger_enabled or health_component.is_dead(): return
-	if nutrition <= 0:
+	if player_data.nutrition <= 0:
 		health_component.receive_damage(1)
 	else:
-		nutrition -= 1
+		player_data.nutrition -= 1
 
 func _on_health_depleted() -> void:
 	state_machine.transition_to("Dead")
