@@ -1,19 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8s7nl3sdl2xv"]
+[gd_scene load_steps=7 format=3 uid="uid://b8s7nl3sdl2xv"]
 
 [ext_resource type="Script" path="res://assets/scripts/items/chest.gd" id="1_3cevd"]
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_qy1vr"]
-[ext_resource type="Script" path="res://assets/resources/items/item.gd" id="3_es4yf"]
-[ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://assets/resources/items/weapons/bow_leveltwo.tres" id="4_p0lmn"]
-[ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/resources/items/weapons/firestaff_leveltwo.tres" id="5_6ec4j"]
-[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_02.tres" id="5_otbtn"]
+[ext_resource type="Resource" uid="uid://fddsku4ra52f" path="res://assets/resources/items/chest_drop_table.tres" id="2_y27et"]
 [ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="7_kbtk6"]
-[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/resources/items/wood.tres" id="7_v1b2c"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/food.tres" id="8_2nmhp"]
-[ext_resource type="Resource" uid="uid://d3wjhg6pl0aea" path="res://assets/resources/items/potions/healing_potion.tres" id="8_ndjty"]
-[ext_resource type="Resource" uid="uid://bup0epkdls56c" path="res://assets/resources/items/potions/nutrition_potion.tres" id="9_dmrlo"]
-[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/weapons/sword_01.tres" id="10_vq1rf"]
-[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/weapons/bow_levelone.tres" id="11_a7mhq"]
-[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/resources/items/weapons/firestaff_levelone.tres" id="12_x2v4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiht7"]
 size = Vector2(20, 7)
@@ -24,7 +14,7 @@ size = Vector2(20, 7)
 collision_mask = 7
 script = ExtResource("1_3cevd")
 spawn_rate = 0.334
-items = Array[ExtResource("3_es4yf")]([ExtResource("8_ndjty"), ExtResource("9_dmrlo"), ExtResource("11_a7mhq"), ExtResource("4_p0lmn"), ExtResource("12_x2v4g"), ExtResource("5_6ec4j"), ExtResource("10_vq1rf"), ExtResource("5_otbtn"), ExtResource("7_v1b2c"), ExtResource("7_v1b2c"), ExtResource("7_v1b2c"), ExtResource("8_2nmhp"), ExtResource("8_2nmhp"), ExtResource("8_2nmhp")])
+drop_table = ExtResource("2_y27et")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)

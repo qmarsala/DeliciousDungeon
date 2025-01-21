@@ -3,12 +3,7 @@ extends Node2D
 
 @export var spawn_rate: float = 1
 @export var is_locked: bool = false
-
-# we should have an item database
-# and drop tables as resources? so we only have one place to go to 
-# add new items to the game
-# then we can configure things that drop with a table?
-@export var items: Array[Item]
+@export var drop_table: ItemDropTable
 
 @onready var reward_location: Node2D = $RewardLocation
 @onready var interactbox: InteractBox = $Interactbox
@@ -28,5 +23,7 @@ func interact(player: Player):
 	is_open = true
 	$Open.show()
 	$Closed.hide()
-	var reward = items.pick_random()
-	ItemDropService.drop_item(reward, reward_location.global_position)
+	var reward = drop_table.get_drop_result()
+	for r in reward.quantity:
+		var pos = Vector2(reward_location.global_position.x + randf_range(-1, 1), reward_location.global_position.y + randf_range(-1, 1))
+		ItemDropService.drop_item(reward.item, pos)

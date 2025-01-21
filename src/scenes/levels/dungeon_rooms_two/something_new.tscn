@@ -49,7 +49,7 @@ tile_set = ExtResource("2_asegq")
 
 [node name="Cover" type="TileMapLayer" parent="East"]
 z_index = -1
-tile_map_data = PackedByteArray("AAAJAP3/AAAEAA8AAAAJAP7/AAAEAA8AAAAJAP//AAAEAA8AAAAJAAAAAAAEAA8AAAAJAAEAAAAEAA8AAAAJAAIAAAAEAA8AAAA=")
+tile_map_data = PackedByteArray("AAAJAP3/AAAEAAMAAAAJAP7/AAAEAAMAAAAJAP//AAAEAAMAAAAJAAAAAAAEAAMAAAAJAAEAAAAEAAMAAAAJAAIAAAAEAAMAAAA=")
 tile_set = ExtResource("3_7e06t")
 
 [node name="ConnectorBG" type="TileMapLayer" parent="East"]

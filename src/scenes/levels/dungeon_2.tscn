@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx1ojtss4q6xc"]
+[gd_scene load_steps=16 format=3 uid="uid://bx1ojtss4q6xc"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/dungeon_manager.gd" id="1_qac18"]
 [ext_resource type="Script" path="res://assets/scripts/levels/room_generator2.gd" id="1_t3s1t"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://rdh2x0ca1att" path="res://scenes/levels/dungeon_rooms_two/something_new.tscn" id="8_tmn4x"]
 [ext_resource type="PackedScene" uid="uid://blyqfd0wf38q8" path="res://scenes/levels/dungeon_rooms_two/something_new1.tscn" id="9_ckifb"]
 [ext_resource type="PackedScene" uid="uid://c44d43vnnotwq" path="res://scenes/levels/dungeon_rooms_two/zig.tscn" id="12_qpsxc"]
+[ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://scenes/ui/player_ui.tscn" id="14_5dbsq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_507sm"]
 shader = ExtResource("5_x8cwi")
@@ -37,15 +38,18 @@ blend_mode = 1
 [node name="Player" parent="." instance=ExtResource("3_kkhtx")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.1, 0.1)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Fog" type="Sprite2D" parent="Player"]
-visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_507sm")
 scale = Vector2(2, 2)
 texture = ExtResource("6_hk1ox")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("14_5dbsq")]
+player = NodePath("../../Player")
