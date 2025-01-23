@@ -35,6 +35,7 @@ var move_disabled: bool
 var is_dashing: bool
 var is_dash_cooldown: bool
 var is_hill: bool
+var weapon_item: Item
 var weapon: Weapon
 var weapon_equipped: bool
 
@@ -83,15 +84,15 @@ func equip(item: Item) -> void:
 	if weapon_equipped:
 		unequip()
 	weapon_equipped = true
-	player_data.weapon = item
-	weapon = player_data.weapon.create_item_scene() as Weapon
+	weapon_item = item
+	weapon = weapon_item.create_item_scene() as Weapon
 	weapon.equip(self)
 	equipped_weapon.emit(weapon)
 
 func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
-	ItemDropService.drop_item(player_data.weapon_item, global_position)
+	ItemDropService.drop_item(weapon_item, global_position)
 	unequipped_weapon.emit()
 
 func drink(item: Item):

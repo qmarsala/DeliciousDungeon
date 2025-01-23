@@ -1,20 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://benb72lsdvig6"]
+[gd_scene load_steps=8 format=4 uid="uid://benb72lsdvig6"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room_2.gd" id="1_6yjy3"]
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tileset_bg.tres" id="1_y8rb7"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="2_nwmym"]
 [ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="4_s7thy"]
-[ext_resource type="Script" path="res://assets/resources/items/item.gd" id="5_fclfm"]
-[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/weapons/bow_01.tres" id="6_xg2o4"]
-[ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://assets/resources/items/weapons/bow_02.tres" id="7_h7qvi"]
-[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/resources/items/weapons/firestaff_01.tres" id="8_4rj4c"]
-[ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/resources/items/weapons/firestaff_02.tres" id="9_llywh"]
-[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/weapons/sword_01.tres" id="10_8ngfj"]
-[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_02.tres" id="11_10ugj"]
-[ext_resource type="Resource" uid="uid://d3wjhg6pl0aea" path="res://assets/resources/items/potions/healing_potion.tres" id="12_nwnsk"]
-[ext_resource type="Resource" uid="uid://bup0epkdls56c" path="res://assets/resources/items/potions/nutrition_potion.tres" id="13_ahvni"]
-[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://assets/resources/items/wood.tres" id="14_iyit0"]
-[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://assets/resources/items/food.tres" id="15_n206h"]
+[ext_resource type="PackedScene" uid="uid://bwqqm0prg0gu7" path="res://scenes/components/drop_table_override.tscn" id="5_dxkia"]
+[ext_resource type="Resource" uid="uid://jpnvif6h4t3w" path="res://assets/resources/items/start_room_weapon_drop_table.tres" id="6_yoq5k"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="16_jjmen"]
 
 [node name="Node2D" type="Node2D"]
@@ -131,12 +122,13 @@ tile_set = ExtResource("1_y8rb7")
 [node name="Chest" parent="." instance=ExtResource("4_s7thy")]
 position = Vector2(52, -64)
 spawn_rate = 1.0
-items = Array[ExtResource("5_fclfm")]([ExtResource("6_xg2o4"), ExtResource("7_h7qvi"), ExtResource("8_4rj4c"), ExtResource("9_llywh"), ExtResource("10_8ngfj"), ExtResource("11_10ugj")])
 
 [node name="Chest2" parent="." instance=ExtResource("4_s7thy")]
 position = Vector2(-55, -65)
 spawn_rate = 1.0
-items = Array[ExtResource("5_fclfm")]([ExtResource("12_nwnsk"), ExtResource("13_ahvni"), ExtResource("14_iyit0"), ExtResource("14_iyit0"), ExtResource("14_iyit0"), ExtResource("15_n206h"), ExtResource("15_n206h"), ExtResource("15_n206h")])
+
+[node name="DropTable" parent="Chest2" instance=ExtResource("5_dxkia")]
+drop_table = ExtResource("6_yoq5k")
 
 [node name="Fire" parent="." instance=ExtResource("16_jjmen")]
 position = Vector2(55, 57)

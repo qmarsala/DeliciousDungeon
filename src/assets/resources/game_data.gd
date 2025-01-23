@@ -13,7 +13,7 @@ extends Resource
 #@export var player_buffs
 @export var current_quest: Quest
 
-func start_new_game():
+func start_game():
 	current_floor = 0
 	player_data = PlayerData.new()
 	player_data.items = starting_items

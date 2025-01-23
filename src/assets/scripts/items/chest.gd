@@ -11,6 +11,9 @@ extends Node2D
 var is_open = false
 
 func _ready() -> void:
+	var drop_table_override = find_child("DropTable")
+	if drop_table_override:
+		drop_table = drop_table_override.get_drop_table()
 	if randf() > spawn_rate:
 		queue_free()
 		return

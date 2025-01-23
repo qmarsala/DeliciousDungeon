@@ -26,11 +26,9 @@ var turn_spacing = 1
 var tiles_without_turning = 0
 
 func generate_floor(floor: int) -> void:
-	path_count += floor
-	if path_count > 4:
-		path_count = 2
-		tile_count += 1
-	
+	tile_count = min(15, tile_count + floor)
+	path_count = min(10, path_count + floor)
+	secondary_path_min_tiles = min(10, secondary_path_min_tiles + floor)
 	#todo:
 	# Chose a different tile set on deeper floors
 	# - water til floor 3, acid til floor 6, then lava?

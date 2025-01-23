@@ -146,6 +146,7 @@ texture_under = ExtResource("5_ilvjo")
 texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="Ability1Cooldown"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 3.0
 offset_right = 25.0
@@ -167,6 +168,7 @@ texture_under = ExtResource("5_ilvjo")
 texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="Ability2Cooldown"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 3.0
 offset_right = 25.0
@@ -188,6 +190,7 @@ texture_under = ExtResource("5_ilvjo")
 texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="Ability3Cooldown"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 3.0
 offset_right = 24.0
@@ -209,6 +212,7 @@ texture_under = ExtResource("5_ilvjo")
 texture_progress = ExtResource("4_lq6rb")
 
 [node name="Label" type="Label" parent="DashCooldown"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 3.0
 offset_right = 25.0

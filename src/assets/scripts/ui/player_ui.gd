@@ -27,9 +27,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update_health_bar(player.health_component.health)
-	update_hunger_bar(player.nutrition)
-	update_food_count(player.player_items[Enums.Items.Food])
-	update_wood_count(player.player_items[Enums.Items.Wood])
+	update_hunger_bar(player.player_data.nutrition)
+	update_food_count(player.player_data.items[Enums.Items.Food])
+	update_wood_count(player.player_data.items[Enums.Items.Wood])
 	update_status_label(player.rest_is_cooldown)
 	update_status_effects_label(player.status_effects_component)
 	update_ability_cooldowns()
@@ -83,7 +83,7 @@ func update_status_effects_label(status_effect_component: StatusEffectComponent)
 	$StatusEffectsLabel.text = status_effects_text
 
 func update_ability_cooldowns():
-	dash_cooldown.value = get_progress_value(player.dash_cooldown_timer.time_left, player.DASH_COOLDOWN)
+	dash_cooldown.value = get_progress_value(player.dash_cooldown_timer.time_left, player.player_data.dash_cooldown)
 	if player.weapon_equipped:
 		for i in ability_slots.size():
 			ability_cooldowns[i].value = get_progress_value(ability_slots[i].cooldown_timer.time_left, ability_slots[i].total_cooldown)
