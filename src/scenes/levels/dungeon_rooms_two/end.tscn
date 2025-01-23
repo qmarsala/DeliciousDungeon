@@ -16,7 +16,7 @@ size = Vector2(56, 20)
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("double_door_north")]
 script = ExtResource("1_pv520")
 enable_north_door = true
-double_door_north = NodePath("North/CoverNorthDoor")
+double_door_north = NodePath("CoverNorthDoor")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -2
@@ -29,19 +29,6 @@ tile_map_data = PackedByteArray("AAD6//n/AAABAAEAAAD6//r/AAABAAIAAAD7//n/AAACAAQ
 tile_set = ExtResource("3_ty5ir")
 
 [node name="North" type="Node2D" parent="."]
-
-[node name="CoverNorthDoor" parent="North" instance=ExtResource("2_62b15")]
-position = Vector2(0, -80)
-
-[node name="OnPlayerAreaTrigger" parent="North/CoverNorthDoor" instance=ExtResource("4_640hw")]
-position = Vector2(10, -46)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="North/CoverNorthDoor/OnPlayerAreaTrigger"]
-position = Vector2(-10, 14)
-shape = SubResource("RectangleShape2D_5thv5")
-
-[node name="ChangeLevelTriggerStrategy" parent="North/CoverNorthDoor/OnPlayerAreaTrigger" instance=ExtResource("5_w78fl")]
-scene = 0
 
 [node name="CoverBG" type="TileMapLayer" parent="North"]
 z_index = -2
@@ -139,6 +126,19 @@ z_index = 1
 tile_map_data = PackedByteArray("AAD6/wAAAAAEAAEAAAD6/wEAAAAEAAIAAAD2/wAAAAACAAQAAAD2/wEAAAACAAUAAAD3/wAAAAACAAQAAAD3/wEAAAACAAUAAAD4/wAAAAACAAQAAAD4/wEAAAACAAUAAAD5/wAAAAACAAQAAAD5/wEAAAACAAUAAAD6/wIAAAAEAAMAAAA=")
 tile_set = ExtResource("2_cvc66")
 
+[node name="CoverNorthDoor" parent="." instance=ExtResource("2_62b15")]
+position = Vector2(0, -80)
+
+[node name="OnPlayerAreaTrigger" parent="CoverNorthDoor" instance=ExtResource("4_640hw")]
+position = Vector2(10, -46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoverNorthDoor/OnPlayerAreaTrigger"]
+position = Vector2(-10, 14)
+shape = SubResource("RectangleShape2D_5thv5")
+
+[node name="ChangeLevelTriggerStrategy" parent="CoverNorthDoor/OnPlayerAreaTrigger" instance=ExtResource("5_w78fl")]
+scene = 0
+
 [node name="OnPlayerAreaTrigger" parent="." instance=ExtResource("4_640hw")]
 position = Vector2(8, -9)
 
@@ -147,7 +147,6 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_bbsex")
 
 [node name="ChangeLevelTriggerStrategy" parent="OnPlayerAreaTrigger" instance=ExtResource("5_w78fl")]
-scene = 0
 
 [node name="Fire" parent="." instance=ExtResource("6_hbbpa")]
 position = Vector2(-56, -56)

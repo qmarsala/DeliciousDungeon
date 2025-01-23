@@ -22,8 +22,6 @@ func init(room_size: int, neighbors: Array[Vector2]):
 
 func enable_area(tile: Node2D,  is_connector: bool) -> void:
 	for c in tile.get_children():
-		if c.name.contains("Door"): continue
-
 		if c.name.contains("Cover"):
 			c.enabled = not is_connector
 		else:

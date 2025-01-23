@@ -18,7 +18,7 @@ var end_position: Vector2 = Vector2.ZERO
 
 # todo: increase with dungeon floor
 # idea: increase path count by floor_level, then increase tile_count every time path_count passes 4 or 5 - to a min of 1 or 2?
-var tile_count: int = 6
+var tile_count: int = 4
 var path_count: int = 1
 var secondary_path_min_tiles: int = 3
 var turn_ratio = randf_range(0.15, .85)
@@ -26,9 +26,10 @@ var turn_spacing = 1
 var tiles_without_turning = 0
 
 func generate_floor(floor: int) -> void:
-	tile_count = min(15, tile_count + floor)
-	path_count = min(10, path_count + floor)
-	secondary_path_min_tiles = min(10, secondary_path_min_tiles + floor)
+	var depth = floor - 1
+	tile_count = min(15, tile_count + depth)
+	path_count = min(10, path_count + depth)
+	secondary_path_min_tiles = min(10, secondary_path_min_tiles + depth)
 	#todo:
 	# Chose a different tile set on deeper floors
 	# - water til floor 3, acid til floor 6, then lava?
