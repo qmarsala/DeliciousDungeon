@@ -21,5 +21,5 @@ func open():
 			set_cell(Vector2(door_pos.x + i, door_pos.y + j), 2, Vector2(open_door_pos.x + i, open_door_pos.y + j))
 			j = j + 1
 
-func interact(player: Player) -> void:
+func _on_interactbox_interacted(player: Player) -> void:
 	open()

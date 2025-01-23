@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=4 uid="uid://bxejjurm0g6pu"]
+[gd_scene load_steps=5 format=4 uid="uid://bxejjurm0g6pu"]
 
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="1_aeags"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="3_k235j"]
 [ext_resource type="Script" path="res://assets/scripts/levels/door.gd" id="4_c83k7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0m3w"]
+size = Vector2(27, 20)
 
 [node name="DoubleDoorNorth" type="Node2D"]
 
@@ -17,3 +21,11 @@ z_index = 10
 position = Vector2(40, 64)
 tile_map_data = PackedByteArray("AAD8//n/AgANAAQAAAD9//n/AgAOAAQAAAD+//n/AgAPAAQAAAD9//r/AgAOAAUAAAD+//r/AgAPAAUAAAD8//r/AgANAAUAAAA=")
 tile_set = ExtResource("1_aeags")
+
+[node name="Interactbox" parent="." instance=ExtResource("3_k235j")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_b0m3w")
+
+[connection signal="interacted" from="Interactbox" to="Door" method="_on_interactbox_interacted"]

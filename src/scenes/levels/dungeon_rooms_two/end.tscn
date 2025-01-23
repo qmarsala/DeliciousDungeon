@@ -1,16 +1,22 @@
-[gd_scene load_steps=8 format=4 uid="uid://mclk44lljhp6"]
+[gd_scene load_steps=10 format=4 uid="uid://mclk44lljhp6"]
 
 [ext_resource type="Script" path="res://assets/scripts/levels/room_2.gd" id="1_pv520"]
+[ext_resource type="PackedScene" uid="uid://bxejjurm0g6pu" path="res://scenes/levels/double_door_north.tscn" id="2_62b15"]
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://assets/dungeon_tileset_bg.tres" id="2_cvc66"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://assets/dungeon_tileset.tres" id="3_ty5ir"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://scenes/levels/on_player_area_trigger.tscn" id="4_640hw"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://scenes/strategies/change_level_strategy.tscn" id="5_w78fl"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="6_hbbpa"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5thv5"]
+size = Vector2(56, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbsex"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("double_door_north")]
 script = ExtResource("1_pv520")
+enable_north_door = true
+double_door_north = NodePath("North/CoverNorthDoor")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -2
@@ -24,6 +30,19 @@ tile_set = ExtResource("3_ty5ir")
 
 [node name="North" type="Node2D" parent="."]
 
+[node name="CoverNorthDoor" parent="North" instance=ExtResource("2_62b15")]
+position = Vector2(0, -80)
+
+[node name="OnPlayerAreaTrigger" parent="North/CoverNorthDoor" instance=ExtResource("4_640hw")]
+position = Vector2(10, -46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="North/CoverNorthDoor/OnPlayerAreaTrigger"]
+position = Vector2(-10, 14)
+shape = SubResource("RectangleShape2D_5thv5")
+
+[node name="ChangeLevelTriggerStrategy" parent="North/CoverNorthDoor/OnPlayerAreaTrigger" instance=ExtResource("5_w78fl")]
+scene = 0
+
 [node name="CoverBG" type="TileMapLayer" parent="North"]
 z_index = -2
 tile_map_data = PackedByteArray("AAABAPf/AAAFABAAAAABAPb/AAAFABAAAAAAAPb/AAAFABAAAAD///b/AAAFABAAAAD///f/AAAFABAAAAD+//f/AAAFABAAAAD+//b/AAAFABAAAAAAAPf/AAAFABAAAAD+//n/AAAFABAAAAD+//r/AAACAA4AAAD///n/AAAFABAAAAD///r/AAACAA4AAAAAAPn/AAAFABAAAAAAAPr/AAACAA4AAAABAPn/AAAFABAAAAABAPr/AAACAA4AAAD+//j/AAAFABAAAAD///j/AAAFABAAAAAAAPj/AAAFABAAAAABAPj/AAAFABAAAAD9//b/AAAFABAAAAD9//f/AAAFABAAAAD9//j/AAAFABAAAAD9//n/AAAFABAAAAACAPb/AAAFABAAAAACAPf/AAAFABAAAAACAPj/AAAFABAAAAACAPn/AAAFABAAAAD9//r/AAACAA4AAAACAPr/AAACAA4AAAA=")
@@ -31,7 +50,7 @@ tile_set = ExtResource("2_cvc66")
 
 [node name="Cover" type="TileMapLayer" parent="North"]
 z_index = -1
-tile_map_data = PackedByteArray("AAD9//n/AAACAAQAAAD9//r/AAACAAUAAAD+//n/AAACAAQAAAD+//r/AAACAAUAAAD///n/AAACAAQAAAD///r/AAACAAUAAAAAAPn/AAACAAQAAAAAAPr/AAACAAUAAAABAPn/AAACAAQAAAABAPr/AAACAAUAAAACAPn/AAACAAQAAAACAPr/AAACAAUAAAA=")
+tile_map_data = PackedByteArray("AAD9//n/AAACAAQAAAD9//r/AAACAAUAAAACAPn/AAACAAQAAAACAPr/AAACAAUAAAABAPn/AAACAAQAAAABAPr/AAACAAUAAAD+//n/AAACAAQAAAD+//r/AAACAAUAAAA=")
 tile_set = ExtResource("3_ty5ir")
 
 [node name="ConnectorBG" type="TileMapLayer" parent="North"]

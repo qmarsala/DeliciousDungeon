@@ -1,7 +1,7 @@
 class_name InteractBox
 extends Area2D
 
-signal interacted
+signal interacted(Player)
 
 func _ready() -> void:
 	add_to_group(Interfaces.Interactable)
