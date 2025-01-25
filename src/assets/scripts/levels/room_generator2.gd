@@ -28,7 +28,8 @@ var tiles_without_turning = 0
 func generate_floor(floor: int) -> void:
 	var depth = floor - 1
 	tile_count = min(15, tile_count + depth)
-	path_count = min(10, path_count + depth)
+	if depth > 2:
+		path_count = min(10, path_count + depth - 2)
 	secondary_path_min_tiles = min(10, secondary_path_min_tiles + depth)
 	#todo:
 	# Chose a different tile set on deeper floors
