@@ -26,8 +26,6 @@ func _ready():
 	#temp: should go to a damage number service in the main scene
 	SignalBusService.DamageReceived.connect(_add_damage_number)
 	SignalBusService.QuestCompleted.connect(on_quest_completed)
-	# quests specific to each dungeon floor?
-	QuestSystemService.add_quests(quests)
 	quest_log_ui.init()
 	_change_scene(main_menu, true)
 	$OutdoorMusic.play()
@@ -40,6 +38,11 @@ func _change_level(scene: Enums.Scenes):
 		next_scene = dungeon
 		$OutdoorMusic.stop()
 		$DungeonMusic.play()
+		# quests specific to each dungeon floor?
+		QuestSystemService.reset_quests()
+		QuestSystemService.clear_quests()
+		QuestSystemService.add_quest(quests.pick_random())
+		quest_log_ui.refresh()
 	else:
 		$DungeonMusic.stop()
 		$OutdoorMusic.play()
