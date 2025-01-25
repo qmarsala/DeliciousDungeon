@@ -29,10 +29,10 @@ func interact(player: Player) -> void:
 		player.begin_rest()
 		return
 	
-	if player.player_items.has(Enums.Items.Wood) and player.player_items[Enums.Items.Wood] > 0:
+	if player.player_data.items.has(Enums.Items.Wood) and player.player_data.items[Enums.Items.Wood] > 0:
 		#todo: should we use a signal for this?
 		# feels bad mutating the player passed in like this
-		player.player_items[Enums.Items.Wood] -= 1
+		player.player_data.items[Enums.Items.Wood] -= 1
 		light()
 		player.begin_rest()
 
