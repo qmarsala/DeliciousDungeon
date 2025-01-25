@@ -14,9 +14,9 @@
 [ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://assets/resources/items/weapons/sword_02.tres" id="11_koqab"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://scenes/items/fire.tscn" id="11_wrpau"]
 [ext_resource type="PackedScene" uid="uid://14qxoibvjmhg" path="res://scenes/enemy_bounds.tscn" id="13_hvojg"]
-[ext_resource type="Script" path="res://assets/resources/items/item.gd" id="14_di3qn"]
 [ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://assets/sprites/forestSprites_ v1.2/boar_.png" id="15_7g4ju"]
 [ext_resource type="Resource" uid="uid://dtt8oanr6xk70" path="res://assets/resources/enemies/attack_dummy.tres" id="16_6vr2r"]
+[ext_resource type="Script" path="res://assets/resources/player_data.gd" id="16_7lwep"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://scenes/components/hitbox.tscn" id="16_8mkye"]
 [ext_resource type="Script" path="res://assets/scripts/enemies/enemy.gd" id="16_wi07l"]
 [ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://scenes/components/status_effects_component.tscn" id="20_04imu"]
@@ -24,7 +24,6 @@
 [ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://assets/resources/items/weapons/firestaff_01.tres" id="21_h7dnt"]
 [ext_resource type="Script" path="res://assets/scripts/states/state_machine.gd" id="21_r03v1"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://scenes/components/health_component.tscn" id="22_d5fxq"]
-[ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://assets/resources/items/weapons/firestaff_02.tres" id="22_k8tsf"]
 [ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://assets/resources/items/weapons/bow_01.tres" id="23_3mj40"]
 [ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://scenes/items/chest.tscn" id="23_nkwgo"]
 [ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://assets/resources/items/weapons/sword_01.tres" id="29_aevxd"]
@@ -326,6 +325,24 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3hphl")
 sources/2 = SubResource("TileSetAtlasSource_jrh5p")
 
+[sub_resource type="Resource" id="Resource_nufvg"]
+script = ExtResource("16_7lwep")
+items = {
+0: 1,
+1: 1
+}
+starting_health = 15.0
+starting_nutrition = 10.0
+max_health = 15.0
+max_nutrition = 10.0
+health = 15.0
+nutrition = 10.0
+speed = 60.0
+dash_speed = 1.75
+dash_time = 0.5
+dash_cooldown = 1.0
+interaction_range = 15.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ye2s3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yy8vj"]
@@ -422,7 +439,6 @@ position = Vector2(-70, 184)
 z_index = 1
 position = Vector2(-292, -23)
 spawn_rate = 1.0
-items = Array[ExtResource("14_di3qn")]([ExtResource("22_k8tsf")])
 
 [node name="Chest2" parent="Chests" instance=ExtResource("23_nkwgo")]
 z_index = 1
@@ -441,6 +457,7 @@ spawn_rate = 1.0
 
 [node name="Player" parent="." instance=ExtResource("6_ucoae")]
 z_index = 1
+player_data = SubResource("Resource_nufvg")
 hunger_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

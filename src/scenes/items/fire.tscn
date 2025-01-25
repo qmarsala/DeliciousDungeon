@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cfesvjhulwkvx"]
+[gd_scene load_steps=22 format=3 uid="uid://cfesvjhulwkvx"]
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
 [ext_resource type="Script" path="res://assets/scripts/levels/fire.gd" id="2_dth6p"]
 [ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://scenes/components/interactbox.tscn" id="2_wjhyw"]
 [ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://assets/audio/LightFire.wav" id="3_1suck"]
+[ext_resource type="PackedScene" uid="uid://bdr08r11d3ho4" path="res://scenes/components/interact_indicator.tscn" id="3_g2j4k"]
 
 [sub_resource type="Gradient" id="Gradient_8on2x"]
 offsets = PackedFloat32Array(0, 0.227758, 0.608541)
@@ -20,6 +21,9 @@ radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r54xq"]
 radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocbls"]
+radius = 30.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
 atlas = ExtResource("1_j4fss")
@@ -205,6 +209,12 @@ shape = SubResource("CircleShape2D_chxww")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
 shape = SubResource("CircleShape2D_r54xq")
+
+[node name="InteractIndicator" parent="." instance=ExtResource("3_g2j4k")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractIndicator"]
+shape = SubResource("CircleShape2D_ocbls")
 
 [node name="Unlit" type="Sprite2D" parent="."]
 texture = ExtResource("1_j4fss")

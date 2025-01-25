@@ -24,6 +24,7 @@ func interact(player: Player):
 	if is_locked or is_open:
 		return # todo check for key
 	is_open = true
+	$InteractIndicator.disable_indicator()
 	$Open.show()
 	$Closed.hide()
 	var reward = drop_table.get_drop_result()

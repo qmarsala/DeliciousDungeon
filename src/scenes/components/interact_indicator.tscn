@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdr08r11d3ho4"]
+
+[ext_resource type="Script" path="res://scenes/items/interact_indicator.gd" id="1_236eo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ikjgt"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="InteractIndicator" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_236eo")
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = -3.0
+offset_top = -23.0
+offset_right = 3.0
+offset_bottom = -10.0
+text = "4"
+label_settings = SubResource("LabelSettings_ikjgt")

@@ -227,34 +227,37 @@ autowrap_mode = 2
 visible = false
 anchors_preset = 0
 offset_left = -59.0
-offset_top = -48.0
+offset_top = -53.0
 offset_right = 66.0
-offset_bottom = -38.0
+offset_bottom = -43.0
 
 [node name="TextureRect5" type="TextureRect" parent="BarBackground"]
+show_behind_parent = true
 layout_mode = 0
 offset_left = 113.0
 offset_top = -4.0
-offset_right = 129.0
+offset_right = 138.0
 offset_bottom = 96.0
 rotation = 1.5708
 texture = ExtResource("7_lusg2")
 
 [node name="TextureRect6" type="TextureRect" parent="BarBackground"]
+show_behind_parent = true
 layout_mode = 0
 offset_left = 13.0
 offset_top = -4.0
-offset_right = 29.0
+offset_right = 38.0
 offset_bottom = 12.0
 rotation = 1.5708
 texture = ExtResource("8_teyvk")
 
 [node name="TextureRect7" type="TextureRect" parent="BarBackground"]
+show_behind_parent = true
 layout_mode = 0
 offset_left = 113.0
-offset_top = 12.0
-offset_right = 129.0
-offset_bottom = 28.0
+offset_top = 21.0
+offset_right = 138.0
+offset_bottom = 37.0
 rotation = -1.5708
 texture = ExtResource("8_teyvk")
 
@@ -263,10 +266,10 @@ unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0.945098, 0.823529, 1)
 layout_mode = 0
-offset_left = -56.0
-offset_top = -46.0
-offset_right = 64.0
-offset_bottom = -42.0
+offset_left = -57.0
+offset_top = -48.0
+offset_right = 63.0
+offset_bottom = -40.0
 mouse_filter = 2
 value = 38.64
 show_percentage = false
@@ -274,11 +277,22 @@ show_percentage = false
 [node name="RestBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 visible = false
-modulate = Color(0.536216, 0.000576895, 0.617464, 1)
+self_modulate = Color(0.537255, 0, 0.615686, 1)
 layout_mode = 0
-offset_left = -56.0
-offset_top = -46.0
-offset_right = 64.0
-offset_bottom = -42.0
+offset_left = -57.0
+offset_top = -48.0
+offset_right = 63.0
+offset_bottom = -40.0
 mouse_filter = 2
 show_percentage = false
+
+[node name="Label" type="Label" parent="RestBar"]
+self_modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_left = 12.0
+offset_top = -4.0
+offset_right = 114.0
+offset_bottom = 9.0
+text = "enjoing a meal..."
+horizontal_alignment = 1
+vertical_alignment = 1

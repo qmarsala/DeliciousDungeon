@@ -40,6 +40,13 @@ text = "Current Quest Descrpion"
 label_settings = SubResource("LabelSettings_wv57g")
 autowrap_mode = 2
 
+[node name="QuestRewardDescription" type="Label" parent="QuestDetails"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+text = "Reward: Current Quest Reward Descrpion"
+label_settings = SubResource("LabelSettings_wv57g")
+autowrap_mode = 2
+
 [node name="QuestDescription2" type="Label" parent="QuestDetails"]
 layout_mode = 2
 text = "0/0"

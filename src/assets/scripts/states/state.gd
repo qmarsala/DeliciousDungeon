@@ -3,7 +3,7 @@ extends Node
 
 var character: CharacterBody2D
 
-signal Transitioned
+signal Transitioned(State, String)
 
 var time = 0
 func _process(delta: float) -> void:
