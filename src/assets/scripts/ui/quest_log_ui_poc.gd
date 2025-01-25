@@ -4,8 +4,14 @@ extends Control
 
 @onready var quest_container: VBoxContainer = $ScrollContainer/ActiveQuestsContainer
 
+
 func init():
 	$ToggleQuestLog.pressed.connect(on_toggle_pressed)
+	refresh()
+
+func refresh():
+	for q in quest_container.get_children():
+		q.queue_free()
 	var quests = QuestSystemService.available_quests
 	for q in quests:
 		var qui = quest_ui_scene.instantiate()

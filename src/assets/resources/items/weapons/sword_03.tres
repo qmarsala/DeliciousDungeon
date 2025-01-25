@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=23 format=3 uid="uid://cebbqk2gtlbm2"]
+[gd_resource type="Resource" script_class="Item" load_steps=14 format=3 uid="uid://cebbqk2gtlbm2"]
 
 [ext_resource type="Script" path="res://assets/resources/weapon_stats/weapon_data.gd" id="1_1ql51"]
 [ext_resource type="Texture2D" uid="uid://fvyj4vvn8a6v" path="res://assets/sprites/playerSprites_ [version 1.0]/sword_ [diamond].png" id="2_3tf1w"]
@@ -10,92 +10,8 @@
 [ext_resource type="Resource" uid="uid://bbipk0xulhe0j" path="res://assets/resources/abilities/ability_data/sword_stab_data.tres" id="6_0h5xn"]
 [ext_resource type="PackedScene" uid="uid://cvxvecph7j317" path="res://scenes/abilities/sword_stab.tscn" id="7_46b7r"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wcarv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu2ho"]
 atlas = ExtResource("2_3tf1w")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_paqfb"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4lw38"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_57bgi"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_22dgc"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i56wi"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5oqx"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ba23s"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqub2"]
-atlas = ExtResource("2_3tf1w")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wtyrw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wcarv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_paqfb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4lw38")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_57bgi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_22dgc")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_22dgc")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i56wi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v5oqx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ba23s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqub2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_22dgc")
-}],
-"loop": true,
-"name": &"stab",
-"speed": 5.0
-}]
 
 [sub_resource type="Resource" id="Resource_syiy3"]
 script = ExtResource("2_u54cm")
@@ -121,7 +37,7 @@ weapon_level = 3
 item_id = 5
 name = ""
 description = ""
-sprite_frames = SubResource("SpriteFrames_wtyrw")
+sprite = SubResource("AtlasTexture_vu2ho")
 
 [resource]
 script = ExtResource("4_s263f")
