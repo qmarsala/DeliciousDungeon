@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://d3wjhg6pl0aea"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="1_id8pg"]
+[ext_resource type="Resource" uid="uid://cyyp7ipa6h1kc" path="res://poc/assets/resources/items/potions/healing_potion_data.tres" id="1_knr0n"]
+[ext_resource type="PackedScene" uid="uid://d2v7p34tnts3u" path="res://poc/scenes/items/potion.tscn" id="2_vy86f"]
+
+[resource]
+script = ExtResource("1_id8pg")
+data = ExtResource("1_knr0n")
+scene = ExtResource("2_vy86f")

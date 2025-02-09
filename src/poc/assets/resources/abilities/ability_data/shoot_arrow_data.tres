@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://w4avb0eafw6r"]
+
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://poc/assets/audio/BowAttack.wav" id="1_ce44j"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability_data/ability_data.gd" id="1_vrb6u"]
+[ext_resource type="Script" path="res://poc/assets/resources/status_effects/status_effect.gd" id="3_4j3af"]
+[ext_resource type="Resource" uid="uid://cm2vf8gviiiyy" path="res://poc/assets/resources/status_effects/bleed_synergy.tres" id="4_0j7ei"]
+
+[resource]
+script = ExtResource("1_vrb6u")
+targets_player = false
+targets_enemy = true
+animation_name = "attack"
+ability_sound = ExtResource("1_ce44j")
+cast_time = 0.3
+cooldown = 0.7
+show_castbar = false
+damage = 2.0
+heal = 0.0
+ability_range = 90
+bonus_range = 0
+status_effects = Array[ExtResource("3_4j3af")]([])
+status_effect_synergy = ExtResource("4_0j7ei")
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1

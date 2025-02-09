@@ -1,0 +1,112 @@
+[gd_resource type="Resource" script_class="ItemDropTable" load_steps=29 format=3 uid="uid://fddsku4ra52f"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/items/item_drop_table.gd" id="2_bp7p4"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="2_ngfug"]
+[ext_resource type="Script" path="res://poc/assets/resources/items/item_drop_chance.gd" id="2_yxbre"]
+[ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://poc/assets/resources/items/food.tres" id="3_qaqtf"]
+[ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://poc/assets/resources/items/weapons/sword_01.tres" id="4_ornib"]
+[ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://poc/assets/resources/items/weapons/sword_02.tres" id="5_4umts"]
+[ext_resource type="Resource" uid="uid://cebbqk2gtlbm2" path="res://poc/assets/resources/items/weapons/sword_03.tres" id="6_ovrmg"]
+[ext_resource type="Resource" uid="uid://b4gbq7ksurbo" path="res://poc/assets/resources/items/weapons/bow_01.tres" id="7_gcx8n"]
+[ext_resource type="Resource" uid="uid://ny7ct1tec7fk" path="res://poc/assets/resources/items/weapons/bow_02.tres" id="8_woadu"]
+[ext_resource type="Resource" uid="uid://b6531e2u50uf7" path="res://poc/assets/resources/items/weapons/bow_03.tres" id="9_sfabs"]
+[ext_resource type="Resource" uid="uid://caxnrd7613eoa" path="res://poc/assets/resources/items/weapons/firestaff_01.tres" id="10_6wcra"]
+[ext_resource type="Resource" uid="uid://bdi7bnaltuw0l" path="res://poc/assets/resources/items/weapons/firestaff_02.tres" id="11_1delq"]
+[ext_resource type="Resource" uid="uid://be81vvjxsjxh3" path="res://poc/assets/resources/items/weapons/firestaff_03.tres" id="12_axk7m"]
+[ext_resource type="Resource" uid="uid://d3wjhg6pl0aea" path="res://poc/assets/resources/items/potions/healing_potion.tres" id="13_e5dun"]
+[ext_resource type="Resource" uid="uid://bup0epkdls56c" path="res://poc/assets/resources/items/potions/nutrition_potion.tres" id="14_ds238"]
+
+[sub_resource type="Resource" id="Resource_mt3di"]
+script = ExtResource("2_yxbre")
+item = ExtResource("2_ngfug")
+min_quantity = 1
+max_quantity = 3
+chance = 100.0
+
+[sub_resource type="Resource" id="Resource_8fw25"]
+script = ExtResource("2_yxbre")
+item = ExtResource("3_qaqtf")
+min_quantity = 1
+max_quantity = 3
+chance = 100.0
+
+[sub_resource type="Resource" id="Resource_eklgi"]
+script = ExtResource("2_yxbre")
+item = ExtResource("4_ornib")
+min_quantity = 1
+max_quantity = 1
+chance = 33.0
+
+[sub_resource type="Resource" id="Resource_eq41w"]
+script = ExtResource("2_yxbre")
+item = ExtResource("5_4umts")
+min_quantity = 1
+max_quantity = 1
+chance = 10.0
+
+[sub_resource type="Resource" id="Resource_d3btk"]
+script = ExtResource("2_yxbre")
+item = ExtResource("6_ovrmg")
+min_quantity = 1
+max_quantity = 1
+chance = 5.0
+
+[sub_resource type="Resource" id="Resource_b1ie5"]
+script = ExtResource("2_yxbre")
+item = ExtResource("7_gcx8n")
+min_quantity = 1
+max_quantity = 1
+chance = 33.0
+
+[sub_resource type="Resource" id="Resource_w5ubf"]
+script = ExtResource("2_yxbre")
+item = ExtResource("8_woadu")
+min_quantity = 1
+max_quantity = 1
+chance = 10.0
+
+[sub_resource type="Resource" id="Resource_n48iw"]
+script = ExtResource("2_yxbre")
+item = ExtResource("9_sfabs")
+min_quantity = 1
+max_quantity = 1
+chance = 5.0
+
+[sub_resource type="Resource" id="Resource_jnjgc"]
+script = ExtResource("2_yxbre")
+item = ExtResource("10_6wcra")
+min_quantity = 1
+max_quantity = 1
+chance = 33.0
+
+[sub_resource type="Resource" id="Resource_ao8ku"]
+script = ExtResource("2_yxbre")
+item = ExtResource("11_1delq")
+min_quantity = 1
+max_quantity = 1
+chance = 10.0
+
+[sub_resource type="Resource" id="Resource_ecayf"]
+script = ExtResource("2_yxbre")
+item = ExtResource("12_axk7m")
+min_quantity = 1
+max_quantity = 1
+chance = 5.0
+
+[sub_resource type="Resource" id="Resource_ml1mj"]
+script = ExtResource("2_yxbre")
+item = ExtResource("13_e5dun")
+min_quantity = 1
+max_quantity = 3
+chance = 15.0
+
+[sub_resource type="Resource" id="Resource_20k2g"]
+script = ExtResource("2_yxbre")
+item = ExtResource("14_ds238")
+min_quantity = 1
+max_quantity = 3
+chance = 15.0
+
+[resource]
+script = ExtResource("2_bp7p4")
+items = Array[ExtResource("2_yxbre")]([SubResource("Resource_mt3di"), SubResource("Resource_8fw25"), SubResource("Resource_eklgi"), SubResource("Resource_eq41w"), SubResource("Resource_d3btk"), SubResource("Resource_b1ie5"), SubResource("Resource_w5ubf"), SubResource("Resource_n48iw"), SubResource("Resource_jnjgc"), SubResource("Resource_ao8ku"), SubResource("Resource_ecayf"), SubResource("Resource_ml1mj"), SubResource("Resource_20k2g")])

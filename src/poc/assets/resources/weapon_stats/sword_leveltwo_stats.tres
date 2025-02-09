@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=10 format=3 uid="uid://bl00k6ak6u7dt"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/weapon_stats/weapon_data.gd" id="1_h0cco"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="2_knshe"]
+[ext_resource type="SpriteFrames" uid="uid://c4tcvsorfgra" path="res://poc/assets/animations/sword_iron.tres" id="2_uv41c"]
+[ext_resource type="Resource" uid="uid://43lcogjjbhl7" path="res://poc/assets/resources/abilities/ability_data/sword_swing_data.tres" id="3_u4c08"]
+[ext_resource type="PackedScene" uid="uid://do1nl314r0yo1" path="res://poc/scenes/abilities/sword_swing.tscn" id="4_hnof8"]
+[ext_resource type="Resource" uid="uid://bbipk0xulhe0j" path="res://poc/assets/resources/abilities/ability_data/sword_stab_data.tres" id="5_pwfbt"]
+[ext_resource type="PackedScene" uid="uid://cvxvecph7j317" path="res://poc/scenes/abilities/sword_stab.tscn" id="6_4ffjg"]
+
+[sub_resource type="Resource" id="Resource_syiy3"]
+script = ExtResource("2_knshe")
+name = ""
+scene = ExtResource("4_hnof8")
+data = ExtResource("3_u4c08")
+
+[sub_resource type="Resource" id="Resource_ih1qt"]
+script = ExtResource("2_knshe")
+name = ""
+scene = ExtResource("6_4ffjg")
+data = ExtResource("5_pwfbt")
+
+[resource]
+script = ExtResource("1_h0cco")
+armour = 0.33
+evasion = 0.225
+max_range = 30.0
+strength = 1.2
+haste = 0.1
+weapon_abilities = Array[ExtResource("2_knshe")]([SubResource("Resource_syiy3"), SubResource("Resource_ih1qt")])
+weapon_level = 2
+item_id = 5
+name = "Sword"
+description = "Pointy"
+sprite_frames = ExtResource("2_uv41c")

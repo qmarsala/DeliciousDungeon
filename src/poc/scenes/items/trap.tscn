@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://co65eon8oc01c"]
+
+[ext_resource type="Script" path="res://poc/assets/scripts/levels/trap.gd" id="1_aosxj"]
+[ext_resource type="Texture2D" uid="uid://bnmxtsc5udwtv" path="res://poc/assets/sprites/dungeon/traps_.png" id="1_f4p8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walv8"]
+atlas = ExtResource("1_f4p8c")
+region = Rect2(16, 160, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrho5"]
+atlas = ExtResource("1_f4p8c")
+region = Rect2(32, 160, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxs2s"]
+atlas = ExtResource("1_f4p8c")
+region = Rect2(48, 160, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b8fa"]
+atlas = ExtResource("1_f4p8c")
+region = Rect2(64, 160, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pcnn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walv8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrho5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxs2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b8fa")
+}],
+"loop": false,
+"name": &"trigger",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqu51"]
+size = Vector2(16, 16)
+
+[node name="Trap" type="Node2D"]
+script = ExtResource("1_aosxj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pcnn8")
+autoplay = "default"
+offset = Vector2(0, -8)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 96
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mqu51")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

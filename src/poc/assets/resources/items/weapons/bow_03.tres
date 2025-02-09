@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Item" load_steps=12 format=3 uid="uid://b6531e2u50uf7"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/weapon_stats/weapon_data.gd" id="1_fvryj"]
+[ext_resource type="PackedScene" uid="uid://blb4ph6xjfls0" path="res://poc/scenes/items/bow.tscn" id="2_lvdmf"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="2_rviky"]
+[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="3_evt3a"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://poc/assets/resources/abilities/ability_data/shoot_arrow_data.tres" id="3_umkp8"]
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://poc/scenes/abilities/arrow.tscn" id="4_buhjt"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://poc/assets/resources/abilities/ability_data/piercing_shot_data.tres" id="5_4c241"]
+[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://poc/scenes/abilities/piercing_arrow.tscn" id="6_rbdjg"]
+
+[sub_resource type="Resource" id="Resource_yv7pr"]
+script = ExtResource("2_rviky")
+name = ""
+scene = ExtResource("4_buhjt")
+data = ExtResource("3_umkp8")
+
+[sub_resource type="Resource" id="Resource_5f65v"]
+script = ExtResource("2_rviky")
+name = ""
+scene = ExtResource("6_rbdjg")
+data = ExtResource("5_4c241")
+
+[sub_resource type="Resource" id="Resource_h4abx"]
+script = ExtResource("1_fvryj")
+armour = 0.15
+evasion = 0.15
+max_range = 120.0
+strength = 1.5
+haste = 0.3
+weapon_abilities = Array[ExtResource("2_rviky")]([SubResource("Resource_yv7pr"), SubResource("Resource_5f65v")])
+weapon_level = 3
+item_id = 4
+name = ""
+description = ""
+
+[resource]
+script = ExtResource("3_evt3a")
+data = SubResource("Resource_h4abx")
+scene = ExtResource("2_lvdmf")

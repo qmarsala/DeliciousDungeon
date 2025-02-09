@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="DeliciousDungeon"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://poc/scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.51414, 0.535932, 0.803266, 1)
 config/icon="res://icon.svg"
 
 [autoload]
 
-Interfaces="*res://assets/scripts/interfaces.gd"
-Enums="*res://assets/scripts/enums.gd"
-SignalBusService="*res://assets/scripts/systems/signal_bus.gd"
-QuestSystemService="*res://assets/scripts/systems/quest_system.gd"
-ItemDropService="*res://assets/scripts/systems/item_drop_system.gd"
+Interfaces="*res://poc/assets/scripts/interfaces.gd"
+Enums="*res://poc/assets/scripts/enums.gd"
+SignalBusService="*res://poc/assets/scripts/systems/signal_bus.gd"
+QuestSystemService="*res://poc/assets/scripts/systems/quest_system.gd"
+ItemDropService="*res://poc/assets/scripts/systems/item_drop_system.gd"
 
 [display]
 
@@ -40,7 +40,7 @@ World=""
 
 [gui]
 
-theme/custom_font="res://assets/fonts/monogram/ttf/monogram.ttf"
+theme/custom_font="res://poc/assets/fonts/monogram/ttf/monogram.ttf"
 
 [input]
 

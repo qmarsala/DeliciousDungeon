@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://btrke7rn4blxm"]
+
+[ext_resource type="Script" path="res://poc/assets/scripts/items/staff.gd" id="1_s7n4d"]
+[ext_resource type="Texture2D" uid="uid://cqyuvlxinqtqc" path="res://poc/assets/sprites/dungeon/weapons_.png" id="2_nv63o"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://poc/assets/sprites/dungeon/fire_.png" id="3_0o3c2"]
+
+[sub_resource type="Gradient" id="Gradient_mv6vj"]
+colors = PackedColorArray(0.955197, 0.955197, 0.955197, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsn6n"]
+gradient = SubResource("Gradient_mv6vj")
+fill = 1
+fill_from = Vector2(0.504274, 0.470085)
+fill_to = Vector2(0.555556, 0)
+
+[node name="Staff" type="Node2D" node_paths=PackedStringArray("level_two_effect", "ability_slots")]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_s7n4d")
+level_two_effect = NodePath("Sprite2D/LevelTwoEffect")
+ability_slots = NodePath("")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nv63o")
+region_enabled = true
+region_rect = Rect2(2, 72, 8, 24)
+
+[node name="LevelTwoEffect" type="PointLight2D" parent="Sprite2D"]
+visible = false
+position = Vector2(0, -8.75)
+scale = Vector2(0.206177, 0.199382)
+color = Color(1, 0.603922, 0.341176, 1)
+energy = 1.25
+texture = SubResource("GradientTexture2D_wsn6n")
+
+[node name="AttackIndicator" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.196078)
+scale = Vector2(1.33333, 1.33333)
+texture = ExtResource("3_0o3c2")
+region_enabled = true
+region_rect = Rect2(20, 19, 8, 9)

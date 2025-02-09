@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://1klbv4dx44kw"]
+
+[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://poc/assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_6t2k5"]
+[ext_resource type="Script" path="res://poc/assets/scripts/components/cleanup.gd" id="2_nj2gq"]
+
+[sub_resource type="Animation" id="Animation_ohggi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bovv5"]
+resource_name = "fall"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(4, -14), Vector2(8, -14), Vector2(10, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.139626, 0.610865, 1.5708]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cleaner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cleanup"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlrkt"]
+_data = {
+"RESET": SubResource("Animation_ohggi"),
+"fall": SubResource("Animation_bovv5")
+}
+
+[node name="FelledTreeTop" type="Sprite2D"]
+z_index = 5
+texture = ExtResource("1_6t2k5")
+region_enabled = true
+region_rect = Rect2(98, 24, 12, 15)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dlrkt")
+}
+autoplay = "fall"
+
+[node name="Cleaner" type="Node" parent="."]
+script = ExtResource("2_nj2gq")

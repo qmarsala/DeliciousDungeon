@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=9 format=3 uid="uid://bxslsp2tvvin1"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/weapon_stats/weapon_data.gd" id="1_bmtdg"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="2_g2gy2"]
+[ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://poc/assets/resources/abilities/ability_data/shoot_arrow_data.tres" id="3_tion1"]
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://poc/scenes/abilities/arrow.tscn" id="4_f5bsb"]
+[ext_resource type="PackedScene" uid="uid://ciiqtjse5bxlx" path="res://poc/scenes/abilities/piercing_arrow.tscn" id="4_uv3aj"]
+[ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://poc/assets/resources/abilities/ability_data/piercing_shot_data.tres" id="5_m7g2n"]
+
+[sub_resource type="Resource" id="Resource_yv7pr"]
+script = ExtResource("2_g2gy2")
+name = ""
+scene = ExtResource("4_f5bsb")
+data = ExtResource("3_tion1")
+
+[sub_resource type="Resource" id="Resource_5f65v"]
+script = ExtResource("2_g2gy2")
+name = ""
+scene = ExtResource("4_uv3aj")
+data = ExtResource("5_m7g2n")
+
+[resource]
+script = ExtResource("1_bmtdg")
+armour = 0.0
+evasion = 0.1
+max_range = 105.0
+strength = 1.15
+haste = 0.15
+weapon_abilities = Array[ExtResource("2_g2gy2")]([SubResource("Resource_yv7pr"), SubResource("Resource_5f65v")])
+weapon_level = 2
+item_id = 4
+name = "Bow"
+description = "A bettew bow"

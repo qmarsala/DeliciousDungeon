@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://dtt8oanr6xk70"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/enemies/enemy_data.gd" id="1_an8o5"]
+
+[resource]
+script = ExtResource("1_an8o5")
+enemy_id = 1
+name = "Goblin"
+starting_health = 1e+07
+speed = 0.0
+vision_range = 0.0
+engage_speed_multiplier = 0.0
+retreat_speed_multiplier = 0.0
+drop_rate = 0.0
+min_distance = 0
+ideal_distance_min = 0
+ideal_distance_max = 0
+max_distance = 0
+attack_cooldown = 1e+07
+attack_delay = 1e+07
+attack_damage = 0.0
+is_ranged = false
+attack_sound_on_delay = false

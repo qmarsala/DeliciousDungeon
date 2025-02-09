@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Item" load_steps=14 format=3 uid="uid://cebbqk2gtlbm2"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/weapon_stats/weapon_data.gd" id="1_1ql51"]
+[ext_resource type="Texture2D" uid="uid://fvyj4vvn8a6v" path="res://poc/assets/sprites/playerSprites_ [version 1.0]/sword_ [diamond].png" id="2_3tf1w"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="2_u54cm"]
+[ext_resource type="PackedScene" uid="uid://bfc8242vq64ru" path="res://poc/scenes/items/sword.tscn" id="3_2s8vn"]
+[ext_resource type="Resource" uid="uid://43lcogjjbhl7" path="res://poc/assets/resources/abilities/ability_data/sword_swing_data.tres" id="4_4f7o1"]
+[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="4_s263f"]
+[ext_resource type="PackedScene" uid="uid://do1nl314r0yo1" path="res://poc/scenes/abilities/sword_swing.tscn" id="5_fbb7x"]
+[ext_resource type="Resource" uid="uid://bbipk0xulhe0j" path="res://poc/assets/resources/abilities/ability_data/sword_stab_data.tres" id="6_0h5xn"]
+[ext_resource type="PackedScene" uid="uid://cvxvecph7j317" path="res://poc/scenes/abilities/sword_stab.tscn" id="7_46b7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu2ho"]
+atlas = ExtResource("2_3tf1w")
+
+[sub_resource type="Resource" id="Resource_syiy3"]
+script = ExtResource("2_u54cm")
+name = ""
+scene = ExtResource("5_fbb7x")
+data = ExtResource("4_4f7o1")
+
+[sub_resource type="Resource" id="Resource_ih1qt"]
+script = ExtResource("2_u54cm")
+name = ""
+scene = ExtResource("7_46b7r")
+data = ExtResource("6_0h5xn")
+
+[sub_resource type="Resource" id="Resource_y6a6c"]
+script = ExtResource("1_1ql51")
+armour = 0.5
+evasion = 0.25
+max_range = 30.0
+strength = 1.5
+haste = 0.25
+weapon_abilities = Array[ExtResource("2_u54cm")]([SubResource("Resource_syiy3"), SubResource("Resource_ih1qt")])
+weapon_level = 3
+item_id = 5
+name = ""
+description = ""
+sprite = SubResource("AtlasTexture_vu2ho")
+
+[resource]
+script = ExtResource("4_s263f")
+data = SubResource("Resource_y6a6c")
+scene = ExtResource("3_2s8vn")

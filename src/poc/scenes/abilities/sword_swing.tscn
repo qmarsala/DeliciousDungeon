@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://do1nl314r0yo1"]
+
+[ext_resource type="Script" path="res://poc/assets/scripts/abilities/sword_swing.gd" id="1_4i861"]
+[ext_resource type="PackedScene" uid="uid://dek57qt07lvfp" path="res://poc/scenes/components/hurtbox.tscn" id="1_w8ol4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mlx7f"]
+radius = 15.0
+
+[node name="SwordSwing" type="Node2D"]
+script = ExtResource("1_4i861")
+
+[node name="Aim" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+collision_mask = 0
+collide_with_bodies = false
+
+[node name="MeleeHurtbox" parent="Aim" instance=ExtResource("1_w8ol4")]
+position = Vector2(15, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aim/MeleeHurtbox"]
+shape = SubResource("CircleShape2D_mlx7f")

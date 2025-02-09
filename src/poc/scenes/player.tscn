@@ -1,0 +1,135 @@
+[gd_scene load_steps=21 format=3 uid="uid://y4ktplof8y3c"]
+
+[ext_resource type="Script" path="res://poc/assets/scripts/player/player.gd" id="1_511jo"]
+[ext_resource type="Texture2D" uid="uid://b7ktjn6ru0i4a" path="res://poc/assets/sprites/playerSprites_ [version 1.0]/mPlayer_ [human].png" id="2_35top"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://poc/scenes/components/health_component.tscn" id="2_vxtdb"]
+[ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://poc/scenes/components/movement_component.tscn" id="3_fvtna"]
+[ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://poc/scenes/components/hitbox.tscn" id="4_r4pyj"]
+[ext_resource type="AnimationLibrary" uid="uid://6ok2hi8yuafa" path="res://poc/assets/animations/player_sprites_animations.res" id="4_rwo8p"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/hand.gd" id="5_x0joh"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/player_states/player_idle_state.gd" id="5_xp3sm"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/player_states/player_dash_state.gd" id="6_0evq3"]
+[ext_resource type="Texture2D" uid="uid://crr64lhhdrj6g" path="res://poc/assets/sprites/move_indicator_arrow.png" id="6_af2ob"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/destination_marker.gd" id="7_6eexy"]
+[ext_resource type="PackedScene" uid="uid://d1bxw1ae03fmi" path="res://poc/scenes/components/status_effects_component.tscn" id="7_8i15j"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/player_states/player_move_state.gd" id="7_bwmhs"]
+[ext_resource type="PackedScene" uid="uid://dmrrebaym06l6" path="res://poc/scenes/components/ability_slots.tscn" id="8_2wv20"]
+[ext_resource type="Script" path="res://poc/assets/scripts/states/state_machine.gd" id="8_mgete"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/player_states/player_dead_state.gd" id="8_o8qu8"]
+[ext_resource type="Script" path="res://poc/assets/scripts/player/player_states/player_resting_state.gd" id="15_meny0"]
+[ext_resource type="AudioStream" uid="uid://dup3swn76q3oi" path="res://poc/assets/audio/PlayerRest.wav" id="17_clfv3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh2an"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_belmi"]
+radius = 4.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
+collision_layer = 524290
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_511jo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_35top")
+hframes = 8
+vframes = 10
+frame = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("4_rwo8p")
+}
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_kh2an")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health", "status_effects") instance=ExtResource("4_r4pyj")]
+collision_layer = 32
+collision_mask = 64
+health = NodePath("../HealthComponent")
+status_effects = NodePath("../StatusEffectsComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_belmi")
+debug_color = Color(0.917647, 0.0392157, 0.0352941, 0.419608)
+
+[node name="Hand" type="Node2D" parent="."]
+script = ExtResource("5_x0joh")
+
+[node name="DestinationMarker" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.470588)
+z_index = 100
+texture = ExtResource("6_af2ob")
+region_rect = Rect2(76, 175, 8, 8)
+script = ExtResource("7_6eexy")
+
+[node name="InteractionRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="PlayerRestSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_clfv3")
+volume_db = -20.0
+
+[node name="AbilitySlots" parent="." instance=ExtResource("8_2wv20")]
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("node") instance=ExtResource("2_vxtdb")]
+unique_name_in_owner = true
+node = NodePath("..")
+starting_health = 15.0
+
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("7_8i15j")]
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("character", "sprite", "animation_player") instance=ExtResource("3_fvtna")]
+character = NodePath("..")
+sprite = NodePath("../Sprite2D")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("8_mgete")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_xp3sm")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("6_0evq3")
+
+[node name="Rest" type="Node" parent="StateMachine"]
+script = ExtResource("15_meny0")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("7_bwmhs")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("8_o8qu8")
+
+[node name="DeathTimer" type="Timer" parent="StateMachine/Dead"]
+wait_time = 0.7
+one_shot = true
+
+[node name="HungerTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[node name="RestTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

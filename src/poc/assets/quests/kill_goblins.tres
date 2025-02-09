@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BountyQuest" load_steps=4 format=3 uid="uid://bl634ciahvr2a"]
+
+[ext_resource type="Script" path="res://poc/assets/quests/quest_reward_poc.gd" id="1_a7kum"]
+[ext_resource type="Script" path="res://poc/assets/quests/bounty_quest_poc.gd" id="1_jvxjs"]
+
+[sub_resource type="Resource" id="Resource_4yd3l"]
+script = ExtResource("1_a7kum")
+description = "increase move speed by 10% for the next floor"
+duration = -1.0
+increased_max_health = 0
+increased_max_nutrition = 0
+increased_min_damage = 0
+
+[resource]
+script = ExtResource("1_jvxjs")
+target_enemy_id = 1
+name = "A goblin problem"
+description = "kill 5 goblins"
+count = 5
+reward = SubResource("Resource_4yd3l")

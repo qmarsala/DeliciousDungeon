@@ -1,0 +1,245 @@
+[gd_scene load_steps=17 format=3 uid="uid://b2ydsutrfwhu5"]
+
+[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://poc/assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_18ktc"]
+[ext_resource type="Script" path="res://poc/assets/scripts/levels/forest_tree.gd" id="1_cgee7"]
+[ext_resource type="PackedScene" uid="uid://1klbv4dx44kw" path="res://poc/scenes/levels/felled_tree_top.tscn" id="2_a2c71"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="3_31mae"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="3_l5na6"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://poc/scenes/components/health_component.tscn" id="3_vqeq6"]
+[ext_resource type="Texture2D" uid="uid://c08qej0yb5b6p" path="res://poc/assets/sprites/tree_stump.png" id="4_b44d0"]
+[ext_resource type="AudioStream" uid="uid://cu14xetrk850x" path="res://poc/assets/audio/FelledTree.wav" id="7_5rf2q"]
+[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://poc/assets/audio/MeleeSwing.wav" id="7_vd0bx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05c1w"]
+size = Vector2(12, 23)
+
+[sub_resource type="Animation" id="Animation_xd8oo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChopAudioPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FelledTreePlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ljfgw"]
+resource_name = "felled"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FelledTreePlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"create_stump"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animate_fell"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"drop_logs"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v5j76"]
+resource_name = "receive_damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0436332, 0.0436332]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChopAudioPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tyh65"]
+_data = {
+"RESET": SubResource("Animation_xd8oo"),
+"die": SubResource("Animation_ljfgw"),
+"receive_damage": SubResource("Animation_v5j76")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_genxa"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 0.0
+initial_velocity_min = -50.0
+initial_velocity_max = -20.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.8
+scale_max = 1.5
+
+[node name="Tree" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_cgee7")
+felled_tree_top = ExtResource("2_a2c71")
+wood_item = ExtResource("3_l5na6")
+
+[node name="StumpCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ospfv")
+
+[node name="TreeStump" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -5)
+texture = ExtResource("4_b44d0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11.5)
+scale = Vector2(1, 1.04545)
+texture = ExtResource("1_18ktc")
+region_enabled = true
+region_rect = Rect2(98, 24, 12, 22)
+region_filter_clip_enabled = true
+
+[node name="Interactbox" parent="." instance=ExtResource("3_31mae")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_05c1w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tyh65")
+}
+
+[node name="ChopAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vd0bx")
+volume_db = -20.0
+
+[node name="FelledTreePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5rf2q")
+volume_db = -20.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.3966, 0.311571, 0.22289, 1)
+position = Vector2(-2, -8)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_genxa")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("3_vqeq6")]
+animation_player = NodePath("../AnimationPlayer")
+starting_health = 3.0
+signal_damage = false

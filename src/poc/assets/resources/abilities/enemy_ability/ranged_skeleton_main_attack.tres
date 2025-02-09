@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://c3w0g6krnls5v"]
+
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://poc/assets/audio/BowAttack.wav" id="1_jm3dl"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability_data/ability_data.gd" id="2_h3a84"]
+[ext_resource type="Script" path="res://poc/assets/resources/status_effects/status_effect.gd" id="3_dffjm"]
+[ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://poc/scenes/abilities/arrow.tscn" id="4_tn3c8"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="5_r4e10"]
+
+[sub_resource type="Resource" id="Resource_0f4ua"]
+script = ExtResource("2_h3a84")
+targets_player = true
+targets_enemy = false
+animation_name = "attack"
+ability_sound = ExtResource("1_jm3dl")
+cast_time = 0.3
+cooldown = 2.0
+show_castbar = false
+damage = 2.0
+heal = 0.0
+ability_range = 90
+bonus_range = 0
+status_effects = Array[ExtResource("3_dffjm")]([])
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1
+
+[resource]
+script = ExtResource("5_r4e10")
+name = ""
+scene = ExtResource("4_tn3c8")
+data = SubResource("Resource_0f4ua")

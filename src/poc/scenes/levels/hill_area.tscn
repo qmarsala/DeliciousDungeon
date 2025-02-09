@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyf3o58msblhx"]
+
+[ext_resource type="Script" path="res://poc/assets/scripts/levels/hill_area.gd" id="1_xvol5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nm777"]
+size = Vector2(20, 14)
+
+[node name="HillArea" type="Area2D"]
+z_index = 1
+collision_mask = 524290
+script = ExtResource("1_xvol5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nm777")

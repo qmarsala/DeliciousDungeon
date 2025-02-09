@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmrrebaym06l6"]
+
+[ext_resource type="Script" path="res://poc/assets/scripts/components/ability_slots.gd" id="1_ekqvj"]
+[ext_resource type="PackedScene" uid="uid://kjlfckhhcg2v" path="res://poc/scenes/components/ability_slot.tscn" id="1_teb5i"]
+
+[node name="AbilitySlots" type="Node"]
+script = ExtResource("1_ekqvj")
+
+[node name="Ability1" parent="." instance=ExtResource("1_teb5i")]
+ability_input_event = "ability_one"
+
+[node name="Ability2" parent="." instance=ExtResource("1_teb5i")]
+ability_input_event = "ability_two"
+
+[node name="Ability3" parent="." instance=ExtResource("1_teb5i")]
+ability_input_event = "ability_three"

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5oj53s80lw1c"]
-
-[ext_resource type="Script" path="res://assets/scripts/components/hitbox.gd" id="1_vompq"]
-
-[node name="Hitbox" type="Area2D"]
-collision_layer = 64
-collision_mask = 32
-script = ExtResource("1_vompq")

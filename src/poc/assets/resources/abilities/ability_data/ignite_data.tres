@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://b61mb8vxpb1ml"]
+
+[ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://poc/assets/audio/LightFire.wav" id="1_tnd0m"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability_data/ability_data.gd" id="2_y5j4o"]
+[ext_resource type="Script" path="res://poc/assets/resources/status_effects/status_effect.gd" id="3_mqagt"]
+[ext_resource type="Resource" uid="uid://ba1rm1w5wl0iy" path="res://poc/assets/resources/status_effects/burning.tres" id="4_kuboh"]
+
+[resource]
+script = ExtResource("2_y5j4o")
+targets_player = false
+targets_enemy = true
+animation_name = "attack"
+ability_sound = ExtResource("1_tnd0m")
+cast_time = 0.0
+cooldown = 5.5
+show_castbar = true
+damage = 1.0
+heal = 0.0
+ability_range = 75
+bonus_range = 0
+status_effects = Array[ExtResource("3_mqagt")]([ExtResource("4_kuboh")])
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1

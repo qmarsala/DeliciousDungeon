@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://73gucalk24fs"]
+
+[ext_resource type="Script" path="res://poc/assets/resources/enemies/enemy_data.gd" id="1_0eorm"]
+[ext_resource type="Resource" uid="uid://c3w0g6krnls5v" path="res://poc/assets/resources/abilities/enemy_ability/ranged_skeleton_main_attack.tres" id="1_d0lha"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="2_ucbhd"]
+
+[resource]
+script = ExtResource("1_0eorm")
+enemy_id = 2
+name = "Skeleton Archer"
+starting_health = 3.0
+speed = 30.0
+vision_range = 100.0
+engage_speed_multiplier = 0.7
+retreat_speed_multiplier = 1.15
+drop_rate = 0.25
+drop = ExtResource("2_ucbhd")
+min_distance = 40
+ideal_distance_min = 55
+ideal_distance_max = 90
+max_distance = 100
+ability = ExtResource("1_d0lha")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2v7p34tnts3u"]
-
-[ext_resource type="Script" path="res://assets/scripts/items/potion.gd" id="1_31lku"]
-[ext_resource type="Resource" uid="uid://dllniy4c4s8kg" path="res://assets/resources/items/potions/nutrition_potion_data.tres" id="2_vkse4"]
-
-[node name="Potion" type="Sprite2D"]
-scale = Vector2(0.75, 0.75)
-script = ExtResource("1_31lku")
-data = ExtResource("2_vkse4")

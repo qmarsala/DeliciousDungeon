@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d28o64v6vkmw2"]
-
-[ext_resource type="Script" path="res://assets/scripts/strategies/change_level_trigger_strategy.gd" id="1_c2vdf"]
-
-[node name="ChangeLevelTriggerStrategy" type="Node"]
-script = ExtResource("1_c2vdf")

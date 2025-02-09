@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://chw5576wg47v4"]
+
+[ext_resource type="AudioStream" uid="uid://ck2wkfdfp2hij" path="res://poc/assets/audio/Explosion.wav" id="1_mhrma"]
+[ext_resource type="Script" path="res://poc/assets/resources/abilities/ability_data/ability_data.gd" id="2_743v2"]
+[ext_resource type="Resource" uid="uid://dvvqcl7kwoyen" path="res://poc/assets/resources/status_effects/burn_synergy.tres" id="3_6bi1v"]
+[ext_resource type="Script" path="res://poc/assets/resources/status_effects/status_effect.gd" id="4_tyvf1"]
+
+[resource]
+script = ExtResource("2_743v2")
+targets_player = false
+targets_enemy = true
+animation_name = "attack"
+ability_sound = ExtResource("1_mhrma")
+cast_time = 0.3
+cooldown = 1.3
+show_castbar = true
+damage = 1.0
+heal = 0.0
+ability_range = 75
+bonus_range = 0
+status_effects = Array[ExtResource("4_tyvf1")]([])
+status_effect_synergy = ExtResource("3_6bi1v")
+speed = 300.0
+can_pierce = false
+max_pierce_count = 1

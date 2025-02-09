@@ -1,0 +1,247 @@
+[gd_scene load_steps=22 format=3 uid="uid://cfesvjhulwkvx"]
+
+[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://poc/assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
+[ext_resource type="Script" path="res://poc/assets/scripts/levels/fire.gd" id="2_dth6p"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="2_wjhyw"]
+[ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://poc/assets/audio/LightFire.wav" id="3_1suck"]
+[ext_resource type="PackedScene" uid="uid://bdr08r11d3ho4" path="res://poc/scenes/components/interact_indicator.tscn" id="3_g2j4k"]
+
+[sub_resource type="Gradient" id="Gradient_8on2x"]
+offsets = PackedFloat32Array(0, 0.227758, 0.608541)
+colors = PackedColorArray(1, 1, 1, 1, 0.395833, 0.395833, 0.395833, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jg4h0"]
+gradient = SubResource("Gradient_8on2x")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chxww"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r54xq"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocbls"]
+radius = 30.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq7qy"]
+atlas = ExtResource("1_j4fss")
+region = Rect2(128, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74dhy"]
+atlas = ExtResource("1_j4fss")
+region = Rect2(144, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbkv8"]
+atlas = ExtResource("1_j4fss")
+region = Rect2(160, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktkxf"]
+atlas = ExtResource("1_j4fss")
+region = Rect2(176, 176, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51dwp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq7qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74dhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbkv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktkxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_jxk6r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../PointLight2D:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lb1jd"]
+resource_name = "campfire_light_flicker"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.333333, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.75, 0.65, 0.75, 0.7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../PointLight2D:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxxca"]
+_data = {
+"RESET": SubResource("Animation_jxk6r"),
+"campfire_light_flicker": SubResource("Animation_lb1jd")
+}
+
+[sub_resource type="Gradient" id="Gradient_j8f1m"]
+offsets = PackedFloat32Array(0, 0.296724, 0.645472, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0815003, 0.0815003, 0.0815003, 0.9185, 0.236994, 0.236994, 0.236994, 0.763006, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h5j8l"]
+gradient = SubResource("Gradient_j8f1m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hn6ah"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 1)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 2.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.7
+scale_max = 1.7
+color_ramp = SubResource("GradientTexture1D_h5j8l")
+
+[node name="Fire" type="StaticBody2D"]
+script = ExtResource("2_dth6p")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.555, 1.5)
+enabled = false
+color = Color(0.909804, 0.666667, 0.0823529, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_jg4h0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_chxww")
+
+[node name="Interactbox" parent="." instance=ExtResource("2_wjhyw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
+shape = SubResource("CircleShape2D_r54xq")
+
+[node name="InteractIndicator" parent="." instance=ExtResource("3_g2j4k")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractIndicator"]
+shape = SubResource("CircleShape2D_ocbls")
+
+[node name="Unlit" type="Sprite2D" parent="."]
+texture = ExtResource("1_j4fss")
+region_enabled = true
+region_rect = Rect2(113, 179, 14, 11)
+region_filter_clip_enabled = true
+
+[node name="LitAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_51dwp")
+autoplay = "default"
+frame_progress = 0.473296
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../LitAnimation")
+libraries = {
+"": SubResource("AnimationLibrary_vxxca")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1suck")
+volume_db = -20.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.211765, 0.211765, 0.211765, 0.686275)
+position = Vector2(0, -12)
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_hn6ah")
+visibility_rect = Rect2(-500, -200, 1000, 400)
