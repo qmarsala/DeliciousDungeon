@@ -35,7 +35,6 @@ var move_disabled: bool
 var is_dashing: bool
 var is_dash_cooldown: bool
 var is_hill: bool
-var weapon_item: Item
 var weapon: Weapon
 var weapon_equipped: bool
 
@@ -48,6 +47,9 @@ func _ready() -> void:
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	hitbox.connect_weapon_events(equipped_weapon, unequipped_weapon)
 	move_target = global_position
+	if player_data.equipped_weapon and not weapon:
+		var weapon_item = player_data.equipped_weapon
+		equip(weapon_item)
 	if Input.is_action_pressed("move"):
 		move_disabled = true
 
@@ -80,19 +82,29 @@ func pickup(item: Item) -> void:
 	else:
 		player_data.items[item.data.item_id] += 1
 
+func switch_weapons() -> void:
+	var temp = player_data.backpack_weapon
+	player_data.equipped_weapon = player_data.backpack_weapon
+	player_data.backpack_weapon = temp
+
 func equip(item: Item) -> void:
+	if not player_data.backpack_weapon and player_data.equipped_weapon:
+		player_data.backpack_weapon = player_data.equipped_weapon
+		player_data.equipped_weapon = null
+		weapon_equipped = false
 	if weapon_equipped:
 		unequip()
 	weapon_equipped = true
-	weapon_item = item
-	weapon = weapon_item.create_item_scene() as Weapon
+	player_data.equipped_weapon = item
+	weapon = player_data.equipped_weapon.create_item_scene() as Weapon
 	weapon.equip(self)
 	equipped_weapon.emit(weapon)
 
 func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
-	ItemDropService.drop_item(weapon_item, global_position)
+	ItemDropService.drop_item(player_data.equipped_weapon, global_position)
+	player_data.equipped_weapon = null # todo: not null, but default 'fist' weapon?
 	unequipped_weapon.emit()
 
 func drink(item: Item):

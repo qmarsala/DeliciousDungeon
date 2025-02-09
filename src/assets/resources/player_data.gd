@@ -20,7 +20,8 @@ extends Resource
 # the active quest reward buff will need to be remembered for sure
 # is that an effect?
 
-#@export var weapon: Item
+@export var equipped_weapon: Item
+@export var backpack_weapon: Item
 #@export var status_effects: Array[StatusEffect]
 
 func reset_nutrition():

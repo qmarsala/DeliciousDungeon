@@ -52,4 +52,4 @@ region_rect = Rect2(84, 38, 24, 23)
 
 [node name="RewardLocation" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(0, 1)
+position = Vector2(0, 12)
