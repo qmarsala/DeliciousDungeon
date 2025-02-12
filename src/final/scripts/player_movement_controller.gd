@@ -1,8 +1,10 @@
 class_name PlayerMovementController
 extends RefCounted
 
-#todo: player data speed
 var speed = 45.0
+
+func init(player_speed: float):
+	speed = player_speed
 
 func get_velocity(current_velocity: Vector2) -> Vector2:
 	var xDirection = get_x_input(current_velocity)
