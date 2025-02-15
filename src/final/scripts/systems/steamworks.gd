@@ -1,8 +1,10 @@
 extends Node
 
 var app_id = 480 # example game for dev
+var steam_enabled = false
 
 func _ready() -> void:
+	if not steam_enabled: return
 	initialize_steam()
 
 func _process(_delta: float) -> void:
