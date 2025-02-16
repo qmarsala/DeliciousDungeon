@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://co65eon8oc01c"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/levels/trap.gd" id="1_aosxj"]
-[ext_resource type="Texture2D" uid="uid://bnmxtsc5udwtv" path="res://poc/assets/sprites/dungeon/traps_.png" id="1_f4p8c"]
+[ext_resource type="Texture2D" uid="uid://bnmxtsc5udwtv" path="res://imported_assets/sprites/dungeon/traps_.png" id="1_f4p8c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_walv8"]
 atlas = ExtResource("1_f4p8c")

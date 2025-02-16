@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://btrke7rn4blxm"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/items/staff.gd" id="1_s7n4d"]
-[ext_resource type="Texture2D" uid="uid://cqyuvlxinqtqc" path="res://poc/assets/sprites/dungeon/weapons_.png" id="2_nv63o"]
-[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://poc/assets/sprites/dungeon/fire_.png" id="3_0o3c2"]
+[ext_resource type="Texture2D" uid="uid://cqyuvlxinqtqc" path="res://imported_assets/sprites/dungeon/weapons_.png" id="2_nv63o"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://imported_assets/sprites/dungeon/fire_.png" id="3_0o3c2"]
 
 [sub_resource type="Gradient" id="Gradient_mv6vj"]
 colors = PackedColorArray(0.955197, 0.955197, 0.955197, 1, 0, 0, 0, 1)

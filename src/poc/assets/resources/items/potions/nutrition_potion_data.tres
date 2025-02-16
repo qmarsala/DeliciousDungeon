@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PotionData" load_steps=4 format=3 uid="uid://dllniy4c4s8kg"]
 
 [ext_resource type="Script" path="res://poc/assets/resources/items/potions/potion_data.gd" id="1_ml3v8"]
-[ext_resource type="Texture2D" uid="uid://c4bu1f02l55tu" path="res://poc/assets/sprites/Foods_Potions_&_Potions/Potions/Potions.png" id="2_7hmsq"]
+[ext_resource type="Texture2D" uid="uid://c4bu1f02l55tu" path="res://imported_assets/sprites/Foods_Potions_&_Potions/Potions/Potions.png" id="2_7hmsq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shiyn"]
 atlas = ExtResource("2_7hmsq")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://poc/assets/scripts/enemies/enemy.gd" id="1_kvlj8"]
 [ext_resource type="Resource" uid="uid://bimn8sgkvl2o3" path="res://poc/assets/resources/enemies/goblin.tres" id="2_1c58a"]
-[ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://poc/assets/sprites/dungeon/goblin_.png" id="4_c6iyo"]
+[ext_resource type="Texture2D" uid="uid://c63k7jadehpp7" path="res://imported_assets/sprites/dungeon/goblin_.png" id="4_c6iyo"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://poc/scenes/components/health_component.tscn" id="5_awlvx"]
-[ext_resource type="Texture2D" uid="uid://d2adqsivqkw8k" path="res://poc/assets/sprites/dungeon/goblinHand_.png" id="5_g6mdy"]
+[ext_resource type="Texture2D" uid="uid://d2adqsivqkw8k" path="res://imported_assets/sprites/dungeon/goblinHand_.png" id="5_g6mdy"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://poc/scenes/components/hitbox.tscn" id="5_h3vuw"]
 [ext_resource type="Script" path="res://poc/assets/scripts/components/movement_component.gd" id="6_8upb2"]
 [ext_resource type="Script" path="res://poc/assets/scripts/states/state_machine.gd" id="7_yo3gd"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://c44qt8656qxed"]
 
-[ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://poc/assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_fppuu"]
-[ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://poc/assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="3_0i87u"]
+[ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_fppuu"]
+[ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://imported_assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="3_0i87u"]
 [ext_resource type="TileSet" uid="uid://l2q7sjwj8ykk" path="res://poc/assets/outdoor_tileset.tres" id="4_uq57v"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://poc/scenes/player.tscn" id="4_yadh7"]
 [ext_resource type="PackedScene" uid="uid://dyf3o58msblhx" path="res://poc/scenes/levels/hill_area.tscn" id="5_ofnco"]

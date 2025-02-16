@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2084hee1l50l"]
 
-[ext_resource type="Texture2D" uid="uid://8ellw2iqfg2t" path="res://poc/assets/sprites/Foods_Potions_&_Potions/Foods/Food_10.png" id="1_syi0m"]
+[ext_resource type="Texture2D" uid="uid://8ellw2iqfg2t" path="res://imported_assets/sprites/Foods_Potions_&_Potions/Foods/Food_10.png" id="1_syi0m"]
 
 [node name="Food" type="Node2D"]
 scale = Vector2(0.5, 0.5)

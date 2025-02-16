@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://d0eusdwt4lmko"]
 
-[ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://poc/assets/sprites/dungeon/dungeon_.png" id="1_7bfbo"]
-[ext_resource type="Texture2D" uid="uid://b27ypia1sa3a8" path="res://poc/assets/sprites/dungeon/dungeonDecoration_1.png" id="2_n3jiy"]
-[ext_resource type="Texture2D" uid="uid://hl1k2eciqw5n" path="res://poc/assets/sprites/dungeon/waterLavaAcid_.png" id="2_sac7m"]
-[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://poc/assets/sprites/dungeon/dungeonDecoration_0.png" id="3_wg0gk"]
+[ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://imported_assets/sprites/dungeon/dungeon_.png" id="1_7bfbo"]
+[ext_resource type="Texture2D" uid="uid://b27ypia1sa3a8" path="res://imported_assets/sprites/dungeon/dungeonDecoration_1.png" id="2_n3jiy"]
+[ext_resource type="Texture2D" uid="uid://hl1k2eciqw5n" path="res://imported_assets/sprites/dungeon/waterLavaAcid_.png" id="2_sac7m"]
+[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://imported_assets/sprites/dungeon/dungeonDecoration_0.png" id="3_wg0gk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2uxa"]
 texture = ExtResource("1_7bfbo")

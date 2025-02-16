@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://c3w0g6krnls5v"]
 
-[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://poc/assets/audio/BowAttack.wav" id="1_jm3dl"]
+[ext_resource type="AudioStream" uid="uid://ctlfpnj1tkedh" path="res://imported_assets/audio/BowAttack.wav" id="1_jm3dl"]
 [ext_resource type="Script" path="res://poc/assets/resources/abilities/ability_data/ability_data.gd" id="2_h3a84"]
 [ext_resource type="Script" path="res://poc/assets/resources/status_effects/status_effect.gd" id="3_dffjm"]
 [ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://poc/scenes/abilities/arrow.tscn" id="4_tn3c8"]

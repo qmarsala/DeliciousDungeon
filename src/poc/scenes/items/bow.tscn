@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://poc/assets/scripts/items/bow.gd" id="1_eehek"]
 [ext_resource type="SpriteFrames" uid="uid://cawxta7v7inqw" path="res://poc/assets/animations/bow_animation.tres" id="2_0cybm"]
-[ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://poc/assets/sprites/robinhood/weapons_.png" id="3_33x1b"]
+[ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://imported_assets/sprites/robinhood/weapons_.png" id="3_33x1b"]
 
 [node name="Bow" type="Node2D" node_paths=PackedStringArray("ability_slots")]
 scale = Vector2(0.7, 0.7)

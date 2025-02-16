@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0ijtlxrsxwu6"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/abilities/ignite.gd" id="1_w50xc"]
-[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://poc/assets/sprites/dungeon/fire_.png" id="2_q4gwy"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://imported_assets/sprites/dungeon/fire_.png" id="2_q4gwy"]
 
 [sub_resource type="Gradient" id="Gradient_s5vbd"]
 offsets = PackedFloat32Array(0, 0.694332)

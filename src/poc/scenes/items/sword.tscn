@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bfc8242vq64ru"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/items/sword.gd" id="1_cie1y"]
-[ext_resource type="Texture2D" uid="uid://bg35y6j07oktb" path="res://poc/assets/sprites/playerSprites_ [version 1.0]/sword_ [wood].png" id="2_p71ko"]
+[ext_resource type="Texture2D" uid="uid://bg35y6j07oktb" path="res://imported_assets/sprites/playerSprites_ [version 1.0]/sword_ [wood].png" id="2_p71ko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aubdb"]
 atlas = ExtResource("2_p71ko")

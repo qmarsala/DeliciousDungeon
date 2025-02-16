@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://b7g3w5kudeow8"]
 
 [ext_resource type="Script" path="res://poc/assets/resources/abilities/ability_data/ability_data.gd" id="1_ks05o"]
-[ext_resource type="AudioStream" uid="uid://c2xpk25adpmko" path="res://poc/assets/audio/MeleeAttack2.wav" id="1_tld5q"]
+[ext_resource type="AudioStream" uid="uid://c2xpk25adpmko" path="res://imported_assets/audio/MeleeAttack2.wav" id="1_tld5q"]
 [ext_resource type="Script" path="res://poc/assets/resources/status_effects/status_effect.gd" id="2_nvp1g"]
 [ext_resource type="PackedScene" uid="uid://do1nl314r0yo1" path="res://poc/scenes/abilities/sword_swing.tscn" id="3_sbjab"]
 [ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="4_oa28e"]

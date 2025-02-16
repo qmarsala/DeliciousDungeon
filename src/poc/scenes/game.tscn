@@ -10,12 +10,12 @@
 [ext_resource type="Resource" uid="uid://bl634ciahvr2a" path="res://poc/assets/quests/kill_goblins.tres" id="6_vyjaa"]
 [ext_resource type="Resource" uid="uid://dfp1vr0asb72d" path="res://poc/assets/quests/kill_skeletons.tres" id="7_abv55"]
 [ext_resource type="PackedScene" uid="uid://y304jg6volpg" path="res://poc/scenes/ui/quest_ui_poc.tscn" id="7_d3qop"]
-[ext_resource type="AudioStream" uid="uid://w2t0u6v60bjx" path="res://poc/assets/audio/Harmony.ogg" id="7_pw28q"]
-[ext_resource type="AudioStream" uid="uid://v6mjp1y51k5k" path="res://poc/assets/audio/SandsOfTime.mp3" id="8_bp6xg"]
+[ext_resource type="AudioStream" uid="uid://w2t0u6v60bjx" path="res://imported_assets/audio/Harmony.ogg" id="7_pw28q"]
+[ext_resource type="AudioStream" uid="uid://v6mjp1y51k5k" path="res://imported_assets/audio/SandsOfTime.mp3" id="8_bp6xg"]
 [ext_resource type="Resource" uid="uid://b57cfm3fouo4v" path="res://poc/assets/quests/dungeon_steward.tres" id="8_ek0gc"]
 [ext_resource type="Resource" uid="uid://gcxnng0sb438" path="res://poc/assets/quests/rest_and_recuperation.tres" id="8_wsfpj"]
 [ext_resource type="Script" path="res://poc/assets/scripts/ui/quest_log_ui_poc.gd" id="9_2b5w3"]
-[ext_resource type="AudioStream" uid="uid://bug8pb2tjjyjr" path="res://poc/assets/audio/QuestCompleted.wav" id="10_m8g1c"]
+[ext_resource type="AudioStream" uid="uid://bug8pb2tjjyjr" path="res://imported_assets/audio/QuestCompleted.wav" id="10_m8g1c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_32tff"]
 shader = ExtResource("6_rybb5")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c1tv7g4ssauru"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/abilities/conflagrate.gd" id="1_w1lis"]
-[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://poc/assets/sprites/dungeon/fire_.png" id="2_eqfx4"]
+[ext_resource type="Texture2D" uid="uid://cdk267i0i80jy" path="res://imported_assets/sprites/dungeon/fire_.png" id="2_eqfx4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d85sh"]
 atlas = ExtResource("2_eqfx4")

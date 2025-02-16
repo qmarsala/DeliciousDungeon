@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwmoi0dahea8s"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/items/projectile.gd" id="1_1bi3h"]
-[ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://poc/assets/sprites/robinhood/weapons_.png" id="2_t6c6w"]
+[ext_resource type="Texture2D" uid="uid://c1qb48wdrvwqa" path="res://imported_assets/sprites/robinhood/weapons_.png" id="2_t6c6w"]
 [ext_resource type="PackedScene" uid="uid://dek57qt07lvfp" path="res://poc/scenes/components/hurtbox.tscn" id="3_qbbt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5qi2"]

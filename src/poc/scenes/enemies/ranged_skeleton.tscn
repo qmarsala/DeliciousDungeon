@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://poc/assets/scripts/enemies/enemy.gd" id="1_8l5wi"]
 [ext_resource type="Resource" uid="uid://73gucalk24fs" path="res://poc/assets/resources/enemies/ranged_skeleton.tres" id="2_7pu6r"]
 [ext_resource type="PackedScene" uid="uid://c5oj53s80lw1c" path="res://poc/scenes/components/hitbox.tscn" id="3_60mma"]
-[ext_resource type="Texture2D" uid="uid://b8oevf8utgr0q" path="res://poc/assets/sprites/dungeon/skeleton_.png" id="3_nc3c3"]
+[ext_resource type="Texture2D" uid="uid://b8oevf8utgr0q" path="res://imported_assets/sprites/dungeon/skeleton_.png" id="3_nc3c3"]
 [ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://poc/scenes/components/health_component.tscn" id="4_i88yj"]
 [ext_resource type="SpriteFrames" uid="uid://cawxta7v7inqw" path="res://poc/assets/animations/bow_animation.tres" id="4_riynd"]
 [ext_resource type="PackedScene" uid="uid://ckf187c4wqwck" path="res://poc/scenes/components/movement_component.tscn" id="5_jdqjc"]

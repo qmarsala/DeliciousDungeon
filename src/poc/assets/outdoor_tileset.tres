@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=11 format=3 uid="uid://l2q7sjwj8ykk"]
 
-[ext_resource type="Texture2D" uid="uid://duuresy45q3x1" path="res://poc/assets/sprites/forestVillage_ [version 2.0]/buildings_/blueHouse_0_0.png" id="1_b0ybb"]
-[ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://poc/assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="2_1822y"]
-[ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://poc/assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="3_iklq4"]
-[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://poc/assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="4_q3ltv"]
-[ext_resource type="Texture2D" uid="uid://c1a6autclnes3" path="res://poc/assets/sprites/fantasy_ [version 2.0]/forest_/forestPath_.png" id="5_abrhp"]
+[ext_resource type="Texture2D" uid="uid://duuresy45q3x1" path="res://imported_assets/sprites/forestVillage_ [version 2.0]/buildings_/blueHouse_0_0.png" id="1_b0ybb"]
+[ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://imported_assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="2_1822y"]
+[ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="3_iklq4"]
+[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="4_q3ltv"]
+[ext_resource type="Texture2D" uid="uid://c1a6autclnes3" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forestPath_.png" id="5_abrhp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ol6a"]
 texture = ExtResource("1_b0ybb")

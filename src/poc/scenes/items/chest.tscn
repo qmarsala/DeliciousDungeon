@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b8s7nl3sdl2xv"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/items/chest.gd" id="1_3cevd"]
-[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://poc/assets/sprites/dungeon/dungeonDecoration_0.png" id="1_qy1vr"]
+[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://imported_assets/sprites/dungeon/dungeonDecoration_0.png" id="1_qy1vr"]
 [ext_resource type="Resource" uid="uid://fddsku4ra52f" path="res://poc/assets/resources/items/chest_drop_table.tres" id="2_y27et"]
 [ext_resource type="PackedScene" uid="uid://bdr08r11d3ho4" path="res://poc/scenes/components/interact_indicator.tscn" id="4_lc52y"]
 [ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="7_kbtk6"]
