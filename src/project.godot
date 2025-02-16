@@ -41,7 +41,7 @@ World=""
 
 [gui]
 
-theme/custom_font="res://poc/assets/fonts/monogram/ttf/monogram.ttf"
+theme/custom_font="res://imported_assets/fonts/monogram/ttf/monogram.ttf"
 
 [input]
 
