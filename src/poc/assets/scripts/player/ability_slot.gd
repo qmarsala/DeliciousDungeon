@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !cast_timer.is_stopped() and ability_data.show_castbar:
-		SignalBusService.Casting.emit(cast_timer.time_left, ability_data.cast_time)
+		SignalBus.Casting.emit(cast_timer.time_left, ability_data.cast_time)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_instance_valid(ability_data): return

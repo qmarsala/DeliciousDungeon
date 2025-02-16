@@ -5,7 +5,7 @@ var available_quests: Array[Quest]
 var completed_quests: Array[Quest]
 
 func _ready() -> void:
-	SignalBusService.QuestCompleted.connect(on_quest_completed)
+	SignalBus.QuestCompleted.connect(on_quest_completed)
 
 # maybe this should be in each quests under a start method?
 # what about when the game is closed and reopened? how do signal connections work with saved progress?
@@ -24,11 +24,11 @@ func clear_quests():
 
 func wire_quest(q: Quest):
 	if q is BountyQuest:
-		if !SignalBusService.EnemyDied.is_connected(q.on_enemy_died):
-			SignalBusService.EnemyDied.connect(q.on_enemy_died)
+		if !SignalBus.EnemyDied.is_connected(q.on_enemy_died):
+			SignalBus.EnemyDied.connect(q.on_enemy_died)
 	elif q is ActionQuest:
-		if !SignalBusService.ActionPerformed.is_connected(q.on_action):
-			SignalBusService.ActionPerformed.connect(q.on_action)
+		if !SignalBus.ActionPerformed.is_connected(q.on_action):
+			SignalBus.ActionPerformed.connect(q.on_action)
 			
 func add_quest(new_quest: Quest):
 	if new_quest.completed:

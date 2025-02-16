@@ -42,4 +42,4 @@ func light() -> void:
 	audio_stream_player.play()
 	animation_player.play(animation_name)
 	#for quest poc - these events could include the player position? that might help with sounds problem?
-	SignalBusService.ActionPerformed.emit(Enums.Actions.LightFire)
+	SignalBus.ActionPerformed.emit(Enums.Actions.LightFire)

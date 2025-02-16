@@ -9,7 +9,7 @@ var player: Player
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	player.player_died.connect(_on_player_died)
-	SignalBusService.DamageReceived.connect(_add_damage_number)
+	SignalBus.DamageReceived.connect(_add_damage_number)
 
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()

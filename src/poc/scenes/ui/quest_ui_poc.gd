@@ -4,7 +4,7 @@ extends Control
 var quest: Quest
 
 func _ready() -> void:
-	SignalBusService.QuestCompleted.connect(on_quest_completed)
+	SignalBus.QuestCompleted.connect(on_quest_completed)
 
 func _process(delta: float) -> void:
 	if quest:

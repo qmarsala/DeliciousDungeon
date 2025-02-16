@@ -65,7 +65,7 @@ func begin_rest() -> void:
 
 # should this live in the resting state? or just be called from there?
 func complete_rest() -> void:
-	SignalBusService.ActionPerformed.emit(Enums.Actions.Rest)
+	SignalBus.ActionPerformed.emit(Enums.Actions.Rest)
 	player_data.items[Enums.Items.Food] -= 1
 	rest_is_cooldown = true
 	rest_timer.start(30)
@@ -103,7 +103,7 @@ func equip(item: Item) -> void:
 func unequip() -> void:
 	weapon.unequip()
 	weapon_equipped = false
-	ItemDropService.drop_item(player_data.equipped_weapon, global_position)
+	ItemDropper.drop_item(player_data.equipped_weapon, global_position)
 	player_data.equipped_weapon = null # todo: not null, but default 'fist' weapon?
 	unequipped_weapon.emit()
 

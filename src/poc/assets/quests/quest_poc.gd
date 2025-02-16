@@ -19,7 +19,7 @@ func log_progress(more_progress: int) -> void:
 	progress += more_progress
 	if progress >= count:
 		completed = true
-		SignalBusService.QuestCompleted.emit(self)
+		SignalBus.QuestCompleted.emit(self)
 
 func reset() -> void:
 	completed = false

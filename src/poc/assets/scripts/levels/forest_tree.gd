@@ -32,4 +32,4 @@ func animate_fell():
 		add_child.call_deferred(instance)
 
 func drop_logs():
-	ItemDropService.drop_item(wood_item, global_position)
+	ItemDropper.drop_item(wood_item, global_position)

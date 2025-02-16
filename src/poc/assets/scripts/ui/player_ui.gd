@@ -19,8 +19,8 @@ var ability_slots: Array[AbilitySlot]
 var ability_cooldowns: Array[TextureProgressBar]
 
 func _ready() -> void:
-	SignalBusService.Casting.connect(update_cast_bar)
-	SignalBusService.Resting.connect(update_rest_bar)
+	SignalBus.Casting.connect(update_cast_bar)
+	SignalBus.Resting.connect(update_rest_bar)
 	player.equipped_weapon.connect(setup_ability_bar)
 	player.unequipped_weapon.connect(teardown_ability_bar)
 	ability_cooldowns = [ability_1_cooldown, ability_2_cooldown, ability_3_cooldown]

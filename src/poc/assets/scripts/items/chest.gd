@@ -30,4 +30,4 @@ func interact(player: Player):
 	var reward = drop_table.get_drop_result()
 	for r in reward.quantity:
 		var pos = Vector2(reward_location.global_position.x + randf_range(-1, 1), reward_location.global_position.y + randf_range(-1, 1))
-		ItemDropService.drop_item(reward.item, pos)
+		ItemDropper.drop_item(reward.item, pos)

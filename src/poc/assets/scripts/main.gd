@@ -22,8 +22,8 @@ var current_scene: Node2D
 var next_scene: PackedScene
 
 func _ready():
-	SignalBusService.SceneChange.connect(_change_level)
-	SignalBusService.QuestCompleted.connect(on_quest_completed)
+	SignalBus.SceneChange.connect(_change_level)
+	SignalBus.QuestCompleted.connect(on_quest_completed)
 	quest_log_ui.init()
 	_change_scene(main_menu, true)
 	$OutdoorMusic.play()
@@ -37,10 +37,10 @@ func _change_level(scene: Enums.Scenes):
 		$OutdoorMusic.stop()
 		$DungeonMusic.play()
 		# quests specific to each dungeon floor?
-		QuestSystemService.reset_quests()
-		QuestSystemService.clear_quests()
-		QuestSystemService.add_quest(quests.pick_random())
-		quest_log_ui.refresh()
+		#QuestSystemService.reset_quests()
+		#QuestSystemService.clear_quests()
+		#QuestSystemService.add_quest(quests.pick_random())
+		#quest_log_ui.refresh()
 	else:
 		$DungeonMusic.stop()
 		$OutdoorMusic.play()
@@ -78,7 +78,7 @@ func _perform_scene_change():
 		$QuestLogLayer.show()
 
 func _game_over():
-	QuestSystemService.reset_quests()
+	#QuestSystemService.reset_quests()
 	# what is the role of game manager? do we need it?
 	game_data.end_game()
 	if $QuestLogLayer.visible:

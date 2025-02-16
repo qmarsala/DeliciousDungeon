@@ -21,7 +21,7 @@ func enter():
 func handle_process(delta):
 	player.velocity = Vector2.ZERO
 	var elapsed = time - rested_at
-	SignalBusService.Resting.emit(rest_time - elapsed, rest_time)
+	SignalBus.Resting.emit(rest_time - elapsed, rest_time)
 	rest_completed = time - rested_at >= rest_time
 	if rest_completed:
 		Transitioned.emit(self, "Idle")
@@ -37,7 +37,7 @@ func handle_movement_input(event: InputEvent):
 			Transitioned.emit(self, "Move")
 
 func exit():
-	SignalBusService.Resting.emit(0, rest_time)
+	SignalBus.Resting.emit(0, rest_time)
 	if rest_completed:
 		player.complete_rest()
 	if player.weapon_equipped:

@@ -9,6 +9,15 @@ enum Items {
 	Sword,
 }
 
+enum Characters {
+	None,
+	Player,
+	Goblin,
+	RangedSkeleton,
+	Troll
+}
+
+#temp: to keep poc building
 enum Enemies {
 	None,
 	Goblin,

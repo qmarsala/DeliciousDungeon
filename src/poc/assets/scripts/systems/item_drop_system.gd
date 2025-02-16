@@ -1,7 +1,7 @@
 class_name ItemDropSystem
 extends Node
 
-@onready var pickup_scene: PackedScene = preload("res://poc/scenes/items/pickup.tscn")
+var pickup_scene: PackedScene = preload("res://poc/scenes/items/pickup.tscn")
 
 func drop_item(item: Item, target_position: Vector2):
 	if pickup_scene:
