@@ -1,6 +1,14 @@
 class_name Player2
 extends CharacterBody2D
 
+
+var player_move_controller = PlayerMovementController.new()
+
+#todo: movment component - call get direction
+func _physics_process(delta: float) -> void:
+	velocity = player_move_controller.get_velocity(velocity)
+	move_and_slide()
+
 func attack() -> void:
 	pass
 	
