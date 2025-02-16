@@ -23,6 +23,7 @@ Enums="*res://poc/assets/scripts/enums.gd"
 SignalBusService="*res://poc/assets/scripts/systems/signal_bus.gd"
 QuestSystemService="*res://poc/assets/scripts/systems/quest_system.gd"
 ItemDropService="*res://poc/assets/scripts/systems/item_drop_system.gd"
+BattleText="*res://final/scripts/systems/battle_text.gd"
 Steamworks="*res://final/scripts/systems/steamworks.gd"
 
 [display]

@@ -23,8 +23,6 @@ var next_scene: PackedScene
 
 func _ready():
 	SignalBusService.SceneChange.connect(_change_level)
-	#temp: should go to a damage number service in the main scene
-	SignalBusService.DamageReceived.connect(_add_damage_number)
 	SignalBusService.QuestCompleted.connect(on_quest_completed)
 	quest_log_ui.init()
 	_change_scene(main_menu, true)
@@ -86,13 +84,6 @@ func _game_over():
 	if $QuestLogLayer.visible:
 		$QuestLogLayer.hide()
 	_change_level(Enums.Scenes.Main)
-
-# todo: move to notify service or something like that
-func _add_damage_number(damage: float, position: Vector2, is_target_player: bool):
-	#todo: pull this into a damage number type?
-	var instance = damage_number.instantiate() as DamageNumber
-	instance.init(damage, position, is_target_player)
-	add_child(instance)
 
 # sound service?
 func on_quest_completed(completed_quest: Quest):
