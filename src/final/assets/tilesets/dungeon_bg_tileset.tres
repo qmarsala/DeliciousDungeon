@@ -1,13 +1,13 @@
 [gd_resource type="TileSet" load_steps=11 format=3 uid="uid://dcb2drvwiopcd"]
 
-[ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://imported_assets/sprites/dungeon/dungeon_.png" id="1_qemcg"]
-[ext_resource type="Texture2D" uid="uid://cw4p7sc2gjvsm" path="res://imported_assets/sprites/fantasy_ [version 2.0]/cave_/cave_ [bridgeVertical].png" id="2_kea1x"]
-[ext_resource type="Texture2D" uid="uid://b27ypia1sa3a8" path="res://imported_assets/sprites/dungeon/dungeonDecoration_1.png" id="3_yfp4l"]
-[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://imported_assets/sprites/dungeon/dungeonDecoration_0.png" id="4_a4nsm"]
-[ext_resource type="Texture2D" uid="uid://hl1k2eciqw5n" path="res://imported_assets/sprites/dungeon/waterLavaAcid_.png" id="5_05t31"]
+[ext_resource type="Texture2D" uid="uid://wbwwbja7ucx5" path="res://imported_assets/sprites/dungeon/dungeon_.png" id="1_rydjl"]
+[ext_resource type="Texture2D" uid="uid://cw4p7sc2gjvsm" path="res://imported_assets/sprites/fantasy_ [version 2.0]/cave_/cave_ [bridgeVertical].png" id="2_hdye4"]
+[ext_resource type="Texture2D" uid="uid://b27ypia1sa3a8" path="res://imported_assets/sprites/dungeon/dungeonDecoration_1.png" id="3_5jjoi"]
+[ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://imported_assets/sprites/dungeon/dungeonDecoration_0.png" id="4_3sfvs"]
+[ext_resource type="Texture2D" uid="uid://hl1k2eciqw5n" path="res://imported_assets/sprites/dungeon/waterLavaAcid_.png" id="5_a0hda"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2uxa"]
-texture = ExtResource("1_qemcg")
+texture = ExtResource("1_rydjl")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -214,7 +214,7 @@ texture = ExtResource("1_qemcg")
 6:16/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h7w84"]
-texture = ExtResource("2_kea1x")
+texture = ExtResource("2_hdye4")
 1:0/0 = 0
 3:0/0 = 0
 1:1/0 = 0
@@ -243,7 +243,7 @@ texture = ExtResource("2_kea1x")
 3:8/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2fb1"]
-texture = ExtResource("3_yfp4l")
+texture = ExtResource("3_5jjoi")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -544,7 +544,7 @@ texture = ExtResource("3_yfp4l")
 30:12/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x34og"]
-texture = ExtResource("4_a4nsm")
+texture = ExtResource("4_3sfvs")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -657,7 +657,7 @@ texture = ExtResource("4_a4nsm")
 9:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7l80t"]
-texture = ExtResource("5_05t31")
+texture = ExtResource("5_a0hda")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, -2.66667, 8, -2.66667, -2.66667, 8, -2.66667)
 2:1/0 = 0
