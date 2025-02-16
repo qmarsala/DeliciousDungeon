@@ -1,4 +1,4 @@
-class_name GameData2
+class_name GameData
 extends Resource
 
 @export var player_data: PlayerData2 = PlayerData2.new()
