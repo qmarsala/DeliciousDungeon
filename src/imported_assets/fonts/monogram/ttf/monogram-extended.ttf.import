@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://spboi1thengl"
-path="res://.godot/imported/monogram.ttf-16706c8ac9b457d1352e4c00fa45a3f8.fontdata"
+uid="uid://bebel8y2dv2yb"
+path="res://.godot/imported/monogram-extended.ttf-287dafcd7dc0e785ae9e7678ba6f4748.fontdata"
 
 [deps]
 
-source_file="res://poc/assets/fonts/monogram/ttf/monogram.ttf"
-dest_files=["res://.godot/imported/monogram.ttf-16706c8ac9b457d1352e4c00fa45a3f8.fontdata"]
+source_file="res://imported_assets/fonts/monogram/ttf/monogram-extended.ttf"
+dest_files=["res://.godot/imported/monogram-extended.ttf-287dafcd7dc0e785ae9e7678ba6f4748.fontdata"]
 
 [params]
 

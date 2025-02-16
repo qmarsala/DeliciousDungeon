@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dusqa6mqwehfp"
-path="res://.godot/imported/monogram-bitmap.png-6a0d7e47fceef120bf31442f39f46b19.ctex"
+path="res://.godot/imported/monogram-bitmap.png-059485599178a0a5a9bed35b2937eed2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://poc/assets/fonts/monogram/bitmap/monogram-bitmap.png"
-dest_files=["res://.godot/imported/monogram-bitmap.png-6a0d7e47fceef120bf31442f39f46b19.ctex"]
+source_file="res://imported_assets/fonts/monogram/bitmap/monogram-bitmap.png"
+dest_files=["res://.godot/imported/monogram-bitmap.png-059485599178a0a5a9bed35b2937eed2.ctex"]
 
 [params]
 
