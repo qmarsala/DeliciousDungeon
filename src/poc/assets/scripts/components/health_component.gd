@@ -26,7 +26,8 @@ func _ready() -> void:
 func receive_damage(damage) -> void:
 	if is_dead(): return
 	if signal_damage:
-		SignalBus.DamageReceived.emit(damage, node.global_position, node.is_in_group("Player"))
+		var event = DamageReceivedEvent.create(damage, node.global_position, node.is_in_group("Player"))
+		event.emit()
 
 	health -= damage
 	# maybe this can be moved to an animations controller that listens for a signal?
