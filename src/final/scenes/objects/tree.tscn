@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=3 uid="uid://01wj8p1uq3kl"]
 
-[ext_resource type="Script" path="res://poc/assets/scripts/levels/forest_tree.gd" id="1_xt4kd"]
-[ext_resource type="PackedScene" uid="uid://1klbv4dx44kw" path="res://poc/scenes/levels/felled_tree_top.tscn" id="2_a7c6c"]
-[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="3_j3k1c"]
-[ext_resource type="Texture2D" uid="uid://c08qej0yb5b6p" path="res://poc/assets/sprites/tree_stump.png" id="4_rwarj"]
-[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="5_0nsfl"]
-[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="6_e4hvk"]
-[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://imported_assets/audio/MeleeSwing.wav" id="7_cunlt"]
-[ext_resource type="AudioStream" uid="uid://cu14xetrk850x" path="res://imported_assets/audio/FelledTree.wav" id="8_i76om"]
-[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://poc/scenes/components/health_component.tscn" id="9_r1t3k"]
+[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_18ktc"]
+[ext_resource type="Script" path="res://poc/assets/scripts/levels/forest_tree.gd" id="1_cgee7"]
+[ext_resource type="PackedScene" uid="uid://1klbv4dx44kw" path="res://poc/scenes/levels/felled_tree_top.tscn" id="2_a2c71"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="3_31mae"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="3_l5na6"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://poc/scenes/components/health_component.tscn" id="3_vqeq6"]
+[ext_resource type="Texture2D" uid="uid://c08qej0yb5b6p" path="res://final/assets/sprites/tree_stump.png" id="4_b44d0"]
+[ext_resource type="AudioStream" uid="uid://cu14xetrk850x" path="res://imported_assets/audio/FelledTree.wav" id="7_5rf2q"]
+[ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://imported_assets/audio/MeleeSwing.wav" id="7_vd0bx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
 radius = 4.0
@@ -16,6 +16,18 @@ height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05c1w"]
 size = Vector2(12, 23)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_genxa"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 0.0
+initial_velocity_min = -50.0
+initial_velocity_max = -20.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.8
+scale_max = 1.5
 
 [sub_resource type="Animation" id="Animation_xd8oo"]
 length = 0.001
@@ -173,23 +185,11 @@ _data = {
 "receive_damage": SubResource("Animation_v5j76")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_genxa"]
-lifetime_randomness = 0.2
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 5.0
-spread = 0.0
-initial_velocity_min = -50.0
-initial_velocity_max = -20.0
-gravity = Vector3(0, 98, 0)
-scale_min = 0.8
-scale_max = 1.5
-
 [node name="Tree" type="StaticBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_xt4kd")
-felled_tree_top = ExtResource("2_a7c6c")
-wood_item = ExtResource("3_j3k1c")
+script = ExtResource("1_cgee7")
+felled_tree_top = ExtResource("2_a2c71")
+wood_item = ExtResource("3_l5na6")
 
 [node name="StumpCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
@@ -199,26 +199,29 @@ shape = SubResource("CapsuleShape2D_ospfv")
 [node name="TreeStump" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -5)
-texture = ExtResource("4_rwarj")
+texture = ExtResource("4_b44d0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11.5)
 scale = Vector2(1, 1.04545)
-texture = ExtResource("5_0nsfl")
+texture = ExtResource("1_18ktc")
 region_enabled = true
 region_rect = Rect2(98, 24, 12, 22)
 region_filter_clip_enabled = true
 
-[node name="Interactbox" parent="." instance=ExtResource("6_e4hvk")]
+[node name="Interactbox" parent="." instance=ExtResource("3_31mae")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_05c1w")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tyh65")
-}
+[node name="ChopAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vd0bx")
+volume_db = -20.0
+
+[node name="FelledTreePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5rf2q")
+volume_db = -20.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(0.3966, 0.311571, 0.22289, 1)
@@ -231,15 +234,11 @@ one_shot = true
 explosiveness = 1.0
 randomness = 0.5
 
-[node name="ChopAudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_cunlt")
-volume_db = -20.0
-
-[node name="FelledTreePlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_i76om")
-volume_db = -20.0
-
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("9_r1t3k")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("3_vqeq6")]
 animation_player = NodePath("../AnimationPlayer")
-starting_health = 3.0
 signal_damage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tyh65")
+}
