@@ -5,16 +5,12 @@ signal HealthDepleted
 
 #todo:wrap in animation controller?
 @export var animation_player : AnimationPlayer
-
-# still unsure how I feel about this, maybe it make sense
-# that as a component of the character we have access to the character?
-
-# how do we persist this current health in the player/enemy data?
-@export var node: Node2D
-@export var starting_health : float = 5
 @export var signal_damage: bool = true
 
-var health : float = 1
+@onready var node: Node2D = get_parent()
+
+var max_health: float = 3
+var health: float = 1
 
 func is_dead() -> bool : 
 	return health <= 0
@@ -24,15 +20,8 @@ func _ready() -> void:
 		node = get_parent()
 		if node.has_method("get_data"):
 			var data = node.get_data()
-			starting_health = data.starting_health
-	health = starting_health
-
-# todo: what about armour/effects that reduce damage
-# should we have th parent control the final damage somehow?
-
-# health_component should probably just deal with final damage
-# we need a component to receieve the attack, apply status effects and armour, 
-# then resolve health?
+			health = data.health
+			max_health = data.max_health
 
 func receive_damage(damage) -> void:
 	if is_dead(): return
@@ -52,4 +41,4 @@ func receive_damage(damage) -> void:
 
 func heal(added_health) -> void:
 	if is_dead(): return
-	health = min(health + added_health, starting_health)
+	health = min(health + added_health, max_health)
