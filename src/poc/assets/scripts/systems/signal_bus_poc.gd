@@ -1,4 +1,4 @@
-class_name SignalBus
+class_name SignalBusServicePoc
 extends Node
 
 #todo: what data do we need if any to pass here?
