@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bixatcto8gmii" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_.png" id="1_vlgdl"]
 [ext_resource type="Texture2D" uid="uid://vknclcwdn4g7" path="res://imported_assets/sprites/fantasy_ [version 2.0]/cave_/cave_.png" id="2_jadg7"]
 [ext_resource type="TileSet" uid="uid://l2q7sjwj8ykk" path="res://poc/assets/outdoor_tileset.tres" id="4_4a222"]
-[ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://final/scenes/objects/tree.tscn" id="5_cgoda"]
+[ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/tree.tscn" id="5_cgoda"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://poc/scenes/player.tscn" id="6_00yui"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://poc/scenes/levels/on_player_area_trigger.tscn" id="8_30y21"]
 [ext_resource type="PackedScene" uid="uid://dyf3o58msblhx" path="res://poc/scenes/levels/hill_area.tscn" id="8_sol47"]

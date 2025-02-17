@@ -11,8 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://cqthkgiabjwqh" path="res://imported_assets/audio/MeleeSwing.wav" id="7_vd0bx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ospfv"]
-radius = 4.0
-height = 12.0
+radius = 2.0
+height = 6.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05c1w"]
 size = Vector2(12, 23)
@@ -192,7 +192,7 @@ felled_tree_top = ExtResource("2_a2c71")
 wood_item = ExtResource("3_l5na6")
 
 [node name="StumpCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ospfv")
 
