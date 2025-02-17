@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cddi2bnrltj5c"]
+
+[ext_resource type="Script" path="res://final/scripts/player/player.gd" id="1_1vdp7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lat82"]
+load_path = "res://.godot/imported/mPlayer_ [human].png-c81a8878e2efb420fa92094a2388f083.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jpxum"]
+radius = 3.0
+height = 8.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
+collision_layer = 524290
+script = ExtResource("1_1vdp7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = SubResource("CompressedTexture2D_lat82")
+hframes = 8
+vframes = 10
+frame = 40
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_jpxum")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -12)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.55
+drag_top_margin = 0.55
+drag_right_margin = 0.55
+drag_bottom_margin = 0.55
