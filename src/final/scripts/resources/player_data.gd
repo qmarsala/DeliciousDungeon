@@ -1,15 +1,10 @@
 class_name PlayerData2
 extends Resource
 
-@export var speed = 45
-@export var dash_speed_multiplier: float = 1.8
-@export var dash_time: float = 0.5
-@export var dash_cooldown: float = 1.0
-
-@export var max_health: float = 10
-@export var max_nutrition: float = 10
-
-@export var interaction_range: float = 15.0
-
-# PlayerInventory as resource? or as RefCounted that gets items from a resource?
+@export var stats: PlayerStats = PlayerStats.new()
 @export var inventory: PlayerInventory = PlayerInventory.new()
+
+@export var health: float = 10
+@export var nutrition: float = 10
+
+@export var equipped_weapon: WeaponData
