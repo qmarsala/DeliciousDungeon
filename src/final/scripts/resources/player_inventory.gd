@@ -1,31 +1,73 @@
 class_name PlayerInventory
 extends Resource
 
+@export var weapons: Dictionary = {}
+
 @export var items: Dictionary = {}
 
+func has_weapon(weapon_data: WeaponData) -> bool:
+	var key = _get_weapon_key(weapon_data)
+	if key < 0:
+		return false
+	return weapons.has(weapon_data.item_id)
+
+func add_weapon(weapon_data: WeaponData) -> void:
+	var key = _get_weapon_key(weapon_data)
+	if key < 0:
+		return
+	weapons[key] = weapon_data
+
+func remove_weapon(weapon_data: WeaponData) -> void:
+	var key = _get_weapon_key(weapon_data)
+	if has_weapon(weapon_data):
+		return
+	weapons.erase(weapon_data.item_id)
+
+func has_item(item_data: ItemData2) -> bool:
+	var key = _get_item_key(item_data)
+	if key.is_empty():
+		return false
+	return items.has(_get_item_key(item_data))
+
 func add_item(item_data: ItemData2, count: int = 1) -> void:
-	if item_data == null or item_data.name.is_empty() or count < 1:
+	var key = _get_item_key(item_data)
+	if key.is_empty() or count < 1:
 		return
 	
-	var name = item_data.name.to_lower()
-	if items.has(name):
-		items[name].count += count
+	if has_item(item_data):
+		items[key].count += count
 	else:
-		items[name] = ItemStack.new()
-		items[name].data = item_data
-		items[name].count = count
+		items[key] = ItemStack.new()
+		items[key].data = item_data
+		items[key].count = count
 
-func remove_item(item_name: String, count: int) -> ItemStack:
-	var name = item_name.to_lower()
-	var stack = _default_stack(name)
-	if items.has(name) and items[name].count > 0:
-		stack.data = items[name].data
-		var actual_taken = min(count, items[name].count)
+func remove_item(item_data: ItemData2, count: int) -> ItemStack:
+	var key = _get_item_key(item_data)
+	if key.is_empty() or count < 1:
+		return
+
+	var stack = _default_stack(item_data.name)
+	if has_item(item_data):
+		stack.data = items[key].data
+		var actual_taken = min(count, items[key].count)
 		stack.count = actual_taken
-		items[name].count -= actual_taken
-		if items[name].count < 1:
-			items.erase(name)
+		items[key].count -= actual_taken
+		if items[key].count < 1:
+			items.erase(key)
 	return stack
+	
+
+func _get_weapon_key(weapon_data: WeaponData) -> String:
+	if weapon_data == null:
+		return ""
+	else:
+		return weapon_data.item_id
+
+func _get_item_key(item_data: ItemData2) -> String:
+	if item_data == null:
+		return ""
+	else:
+		return item_data.name.to_lower()
 
 func _default_stack(name: String) -> ItemStack:
 	var stack = ItemStack.new()
