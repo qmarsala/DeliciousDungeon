@@ -22,8 +22,8 @@ var current_scene: Node2D
 var next_scene: PackedScene
 
 func _ready():
-	SignalBus.SceneChange.connect(_change_level)
-	SignalBus.QuestCompleted.connect(on_quest_completed)
+	#SignalBus.SceneChange.connect(_change_level)
+	#SignalBus.QuestCompleted.connect(on_quest_completed)
 	quest_log_ui.init()
 	_change_scene(main_menu, true)
 	$OutdoorMusic.play()
