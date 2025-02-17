@@ -5,23 +5,22 @@ extends Resource
 
 @export var items: Dictionary = {}
 
-func has_weapon(weapon_data: WeaponData) -> bool:
+func has_weapon(weapon_data: WeaponData2) -> bool:
 	var key = _get_weapon_key(weapon_data)
-	if key < 0:
+	if key.is_empty():
 		return false
-	return weapons.has(weapon_data.item_id)
+	return weapons.has(key)
 
-func add_weapon(weapon_data: WeaponData) -> void:
+func add_weapon(weapon_data: WeaponData2) -> void:
 	var key = _get_weapon_key(weapon_data)
-	if key < 0:
+	if key.is_empty():
 		return
 	weapons[key] = weapon_data
 
-func remove_weapon(weapon_data: WeaponData) -> void:
+func remove_weapon(weapon_data: WeaponData2) -> void:
 	var key = _get_weapon_key(weapon_data)
 	if has_weapon(weapon_data):
-		return
-	weapons.erase(weapon_data.item_id)
+		weapons.erase(key)
 
 func has_item(item_data: ItemData2) -> bool:
 	var key = _get_item_key(item_data)
@@ -55,13 +54,14 @@ func remove_item(item_data: ItemData2, count: int) -> ItemStack:
 		if items[key].count < 1:
 			items.erase(key)
 	return stack
-	
 
-func _get_weapon_key(weapon_data: WeaponData) -> String:
+func _get_weapon_key(weapon_data: WeaponData2) -> String:
 	if weapon_data == null:
 		return ""
+	elif weapon_data.weapon_type == Enums.WeaponTypes.Melee:
+		return "melee"
 	else:
-		return weapon_data.item_id
+		return "ranged"
 
 func _get_item_key(item_data: ItemData2) -> String:
 	if item_data == null:
