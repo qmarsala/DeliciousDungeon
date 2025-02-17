@@ -1,5 +1,10 @@
 extends Node
 
+enum WeaponTypes {
+	Melee,
+	Ranged
+}
+
 enum Items {
 	Wood,
 	Food,
