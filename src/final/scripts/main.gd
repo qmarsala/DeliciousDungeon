@@ -3,32 +3,31 @@ extends Node
 var save_load: SaveLoad = SaveLoad.new()
 var game_data: GameData = GameData.new()
 
-@onready var new_game_label: Label = $NewGameLabel
-@onready var player: Player2 = $World/Player
+@onready var scene_manager: SceneManager = $SceneManager
 
 func _ready() -> void:
 	connect_signals()
-	
 	load_game()
-	if game_data.current_level == 0:
-		new_game_label.show()
-	else:
-		new_game_label.hide()
-
-func load_game() -> void:
-	game_data = save_load.load_game_data()
-	player.init(game_data.player_data)
-
-#todo: when to call this?
-func save_game() -> void:
-	player.save()
-	save_load.save_game_data(game_data)
+	scene_manager.init($World, game_data.player_data)
 
 func connect_signals() -> void:
+	SignalBus.SceneChangeRequested.connect(handle_scene_change_requested)
 	SignalBus.DungeonFloorCompleted.connect(handle_dungeon_floor_completed)
+	
+func load_game() -> void:
+	print("loading game.")
+	game_data = save_load.load_game_data()
+
+#todo: could we call on shutdown too?
+func save_game() -> void:
+	print("saving game.")
+	save_load.save_game_data(game_data)
+
+func handle_scene_change_requested(event: SceneChangeRequestedEvent) -> void:
+	save_game()
+	scene_manager.queue_scene_change.call_deferred(event)
 
 func handle_dungeon_floor_completed() -> void:
 	game_data.current_level += 1
-	# save_game() - when/how should we do this? could be background it? should we do it during scene transistion? before? after?
-	var event = SceneChangeEvent.create(Enums.Scenes.Dungeon, game_data.current_level)
-	event.emit()
+	var event = SceneChangeRequestedEvent.create(Enums.Scenes.Dungeon, game_data.current_level)
+	scene_manager.queue_scene_change.call_deferred(event)
