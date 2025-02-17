@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://bjxer30uh4m0t"]
+[gd_scene load_steps=9 format=4 uid="uid://bjxer30uh4m0t"]
 
 [ext_resource type="Script" path="res://final/scripts/scene_management/lobby.gd" id="1_r78oj"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_s4126"]
 [ext_resource type="TileSet" uid="uid://dqq4dsinwffpf" path="res://final/assets/tilesets/outdoor_tileset.tres" id="2_l64s1"]
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/tree.tscn" id="3_ckc21"]
 [ext_resource type="PackedScene" uid="uid://cddi2bnrltj5c" path="res://final/scenes/player.tscn" id="4_g4ecr"]
-[ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://poc/scenes/levels/on_player_area_trigger.tscn" id="4_s1nrf"]
-[ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://poc/scenes/strategies/change_level_strategy.tscn" id="5_u4dek"]
+[ext_resource type="Script" path="res://final/scripts/scene_change_trigger.gd" id="6_xoldg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yu5lk"]
 font_size = 32
@@ -16,8 +15,8 @@ shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4mod"]
-size = Vector2(37, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc5tp"]
+size = Vector2(34, 20)
 
 [node name="Lobby" type="Node2D"]
 y_sort_enabled = true
@@ -109,11 +108,13 @@ position = Vector2(210, 96)
 [node name="Tree20" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(20, -109)
 
-[node name="OnPlayerAreaTrigger" parent="." instance=ExtResource("4_s1nrf")]
+[node name="SceneChangeTrigger" type="Area2D" parent="."]
 position = Vector2(128, -79)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnPlayerAreaTrigger"]
-shape = SubResource("RectangleShape2D_a4mod")
-
-[node name="ChangeLevelTriggerStrategy" parent="OnPlayerAreaTrigger" instance=ExtResource("5_u4dek")]
+collision_layer = 0
+collision_mask = 524290
+script = ExtResource("6_xoldg")
 scene = 0
+is_dungeon_floor_completion = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
+shape = SubResource("RectangleShape2D_fc5tp")

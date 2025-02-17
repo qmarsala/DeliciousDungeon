@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func connect_signals() -> void:
 	SignalBus.SceneChangeRequested.connect(handle_scene_change_requested)
-	SignalBus.DungeonFloorCompleted.connect(handle_dungeon_floor_completed)
 	
 func load_game() -> void:
 	print("loading game.")
@@ -24,10 +23,7 @@ func save_game() -> void:
 	save_load.save_game_data(game_data)
 
 func handle_scene_change_requested(event: SceneChangeRequestedEvent) -> void:
+	if event.is_dungeon_floor_completion:
+		game_data.current_level += 1
 	save_game()
-	scene_manager.queue_scene_change.call_deferred(event)
-
-func handle_dungeon_floor_completed() -> void:
-	game_data.current_level += 1
-	var event = SceneChangeRequestedEvent.create(Enums.Scenes.Dungeon, game_data.current_level)
-	scene_manager.queue_scene_change.call_deferred(event)
+	scene_manager.queue_scene_change.call_deferred(event.scene_type, game_data.current_level)

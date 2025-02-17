@@ -32,18 +32,18 @@ func init(world: Node, player_data: PlayerData2) -> void:
 	current_scene_instance.init(self.player_data)
 	world.add_child(current_scene_instance)
 
-func queue_scene_change(event: SceneChangeRequestedEvent) -> void:
+func queue_scene_change(scene_type: Enums.Scenes, level: int = 0) -> void:
 	print("queue_scene_change")
 	
-	next_scene_level = event.level
-	if event.scene_type == Enums.Scenes.Main:
+	next_scene_level = level
+	if scene_type == Enums.Scenes.Main:
 		next_scene = main_menu_scene
-	elif event.scene_type == Enums.Scenes.Outdoors:
+	elif scene_type == Enums.Scenes.Outdoors:
 		next_scene = outdoor_scenes.pick_random()
 	else:
-		if next_scene_level < 4:
+		if level < 4:
 			next_scene = canyon_dungeon_scene
-		elif next_scene_level < 9:
+		elif level < 9:
 			next_scene = cave_dungeon_scene
 		else:
 			next_scene = fort_dungeon_scene
