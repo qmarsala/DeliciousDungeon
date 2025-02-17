@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://poc/assets/scripts/ui/player_ui.gd" id="1_bgem0"]
 [ext_resource type="Texture2D" uid="uid://8ellw2iqfg2t" path="res://imported_assets/sprites/Foods_Potions_&_Potions/Foods/Food_10.png" id="2_of4rr"]
-[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://poc/assets/sprites/log.png" id="3_4hw07"]
+[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://final/assets/sprites/log.png" id="3_4hw07"]
 [ext_resource type="Texture2D" uid="uid://bfpuiwtfdsica" path="res://poc/assets/ui/Tiles/Large tiles/Thin outline/tile_0000.png" id="4_lq6rb"]
 [ext_resource type="Texture2D" uid="uid://ddj3i2hpit0yy" path="res://poc/assets/ui/Tiles/Large tiles/Thin outline/tile_0001.png" id="5_ilvjo"]
 [ext_resource type="Texture2D" uid="uid://cs3idyvxx0lfu" path="res://poc/assets/ui/Tiles/Large tiles/Thin outline/tile_0032.png" id="6_5o3tt"]

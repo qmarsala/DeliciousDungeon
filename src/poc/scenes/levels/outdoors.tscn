@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dyf3o58msblhx" path="res://poc/scenes/levels/hill_area.tscn" id="5_ofnco"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://poc/scenes/strategies/change_level_strategy.tscn" id="7_dg3b3"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://poc/scenes/levels/on_player_area_trigger.tscn" id="8_v4d4s"]
-[ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://poc/scenes/levels/tree.tscn" id="9_3gxnq"]
+[ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://final/scenes/objects/tree.tscn" id="9_3gxnq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e3ffj"]
 texture = ExtResource("1_fppuu")

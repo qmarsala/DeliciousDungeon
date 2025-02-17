@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://mclk44lljhp6" path="res://poc/scenes/levels/dungeon_rooms_two/end.tscn" id="4_eghcd"]
 [ext_resource type="PackedScene" uid="uid://cyd7yi15a55uw" path="res://poc/scenes/levels/dungeon_rooms_two/crossroads.tscn" id="5_bfsvt"]
 [ext_resource type="Shader" path="res://poc/assets/fog.gdshader" id="5_x8cwi"]
-[ext_resource type="Texture2D" uid="uid://bituatka5prk2" path="res://poc/assets/sprites/black.jpg" id="6_hk1ox"]
+[ext_resource type="Texture2D" uid="uid://bituatka5prk2" path="res://final/assets/sprites/black.jpg" id="6_hk1ox"]
 [ext_resource type="PackedScene" uid="uid://rdh2x0ca1att" path="res://poc/scenes/levels/dungeon_rooms_two/something_new.tscn" id="8_tmn4x"]
 [ext_resource type="PackedScene" uid="uid://blyqfd0wf38q8" path="res://poc/scenes/levels/dungeon_rooms_two/something_new1.tscn" id="9_ckifb"]
 [ext_resource type="PackedScene" uid="uid://c44d43vnnotwq" path="res://poc/scenes/levels/dungeon_rooms_two/zig.tscn" id="12_qpsxc"]

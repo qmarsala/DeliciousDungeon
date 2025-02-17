@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7x24imnj53j2"]
 
-[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://poc/assets/sprites/log.png" id="1_0fsrt"]
+[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://final/assets/sprites/log.png" id="1_0fsrt"]
 
 [node name="wood" type="Sprite2D"]
 z_index = 6

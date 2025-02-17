@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://l2q7sjwj8ykk" path="res://poc/assets/outdoor_tileset.tres" id="3_7xxu8"]
 [ext_resource type="PackedScene" uid="uid://b1bfcy70vhh2k" path="res://poc/scenes/ui/player_ui.tscn" id="3_oq7gx"]
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://poc/scenes/damage_number.tscn" id="3_wyuhu"]
-[ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://poc/scenes/levels/tree.tscn" id="5_70lwd"]
+[ext_resource type="PackedScene" uid="uid://b2ydsutrfwhu5" path="res://final/scenes/objects/tree.tscn" id="5_70lwd"]
 [ext_resource type="PackedScene" uid="uid://l5ic445kl6da" path="res://poc/scenes/enemies/goblin.tscn" id="6_fding"]
 [ext_resource type="PackedScene" uid="uid://y4ktplof8y3c" path="res://poc/scenes/player.tscn" id="6_ucoae"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://poc/assets/dungeon_tileset.tres" id="7_sx02c"]
