@@ -9,6 +9,7 @@ var player_actions_controller = PlayerActionsController.new()
 
 func _ready() -> void:
 	player_actions_controller.InteractPressed.connect(interact)
+	player_actions_controller.SwitchWeaponsPressed.connect(switch_weapons)
 
 func _process(delta: float) -> void:
 	player_actions_controller.handle_input()
@@ -21,7 +22,7 @@ func init(player_data: PlayerData2) -> void:
 	data = player_data
 
 func switch_weapons() -> void:
-	pass
+	print("switch weapons")
 
 func interact() -> void:
 	print("interact")

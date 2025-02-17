@@ -5,7 +5,7 @@ signal AbilityOnePressed
 signal AbilityTwoPressed
 signal DashPressed
 signal InteractPressed
-signal SwapWeaponsPressed
+signal SwitchWeaponsPressed
 
 func handle_input() -> void:
 	if Input.is_action_just_pressed("ability_one"):
@@ -16,5 +16,5 @@ func handle_input() -> void:
 		DashPressed.emit()
 	if Input.is_action_just_pressed("interact"):
 		InteractPressed.emit()
-	if Input.is_action_just_pressed("swap_weapons"):
-		SwapWeaponsPressed.emit()
+	if Input.is_action_just_pressed("switch_weapons"):
+		SwitchWeaponsPressed.emit()
