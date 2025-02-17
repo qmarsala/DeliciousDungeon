@@ -3,3 +3,4 @@ extends Resource
 
 var name: String = ""
 var description: String = ""
+var sprite: AtlasTexture
