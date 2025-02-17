@@ -5,4 +5,4 @@ extends TriggerStrategy
 
 func execute(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		SignalBus.SceneChange.emit(scene)
+		SceneChangeRequestedEvent.create(scene).emit()
