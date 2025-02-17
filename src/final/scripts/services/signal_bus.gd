@@ -1,7 +1,8 @@
 class_name SignalBusService
 extends Node
 
-signal SceneChange(event_details: SceneChangeEvent)
+signal SceneChangeRequested(event_details: SceneChangeRequestedEvent)
+
 signal DungeonFloorCompleted()
 
 signal DamageReceived(event_details: DamageReceivedEvent)
