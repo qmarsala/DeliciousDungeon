@@ -3,7 +3,15 @@ extends CharacterBody2D
 
 var data: PlayerData2
 
+var player_aim_controler = PlayerAimController.new()
 var player_move_controller = PlayerMovementController.new()
+var player_actions_controller = PlayerActionsController.new()
+
+func _ready() -> void:
+	player_actions_controller.InteractPressed.connect(interact)
+
+func _process(delta: float) -> void:
+	player_actions_controller.handle_input()
 
 func _physics_process(delta: float) -> void:
 	velocity = player_move_controller.get_velocity(velocity)
@@ -12,22 +20,13 @@ func _physics_process(delta: float) -> void:
 func init(player_data: PlayerData2) -> void:
 	data = player_data
 
-func attack() -> void:
-	pass
-	
-func equip() -> void:
-	pass
-	
-func unequip() -> void:
-	pass
-
 func switch_weapons() -> void:
 	pass
 
-func pickup() -> void:
-	pass
+func interact() -> void:
+	print("interact")
 
-func drop() -> void:
+func pickup() -> void:
 	pass
 
 func cook() -> void:
