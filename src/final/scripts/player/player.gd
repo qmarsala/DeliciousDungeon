@@ -35,6 +35,3 @@ func cook() -> void:
 
 func consume() -> void:
 	pass
-
-func save() -> void:
-	pass
