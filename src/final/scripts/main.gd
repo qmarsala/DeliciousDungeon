@@ -7,6 +7,8 @@ var game_data: GameData = GameData.new()
 @onready var player: Player2 = $World/Player
 
 func _ready() -> void:
+	connect_signals()
+	
 	load_game()
 	if game_data.current_level == 0:
 		new_game_label.show()
@@ -17,6 +19,16 @@ func load_game() -> void:
 	game_data = save_load.load_game_data()
 	player.init(game_data.player_data)
 
+#todo: when to call this?
 func save_game() -> void:
 	player.save()
 	save_load.save_game_data(game_data)
+
+func connect_signals() -> void:
+	SignalBus.DungeonFloorCompleted.connect(handle_dungeon_floor_completed)
+
+func handle_dungeon_floor_completed() -> void:
+	game_data.current_level += 1
+	# save_game() - when/how should we do this? could be background it? should we do it during scene transistion? before? after?
+	var event = SceneChangeEvent.create(Enums.Scenes.Dungeon, game_data.current_level)
+	event.emit()

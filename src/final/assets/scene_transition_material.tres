@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cxkx8apilh2v1"]
+
+[ext_resource type="Shader" path="res://poc/assets/fog.gdshader" id="1_e7e4t"]
+
+[resource]
+shader = ExtResource("1_e7e4t")
+shader_parameter/radius = 0.6
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/color = null

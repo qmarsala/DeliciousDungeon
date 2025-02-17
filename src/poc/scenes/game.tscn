@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c38pvspamielw"]
+[gd_scene load_steps=20 format=3 uid="uid://c38pvspamielw"]
 
 [ext_resource type="Script" path="res://poc/assets/scripts/main.gd" id="1_j0ii5"]
 [ext_resource type="PackedScene" uid="uid://bx1ojtss4q6xc" path="res://poc/scenes/levels/dungeon_2.tscn" id="3_3oofp"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dewbvl8yppxyi" path="res://poc/scenes/damage_number.tscn" id="5_k5bt7"]
 [ext_resource type="Script" path="res://poc/assets/quests/quest_poc.gd" id="6_gulh1"]
 [ext_resource type="Resource" uid="uid://c0dp35sx4iu0w" path="res://poc/assets/quests/kill_trolls.tres" id="6_h1k7r"]
-[ext_resource type="Shader" path="res://poc/assets/fog.gdshader" id="6_rybb5"]
 [ext_resource type="Resource" uid="uid://bl634ciahvr2a" path="res://poc/assets/quests/kill_goblins.tres" id="6_vyjaa"]
 [ext_resource type="Resource" uid="uid://dfp1vr0asb72d" path="res://poc/assets/quests/kill_skeletons.tres" id="7_abv55"]
 [ext_resource type="PackedScene" uid="uid://y304jg6volpg" path="res://poc/scenes/ui/quest_ui_poc.tscn" id="7_d3qop"]
@@ -16,12 +15,7 @@
 [ext_resource type="Resource" uid="uid://gcxnng0sb438" path="res://poc/assets/quests/rest_and_recuperation.tres" id="8_wsfpj"]
 [ext_resource type="Script" path="res://poc/assets/scripts/ui/quest_log_ui_poc.gd" id="9_2b5w3"]
 [ext_resource type="AudioStream" uid="uid://bug8pb2tjjyjr" path="res://imported_assets/audio/QuestCompleted.wav" id="10_m8g1c"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_32tff"]
-shader = ExtResource("6_rybb5")
-shader_parameter/radius = 0.6
-shader_parameter/origin = Vector2(0.5, 0.5)
-shader_parameter/color = null
+[ext_resource type="Material" uid="uid://cxkx8apilh2v1" path="res://final/assets/scene_transition_material.tres" id="13_mkso1"]
 
 [sub_resource type="Animation" id="Animation_al4iy"]
 length = 0.001
@@ -147,7 +141,7 @@ layer = 101
 
 [node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
 modulate = Color(0, 0, 0, 0)
-material = SubResource("ShaderMaterial_32tff")
+material = ExtResource("13_mkso1")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
