@@ -50,63 +50,103 @@ y_sort_enabled = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-26, -41)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree2" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-86, -59)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree3" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-78, 3)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree4" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-183, -20)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree5" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-78, 51)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree6" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-138, 33)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree7" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-130, 95)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree8" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-198, 69)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree9" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(136, 66)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree10" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(72, 37)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree11" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(80, 99)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree12" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(12, 73)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree13" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-88, -115)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree14" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-148, -133)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree15" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-140, -71)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree16" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(-208, -97)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree17" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(186, 16)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree19" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(240, -131)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree18" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(210, 96)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="Tree20" parent="Trees" instance=ExtResource("3_ckc21")]
 position = Vector2(20, -109)
+spawn_chance = 0.8
+drop_chance = 0.0
 
 [node name="SceneChangeTrigger" parent="." instance=ExtResource("6_t0hig")]
 position = Vector2(128, -79)

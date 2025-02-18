@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://62irkaff2u6i"]
+[gd_scene load_steps=9 format=4 uid="uid://62irkaff2u6i"]
 
 [ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_5gqdb"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_ejcug"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/tree.tscn" id="3_qn1ea"]
 [ext_resource type="PackedScene" uid="uid://cddi2bnrltj5c" path="res://final/scenes/player.tscn" id="4_7t40t"]
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="5_8ukgk"]
+[ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="5_e6j3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apvvq"]
 size = Vector2(34, 20)
@@ -25,18 +26,30 @@ tile_set = ExtResource("2_waoft")
 
 [node name="Tree" parent="." instance=ExtResource("3_qn1ea")]
 position = Vector2(-245, 39)
+spawn_chance = 0.8
 
 [node name="Tree2" parent="." instance=ExtResource("3_qn1ea")]
 position = Vector2(-176, 8)
+spawn_chance = 0.75
 
 [node name="Tree3" parent="." instance=ExtResource("3_qn1ea")]
 position = Vector2(-189, 73)
 
 [node name="Tree4" parent="." instance=ExtResource("3_qn1ea")]
 position = Vector2(-113, -103)
+spawn_chance = 0.9
 
 [node name="Tree5" parent="." instance=ExtResource("3_qn1ea")]
 position = Vector2(-19, -81)
+spawn_chance = 0.65
+
+[node name="Mushroom" parent="." instance=ExtResource("5_e6j3w")]
+position = Vector2(-199, 28)
+spawn_chance = 0.5
+
+[node name="Mushroom2" parent="." instance=ExtResource("5_e6j3w")]
+position = Vector2(-37, -122)
+spawn_chance = 0.5
 
 [node name="Player" parent="." instance=ExtResource("4_7t40t")]
 
