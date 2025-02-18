@@ -3,7 +3,6 @@ extends Node
 
 @export var main_menu_scene: PackedScene
 @export var outdoor_scenes: Array[PackedScene]
-
 @export var canyon_dungeon_scene: PackedScene
 @export var cave_dungeon_scene: PackedScene
 @export var fort_dungeon_scene: PackedScene

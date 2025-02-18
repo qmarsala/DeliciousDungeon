@@ -17,7 +17,6 @@ func load_game() -> void:
 	print("loading game.")
 	game_data = save_load.load_game_data()
 
-#todo: could we call on shutdown too?
 func save_game() -> void:
 	print("saving game.")
 	save_load.save_game_data(game_data)
