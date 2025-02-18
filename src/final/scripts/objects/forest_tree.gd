@@ -13,7 +13,7 @@ extends StaticBody2D
 func _init() -> void:
 	add_to_group(Interfaces.Interactable, true)
 
-func interact(player: Player) -> void:
+func interact(player: Player2) -> void:
 	chop()
 
 func _ready() -> void:

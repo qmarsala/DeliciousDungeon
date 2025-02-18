@@ -1,6 +1,8 @@
 class_name Player2
 extends CharacterBody2D
 
+@onready var interact_range: Area2D = $InteractRange
+
 var data: PlayerData2
 
 var player_aim_controler = PlayerAimController.new()
@@ -26,9 +28,13 @@ func switch_weapons() -> void:
 
 func interact() -> void:
 	print("interact")
+	for a in interact_range.get_overlapping_areas():
+		if a is InteractBox:
+			a.interact(self)
+			return
 
-func pickup() -> void:
-	pass
+func pickup(item: ItemData, count: int = 1) -> void:
+	data.inventory.add_item(item, count)
 
 func cook() -> void:
 	pass

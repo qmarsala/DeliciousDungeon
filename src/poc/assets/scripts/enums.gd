@@ -7,6 +7,7 @@ enum WeaponTypes {
 
 enum Items {
 	Wood,
+	Mushroom,
 	Food,
 	Potion,
 	Staff,

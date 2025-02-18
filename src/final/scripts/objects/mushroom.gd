@@ -1,6 +1,7 @@
 class_name Mushroom
 extends Node2D
 
+@export var food_item_data: ItemData
 @export var spawn_chance: float = 1
 
 @onready var orange: Sprite2D = $Orange
@@ -23,7 +24,6 @@ func _ready() -> void:
 	else:
 		orange.hide()
 
-#todo: spawn mushroom item for cooking
 func interact(player: Player2):
-	print("picking mushroom")
-	player.pickup()
+	player.pickup(food_item_data, 1)
+	queue_free()

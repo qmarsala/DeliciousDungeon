@@ -10,5 +10,7 @@ func init(player_data: PlayerData2, current_level: int = 0) -> void:
 	self.player_data = player_data
 
 func _ready():
-	player = get_tree().get_first_node_in_group("Player") as Player2
-	player.init(player_data)
+	for c in get_children():
+		if c is Player2:
+			player = c
+			player.init(player_data)
