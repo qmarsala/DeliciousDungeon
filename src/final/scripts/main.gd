@@ -8,7 +8,7 @@ var game_data: GameData = GameData.new()
 func _ready() -> void:
 	connect_signals()
 	load_game()
-	scene_manager.init($World, game_data.player_data)
+	scene_manager.init($World, game_data)
 
 func connect_signals() -> void:
 	SignalBus.SceneChangeRequested.connect(handle_scene_change_requested)
@@ -26,4 +26,4 @@ func handle_scene_change_requested(event: SceneChangeRequestedEvent) -> void:
 	if event.is_dungeon_floor_completion:
 		game_data.current_level += 1
 	save_game()
-	scene_manager.queue_scene_change.call_deferred(event.scene_type, game_data.current_level)
+	scene_manager.queue_scene_change.call_deferred(event.scene_type)
