@@ -7,7 +7,7 @@ load_path = "res://.godot/imported/mPlayer_ [human].png-c81a8878e2efb420fa92094a
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jpxum"]
 radius = 3.0
-height = 8.0
+height = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftoop"]
 
@@ -24,7 +24,7 @@ vframes = 10
 frame = 40
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_jpxum")
 
 [node name="Camera2D" type="Camera2D" parent="."]
