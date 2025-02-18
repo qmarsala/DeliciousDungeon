@@ -192,27 +192,27 @@ felled_tree_top = ExtResource("2_a2c71")
 wood_item = ExtResource("3_l5na6")
 
 [node name="StumpCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ospfv")
 
 [node name="TreeStump" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -5)
 texture = ExtResource("4_b44d0")
+offset = Vector2(0, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -11.5)
 scale = Vector2(1, 1.04545)
 texture = ExtResource("1_18ktc")
+offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(98, 24, 12, 22)
 region_filter_clip_enabled = true
 
 [node name="Interactbox" parent="." instance=ExtResource("3_31mae")]
+position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
-position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_05c1w")
 
 [node name="ChopAudioPlayer" type="AudioStreamPlayer2D" parent="."]
@@ -225,7 +225,7 @@ volume_db = -20.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(0.3966, 0.311571, 0.22289, 1)
-position = Vector2(-2, -8)
+position = Vector2(-2, -4)
 emitting = false
 amount = 5
 process_material = SubResource("ParticleProcessMaterial_genxa")

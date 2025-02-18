@@ -12,6 +12,7 @@
 size = Vector2(34, 20)
 
 [node name="DefaultOutdoors" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_5gqdb")
 
 [node name="Background" type="TileMapLayer" parent="."]

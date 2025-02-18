@@ -11,15 +11,18 @@ script = ExtResource("1_0x54g")
 
 [node name="Orange" type="Sprite2D" parent="."]
 texture = ExtResource("1_ofdhu")
+offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(147, 18, 6, 10)
 
 [node name="Brown" type="Sprite2D" parent="."]
 texture = ExtResource("1_ofdhu")
+offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(135, 18, 6, 10)
 
 [node name="Interactbox" parent="." instance=ExtResource("3_lg2qk")]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactbox"]
 shape = SubResource("CircleShape2D_nx5i1")
