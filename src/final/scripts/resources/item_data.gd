@@ -1,6 +1,7 @@
-class_name ItemData2
+class_name ItemData
 extends Resource
 
-var name: String = ""
-var description: String = ""
-var sprite: AtlasTexture
+@export var item_id: Enums.Items
+@export var name: String
+@export var description: String
+@export var sprite: AtlasTexture

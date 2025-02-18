@@ -22,13 +22,13 @@ func remove_weapon(weapon_data: WeaponData2) -> void:
 	if has_weapon(weapon_data):
 		weapons.erase(key)
 
-func has_item(item_data: ItemData2) -> bool:
+func has_item(item_data: ItemData) -> bool:
 	var key = _get_item_key(item_data)
 	if key.is_empty():
 		return false
 	return items.has(_get_item_key(item_data))
 
-func add_item(item_data: ItemData2, count: int = 1) -> void:
+func add_item(item_data: ItemData, count: int = 1) -> void:
 	var key = _get_item_key(item_data)
 	if key.is_empty() or count < 1:
 		return
@@ -40,7 +40,7 @@ func add_item(item_data: ItemData2, count: int = 1) -> void:
 		items[key].data = item_data
 		items[key].count = count
 
-func remove_item(item_data: ItemData2, count: int) -> ItemStack:
+func remove_item(item_data: ItemData, count: int) -> ItemStack:
 	var key = _get_item_key(item_data)
 	if key.is_empty() or count < 1:
 		return
@@ -63,7 +63,7 @@ func _get_weapon_key(weapon_data: WeaponData2) -> String:
 	else:
 		return "ranged"
 
-func _get_item_key(item_data: ItemData2) -> String:
+func _get_item_key(item_data: ItemData) -> String:
 	if item_data == null:
 		return ""
 	else:
@@ -71,7 +71,7 @@ func _get_item_key(item_data: ItemData2) -> String:
 
 func _default_stack(name: String) -> ItemStack:
 	var stack = ItemStack.new()
-	var data = ItemData2.new()
+	var data = ItemData.new()
 	data.name = name
 	stack.data = data
 	stack.count = 0
