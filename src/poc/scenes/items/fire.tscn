@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://imported_assets/sprites/dungeon/dungeonDecoration_0.png" id="1_j4fss"]
 [ext_resource type="Script" path="res://poc/assets/scripts/levels/fire.gd" id="2_dth6p"]
-[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="2_wjhyw"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://final/scenes/components/interactbox.tscn" id="2_wjhyw"]
 [ext_resource type="AudioStream" uid="uid://bps8h5ifv3xwb" path="res://imported_assets/audio/LightFire.wav" id="3_1suck"]
 [ext_resource type="PackedScene" uid="uid://bdr08r11d3ho4" path="res://poc/scenes/components/interact_indicator.tscn" id="3_g2j4k"]
 

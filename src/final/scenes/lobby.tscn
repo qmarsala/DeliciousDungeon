@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://final/scripts/scene_management/lobby.gd" id="1_r78oj"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_s4126"]
 [ext_resource type="TileSet" uid="uid://dqq4dsinwffpf" path="res://final/assets/tilesets/outdoor_tileset.tres" id="2_l64s1"]
-[ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/tree.tscn" id="3_ckc21"]
+[ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="3_ckc21"]
 [ext_resource type="PackedScene" uid="uid://cddi2bnrltj5c" path="res://final/scenes/player.tscn" id="4_g4ecr"]
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="6_t0hig"]
 

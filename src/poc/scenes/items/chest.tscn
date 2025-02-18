@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://18dhv0jowwdt" path="res://imported_assets/sprites/dungeon/dungeonDecoration_0.png" id="1_qy1vr"]
 [ext_resource type="Resource" uid="uid://fddsku4ra52f" path="res://poc/assets/resources/items/chest_drop_table.tres" id="2_y27et"]
 [ext_resource type="PackedScene" uid="uid://bdr08r11d3ho4" path="res://poc/scenes/components/interact_indicator.tscn" id="4_lc52y"]
-[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="7_kbtk6"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://final/scenes/components/interactbox.tscn" id="7_kbtk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiht7"]
 size = Vector2(20, 7)

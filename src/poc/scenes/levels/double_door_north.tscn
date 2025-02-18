@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://bxejjurm0g6pu"]
 
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://poc/assets/dungeon_tileset.tres" id="1_aeags"]
-[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="3_k235j"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://final/scenes/components/interactbox.tscn" id="3_k235j"]
 [ext_resource type="Script" path="res://poc/assets/scripts/levels/door.gd" id="4_c83k7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0m3w"]

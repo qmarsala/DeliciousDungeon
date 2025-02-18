@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://final/scripts/objects/mushroom.gd" id="1_0x54g"]
 [ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="1_ofdhu"]
-[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://poc/scenes/components/interactbox.tscn" id="3_lg2qk"]
+[ext_resource type="PackedScene" uid="uid://cyagmuy0wkb41" path="res://final/scenes/components/interactbox.tscn" id="3_lg2qk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nx5i1"]
 

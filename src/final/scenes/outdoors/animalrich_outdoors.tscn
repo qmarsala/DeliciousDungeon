@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_fjseo"]
 [ext_resource type="TileSet" uid="uid://dqq4dsinwffpf" path="res://final/assets/tilesets/outdoor_tileset.tres" id="2_imeru"]
-[ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/tree.tscn" id="3_q6ood"]
+[ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="3_q6ood"]
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="4_ybiw1"]
 
 [node name="AnimalrichOutdoors" type="Node2D"]
