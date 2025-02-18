@@ -1,5 +1,5 @@
 class_name ItemStack
-extends RefCounted
+extends Resource
 
-var count: int = 0
-var data: ItemData = ItemData.new()
+@export var count: int = 0
+@export var data: ItemData = ItemData.new()

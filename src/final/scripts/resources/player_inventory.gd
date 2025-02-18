@@ -2,7 +2,6 @@ class_name PlayerInventory
 extends Resource
 
 @export var weapons: Dictionary = {}
-
 @export var items: Dictionary = {}
 
 func has_weapon(weapon_data: WeaponData2) -> bool:
@@ -26,7 +25,7 @@ func has_item(item_data: ItemData) -> bool:
 	var key = _get_item_key(item_data)
 	if key.is_empty():
 		return false
-	return items.has(_get_item_key(item_data))
+	return items.has(key)
 
 func add_item(item_data: ItemData, count: int = 1) -> void:
 	var key = _get_item_key(item_data)
