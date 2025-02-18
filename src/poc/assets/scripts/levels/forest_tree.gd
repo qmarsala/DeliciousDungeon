@@ -4,6 +4,9 @@ extends StaticBody2D
 @export var felled_tree_top: PackedScene
 @export var wood_item: Item
 
+@export var spawn_chance: float = 1
+@export var drop_chance: float = 1
+
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var interactbox: InteractBox = $Interactbox
 
@@ -14,6 +17,10 @@ func interact(player: Player) -> void:
 	chop()
 
 func _ready() -> void:
+	if randf() > spawn_chance:
+		queue_free()
+		return
+	
 	var size = randf_range(0.85, 1.15)
 	apply_scale(Vector2(size, size))
 	interactbox.interacted.connect(interact)
@@ -32,4 +39,5 @@ func animate_fell():
 		add_child.call_deferred(instance)
 
 func drop_logs():
-	ItemDropper.drop_item(wood_item, global_position)
+	if randf() > 1 - drop_chance:
+		ItemDropper.drop_item(wood_item, global_position)
