@@ -12,3 +12,5 @@ extends ItemData
 #what other ways can we have weapon stats. 
 @export var weapon_abilities: Array[Ability]
 @export var weapon_level: int = 1
+
+@export var sprite_frames: SpriteFrames
