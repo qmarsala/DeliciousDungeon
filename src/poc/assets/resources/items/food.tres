@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://eahj1urja2wk"]
 
-[ext_resource type="Script" path="res://poc/assets/resources/items/item_data.gd" id="1_cq87g"]
+[ext_resource type="Script" path="res://final/scripts/resources/item_data.gd" id="1_cq87g"]
 [ext_resource type="PackedScene" uid="uid://c2084hee1l50l" path="res://poc/scenes/items/food.tscn" id="2_p4dc2"]
 [ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="3_3sf1x"]
 
