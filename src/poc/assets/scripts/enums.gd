@@ -1,18 +1,21 @@
 extends Node
 
 enum WeaponTypes {
+	None,
 	Melee,
 	Ranged
 }
 
 enum Items {
+	None,
 	Wood,
-	Mushroom,
-	Food,
-	Potion,
-	Staff,
-	Bow,
-	Sword,
+	RawMushroom,
+	RawMeat,
+	MealMeat,
+	MealVegetable,
+	MealBalanced,
+	PotionHealth,
+	PotionNutrition
 }
 
 enum Characters {
