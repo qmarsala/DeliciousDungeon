@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://chmlkevfn3d5w"]
+[gd_scene load_steps=10 format=4 uid="uid://chmlkevfn3d5w"]
 
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_qyii8"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_y2fch"]
 [ext_resource type="TileSet" uid="uid://dqq4dsinwffpf" path="res://final/assets/tilesets/outdoor_tileset.tres" id="2_1wf63"]
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="3_vg7lm"]
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="4_ob1ov"]
@@ -15,6 +16,7 @@ size = Vector2(33, 18)
 
 [node name="VegetablerichOutdoors" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_y2fch")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -1

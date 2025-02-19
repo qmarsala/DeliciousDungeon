@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dukddoahsmjr7"]
+[gd_scene load_steps=11 format=3 uid="uid://dukddoahsmjr7"]
 
 [ext_resource type="Script" path="res://final/scripts/main.gd" id="1_frirg"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/scene_manager.gd" id="2_tycbb"]
 [ext_resource type="Material" uid="uid://cxkx8apilh2v1" path="res://final/assets/scene_transition_material.tres" id="3_w2fnw"]
 [ext_resource type="PackedScene" uid="uid://62irkaff2u6i" path="res://final/scenes/outdoors/default_outdoors.tscn" id="4_c2i80"]
 [ext_resource type="PackedScene" uid="uid://bjxer30uh4m0t" path="res://final/scenes/lobby.tscn" id="5_6j1i1"]
+[ext_resource type="PackedScene" uid="uid://dsq5fxn64u7dl" path="res://final/scenes/outdoors/animalrich_outdoors.tscn" id="5_gs8h8"]
+[ext_resource type="PackedScene" uid="uid://chmlkevfn3d5w" path="res://final/scenes/outdoors/vegetablerich_outdoors.tscn" id="6_n68ef"]
 
 [sub_resource type="Animation" id="Animation_icjym"]
 length = 0.001
@@ -86,7 +88,7 @@ script = ExtResource("1_frirg")
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("2_tycbb")
 main_menu_scene = ExtResource("5_6j1i1")
-outdoor_scenes = Array[PackedScene]([ExtResource("4_c2i80")])
+outdoor_scenes = Array[PackedScene]([ExtResource("4_c2i80"), ExtResource("5_gs8h8"), ExtResource("6_n68ef")])
 
 [node name="TransitionLayer" type="CanvasLayer" parent="SceneManager"]
 layer = 128
