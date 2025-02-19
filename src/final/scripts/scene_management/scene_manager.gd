@@ -3,7 +3,7 @@ extends Node
 
 @export var main_menu_scene: PackedScene
 @export var outdoor_scenes: Array[PackedScene]
-@export var canyon_dungeon_scene: PackedScene
+@export var canyon_dungeon_scenes: Array[PackedScene]
 @export var cave_dungeon_scene: PackedScene
 @export var fort_dungeon_scene: PackedScene
 
@@ -39,9 +39,9 @@ func queue_scene_change(scene_type: Enums.Scenes) -> void:
 	elif scene_type == Enums.Scenes.Outdoors:
 		next_scene = outdoor_scenes.pick_random()
 	else:
-		if game_data.current_level < 4:
-			next_scene = canyon_dungeon_scene
-		elif game_data.current_level < 9:
+		if game_data.current_level < 3 && canyon_dungeon_scenes.size() < game_data.current_level:
+			next_scene = canyon_dungeon_scenes[game_data.current_level]
+		elif game_data.current_level < 7:
 			next_scene = cave_dungeon_scene
 		else:
 			next_scene = fort_dungeon_scene
