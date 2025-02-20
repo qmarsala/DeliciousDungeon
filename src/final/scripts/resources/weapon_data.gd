@@ -1,6 +1,9 @@
 class_name WeaponData2
 extends Resource
 
+@export var name: String = "Unarmed"
+@export var description: String = ""
+@export var sprite: AtlasTexture
 @export var weapon_type: Enums.WeaponTypes = Enums.WeaponTypes.Melee
 @export var max_range: float = 20
 
