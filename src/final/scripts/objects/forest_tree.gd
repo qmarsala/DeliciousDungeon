@@ -2,10 +2,9 @@ class_name ForestTree
 extends StaticBody2D
 
 @export var felled_tree_top: PackedScene
-@export var wood_item: Item
 
 @export var spawn_chance: float = 1
-@export var drop_chance: float = 1
+@export var drop_table: ItemDropTable = ItemDropTable.new()
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var interactbox: InteractBox = $Interactbox
@@ -39,5 +38,5 @@ func animate_fell():
 		add_child.call_deferred(instance)
 
 func drop_logs():
-	if randf() > 1 - drop_chance:
-		ItemDropper.drop_item(wood_item, global_position)
+	var drop_result = drop_table.get_drop_result()
+	ItemDropper.drop_item_stack(drop_result, global_position)

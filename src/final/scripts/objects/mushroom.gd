@@ -1,7 +1,7 @@
 class_name Mushroom
 extends Node2D
 
-@export var food_item_data: ItemData
+@export var drop_table: ItemDropTable = ItemDropTable.new()
 @export var spawn_chance: float = 1
 
 @onready var orange: Sprite2D = $Orange
@@ -25,5 +25,6 @@ func _ready() -> void:
 		orange.hide()
 
 func interact(player: Player2):
-	player.pickup(food_item_data, 1)
+	var food_item_stack = drop_table.get_drop_result()
+	player.pickup(food_item_stack.item, food_item_stack.count)
 	queue_free()

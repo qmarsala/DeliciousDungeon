@@ -33,7 +33,7 @@ func interact() -> void:
 			a.interact(self)
 			return
 
-func pickup(item: ItemData, count: int = 1) -> void:
+func pickup(item: Item, count: int = 1) -> void:
 	data.inventory.add_item(item, count)
 
 func cook() -> void:
