@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://dfkt24ubih6n6"]
+
+[ext_resource type="Script" path="res://final/scripts/resources/item_data.gd" id="1_0jv0b"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="1_44jut"]
+[ext_resource type="Texture2D" uid="uid://bieycubk06bjt" path="res://final/assets/sprites/log.png" id="2_3q5nv"]
+[ext_resource type="PackedScene" uid="uid://chhngufmjn47k" path="res://final/scenes/objects/generic_item.tscn" id="2_4gtyn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtq7c"]
+atlas = ExtResource("2_3q5nv")
+
+[sub_resource type="Resource" id="Resource_s43xn"]
+script = ExtResource("1_0jv0b")
+item_id = 1
+name = "Logs"
+description = "Useful for lighting fires"
+sprite = SubResource("AtlasTexture_rtq7c")
+
+[resource]
+script = ExtResource("1_44jut")
+data = SubResource("Resource_s43xn")
+scene = ExtResource("2_4gtyn")

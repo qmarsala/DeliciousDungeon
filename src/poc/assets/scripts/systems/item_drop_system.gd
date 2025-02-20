@@ -20,3 +20,7 @@ func drop_item(item: Item, target_position: Vector2):
 			world.add_child.call_deferred(drop_instance)
 		else:
 			get_tree().root.add_child.call_deferred(drop_instance)
+
+#todo:
+func drop_item_stack(item_stack: ItemStack, target_position: Vector2):
+	pass
