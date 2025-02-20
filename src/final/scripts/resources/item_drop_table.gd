@@ -13,7 +13,7 @@ func get_drop_result() -> ItemStack:
 	var item_drop = item_candidates.pick_random() as ItemDropChance
 	result.item = item_drop.item
 	if item_drop.min_quantity == item_drop.max_quantity:
-		result.quantity = item_drop.max_quantity
+		result.count = item_drop.max_quantity
 	else:
-		result.quantity = randi_range(item_drop.min_quantity, item_drop.max_quantity)
+		result.count = randi_range(item_drop.min_quantity, item_drop.max_quantity)
 	return result
