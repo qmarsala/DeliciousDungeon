@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://dhiobewo7m7lj"]
+[gd_scene load_steps=7 format=4 uid="uid://dhiobewo7m7lj"]
 
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_c7iw1"]
 [ext_resource type="TileSet" uid="uid://dqq4dsinwffpf" path="res://final/assets/tilesets/outdoor_tileset.tres" id="2_s68g7"]
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="3_jgc8s"]
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="4_mjxc5"]
+[ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="5_dupln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlj87"]
+size = Vector2(32, 18.5)
 
 [node name="CanyonLevelOne" type="Node2D"]
 
@@ -21,77 +25,62 @@ y_sort_enabled = true
 [node name="ForestTree" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(301, -205)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree2" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(408, -150)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree3" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(281, -87)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree4" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(336, -143)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree5" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(380, -87)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree7" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(56, -648)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree8" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(-71, -585)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree9" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(-72, -690)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree10" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(-11, -635)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree11" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(544, -473)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree12" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(483, -601)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree13" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(478, -356)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree14" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(602, -670)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree15" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(-39, -283)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="ForestTree16" parent="Trees" instance=ExtResource("3_jgc8s")]
 position = Vector2(43, -157)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="Mushrooms" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -113,3 +102,12 @@ position = Vector2(-55, -635)
 
 [node name="Mushroom6" parent="Mushrooms" instance=ExtResource("4_mjxc5")]
 position = Vector2(-3, -600)
+
+[node name="SceneChangeTrigger" parent="." instance=ExtResource("5_dupln")]
+position = Vector2(544, -766)
+scene = 1
+is_dungeon_floor_completion = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_hlj87")

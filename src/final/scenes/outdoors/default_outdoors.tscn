@@ -58,7 +58,7 @@ spawn_chance = 0.5
 
 [node name="SceneChangeTrigger" parent="." instance=ExtResource("5_8ukgk")]
 position = Vector2(-208, -187)
-is_dungeon_floor_completion = true
+scene = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 shape = SubResource("RectangleShape2D_apvvq")

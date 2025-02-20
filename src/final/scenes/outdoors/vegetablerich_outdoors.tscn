@@ -112,37 +112,32 @@ y_sort_enabled = true
 [node name="ForestTree" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(-295, -136)
 spawn_chance = 0.75
-drop_chance = 0.5
 
 [node name="ForestTree2" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(-9, -174)
 spawn_chance = 0.75
-drop_chance = 0.5
 
 [node name="ForestTree3" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(-254, -100)
 spawn_chance = 0.75
-drop_chance = 0.5
 
 [node name="ForestTree5" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(-48, -225)
 spawn_chance = 0.75
-drop_chance = 0.5
 
 [node name="ForestTree4" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(-305, -76)
 spawn_chance = 0.75
-drop_chance = 0.5
 
 [node name="ForestTree6" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(58, -39)
 spawn_chance = 0.75
-drop_chance = 0.5
 
 [node name="Player" parent="." instance=ExtResource("5_eiwda")]
 
 [node name="SceneChangeTrigger" parent="." instance=ExtResource("6_e7u7n")]
 position = Vector2(-240, -238)
+scene = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 shape = SubResource("RectangleShape2D_wkuwf")

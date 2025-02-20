@@ -41,10 +41,12 @@ func queue_scene_change(scene_type: Enums.Scenes) -> void:
 	else:
 		if game_data.current_level < 3 && canyon_dungeon_scenes.size() < game_data.current_level:
 			next_scene = canyon_dungeon_scenes[game_data.current_level]
-		elif game_data.current_level < 7:
+		elif game_data.current_level < 7 && cave_dungeon_scene:
 			next_scene = cave_dungeon_scene
-		else:
+		elif fort_dungeon_scene:
 			next_scene = fort_dungeon_scene
+		else: 
+			next_scene = main_menu_scene
 	
 	world.process_mode = Node.PROCESS_MODE_DISABLED
 	animation_player.play("scene_change")

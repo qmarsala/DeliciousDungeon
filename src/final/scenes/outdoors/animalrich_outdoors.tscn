@@ -27,27 +27,22 @@ tile_set = ExtResource("2_imeru")
 [node name="Tree" parent="." instance=ExtResource("3_q6ood")]
 position = Vector2(183, 57)
 spawn_chance = 0.4
-drop_chance = 0.5
 
 [node name="Tree4" parent="." instance=ExtResource("3_q6ood")]
 position = Vector2(323, -180)
 spawn_chance = 0.4
-drop_chance = 0.5
 
 [node name="Tree3" parent="." instance=ExtResource("3_q6ood")]
 position = Vector2(308, 59)
 spawn_chance = 0.6
-drop_chance = 0.5
 
 [node name="Tree5" parent="." instance=ExtResource("3_q6ood")]
 position = Vector2(10, -194)
 spawn_chance = 0.4
-drop_chance = 0.5
 
 [node name="Tree2" parent="." instance=ExtResource("3_q6ood")]
 position = Vector2(152, 78)
 spawn_chance = 0.5
-drop_chance = 0.5
 
 [node name="Mushroom" parent="." instance=ExtResource("4_ybiw1")]
 position = Vector2(198, 85)
@@ -65,6 +60,7 @@ spawn_chance = 0.33
 
 [node name="SceneChangeTrigger" parent="." instance=ExtResource("7_iq2nc")]
 position = Vector2(240, -255)
+scene = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 shape = SubResource("RectangleShape2D_t871d")

@@ -151,7 +151,7 @@ drop_table = ExtResource("6_oe50w")
 
 [node name="SceneChangeTrigger" parent="." instance=ExtResource("6_t0hig")]
 position = Vector2(128, -79)
-scene = 2
+scene = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 shape = SubResource("RectangleShape2D_fc5tp")
