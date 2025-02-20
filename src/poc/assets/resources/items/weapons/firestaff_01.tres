@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://caxnrd7613eoa"]
 
-[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="1_cohig"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="1_cohig"]
 [ext_resource type="PackedScene" uid="uid://btrke7rn4blxm" path="res://poc/scenes/items/staff.tscn" id="1_xofx7"]
 [ext_resource type="Resource" uid="uid://bvak4qjj02fj3" path="res://poc/assets/resources/weapon_stats/firestaff_levelone_stats.tres" id="3_sjwyb"]
 

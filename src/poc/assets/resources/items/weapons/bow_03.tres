@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://poc/assets/resources/weapon_stats/weapon_data.gd" id="1_fvryj"]
 [ext_resource type="PackedScene" uid="uid://blb4ph6xjfls0" path="res://poc/scenes/items/bow.tscn" id="2_lvdmf"]
 [ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="2_rviky"]
-[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="3_evt3a"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="3_evt3a"]
 [ext_resource type="Resource" uid="uid://w4avb0eafw6r" path="res://poc/assets/resources/abilities/ability_data/shoot_arrow_data.tres" id="3_umkp8"]
 [ext_resource type="PackedScene" uid="uid://dwmoi0dahea8s" path="res://poc/scenes/abilities/arrow.tscn" id="4_buhjt"]
 [ext_resource type="Resource" uid="uid://b1tjegfgivt36" path="res://poc/assets/resources/abilities/ability_data/piercing_shot_data.tres" id="5_4c241"]

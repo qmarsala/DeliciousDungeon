@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://poc/assets/resources/abilities/ability.gd" id="2_u54cm"]
 [ext_resource type="PackedScene" uid="uid://bfc8242vq64ru" path="res://poc/scenes/items/sword.tscn" id="3_2s8vn"]
 [ext_resource type="Resource" uid="uid://43lcogjjbhl7" path="res://poc/assets/resources/abilities/ability_data/sword_swing_data.tres" id="4_4f7o1"]
-[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="4_s263f"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="4_s263f"]
 [ext_resource type="PackedScene" uid="uid://do1nl314r0yo1" path="res://poc/scenes/abilities/sword_swing.tscn" id="5_fbb7x"]
 [ext_resource type="Resource" uid="uid://bbipk0xulhe0j" path="res://poc/assets/resources/abilities/ability_data/sword_stab_data.tres" id="6_0h5xn"]
 [ext_resource type="PackedScene" uid="uid://cvxvecph7j317" path="res://poc/scenes/abilities/sword_stab.tscn" id="7_46b7r"]

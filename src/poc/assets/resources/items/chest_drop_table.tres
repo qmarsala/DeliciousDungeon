@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemDropTable" load_steps=29 format=3 uid="uid://fddsku4ra52f"]
 
-[ext_resource type="Script" path="res://poc/assets/resources/items/item_drop_table.gd" id="2_bp7p4"]
-[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="2_ngfug"]
-[ext_resource type="Script" path="res://poc/assets/resources/items/item_drop_chance.gd" id="2_yxbre"]
+[ext_resource type="Script" path="res://final/scripts/resources/item_drop_table.gd" id="2_bp7p4"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://final/assets/items/wood.tres" id="2_ngfug"]
+[ext_resource type="Script" path="res://final/scripts/resources/item_drop_chance.gd" id="2_yxbre"]
 [ext_resource type="Resource" uid="uid://eahj1urja2wk" path="res://poc/assets/resources/items/food.tres" id="3_qaqtf"]
 [ext_resource type="Resource" uid="uid://ct3q2kfll6fxs" path="res://poc/assets/resources/items/weapons/sword_01.tres" id="4_ornib"]
 [ext_resource type="Resource" uid="uid://06d3upyur1ob" path="res://poc/assets/resources/items/weapons/sword_02.tres" id="5_4umts"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bugt3yrpkyo3g" path="res://poc/assets/resources/weapon_stats/firestaff_leveltwo_stats.tres" id="1_avrq7"]
 [ext_resource type="PackedScene" uid="uid://btrke7rn4blxm" path="res://poc/scenes/items/staff.tscn" id="2_d455v"]
-[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="3_y54oe"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="3_y54oe"]
 
 [resource]
 script = ExtResource("3_y54oe")

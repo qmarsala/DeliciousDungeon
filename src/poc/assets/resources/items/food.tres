@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://final/scripts/resources/item_data.gd" id="1_cq87g"]
 [ext_resource type="PackedScene" uid="uid://c2084hee1l50l" path="res://poc/scenes/items/food.tscn" id="2_p4dc2"]
-[ext_resource type="Script" path="res://poc/assets/resources/items/item.gd" id="3_3sf1x"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="3_3sf1x"]
 
 [sub_resource type="Resource" id="Resource_r4y61"]
 script = ExtResource("1_cq87g")

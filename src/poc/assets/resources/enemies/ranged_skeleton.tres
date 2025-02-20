@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://poc/assets/resources/enemies/enemy_data.gd" id="1_0eorm"]
 [ext_resource type="Resource" uid="uid://c3w0g6krnls5v" path="res://poc/assets/resources/abilities/enemy_ability/ranged_skeleton_main_attack.tres" id="1_d0lha"]
-[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://poc/assets/resources/items/wood.tres" id="2_ucbhd"]
+[ext_resource type="Resource" uid="uid://dfkt24ubih6n6" path="res://final/assets/items/wood.tres" id="2_ucbhd"]
 
 [resource]
 script = ExtResource("1_0eorm")
