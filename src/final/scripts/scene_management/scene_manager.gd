@@ -39,7 +39,7 @@ func queue_scene_change(scene_type: Enums.Scenes) -> void:
 	elif scene_type == Enums.Scenes.Outdoors:
 		next_scene = outdoor_scenes.pick_random()
 	else:
-		if game_data.current_level < 3 && canyon_dungeon_scenes.size() < game_data.current_level:
+		if game_data.current_level < 3 && game_data.current_level < canyon_dungeon_scenes.size():
 			next_scene = canyon_dungeon_scenes[game_data.current_level]
 		elif game_data.current_level < 7 && cave_dungeon_scene:
 			next_scene = cave_dungeon_scene
