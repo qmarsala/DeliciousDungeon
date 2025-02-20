@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDropTable" load_steps=5 format=3 uid="uid://d2c2m8082glse"]
+
+[ext_resource type="Script" path="res://final/scripts/resources/item_drop_chance.gd" id="1_uujkb"]
+[ext_resource type="Resource" uid="uid://ddulhk6k6fdk0" path="res://final/assets/items/raw_mushroom.tres" id="2_8br2p"]
+[ext_resource type="Script" path="res://final/scripts/resources/item_drop_table.gd" id="3_m3d8b"]
+
+[sub_resource type="Resource" id="Resource_2x2ho"]
+script = ExtResource("1_uujkb")
+item = ExtResource("2_8br2p")
+min_quantity = 1
+max_quantity = 1
+chance = 0.8
+
+[resource]
+script = ExtResource("3_m3d8b")
+items = Array[ExtResource("1_uujkb")]([SubResource("Resource_2x2ho")])

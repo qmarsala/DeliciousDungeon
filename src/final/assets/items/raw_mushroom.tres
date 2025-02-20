@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://ddulhk6k6fdk0"]
+
+[ext_resource type="Script" path="res://final/scripts/resources/item_data.gd" id="1_7jgiw"]
+[ext_resource type="Texture2D" uid="uid://bclkv6beuf77b" path="res://imported_assets/sprites/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="2_wb047"]
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="3_6chuu"]
+[ext_resource type="PackedScene" uid="uid://chhngufmjn47k" path="res://final/scenes/objects/generic_item.tscn" id="3_i3tuc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bxos"]
+atlas = ExtResource("2_wb047")
+region = Rect2(147, 36, 6, 10)
+
+[sub_resource type="Resource" id="Resource_2qsq6"]
+script = ExtResource("1_7jgiw")
+item_id = 2
+name = "Mushroom"
+description = "Pretty sure its edible"
+sprite = SubResource("AtlasTexture_8bxos")
+
+[resource]
+script = ExtResource("3_6chuu")
+data = SubResource("Resource_2qsq6")
+scene = ExtResource("3_i3tuc")
