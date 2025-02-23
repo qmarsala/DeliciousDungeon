@@ -26,6 +26,11 @@ func has_item(item: Item) -> bool:
 	if key.is_empty():
 		return false
 	return items.has(key)
+	
+func has_enough_item(item: Item, count: int) -> bool:
+	if has_item(item):
+		return items[_get_item_key(item)].count > count
+	return false
 
 func add_item(item: Item, count: int = 1) -> void:
 	var key = _get_item_key(item)
