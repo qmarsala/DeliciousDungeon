@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 
 func set_explore_direction(dir: Vector2):
 	move_direction = dir
-	explore_cast.target_position = move_direction * 10
+	explore_cast.target_position = move_direction * 25
 
 func on_health_depleted() -> void:
 	var drop_result = drop_table.get_drop_result()
