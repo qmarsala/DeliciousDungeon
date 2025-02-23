@@ -23,6 +23,7 @@ Enums="*res://poc/assets/scripts/enums.gd"
 SignalBus="*res://final/scripts/services/signal_bus.gd"
 ItemDropper="*res://poc/assets/scripts/systems/item_drop_system.gd"
 BattleText="*res://final/scripts/services/battle_text.gd"
+GameTime="*res://final/scripts/services/game_time.gd"
 Steamworks="*res://final/scripts/services/steamworks.gd"
 
 [display]
@@ -125,6 +126,12 @@ interact={
 switch_weapons={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+setup_camp={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":true,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
 ]
 }
 

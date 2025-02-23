@@ -18,5 +18,5 @@ max_health = 10.0
 max_nutrition = 10.0
 interaction_range = 15.0
 inventory = SubResource("Resource_awpsj")
-current_health = 10.0
-current_nutrition = 10.0
+health = 10.0
+nutrition = 10.0

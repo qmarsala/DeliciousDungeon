@@ -6,6 +6,7 @@ signal AbilityTwoPressed
 signal DashPressed
 signal InteractPressed
 signal SwitchWeaponsPressed
+signal SetupCampPressed
 
 func handle_input() -> void:
 	if Input.is_action_just_pressed("ability_one"):
@@ -18,3 +19,6 @@ func handle_input() -> void:
 		InteractPressed.emit()
 	if Input.is_action_just_pressed("switch_weapons"):
 		SwitchWeaponsPressed.emit()
+	if Input.is_action_just_pressed("setup_camp"):
+		SetupCampPressed.emit()
+	

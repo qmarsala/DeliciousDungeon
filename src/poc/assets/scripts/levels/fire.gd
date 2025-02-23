@@ -24,17 +24,10 @@ func _ready() -> void:
 	if !lit and randf() <= lit_chance:
 		light()
 
-func interact(player: Player) -> void:
+func interact(player: Player2) -> void:
 	if lit:
-		player.begin_rest()
+		player.cook()
 		return
-	
-	if player.player_data.items.has(Enums.Items.Wood) and player.player_data.items[Enums.Items.Wood] > 0:
-		#todo: should we use a signal for this?
-		# feels bad mutating the player passed in like this
-		player.player_data.items[Enums.Items.Wood] -= 1
-		light()
-		player.begin_rest()
 
 func light() -> void:
 	if lit: return
