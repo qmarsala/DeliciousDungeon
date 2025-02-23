@@ -14,5 +14,5 @@ extends Resource
 @export var inventory: PlayerInventory = PlayerInventory.new()
 @export var equipped_weapon: WeaponData
 
-@export var current_health: float = 10
-@export var current_nutrition: float = 10
+@export var health: float = 10
+@export var nutrition: float = 10

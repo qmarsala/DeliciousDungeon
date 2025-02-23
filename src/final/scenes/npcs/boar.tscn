@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c85mrhsc0pqct"]
+
+[ext_resource type="Script" path="res://final/scripts/boar.gd" id="1_0h2oc"]
+[ext_resource type="PackedScene" uid="uid://ydoamsvkvmjd" path="res://final/scenes/components/health_component.tscn" id="2_5xb68"]
+[ext_resource type="Texture2D" uid="uid://pynimp510622" path="res://imported_assets/sprites/forestSprites_ v1.2/boar_.png" id="2_gmqc3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1252g"]
+radius = 4.0
+height = 14.0
+
+[node name="Boar" type="CharacterBody2D"]
+script = ExtResource("1_0h2oc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gmqc3")
+offset = Vector2(0, -12)
+hframes = 8
+vframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1252g")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_5xb68")]

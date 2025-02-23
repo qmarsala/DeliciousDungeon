@@ -21,7 +21,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func init(player_data: PlayerData2) -> void:
-	data = player_data
+	if player_data == null:
+		data = PlayerData2.new()
+	else:
+		data = player_data
 	player_move_controller.init(data.speed)
 
 func switch_weapons() -> void:

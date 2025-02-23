@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://bfu1jpb2q4x15"]
+
+[ext_resource type="Script" path="res://final/scripts/resources/item.gd" id="1_tsblc"]
+[ext_resource type="Script" path="res://final/scripts/resources/item_data.gd" id="1_xsmm7"]
+[ext_resource type="Texture2D" uid="uid://qye23hd0kap7" path="res://imported_assets/sprites/Foods_Potions_&_Potions/Foods/Foods.png" id="2_jw67g"]
+[ext_resource type="PackedScene" uid="uid://chhngufmjn47k" path="res://final/scenes/objects/generic_item.tscn" id="3_n4agp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iudd"]
+atlas = ExtResource("2_jw67g")
+region = Rect2(17, 66, 14, 12)
+
+[sub_resource type="Resource" id="Resource_xlafa"]
+script = ExtResource("1_xsmm7")
+item_id = 3
+name = "Raw Meat"
+description = "I should cook this"
+sprite = SubResource("AtlasTexture_3iudd")
+
+[resource]
+script = ExtResource("1_tsblc")
+data = SubResource("Resource_xlafa")
+scene = ExtResource("3_n4agp")
