@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dhfogvvwexoh2"]
+[gd_scene load_steps=10 format=4 uid="uid://dhfogvvwexoh2"]
 
 [ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_8c2bm"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_pp8ho"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="4_83sbp"]
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="6_bqo8h"]
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="7_wiaf7"]
+[ext_resource type="PackedScene" uid="uid://c85mrhsc0pqct" path="res://final/scenes/npcs/boar.tscn" id="8_ttxn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mv2su"]
 size = Vector2(32, 18.5)
@@ -233,3 +234,21 @@ is_dungeon_floor_completion = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_mv2su")
+
+[node name="Boar" parent="." instance=ExtResource("8_ttxn8")]
+position = Vector2(-708, -175)
+
+[node name="Boar2" parent="." instance=ExtResource("8_ttxn8")]
+position = Vector2(-928, -600)
+
+[node name="Boar3" parent="." instance=ExtResource("8_ttxn8")]
+position = Vector2(-758, -462)
+
+[node name="Boar4" parent="." instance=ExtResource("8_ttxn8")]
+position = Vector2(-436, -822)
+
+[node name="Boar5" parent="." instance=ExtResource("8_ttxn8")]
+position = Vector2(-362, -567)
+
+[node name="Boar6" parent="." instance=ExtResource("8_ttxn8")]
+position = Vector2(-6, -1034)

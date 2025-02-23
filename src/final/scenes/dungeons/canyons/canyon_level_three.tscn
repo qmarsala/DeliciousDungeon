@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bhetbqapvacsc"]
+[gd_scene load_steps=10 format=4 uid="uid://bhetbqapvacsc"]
 
 [ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_k57rx"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_ncl8k"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="4_v7hfe"]
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="5_wpqck"]
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="5_xt2kx"]
+[ext_resource type="PackedScene" uid="uid://c85mrhsc0pqct" path="res://final/scenes/npcs/boar.tscn" id="8_0qm5e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnblq"]
 size = Vector2(32, 18.5)
@@ -377,3 +378,33 @@ is_dungeon_floor_completion = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_vnblq")
+
+[node name="Boar" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-397, -867)
+
+[node name="Boar2" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-586, -1005)
+
+[node name="Boar3" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-489, -1135)
+
+[node name="Boar4" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(619, -959)
+
+[node name="Boar5" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(842, -873)
+
+[node name="Boar6" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-866, -555)
+
+[node name="Boar7" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-551, -482)
+
+[node name="Boar8" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-181, -414)
+
+[node name="Boar9" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(-616, -1)
+
+[node name="Boar10" parent="." instance=ExtResource("8_0qm5e")]
+position = Vector2(201, -798)
