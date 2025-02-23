@@ -2,6 +2,7 @@ class_name Player2
 extends CharacterBody2D
 
 @onready var interact_range: Area2D = $InteractRange
+@onready var campfire_placement_checker: Area2D = $CampfirePlacementChecker
 
 @export var campfire_scene: PackedScene
 
@@ -50,9 +51,11 @@ func setup_camp() -> void:
 		## todo: probably need to have a 'campfire placement system'
 		## that allows us to 'aim' the placement, and check if its valid.
 		#data.inventory.remove_item(wood, 1)
-	var instance = campfire_scene.instantiate() as Node2D
-	instance.global_position = global_position + (Vector2.RIGHT * data.interaction_range)
-	get_tree().get_first_node_in_group("World").add_child(instance)
+
+	if campfire_placement_checker.get_overlapping_bodies().size() < 1:
+		var instance = campfire_scene.instantiate() as Node2D
+		instance.global_position = global_position + Vector2.RIGHT * data.interaction_range
+		get_tree().get_first_node_in_group("World").add_child(instance)
 
 func cook() -> void:
 	pass

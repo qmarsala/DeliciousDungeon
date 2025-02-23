@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cddi2bnrltj5c"]
+[gd_scene load_steps=7 format=3 uid="uid://cddi2bnrltj5c"]
 
 [ext_resource type="Script" path="res://final/scripts/player/player.gd" id="1_1vdp7"]
 [ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://poc/scenes/items/fire.tscn" id="2_p21ca"]
@@ -11,6 +11,9 @@ radius = 3.0
 height = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftoop"]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axav1"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
@@ -46,3 +49,10 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
 shape = SubResource("CircleShape2D_ftoop")
+
+[node name="CampfirePlacementChecker" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CampfirePlacementChecker"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_axav1")
