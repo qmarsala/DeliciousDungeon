@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dukddoahsmjr7"]
+[gd_scene load_steps=15 format=3 uid="uid://dukddoahsmjr7"]
 
 [ext_resource type="Script" path="res://final/scripts/main.gd" id="1_frirg"]
+[ext_resource type="Resource" uid="uid://jfj6717nurn" path="res://final/assets/default_game_data.tres" id="2_7avvc"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/scene_manager.gd" id="2_tycbb"]
 [ext_resource type="Material" uid="uid://cxkx8apilh2v1" path="res://final/assets/scene_transition_material.tres" id="3_w2fnw"]
 [ext_resource type="PackedScene" uid="uid://62irkaff2u6i" path="res://final/scenes/outdoors/default_outdoors.tscn" id="4_c2i80"]
@@ -87,6 +88,7 @@ _data = {
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_frirg")
+game_data = ExtResource("2_7avvc")
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("2_tycbb")

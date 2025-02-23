@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 
 func init(player_data: PlayerData2) -> void:
 	data = player_data
+	player_move_controller.init(data.speed)
 
 func switch_weapons() -> void:
 	print("switch weapons")
