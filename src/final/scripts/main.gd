@@ -1,13 +1,16 @@
 extends Node
 
-var save_load: SaveLoad = SaveLoad.new()
-var game_data: GameData = GameData.new()
+@export var game_data: GameData
 
 @onready var scene_manager: SceneManager = $SceneManager
 
+var save_load: SaveLoad = SaveLoad.new()
+
 func _ready() -> void:
 	connect_signals()
-	load_game()
+	#load_game()
+	game_data.current_level = 0
+	GameTime.init($World)
 	scene_manager.init($World, game_data)
 
 func connect_signals() -> void:

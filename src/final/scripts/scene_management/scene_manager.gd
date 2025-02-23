@@ -48,7 +48,7 @@ func queue_scene_change(scene_type: Enums.Scenes) -> void:
 		else: 
 			next_scene = main_menu_scene
 	
-	world.process_mode = Node.PROCESS_MODE_DISABLED
+	GameTime.pause()
 	animation_player.play("scene_change")
 
 func perform_scene_change() -> void:
@@ -60,4 +60,4 @@ func perform_scene_change() -> void:
 	current_scene_instance.init(game_data.player_data, game_data.current_level)
 	
 	world.add_child(current_scene_instance)
-	world.process_mode = Node.PROCESS_MODE_INHERIT
+	GameTime.play()
