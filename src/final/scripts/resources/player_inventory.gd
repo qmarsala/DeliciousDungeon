@@ -5,36 +5,38 @@ extends Resource
 @export var items: Dictionary = {}
 
 func has_weapon(weapon: Weapon2) -> bool:
-	var key = _get_weapon_key(weapon)
-	if key.is_empty():
+	if weapon.data.weapon_type == Enums.WeaponTypes.None:
 		return false
-	return weapons.has(key)
+	return weapons.has(weapon.data.weapon_type)
 
 func add_weapon(weapon: Weapon2) -> void:
-	var key = _get_weapon_key(weapon)
-	if key.is_empty():
+	if weapon.data.weapon_type == Enums.WeaponTypes.None:
 		return
-	weapons[key] = weapon
+	weapons[weapon.data.weapon_type] = weapon
 
 func remove_weapon(weapon: Weapon2) -> void:
-	var key = _get_weapon_key(weapon)
 	if has_weapon(weapon):
-		weapons.erase(key)
+		weapons.erase(weapon.data.weapon_typei)
 
 func has_item(item: Item) -> bool:
-	var key = _get_item_key(item)
-	if key.is_empty():
+	return has_item_by_id(item.data.item_id)
+
+func has_item_by_id(item_id: Enums.Items) -> bool:
+	if item_id == Enums.Items.None:
 		return false
-	return items.has(key)
+	return items.has(item_id) and items[item_id].count > 0
 	
 func has_enough_item(item: Item, count: int) -> bool:
-	if has_item(item):
-		return items[_get_item_key(item)].count > count
+	return has_enough_item_by_id(item.data.item_id, count)
+
+func has_enough_item_by_id(item_id: Enums.Items, count: int) -> bool:
+	if has_item_by_id(item_id):
+		return items[item_id].count > count
 	return false
 
 func add_item(item: Item, count: int = 1) -> void:
-	var key = _get_item_key(item)
-	if key.is_empty() or count < 1:
+	var key = item.data.item_id
+	if key == Enums.Items.None or count < 1:
 		return
 	
 	if has_item(item):
@@ -43,37 +45,26 @@ func add_item(item: Item, count: int = 1) -> void:
 		items[key] = ItemStack.new()
 		items[key].item = item
 		items[key].count = count
-
+		
 func remove_item(item: Item, count: int) -> ItemStack:
-	var key = _get_item_key(item)
-	if key.is_empty() or count < 1:
+	var item_id = item.data.item_id
+	return remove_item_by_id(item_id, count)
+
+func remove_item_by_id(item_id: Enums.Items, count: int) -> ItemStack:
+	if item_id == Enums.Items.None or count < 1:
 		return
 
-	var stack = _default_stack(item.data.name)
-	if has_item(item):
-		stack.data = items[key].data
-		var actual_taken = min(count, items[key].count)
+	var stack = _default_stack()
+	if has_item_by_id(item_id):
+		stack.data = items[item_id].data
+		var actual_taken = min(count, items[item_id].count)
 		stack.count = actual_taken
-		items[key].count -= actual_taken
-		if items[key].count < 1:
-			items.erase(key)
+		items[item_id].count -= actual_taken
+		if items[item_id].count < 1:
+			items.erase(item_id)
 	return stack
-
-func _get_weapon_key(weapon: Weapon2) -> String:
-	if weapon == null:
-		return ""
-	elif weapon.weapon_type == Enums.WeaponTypes.Melee:
-		return "melee"
-	else:
-		return "ranged"
-
-func _get_item_key(item: Item) -> String:
-	if item == null:
-		return ""
-	else:
-		return str(item.data.item_id)
-
-func _default_stack(name: String) -> ItemStack:
+	
+func _default_stack(name: String = "Junk") -> ItemStack:
 	var stack = ItemStack.new()
 	var data = ItemData.new()
 	data.name = name
