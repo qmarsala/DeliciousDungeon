@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var drop_table: ItemDropTable
 @export var health: float = 1
 @export var speed: float = 30
+@export var spawn_chance: float = .75
 
 @onready var health_component: HealthComponent = $HealthComponent
 
@@ -12,8 +13,11 @@ var idle_time: float
 var is_idle: bool
 var explore_cast: RayCast2D
 
-
 func _ready() -> void:
+	if randf() < 1 - spawn_chance:
+		queue_free()
+		return
+	
 	explore_cast = RayCast2D.new()
 	explore_cast.set_collision_mask_value(1, true)
 	add_child(explore_cast)
