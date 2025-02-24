@@ -9,7 +9,7 @@ script = ExtResource("1_5inbg")
 item = ExtResource("2_0lcqa")
 min_quantity = 1
 max_quantity = 1
-chance = 0.5
+chance = 0.95
 
 [resource]
 script = ExtResource("2_tegg4")

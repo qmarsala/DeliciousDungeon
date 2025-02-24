@@ -10,6 +10,7 @@ radius = 4.0
 height = 14.0
 
 [node name="Boar" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_0h2oc")
 drop_table = ExtResource("2_8w5vg")
 
