@@ -60,9 +60,3 @@ func light_fire(fire: Fire) -> void:
 	if data.inventory.has_enough_item_by_id(Enums.Items.Wood, cost):
 		data.inventory.remove_item_by_id(Enums.Items.Wood, cost)
 		fire.light()
-
-func cook() -> void:
-	pass
-
-func consume() -> void:
-	pass

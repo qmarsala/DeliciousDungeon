@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://chmlkevfn3d5w"]
+[gd_scene load_steps=11 format=4 uid="uid://chmlkevfn3d5w"]
 
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_qyii8"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_y2fch"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://01wj8p1uq3kl" path="res://final/scenes/objects/forest_tree.tscn" id="4_ob1ov"]
 [ext_resource type="PackedScene" uid="uid://cddi2bnrltj5c" path="res://final/scenes/player.tscn" id="5_eiwda"]
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="6_e7u7n"]
+[ext_resource type="PackedScene" uid="uid://c85mrhsc0pqct" path="res://final/scenes/npcs/boar.tscn" id="6_mfvkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnktj"]
 size = Vector2(15, 6.5)
@@ -132,6 +133,14 @@ spawn_chance = 0.75
 [node name="ForestTree6" parent="Trees" instance=ExtResource("4_ob1ov")]
 position = Vector2(58, -39)
 spawn_chance = 0.75
+
+[node name="Boar" parent="." instance=ExtResource("6_mfvkq")]
+position = Vector2(-164, -66)
+spawn_chance = 0.1
+
+[node name="Boar2" parent="." instance=ExtResource("6_mfvkq")]
+position = Vector2(-110, -142)
+spawn_chance = 0.65
 
 [node name="Player" parent="." instance=ExtResource("5_eiwda")]
 

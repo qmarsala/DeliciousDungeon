@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dsq5fxn64u7dl"]
+[gd_scene load_steps=10 format=4 uid="uid://dsq5fxn64u7dl"]
 
 [ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_f5185"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_fjseo"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="4_ybiw1"]
 [ext_resource type="PackedScene" uid="uid://cddi2bnrltj5c" path="res://final/scenes/player.tscn" id="5_0gey0"]
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="7_iq2nc"]
+[ext_resource type="PackedScene" uid="uid://c85mrhsc0pqct" path="res://final/scenes/npcs/boar.tscn" id="8_7v1rk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t871d"]
 size = Vector2(32, 20)
@@ -64,3 +65,21 @@ scene = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeTrigger"]
 shape = SubResource("RectangleShape2D_t871d")
+
+[node name="Boar" parent="." instance=ExtResource("8_7v1rk")]
+position = Vector2(58, -145)
+
+[node name="Boar2" parent="." instance=ExtResource("8_7v1rk")]
+position = Vector2(128, -91)
+
+[node name="Boar3" parent="." instance=ExtResource("8_7v1rk")]
+position = Vector2(192, -38)
+
+[node name="Boar4" parent="." instance=ExtResource("8_7v1rk")]
+position = Vector2(288, -26)
+
+[node name="Boar5" parent="." instance=ExtResource("8_7v1rk")]
+position = Vector2(257, -100)
+
+[node name="Boar6" parent="." instance=ExtResource("8_7v1rk")]
+position = Vector2(-28, -116)

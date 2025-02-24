@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://62irkaff2u6i"]
+[gd_scene load_steps=10 format=4 uid="uid://62irkaff2u6i"]
 
 [ext_resource type="Script" path="res://final/scripts/scene_management/game_scene.gd" id="1_5gqdb"]
 [ext_resource type="TileSet" uid="uid://djtx1m1n5v7o3" path="res://final/assets/tilesets/outdoor_bg_tileset.tres" id="1_ejcug"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cddi2bnrltj5c" path="res://final/scenes/player.tscn" id="4_7t40t"]
 [ext_resource type="PackedScene" uid="uid://ui04ktbc1wm6" path="res://final/scenes/scene_change_trigger.tscn" id="5_8ukgk"]
 [ext_resource type="PackedScene" uid="uid://1ynixmgae8l1" path="res://final/scenes/objects/mushroom.tscn" id="5_e6j3w"]
+[ext_resource type="PackedScene" uid="uid://c85mrhsc0pqct" path="res://final/scenes/npcs/boar.tscn" id="8_l1d1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apvvq"]
 size = Vector2(34, 20)
@@ -53,6 +54,9 @@ spawn_chance = 0.5
 [node name="Mushroom2" parent="." instance=ExtResource("5_e6j3w")]
 position = Vector2(-45, -154)
 spawn_chance = 0.5
+
+[node name="Boar" parent="." instance=ExtResource("8_l1d1i")]
+position = Vector2(-164, -102)
 
 [node name="Player" parent="." instance=ExtResource("4_7t40t")]
 
