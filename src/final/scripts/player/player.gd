@@ -35,7 +35,6 @@ func switch_weapons() -> void:
 	print("switch weapons")
 
 func interact() -> void:
-	print("interact")
 	for a in interact_range.get_overlapping_areas():
 		if a is InteractBox:
 			a.interact(self)
@@ -45,17 +44,22 @@ func pickup(item: Item, count: int = 1) -> void:
 	data.inventory.add_item(item, count)
 
 func setup_camp() -> void:
-	#var wood = Item.new()
-	#wood.data.item_id = Enums.Items.Wood
-	#if campfire_scene and data.inventory.has_item(wood):
-		## todo: probably need to have a 'campfire placement system'
-		## that allows us to 'aim' the placement, and check if its valid.
-		#data.inventory.remove_item(wood, 1)
-
-	if campfire_placement_checker.get_overlapping_bodies().size() < 1:
+	if not (campfire_scene or campfire_placement_checker):
+		printerr("missing campfire|placement checker scene")
+		return 
+	
+	var cost = 2
+	if data.inventory.has_enough_item_by_id(Enums.Items.Wood, cost) and campfire_placement_checker.get_overlapping_bodies().size() < 1:
+		data.inventory.remove_item_by_id(Enums.Items.Wood, cost)
 		var instance = campfire_scene.instantiate() as Node2D
 		instance.global_position = global_position + Vector2.RIGHT * data.interaction_range
 		get_tree().get_first_node_in_group("World").add_child(instance)
+
+func light_fire(fire: Fire) -> void:
+	var cost = 1
+	if data.inventory.has_enough_item_by_id(Enums.Items.Wood, cost):
+		data.inventory.remove_item_by_id(Enums.Items.Wood, cost)
+		fire.light()
 
 func cook() -> void:
 	pass
