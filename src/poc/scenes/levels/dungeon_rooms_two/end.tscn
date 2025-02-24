@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://poc/assets/dungeon_tileset.tres" id="3_ty5ir"]
 [ext_resource type="PackedScene" uid="uid://kv3v27epeoda" path="res://poc/scenes/levels/on_player_area_trigger.tscn" id="4_640hw"]
 [ext_resource type="PackedScene" uid="uid://d28o64v6vkmw2" path="res://poc/scenes/strategies/change_level_strategy.tscn" id="5_w78fl"]
-[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://poc/scenes/items/fire.tscn" id="6_hbbpa"]
+[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://final/scenes/objects/fire.tscn" id="6_hbbpa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5thv5"]
 size = Vector2(56, 20)

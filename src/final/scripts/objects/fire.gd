@@ -13,26 +13,20 @@ extends Node2D
 @export var lit: bool = true
 @export var lit_chance: float = .25
 
-func _init() -> void:
-	add_to_group(Interfaces.Interactable, true)
-
 func _ready() -> void:
 	interactbox.interacted.connect(interact)
+	lit = lit || randf() > 1 - lit_chance
 	if lit:
 		animation_player.play(animation_name)
-		return
-	if !lit and randf() <= lit_chance:
-		light()
 
 func interact(player: Player2) -> void:
 	if lit:
-		player.cook()
-		return
+		print("open cooking menu")
+	else:
+		light()
 
 func light() -> void:
 	if lit: return
 	lit = true
 	audio_stream_player.play()
 	animation_player.play(animation_name)
-	#for quest poc - these events could include the player position? that might help with sounds problem?
-	SignalBus.ActionPerformed.emit(Enums.Actions.LightFire)

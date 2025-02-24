@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cddi2bnrltj5c"]
 
 [ext_resource type="Script" path="res://final/scripts/player/player.gd" id="1_1vdp7"]
-[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://poc/scenes/items/fire.tscn" id="2_p21ca"]
+[ext_resource type="PackedScene" uid="uid://cfesvjhulwkvx" path="res://final/scenes/objects/fire.tscn" id="2_p21ca"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lat82"]
 load_path = "res://.godot/imported/mPlayer_ [human].png-c81a8878e2efb420fa92094a2388f083.ctex"
