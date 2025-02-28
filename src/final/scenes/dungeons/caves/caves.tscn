@@ -1,0 +1,40 @@
+[gd_scene load_steps=13 format=3 uid="uid://dyucr4pkirtyp"]
+
+[ext_resource type="PackedScene" uid="uid://k37r24ynd21f" path="res://final/scenes/dungeons/caves/cave_start.tscn" id="1_qaw6w"]
+[ext_resource type="PackedScene" uid="uid://bafxefwnbdq8l" path="res://final/scenes/dungeons/caves/cave_start_2.tscn" id="2_b6jdc"]
+[ext_resource type="PackedScene" uid="uid://5gando30fmdj" path="res://final/scenes/dungeons/caves/cave_hall.tscn" id="3_1rgms"]
+[ext_resource type="PackedScene" uid="uid://bio2wqgfxh2ik" path="res://final/scenes/dungeons/caves/cave_start_3.tscn" id="3_jftwl"]
+[ext_resource type="PackedScene" uid="uid://bed6x0p7suc15" path="res://final/scenes/dungeons/caves/cave_end.tscn" id="4_ebild"]
+[ext_resource type="PackedScene" uid="uid://dkrk8rtbgroda" path="res://final/scenes/dungeons/caves/cave_end_2.tscn" id="5_pomex"]
+[ext_resource type="PackedScene" uid="uid://cd3uflsa7okov" path="res://final/scenes/dungeons/caves/cave_end_3.tscn" id="6_tes5e"]
+[ext_resource type="PackedScene" uid="uid://bel74lp35wroi" path="res://final/scenes/dungeons/caves/cave_room.tscn" id="7_3gf0f"]
+[ext_resource type="PackedScene" uid="uid://bhu22q3n60d44" path="res://final/scenes/dungeons/caves/cave_room_2.tscn" id="8_p5v34"]
+[ext_resource type="PackedScene" uid="uid://dj44ujon3xn4l" path="res://final/scenes/dungeons/caves/cave_room_3.tscn" id="9_yjrp1"]
+[ext_resource type="PackedScene" uid="uid://cppawelf4qj0g" path="res://final/scenes/dungeons/caves/cave_hall_2.tscn" id="11_48bfp"]
+[ext_resource type="PackedScene" uid="uid://bi0hca6vgbl2q" path="res://final/scenes/dungeons/caves/cave_hall_3.tscn" id="12_5sl40"]
+
+[node name="Caves" type="Node2D"]
+
+[node name="Start" parent="." instance=ExtResource("1_qaw6w")]
+
+[node name="Start2" parent="." instance=ExtResource("2_b6jdc")]
+
+[node name="Start3" parent="." instance=ExtResource("3_jftwl")]
+
+[node name="End" parent="." instance=ExtResource("4_ebild")]
+
+[node name="End2" parent="." instance=ExtResource("5_pomex")]
+
+[node name="End3" parent="." instance=ExtResource("6_tes5e")]
+
+[node name="RoomLike" parent="." instance=ExtResource("7_3gf0f")]
+
+[node name="RoomLike2" parent="." instance=ExtResource("8_p5v34")]
+
+[node name="RoomLike3" parent="." instance=ExtResource("9_yjrp1")]
+
+[node name="HallLike" parent="." instance=ExtResource("3_1rgms")]
+
+[node name="HallLike2" parent="." instance=ExtResource("11_48bfp")]
+
+[node name="HallLike3" parent="." instance=ExtResource("12_5sl40")]
