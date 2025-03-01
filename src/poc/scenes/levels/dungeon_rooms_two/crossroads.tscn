@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://cyd7yi15a55uw"]
 
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://poc/assets/dungeon_tileset_bg.tres" id="1_7ce8y"]
-[ext_resource type="Script" path="res://poc/assets/scripts/levels/room_2.gd" id="1_u5anc"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/room.gd" id="1_u5anc"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://poc/assets/dungeon_tileset.tres" id="2_ya38u"]
 
 [node name="Crossroads" type="Node2D"]

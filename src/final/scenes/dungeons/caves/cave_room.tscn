@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://dj44ujon3xn4l"]
+[gd_scene load_steps=8 format=4 uid="uid://dj44ujon3xn4l"]
 
+[ext_resource type="Script" path="res://final/scripts/scene_management/room.gd" id="1_gufh4"]
 [ext_resource type="TileSet" uid="uid://3mlg3m3qop8m" path="res://final/assets/tilesets/caves_bg_tileset.tres" id="1_j5v3r"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/tile_variation_manager.gd" id="2_7p68a"]
 [ext_resource type="TileSet" uid="uid://b80mo78so2dsb" path="res://final/assets/tilesets/caves_tileset.tres" id="2_li3t2"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" path="res://final/scripts/objects/large_boulder.gd" id="6_a6548"]
 
 [node name="CaveRoom" type="Node2D"]
+script = ExtResource("1_gufh4")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -1

@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://bed6x0p7suc15"]
+[gd_scene load_steps=6 format=4 uid="uid://bed6x0p7suc15"]
 
+[ext_resource type="Script" path="res://final/scripts/scene_management/room.gd" id="1_jncm4"]
 [ext_resource type="TileSet" uid="uid://3mlg3m3qop8m" path="res://final/assets/tilesets/caves_bg_tileset.tres" id="1_w5pl6"]
 [ext_resource type="TileSet" uid="uid://b80mo78so2dsb" path="res://final/assets/tilesets/caves_tileset.tres" id="2_bcq8n"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/tile_variation_manager.gd" id="2_dneey"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/tile_cover_manager.gd" id="4_y2vye"]
 
 [node name="End" type="Node2D"]
+script = ExtResource("1_jncm4")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -1

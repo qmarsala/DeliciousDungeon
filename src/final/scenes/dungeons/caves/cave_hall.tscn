@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://5gando30fmdj"]
+[gd_scene load_steps=6 format=4 uid="uid://5gando30fmdj"]
 
+[ext_resource type="Script" path="res://final/scripts/scene_management/room.gd" id="1_44kcw"]
 [ext_resource type="TileSet" uid="uid://3mlg3m3qop8m" path="res://final/assets/tilesets/caves_bg_tileset.tres" id="1_58852"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/tile_variation_manager.gd" id="2_7mxol"]
 [ext_resource type="TileSet" uid="uid://b80mo78so2dsb" path="res://final/assets/tilesets/caves_tileset.tres" id="2_q8ot0"]
 [ext_resource type="Script" path="res://final/scripts/scene_management/tile_cover_manager.gd" id="4_c0uiv"]
 
-[node name="HallLike" type="Node2D"]
+[node name="CaveHall" type="Node2D"]
+script = ExtResource("1_44kcw")
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -1

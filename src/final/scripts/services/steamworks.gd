@@ -10,6 +10,7 @@ func _ready() -> void:
 	initialize_steam()
 
 func _process(_delta: float) -> void:
+	if not steam_enabled: return
 	Steam.run_callbacks()
 
 func initialize_steam() -> void:

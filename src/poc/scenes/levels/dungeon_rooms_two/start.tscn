@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://benb72lsdvig6"]
 
-[ext_resource type="Script" path="res://poc/assets/scripts/levels/room_2.gd" id="1_6yjy3"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/room.gd" id="1_6yjy3"]
 [ext_resource type="TileSet" uid="uid://cvuarly5xk4wp" path="res://poc/assets/dungeon_tileset_bg.tres" id="1_y8rb7"]
 [ext_resource type="TileSet" uid="uid://d0eusdwt4lmko" path="res://poc/assets/dungeon_tileset.tres" id="2_nwmym"]
 [ext_resource type="PackedScene" uid="uid://b8s7nl3sdl2xv" path="res://poc/scenes/items/chest.tscn" id="4_s7thy"]
