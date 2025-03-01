@@ -2,8 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://3mlg3m3qop8m" path="res://final/assets/tilesets/caves_bg_tileset.tres" id="1_8u55l"]
 [ext_resource type="TileSet" uid="uid://b80mo78so2dsb" path="res://final/assets/tilesets/caves_tileset.tres" id="2_mqoqc"]
-[ext_resource type="Script" path="res://final/scripts/tile_variation_manager.gd" id="2_splvw"]
-[ext_resource type="Script" path="res://final/scripts/tile_cover_manager.gd" id="4_8hwk1"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/tile_variation_manager.gd" id="2_splvw"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/tile_cover_manager.gd" id="4_8hwk1"]
 
 [node name="Start" type="Node2D"]
 

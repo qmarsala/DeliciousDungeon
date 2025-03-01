@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://dj44ujon3xn4l"]
+[gd_scene load_steps=7 format=4 uid="uid://dj44ujon3xn4l"]
 
 [ext_resource type="TileSet" uid="uid://3mlg3m3qop8m" path="res://final/assets/tilesets/caves_bg_tileset.tres" id="1_j5v3r"]
-[ext_resource type="Script" path="res://final/scripts/tile_variation_manager.gd" id="2_7p68a"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/tile_variation_manager.gd" id="2_7p68a"]
 [ext_resource type="TileSet" uid="uid://b80mo78so2dsb" path="res://final/assets/tilesets/caves_tileset.tres" id="2_li3t2"]
-[ext_resource type="Script" path="res://final/scripts/tile_cover_manager.gd" id="4_vrd61"]
+[ext_resource type="Script" path="res://final/scripts/scene_management/tile_cover_manager.gd" id="4_vrd61"]
+[ext_resource type="PackedScene" uid="uid://c4sofq6bjmrne" path="res://final/scenes/objects/large_boulder.tscn" id="5_scd5e"]
+[ext_resource type="Script" path="res://final/scripts/objects/large_boulder.gd" id="6_a6548"]
 
 [node name="CaveRoom" type="Node2D"]
 
@@ -106,3 +108,15 @@ tile_set = ExtResource("2_li3t2")
 [node name="MidgroundWestCover" type="TileMapLayer" parent="Covers"]
 tile_map_data = PackedByteArray("AADx//r/AAACAAMAAADx//v/AAACAAMAAADx//z/AAACAAMAAADx//3/AAACAAMAAADx//7/AAACAAMAAADx////AAACAAMAAADx/wAAAAACAAMAAADx/wEAAAACAAMAAADx/wIAAAACAAMAAADx/wMAAAACAAMAAADx/wQAAAACAAMAAADx/wUAAAACAAMAAADy//r/AAAGAAEAAADy/wUAAAAGAAIAAADy//v/AAAFAAIAAADy//z/AAAFAAIAAADy//3/AAAFAAIAAADy//7/AAAFAAIAAADy////AAAFAAIAAADy/wAAAAAFAAIAAADy/wEAAAAFAAIAAADy/wIAAAAFAAIAAADy/wMAAAAFAAIAAADy/wQAAAAFAAIAAAA=")
 tile_set = ExtResource("2_li3t2")
+
+[node name="LargeBoulder" parent="." instance=ExtResource("5_scd5e")]
+position = Vector2(-149, -25)
+script = ExtResource("6_a6548")
+
+[node name="LargeBoulder2" parent="." instance=ExtResource("5_scd5e")]
+position = Vector2(77, -68)
+script = ExtResource("6_a6548")
+
+[node name="LargeBoulder3" parent="." instance=ExtResource("5_scd5e")]
+position = Vector2(-25, 94)
+script = ExtResource("6_a6548")
