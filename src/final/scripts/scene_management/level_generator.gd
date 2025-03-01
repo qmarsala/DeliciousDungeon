@@ -16,22 +16,18 @@ var turn_degrees: int = 90
 var tile_positions: Array[Vector2] = []
 var start_position: Vector2 = Vector2.ZERO
 var end_position: Vector2 = Vector2.ZERO
-var tile_count: int = 8
-var path_count: int = 4
-var secondary_path_min_tiles: int = 3
-var turn_ratio = randf_range(0.15, .85)
-var turn_spacing = 1
+var tile_count: int = 5
+var path_count: int = 2
+var turn_ratio = randf_range(.5,1)
+var turn_spacing = randi_range(0,1)
 var tiles_without_turning = 0
 
 func _ready() -> void:
 	generate_floor(level)
 
 func generate_floor(floor: int) -> void:
-	var depth = floor - 1
-	tile_count = min(15, tile_count + depth)
-	if depth > 2:
-		path_count = min(10, path_count + depth - 2)
-	secondary_path_min_tiles = min(10, secondary_path_min_tiles + depth)
+	tile_count = tile_count + floor
+	path_count = path_count + floor
 	generate_tile_positions()
 	place_tiles()
 
@@ -41,22 +37,20 @@ func generate_tile_positions():
 		current_direction = starting_direction
 		current_position = start_position
 		if pc > 0:
-			current_position = tile_positions[randi_range(tile_count * .3, tile_count * .7)]
+			current_position = tile_positions[randi_range(0, tile_positions.size() - 2)]
 			next_position()
 		for tc in tile_count:
 			if tile_positions.has(current_position): 
-				next_position(false)
+				next_position()
 				continue
-			if (pc > 0 and tc > secondary_path_min_tiles and randf() < .5):
-				break
 			if pc < 1 and tc >= tile_count - 1:
 				end_position = current_position
 			tile_positions.append(current_position)
 			next_position()
 
-func next_position(turn_enabled: bool = true) -> void:
+func next_position() -> void:
 	var next_direction: Vector2 = current_direction
-	if turn_enabled and tiles_without_turning >= turn_spacing and randf() <= turn_ratio:
+	if tiles_without_turning >= turn_spacing and randf() > 1 - turn_ratio:
 		tiles_without_turning = 0
 		turn()
 	else:
@@ -74,7 +68,7 @@ func place_tiles():
 			template = start_template
 		elif pos.is_equal_approx(end_position): 
 			template = end_template
-		elif hall_chance <= randf():
+		elif randf() > 1 - hall_chance:
 			template = hall_template
 		else:
 			template = room_template

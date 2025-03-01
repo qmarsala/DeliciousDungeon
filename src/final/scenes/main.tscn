@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dukddoahsmjr7"]
+[gd_scene load_steps=16 format=3 uid="uid://dukddoahsmjr7"]
 
 [ext_resource type="Script" path="res://final/scripts/main.gd" id="1_frirg"]
 [ext_resource type="Resource" uid="uid://jfj6717nurn" path="res://final/assets/default_game_data.tres" id="2_7avvc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dhiobewo7m7lj" path="res://final/scenes/dungeons/canyons/canyon_level_one.tscn" id="7_o31am"]
 [ext_resource type="PackedScene" uid="uid://dhfogvvwexoh2" path="res://final/scenes/dungeons/canyons/canyon_level_two.tscn" id="8_hhnaw"]
 [ext_resource type="PackedScene" uid="uid://bhetbqapvacsc" path="res://final/scenes/dungeons/canyons/canyon_level_three.tscn" id="9_4sdw7"]
+[ext_resource type="PackedScene" uid="uid://dyucr4pkirtyp" path="res://final/scenes/dungeons/caves/caves.tscn" id="11_4huc5"]
 
 [sub_resource type="Animation" id="Animation_icjym"]
 length = 0.001
@@ -95,6 +96,7 @@ script = ExtResource("2_tycbb")
 main_menu_scene = ExtResource("5_6j1i1")
 outdoor_scenes = Array[PackedScene]([ExtResource("4_c2i80"), ExtResource("5_gs8h8"), ExtResource("6_n68ef")])
 canyon_dungeon_scenes = Array[PackedScene]([ExtResource("7_o31am"), ExtResource("8_hhnaw"), ExtResource("9_4sdw7")])
+cave_dungeon_scene = ExtResource("11_4huc5")
 
 [node name="TransitionLayer" type="CanvasLayer" parent="SceneManager"]
 layer = 128
